@@ -11,67 +11,15 @@ public abstract class Item {
 
     private Long id;
 
-    private float price;
-
-    private String title;
-
-    private String subtitle;
-
-    private String description;
+    private Details details;
 
     private Set<Image> images = new HashSet<>();
-
-    private int quantity;
 
     protected Item() {
     }
 
-    public Item(String title) {
-        this.title = title;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public Set<Image> getImages() {
@@ -86,6 +34,14 @@ public abstract class Item {
 
     public void removeImage(Image image) {
         images.remove(image);
+    }
+
+    public Details getDetails() {
+        return details;
+    }
+
+    public void setDetails(Details details) {
+        this.details = details;
     }
 
     @Override
