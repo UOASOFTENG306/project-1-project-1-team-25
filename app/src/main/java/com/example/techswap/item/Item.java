@@ -54,12 +54,12 @@ public abstract class Item {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title);
+        return Objects.hash(id, details.getTitle());
     }
 
     @Override
     public String toString() {
-        return "Item " + id + ": " + title + " hash: " + hashCode();
+        return "Item " + id + ": " + details.getTitle() + " hash: " + hashCode();
     }
 
 }
