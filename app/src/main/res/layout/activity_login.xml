@@ -11,11 +11,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Login"
+        android:text="@string/login"
         app:layout_constraintEnd_toEndOf="@+id/password_input_view"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="@+id/password_input_view"
-        app:layout_constraintTop_toBottomOf="@+id/password_input_view" />
+        app:layout_constraintTop_toBottomOf="@+id/password_input_view"
+        android:onClick="loginUser"/>
 
     <EditText
         android:id="@+id/username_input_view"
@@ -24,10 +25,11 @@
         android:layout_marginTop="140dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Username"
+        android:hint="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="no" />
 
     <EditText
         android:id="@+id/password_input_view"
@@ -35,9 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:ems="10"
-        android:inputType="text"
-        android:text="Password"
+        android:inputType="textPassword"
+        android:hint="@string/password"
         app:layout_constraintStart_toStartOf="@+id/username_input_view"
-        app:layout_constraintTop_toBottomOf="@+id/username_input_view" />
+        app:layout_constraintTop_toBottomOf="@+id/username_input_view"
+        android:autofillHints="no" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
