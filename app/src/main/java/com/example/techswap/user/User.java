@@ -4,17 +4,31 @@ import java.util.Objects;
 
 public class User {
 
-    private Long id;
+    private int id;
 
     private String username;
 
     private String password;
 
-    public Long getId() {
+    public User(int id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public boolean login(String inputPassword) {
+        if (inputPassword.equals(password)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,5 +59,14 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, password);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
