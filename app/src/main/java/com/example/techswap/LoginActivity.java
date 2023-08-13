@@ -29,4 +29,24 @@ public class LoginActivity extends AppCompatActivity {
 //        boolean loggedIn = user.login(password);
 
     }
+
+//    switching between the register page and the login page
+    public void onViewRegister(View view) {
+        Button registerButton = (Button) findViewById(R.id.register_view_button);
+        Button loginButton = (Button) findViewById(R.id.login_view_button);
+        Button confirmButton = (Button) findViewById(R.id.login_button);
+        registerButton.setBackgroundResource(R.drawable.active_button_style);
+        loginButton.setBackgroundResource((R.drawable.inactive_button_style));
+        confirmButton.setText(R.string.register);
+    }
+
+    public void onViewLogin(View view) {
+        Button registerButton = (Button) findViewById(R.id.register_view_button);
+        Button loginButton = (Button) findViewById((R.id.login_view_button));
+        Button confirmButton = (Button) findViewById(R.id.login_button);
+        registerButton.setBackgroundResource(R.drawable.inactive_button_style);
+        loginButton.setBackgroundResource((R.drawable.active_button_style));
+        confirmButton.setText(R.string.login);
+    }
+
 }

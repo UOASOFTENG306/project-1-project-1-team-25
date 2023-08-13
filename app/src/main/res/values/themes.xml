@@ -11,19 +11,17 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <!-- Button style for the active state -->
+    <!-- Button style for active state -->
     <style name="ActiveLoginSwitchButton" parent="ButtonStyle">
         <item name="android:textColor">#000000</item>
         <item name="android:background">@drawable/active_button_style</item>
-
-        <!-- Add any other attributes for the active state here -->
     </style>
 
-    <!-- Button style for the normal state -->
+    <!-- Button style for inactive state -->
     <style name="InactiveLoginSwitchButton" parent="ButtonStyle">
         <item name="android:textColor">#000000</item>
-        <item name="android:background">none</item>
-        <!-- Add any other attributes for the normal state here -->
+        <item name="android:background">@drawable/inactive_button_style</item>
     </style>
+
     <style name="Theme.TechSwap" parent="Base.Theme.TechSwap" />
 </resources>
