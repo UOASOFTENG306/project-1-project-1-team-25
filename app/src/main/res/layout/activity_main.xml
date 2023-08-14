@@ -8,20 +8,78 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
-        >
+        android:layout_height="wrap_content"
+        android:background="#0D324D"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="11dp">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width = "match_parent"
-            android:layout_height = "?attr/actionBarSize" />
+        <RelativeLayout
+            android:id="@+id/searchContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="6dp">
 
-  </com.google.android.material.appbar.AppBarLayout>
+            <!-- Search Icon -->
+            <ImageView
+                android:id="@+id/searchIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/search"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="2.5dp"
+                android:contentDescription="Search"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="onSearchIconClick" />
 
-  <include layout="@layout/content_main"/>
+            <TextView
+                android:id="@+id/logoText"
+                style="@style/LogoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TechSwap" />
+
+            <!-- Search Bar (Initially hidden) -->
+            <EditText
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:hint="Search"
+                android:layout_gravity="center_vertical"
+                android:visibility="gone"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:background="@drawable/search_box_round"
+                android:maxLines="1" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/accountView"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_margin="3dp"
+            android:contentDescription="Account"
+            app:srcCompat="@drawable/user" />
+
+        <ImageView
+            android:id="@+id/cartView"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_margin="3dp"
+            android:paddingTop="5dp"
+            android:contentDescription="Cart"
+            app:srcCompat="@drawable/cart" />
+
+    </LinearLayout>
+
+<!--    <include layout="@layout/content_main"/>-->
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
   android:id="@+id/fab"
@@ -32,4 +90,4 @@
   android:layout_marginBottom="16dp"
   app:srcCompat="@android:drawable/ic_dialog_email" />
 
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
