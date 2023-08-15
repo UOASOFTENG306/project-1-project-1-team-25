@@ -9,77 +9,108 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#0D324D"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="11dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/searchContainer"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="6dp">
+            android:background="#0D324D"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="11dp">
 
-            <!-- Search Icon -->
+            <RelativeLayout
+                android:id="@+id/searchContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="6dp">
+
+                <!-- Search Icon -->
+                <ImageView
+                    android:id="@+id/searchIcon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="2.5dp"
+                    android:clickable="true"
+                    android:contentDescription="Search"
+                    android:focusable="true"
+                    android:onClick="onSearchIconClick"
+                    android:src="@drawable/search" />
+
+                <TextView
+                    android:id="@+id/logoText"
+                    style="@style/LogoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TechSwap" />
+
+                <!-- Search Bar (Initially hidden) -->
+                <EditText
+                    android:id="@+id/searchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/search_box_round"
+                    android:hint="Search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
             <ImageView
-                android:id="@+id/searchIcon"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/search"
-                android:layout_gravity="center_vertical"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="2.5dp"
-                android:contentDescription="Search"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="onSearchIconClick" />
+                android:id="@+id/accountView"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_margin="3dp"
+                android:contentDescription="Account"
+                app:srcCompat="@drawable/user" />
+
+            <ImageView
+                android:id="@+id/cartView"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_margin="3dp"
+                android:contentDescription="Cart"
+                android:paddingTop="5dp"
+                app:srcCompat="@drawable/cart" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/logoText"
-                style="@style/LogoText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TechSwap" />
-
-            <!-- Search Bar (Initially hidden) -->
-            <EditText
-                android:id="@+id/searchBar"
+                android:id="@+id/categoryHeader"
+                style="@style/HeaderText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:hint="Search"
-                android:layout_gravity="center_vertical"
-                android:visibility="gone"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:background="@drawable/search_box_round"
-                android:maxLines="1" />
-        </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/accountView"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_margin="3dp"
-            android:contentDescription="Account"
-            app:srcCompat="@drawable/user" />
-
-        <ImageView
-            android:id="@+id/cartView"
-            android:layout_width="33dp"
-            android:layout_height="33dp"
-            android:layout_margin="3dp"
-            android:paddingTop="5dp"
-            android:contentDescription="Cart"
-            app:srcCompat="@drawable/cart" />
-
+                android:text="@string/browse_our_range"/>
+            <TextView
+                android:id="@+id/dealsHeader"
+                style="@style/HeaderText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hot_deals"/>
+            <TextView
+                android:id="@+id/bestSellersHeader"
+                style="@style/HeaderText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/best_sellers"/>
+        </LinearLayout>
     </LinearLayout>
 
-<!--    <include layout="@layout/content_main"/>-->
+    <!--    <include layout="@layout/content_main"/>-->
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
   android:id="@+id/fab"
