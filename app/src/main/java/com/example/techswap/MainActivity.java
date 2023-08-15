@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +16,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.techswap.adapters.CarouselAdapter;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,6 +78,36 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        // initialise recycler view
+        RecyclerView recyclerView = findViewById(R.id.categoryRecyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        List<Integer> imageList = Arrays.asList(
+                R.drawable.cpu,
+                R.drawable.gpu,
+                R.drawable.motherboard,
+                R.drawable.harddisk,
+                R.drawable.ram,
+                R.drawable.powersupply,
+                R.drawable.pccase
+        );
+
+        List<String> captionList = Arrays.asList(
+                "CPU",
+                "Graphics Card",
+                "Motherboard",
+                "Storage",
+                "RAM",
+                "Power",
+                "Case"
+        );
+
+        CarouselAdapter adapter = new CarouselAdapter(imageList, captionList);
+        recyclerView.setAdapter(adapter);
+
     }
 
     public void onSearchIconClick(View view) {
