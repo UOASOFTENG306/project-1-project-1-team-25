@@ -33,7 +33,7 @@ private FragmentDetailsBinding binding;
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(DetailsFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                        .navigate(R.id.action_Details_to_Main);
             }
         });
     }

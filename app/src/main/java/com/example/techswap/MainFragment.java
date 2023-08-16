@@ -64,11 +64,11 @@ private FragmentMainBinding binding;
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.categoryRecyclerView.setOnClickListener(new View.OnClickListener() {
+        binding.bestSellersHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(MainFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(R.id.action_Main_to_Details);
             }
         });
     }
