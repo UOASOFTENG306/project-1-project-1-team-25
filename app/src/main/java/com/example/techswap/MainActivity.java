@@ -76,36 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
-        // initialise recycler view
-        RecyclerView recyclerView = findViewById(R.id.categoryRecyclerView);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-
-        List<Integer> imageList = Arrays.asList(
-                R.drawable.cpu,
-                R.drawable.gpu,
-                R.drawable.motherboard,
-                R.drawable.harddisk,
-                R.drawable.ram,
-                R.drawable.powersupply,
-                R.drawable.pccase
-        );
-
-        List<String> captionList = Arrays.asList(
-                "CPU",
-                "Graphics Card",
-                "Motherboard",
-                "Storage",
-                "Memory",
-                "Power",
-                "Case"
-        );
-
-        CarouselAdapter adapter = new CarouselAdapter(imageList, captionList);
-        recyclerView.setAdapter(adapter);
-
     }
 
     public void onSearchIconClick(View view) {
