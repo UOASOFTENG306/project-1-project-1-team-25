@@ -2,8 +2,11 @@ package com.example.techswap.item.categories;
 
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.FormFactor;
+import com.example.techswap.item.Item;
 
-public class Case {
+import java.util.HashMap;
+
+public class Case extends Item {
 
     private Brand brand;
 
@@ -12,19 +15,27 @@ public class Case {
     public Case() {
     }
 
-    public Brand getBrand() {
+    private Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    private void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public FormFactor getFormFactor() {
+    private FormFactor getFormFactor() {
         return formFactor;
     }
 
-    public void setFormFactor(FormFactor formFactor) {
+    private void setFormFactor(FormFactor formFactor) {
         this.formFactor = formFactor;
+    }
+
+    public HashMap<String,String> getSpecifications() {
+        return null;
+    }
+
+    public void setSpecifications(HashMap<String,String> specifications) {
+
     }
 }

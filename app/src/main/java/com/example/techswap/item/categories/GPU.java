@@ -4,6 +4,8 @@ import com.example.techswap.item.Brand;
 import com.example.techswap.item.GPUModel;
 import com.example.techswap.item.Item;
 
+import java.util.HashMap;
+
 public class GPU extends Item {
 
     private Brand brand;
@@ -17,36 +19,44 @@ public class GPU extends Item {
     public GPU() {
     }
 
-    public Brand getBrand() {
+    private Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    private void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public GPUModel getModel() {
+    private GPUModel getModel() {
         return model;
     }
 
-    public void setModel(GPUModel model) {
+    private void setModel(GPUModel model) {
         this.model = model;
     }
 
-    public int getMemorySizeGB() {
+    private int getMemorySizeGB() {
         return memorySizeGB;
     }
 
-    public void setMemorySizeGB(int memorySizeGB) {
+    private void setMemorySizeGB(int memorySizeGB) {
         this.memorySizeGB = memorySizeGB;
     }
 
-    public int getClockSpeedMHz() {
+    private int getClockSpeedMHz() {
         return clockSpeedMHz;
     }
 
-    public void setClockSpeedMHz(int clockSpeedMHz) {
+    private void setClockSpeedMHz(int clockSpeedMHz) {
         this.clockSpeedMHz = clockSpeedMHz;
+    }
+
+    public HashMap<String,String> getSpecifications() {
+        return null;
+    }
+
+    public void setSpecifications(HashMap<String,String> specifications) {
+
     }
 
 }

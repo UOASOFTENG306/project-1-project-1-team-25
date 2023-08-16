@@ -3,6 +3,8 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.Item;
 
+import java.util.HashMap;
+
 public class PSU extends Item {
 
     private Brand brand;
@@ -12,19 +14,27 @@ public class PSU extends Item {
     public PSU() {
     }
 
-    public Brand getBrand() {
+    private Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    private void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public int getWattage() {
+    private int getWattage() {
         return wattage;
     }
 
-    public void setWattage(int wattage) {
+    private void setWattage(int wattage) {
         this.wattage = wattage;
+    }
+
+    public HashMap<String,String> getSpecifications() {
+        return null;
+    }
+
+    public void setSpecifications(HashMap<String,String> specifications) {
+
     }
 }

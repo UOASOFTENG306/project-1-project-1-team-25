@@ -3,6 +3,8 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.Item;
 
+import java.util.HashMap;
+
 public class RAM extends Item {
 
     private Brand brand;
@@ -18,44 +20,52 @@ public class RAM extends Item {
     public RAM() {
     }
 
-    public Brand getBrand() {
+    private Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    private void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public int getNumSticks() {
+    private int getNumSticks() {
         return numSticks;
     }
 
-    public void setNumSticks(int numSticks) {
+    private void setNumSticks(int numSticks) {
         this.numSticks = numSticks;
     }
 
-    public int getSingleCapacityGB() {
+    private int getSingleCapacityGB() {
         return singleCapacityGB;
     }
 
-    public void setSingleCapacityGB(int singleCapacityGB) {
+    private void setSingleCapacityGB(int singleCapacityGB) {
         this.singleCapacityGB = singleCapacityGB;
     }
 
-    public int getSpeedMHz() {
+    private int getSpeedMHz() {
         return speedMHz;
     }
 
-    public void setSpeedMHz(int speedMHz) {
+    private void setSpeedMHz(int speedMHz) {
         this.speedMHz = speedMHz;
     }
 
-    public int getLatencyCL() {
+    private int getLatencyCL() {
         return latencyCL;
     }
 
-    public void setLatencyCL(int latencyCL) {
+    private void setLatencyCL(int latencyCL) {
         this.latencyCL = latencyCL;
+    }
+
+    public HashMap<String,String> getSpecifications() {
+        return null;
+    }
+
+    public void setSpecifications(HashMap<String,String> specifications) {
+
     }
 
 }

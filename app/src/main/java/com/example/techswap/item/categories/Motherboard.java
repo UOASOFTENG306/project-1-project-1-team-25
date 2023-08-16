@@ -5,6 +5,8 @@ import com.example.techswap.item.FormFactor;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.Socket;
 
+import java.util.HashMap;
+
 public class Motherboard extends Item {
 
     private Brand brand;
@@ -18,36 +20,44 @@ public class Motherboard extends Item {
     public Motherboard() {
     }
 
-    public Brand getBrand() {
+    private Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    private void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public Socket getSocket() {
+    private Socket getSocket() {
         return socket;
     }
 
-    public void setSocket(Socket socket) {
+    private void setSocket(Socket socket) {
         this.socket = socket;
     }
 
-    public int getRamSlots() {
+    private int getRamSlots() {
         return ramSlots;
     }
 
-    public void setRamSlots(int ramSlots) {
+    private void setRamSlots(int ramSlots) {
         this.ramSlots = ramSlots;
     }
 
-    public FormFactor getFormFactor() {
+    private FormFactor getFormFactor() {
         return formFactor;
     }
 
-    public void setFormFactor(FormFactor formFactor) {
+    private void setFormFactor(FormFactor formFactor) {
         this.formFactor = formFactor;
+    }
+
+    public HashMap<String,String> getSpecifications() {
+        return null;
+    }
+
+    public void setSpecifications(HashMap<String,String> specifications) {
+
     }
 
 }

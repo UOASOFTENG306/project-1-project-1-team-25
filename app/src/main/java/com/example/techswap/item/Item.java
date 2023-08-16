@@ -3,6 +3,7 @@ package com.example.techswap.item;
 import android.media.Image;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -43,6 +44,10 @@ public abstract class Item {
     public void setDetails(Details details) {
         this.details = details;
     }
+
+    public abstract HashMap<String,String> getSpecifications();
+
+    public abstract void setSpecifications(HashMap<String,String> specifications);
 
     @Override
     public boolean equals(Object o) {

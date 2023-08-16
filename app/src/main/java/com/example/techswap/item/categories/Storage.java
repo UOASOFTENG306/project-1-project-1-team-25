@@ -3,6 +3,8 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.Item;
 
+import java.util.HashMap;
+
 public class Storage extends Item {
 
     private Brand brand;
@@ -14,28 +16,36 @@ public class Storage extends Item {
     public Storage() {
     }
 
-    public Brand getBrand() {
+    private Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    private void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public boolean isSolidState() {
+    private boolean isSolidState() {
         return isSolidState;
     }
 
-    public void setSolidState(boolean solidState) {
+    private void setSolidState(boolean solidState) {
         isSolidState = solidState;
     }
 
-    public int getCapacityGB() {
+    private int getCapacityGB() {
         return capacityGB;
     }
 
-    public void setCapacityGB(int capacityGB) {
+    private void setCapacityGB(int capacityGB) {
         this.capacityGB = capacityGB;
+    }
+
+    public HashMap<String,String> getSpecifications() {
+        return null;
+    }
+
+    public void setSpecifications(HashMap<String,String> specifications) {
+
     }
 
 }

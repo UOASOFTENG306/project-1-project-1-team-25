@@ -3,6 +3,8 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.Item;
 
+import java.util.HashMap;
+
 public class Other extends Item {
 
     private Brand brand;
@@ -10,11 +12,19 @@ public class Other extends Item {
     public Other() {
     }
 
-    public Brand getBrand() {
+    private Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(Brand brand) {
+    private void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    public HashMap<String,String> getSpecifications() {
+        return null;
+    }
+
+    public void setSpecifications(HashMap<String,String> specifications) {
+
     }
 }
