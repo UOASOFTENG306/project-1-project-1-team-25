@@ -9,43 +9,45 @@ import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private EditText usernameInput;
+    private EditText passwordInput;
+    private Button registerButton;
+    private Button loginButton;
+//    private Button loginButton;
+private Button confirmButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        EditText usernameInput = (EditText) findViewById(R.id.username_input_view);
-        EditText passwordInput = (EditText) findViewById(R.id.password_input_view);
-        Button loginButton = (Button) findViewById(R.id.login_button);
+        usernameInput = (EditText) findViewById(R.id.username_input_view);
+        passwordInput = (EditText) findViewById(R.id.password_input_view);
+        loginButton = (Button) findViewById(R.id.login_view_button);
+        registerButton = findViewById(R.id.register_view_button);
+        confirmButton = findViewById(R.id.confirm_button);
     }
 
-    public void loginUser(View view) {
-        EditText usernameInput = (EditText) findViewById(R.id.username_input_view);
-        String username = String.valueOf(usernameInput.getText());
-        EditText passwordInput = (EditText) findViewById(R.id.password_input_view);
-        String password = String.valueOf(passwordInput.getText());
-
-        // for when the database is created and can be accessed
-//        User user = dbHandler.getUserByUsername(username);
-//        boolean loggedIn = user.login(password);
-
-    }
-
-//    switching between the register page and the login page
+//    public void loginUser(View view) {
+//        EditText usernameInput = (EditText) findViewById(R.id.username_input_view);
+//        String username = String.valueOf(usernameInput.getText());
+//        EditText passwordInput = (EditText) findViewById(R.id.password_input_view);
+//        String password = String.valueOf(passwordInput.getText());
+//
+//        // for when the database is created and can be accessed
+////        User user = dbHandler.getUserByUsername(username);
+////        boolean loggedIn = user.login(password);
+//
+//    }
+//
+////    switching between the register page and the login page
     public void onViewRegister(View view) {
-        Button registerButton = (Button) findViewById(R.id.register_view_button);
-        Button loginButton = (Button) findViewById(R.id.login_view_button);
-        Button confirmButton = (Button) findViewById(R.id.login_button);
         registerButton.setBackgroundResource(R.drawable.active_button_style);
-        loginButton.setBackgroundResource((R.drawable.inactive_button_style));
-        confirmButton.setText(R.string.register);
+        loginButton.setBackgroundResource(R.drawable.inactive_button_style);
+        confirmButton.setText("Create Account");
     }
 
     public void onViewLogin(View view) {
-        Button registerButton = (Button) findViewById(R.id.register_view_button);
-        Button loginButton = (Button) findViewById((R.id.login_view_button));
-        Button confirmButton = (Button) findViewById(R.id.login_button);
         registerButton.setBackgroundResource(R.drawable.inactive_button_style);
-        loginButton.setBackgroundResource((R.drawable.active_button_style));
+        loginButton.setBackgroundResource(R.drawable.active_button_style);
         confirmButton.setText(R.string.login);
     }
 

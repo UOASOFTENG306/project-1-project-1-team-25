@@ -6,9 +6,9 @@
         android:left="-2dp"
         android:right="-2dp"
         android:top="-2dp">
-<!--        <shape android:shape="rectangle">-->
-<!--            <solid android:color="#00000000" /> &lt;!&ndash; Transparent color &ndash;&gt;-->
-<!--            <stroke android:color="#000000" android:width="2dp" /> &lt;!&ndash; Border width &ndash;&gt;-->
-<!--        </shape>-->
+        <shape android:shape="rectangle">
+            <solid android:color="#00000000" /> <!-- Transparent color -->
+            <stroke android:color="#000000" android:width="0dp" /> <!-- Border width -->
+        </shape>
     </item>
 </layer-list>
