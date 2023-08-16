@@ -2,6 +2,7 @@ package com.example.techswap.item.categories;
 
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.Item;
+import com.example.techswap.item.Socket;
 
 import java.util.HashMap;
 
@@ -31,10 +32,15 @@ public class PSU extends Item {
     }
 
     public HashMap<String,String> getSpecifications() {
-        return null;
+        HashMap<String,String> specifications = new HashMap<String,String>();
+        specifications.put("Brand", brand.toString());
+        specifications.put("Rated capacity", String.valueOf(wattage));
+
+        return specifications;
     }
 
     public void setSpecifications(HashMap<String,String> specifications) {
-
+        brand = Brand.valueOf(specifications.get("Brand"));
+        wattage = Integer.parseInt(specifications.get("Rated capacity"));
     }
 }

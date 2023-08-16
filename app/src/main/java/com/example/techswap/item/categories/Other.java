@@ -21,10 +21,13 @@ public class Other extends Item {
     }
 
     public HashMap<String,String> getSpecifications() {
-        return null;
+        HashMap<String,String> specifications = new HashMap<String,String>();
+        specifications.put("Brand", brand.toString());
+
+        return specifications;
     }
 
     public void setSpecifications(HashMap<String,String> specifications) {
-
+        brand = Brand.valueOf(specifications.get("Brand"));
     }
 }

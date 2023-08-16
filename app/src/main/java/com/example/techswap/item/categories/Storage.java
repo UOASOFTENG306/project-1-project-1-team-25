@@ -2,6 +2,7 @@ package com.example.techswap.item.categories;
 
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.Item;
+import com.example.techswap.item.Socket;
 
 import java.util.HashMap;
 
@@ -41,11 +42,18 @@ public class Storage extends Item {
     }
 
     public HashMap<String,String> getSpecifications() {
-        return null;
+        HashMap<String,String> specifications = new HashMap<String,String>();
+        specifications.put("Brand", brand.toString());
+        specifications.put("Solid state", String.valueOf(isSolidState));
+        specifications.put("Capacity", String.valueOf(capacityGB));
+
+        return specifications;
     }
 
     public void setSpecifications(HashMap<String,String> specifications) {
-
+        brand = Brand.valueOf(specifications.get("Brand"));
+        isSolidState = Boolean.parseBoolean(specifications.get("Solid state"));
+        capacityGB = Integer.parseInt(specifications.get("Capacity"));
     }
 
 }

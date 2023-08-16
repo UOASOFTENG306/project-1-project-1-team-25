@@ -3,6 +3,7 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.GPUModel;
 import com.example.techswap.item.Item;
+import com.example.techswap.item.Socket;
 
 import java.util.HashMap;
 
@@ -52,11 +53,20 @@ public class GPU extends Item {
     }
 
     public HashMap<String,String> getSpecifications() {
-        return null;
+        HashMap<String,String> specifications = new HashMap<String,String>();
+        specifications.put("Brand", brand.toString());
+        specifications.put("Model", model.toString());
+        specifications.put("Memory size", String.valueOf(memorySizeGB));
+        specifications.put("Clock speed", String.valueOf(clockSpeedMHz));
+
+        return specifications;
     }
 
     public void setSpecifications(HashMap<String,String> specifications) {
-
+        brand = Brand.valueOf(specifications.get("Brand"));
+        model = GPUModel.valueOf(specifications.get("Model"));
+        memorySizeGB = Integer.parseInt(specifications.get("Memory size"));
+        clockSpeedMHz = Integer.parseInt(specifications.get("Clock speed"));
     }
 
 }

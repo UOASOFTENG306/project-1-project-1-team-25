@@ -2,6 +2,7 @@ package com.example.techswap.item.categories;
 
 import com.example.techswap.item.Brand;
 import com.example.techswap.item.FormFactor;
+import com.example.techswap.item.GPUModel;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.Socket;
 
@@ -53,11 +54,20 @@ public class Motherboard extends Item {
     }
 
     public HashMap<String,String> getSpecifications() {
-        return null;
+        HashMap<String,String> specifications = new HashMap<String,String>();
+        specifications.put("Brand", brand.toString());
+        specifications.put("Socket", socket.toString());
+        specifications.put("No. of ram slots", String.valueOf(ramSlots));
+        specifications.put("Form factor", formFactor.toString());
+
+        return specifications;
     }
 
     public void setSpecifications(HashMap<String,String> specifications) {
-
+        brand = Brand.valueOf(specifications.get("Brand"));
+        socket = Socket.valueOf(specifications.get("Socket"));
+        ramSlots = Integer.parseInt(specifications.get("No. of ram slots"));
+        formFactor = FormFactor.valueOf(specifications.get("Form factor"));
     }
 
 }

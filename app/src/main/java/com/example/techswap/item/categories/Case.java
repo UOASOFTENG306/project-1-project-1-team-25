@@ -32,10 +32,15 @@ public class Case extends Item {
     }
 
     public HashMap<String,String> getSpecifications() {
-        return null;
+        HashMap<String,String> specifications = new HashMap<String,String>();
+        specifications.put("Brand", brand.toString());
+        specifications.put("Form factor", formFactor.toString());
+
+        return specifications;
     }
 
     public void setSpecifications(HashMap<String,String> specifications) {
-
+        brand = Brand.valueOf(specifications.get("Brand"));
+        formFactor = FormFactor.valueOf(specifications.get("Form factor"));
     }
 }
