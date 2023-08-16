@@ -1,6 +1,5 @@
 package com.example.techswap;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +11,6 @@ import android.view.View;
 
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 "Graphics Card",
                 "Motherboard",
                 "Storage",
-                "RAM",
+                "Memory",
                 "Power",
                 "Case"
         );
