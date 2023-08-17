@@ -26,35 +26,40 @@
                 android:id="@+id/searchContainer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="3dp"
                 android:layout_weight="1"
-                android:padding="6dp">
+                android:padding="0dp">
 
                 <!-- Search Icon -->
                 <ImageView
                     android:id="@+id/searchIcon"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_gravity="center_vertical"
-                    android:layout_margin="2.5dp"
+                    android:layout_gravity="right|center_vertical"
                     android:clickable="true"
                     android:contentDescription="Search"
                     android:focusable="true"
                     android:onClick="onSearchIconClick"
+                    android:padding="11dp"
                     android:src="@drawable/search" />
 
                 <TextView
                     android:id="@+id/logoText"
                     style="@style/LogoText"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TechSwap" />
+                    android:layout_height="50dp"
+                    android:gravity="left|center_vertical"
+                    android:onClick="onLogoClick"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                    android:textSize="24sp" />
 
                 <!-- Search Bar (Initially hidden) -->
                 <EditText
                     android:id="@+id/searchBar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/search_box_round"
                     android:hint="Search"
@@ -67,30 +72,33 @@
 
             <ImageView
                 android:id="@+id/accountView"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_margin="3dp"
                 android:contentDescription="Account"
+                android:padding="8dp"
                 app:srcCompat="@drawable/user" />
 
             <ImageView
                 android:id="@+id/cartView"
-                android:layout_width="33dp"
-                android:layout_height="33dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_margin="3dp"
                 android:contentDescription="Cart"
-                android:paddingTop="5dp"
+                android:onClick="onCartClick"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
                 app:srcCompat="@drawable/cart" />
 
         </LinearLayout>
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:id="@+id/mainFragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph" />
+            app:defaultNavHost="true" />
 
     </LinearLayout>
 

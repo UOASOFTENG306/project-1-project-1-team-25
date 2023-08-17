@@ -7,19 +7,20 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.techswap.adapters.CarouselAdapter;
-import com.example.techswap.databinding.FragmentMainBinding;
+import com.example.techswap.adapters.ItemCardAdapter;
+import com.example.techswap.adapters.SpecificationAdapter;
+import com.example.techswap.databinding.FragmentCartBinding;
+import com.example.techswap.databinding.FragmentDetailsBinding;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class MainFragment extends Fragment {
+public class CartFragment extends Fragment {
 
-private FragmentMainBinding binding;
+private FragmentCartBinding binding;
 
     @Override
     public View onCreateView(
@@ -27,11 +28,11 @@ private FragmentMainBinding binding;
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentMainBinding.inflate(inflater, container, false);
+        binding = FragmentCartBinding.inflate(inflater, container, false);
 
-        // initialise recycler view
-        RecyclerView recyclerView = binding.categoryRecyclerView;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        // specifications recycler view
+        RecyclerView recyclerView = binding.cartRecyclerView;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
         List<Integer> imageList = Arrays.asList(
@@ -44,7 +45,7 @@ private FragmentMainBinding binding;
                 R.drawable.pccase
         );
 
-        List<String> captionList = Arrays.asList(
+        List<String> titleList = Arrays.asList(
                 "CPU",
                 "Graphics Card",
                 "Motherboard",
@@ -54,7 +55,27 @@ private FragmentMainBinding binding;
                 "Case"
         );
 
-        CarouselAdapter adapter = new CarouselAdapter(imageList, captionList);
+        List<String> subtitleList = Arrays.asList(
+                "CPU",
+                "Graphics Card",
+                "Motherboard",
+                "Storage",
+                "Memory",
+                "Power",
+                "Case"
+        );
+
+        List<String> priceList = Arrays.asList(
+                "CPU",
+                "Graphics Card",
+                "Motherboard",
+                "Storage",
+                "Memory",
+                "Power",
+                "Case"
+        );
+
+        ItemCardAdapter adapter = new ItemCardAdapter(imageList, titleList, subtitleList, priceList);
         recyclerView.setAdapter(adapter);
 
         return binding.getRoot();
@@ -63,20 +84,9 @@ private FragmentMainBinding binding;
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        binding.bestSellersHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DetailsFragment fragment = new DetailsFragment();
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainFragmentContainer, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
     }
 
-@Override
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
