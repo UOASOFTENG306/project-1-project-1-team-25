@@ -77,6 +77,17 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        // initialize MainFragment
+        MainFragment fragment = new MainFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.mainFragmentContainer, fragment);
+
+        // Clear the entire back stack
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        transaction.commit();
     }
 
     public void onSearchIconClick(View view) {
@@ -104,11 +115,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCartClick(View view) {
-        CartFragment fragment = new CartFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.mainFragmentContainer, fragment); // R.id.fragment_container is your fragment container view
-        transaction.addToBackStack(null);
-        transaction.commit();
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
+        if (!(currentFragment instanceof CartFragment)) {
+            CartFragment fragment = new CartFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.mainFragmentContainer, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+
+    public void onLogoClick(View view) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
+        if (!(currentFragment instanceof MainFragment)) {
+            MainFragment fragment = new MainFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.mainFragmentContainer, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
     }
 
     public void onUserClick(View view) {
