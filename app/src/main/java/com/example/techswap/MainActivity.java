@@ -1,5 +1,6 @@
 package com.example.techswap;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,22 +25,24 @@ public class MainActivity extends AppCompatActivity {
 //    private AppBarConfiguration appBarConfiguration;
 //    private ActivityMainBinding binding;
 
+    private TextView logoText;
+    private ImageView userIcon;
     private ImageView searchIcon;
     private EditText searchBar;
-    private TextView logoText;
-    private FragmentContainerView fragmentContainer;
     private Animation fadeInAnimation;
     private Animation fadeOutAnimation;
     private boolean isSearchBarVisible = false;
+    private FragmentContainerView fragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        logoText = findViewById(R.id.logoText);
+        userIcon = findViewById(R.id.userIcon);
         searchIcon = findViewById(R.id.searchIcon);
         searchBar = findViewById(R.id.searchBar);
-        logoText = findViewById(R.id.logoText);
         fragmentContainer = findViewById(R.id.mainFragmentContainer);
 
         fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in2);
@@ -75,6 +78,15 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 return false;
+            }
+        });
+
+        userIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Code to switch to another activity
+                Intent intent = new Intent(MainActivity.this, UserInActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -134,10 +146,6 @@ public class MainActivity extends AppCompatActivity {
             transaction.addToBackStack(null);
             transaction.commit();
         }
-    }
-
-    public void onUserClick(View view) {
-
     }
 
 //    private void closeKeyboard() {
