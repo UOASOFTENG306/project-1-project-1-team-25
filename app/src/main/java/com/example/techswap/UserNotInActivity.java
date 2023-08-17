@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class UserNotInActivity extends AppCompatActivity {
 
@@ -14,7 +16,7 @@ public class UserNotInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_in);
+        setContentView(R.layout.activity_user_not_in);
 
         userInBack = findViewById(R.id.userInBack);
 
@@ -26,5 +28,15 @@ public class UserNotInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Load the LoginFragment
+        if (savedInstanceState == null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            LoginFragment loginFragment = new LoginFragment();
+            fragmentTransaction.replace(R.id.mainFragmentContainer, loginFragment); // Replace the container with the fragment
+            fragmentTransaction.commit();
+        }
     }
 }

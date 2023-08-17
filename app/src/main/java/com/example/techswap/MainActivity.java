@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Code to switch to another activity
-                Intent intent = new Intent(MainActivity.this, UserInActivity.class);
+                Intent intent = new Intent(MainActivity.this, UserNotInActivity.class);
                 startActivity(intent);
             }
         });
