@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -30,7 +31,13 @@ private FragmentDetailsBinding binding;
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false);
 
-        // initialise recycler view
+        // set field text
+        binding.detailsTitle.setText("Title");
+        binding.detailsSubtitle.setText("Subtitle");
+        binding.detailsPrice.setText("$299.99");
+        binding.detailsDescription.setText(java.time.LocalDateTime.now().toString());
+
+        // specifications recycler view
         RecyclerView recyclerView = binding.specificationRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -64,7 +71,7 @@ private FragmentDetailsBinding binding;
 //        });
     }
 
-@Override
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
