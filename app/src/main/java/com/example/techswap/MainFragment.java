@@ -55,7 +55,7 @@ public class MainFragment extends Fragment {
                 "Case"
         );
 
-        CarouselAdapter adapter1 = new CarouselAdapter(imageList1, captionList1, null);
+        CarouselAdapter adapter1 = new CarouselAdapter(imageList1, captionList1, null, null);
         recyclerView1.setAdapter(adapter1);
 
         // Second Carousel
@@ -74,12 +74,12 @@ public class MainFragment extends Fragment {
         );
 
         List<String> captionList2 = Arrays.asList(
-                "CPU",
-                "Graphics Card",
-                "Motherboard",
-                "Storage",
-                "Memory",
-                "Power"
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item"
                 // Add more captions here
         );
 
@@ -93,7 +93,7 @@ public class MainFragment extends Fragment {
                 // Add more captions here
         );
 
-        CarouselAdapter adapter2 = new CarouselAdapter(imageList2, captionList2, priceList);
+        CarouselAdapter adapter2 = new CarouselAdapter(imageList2, captionList2, priceList, null);
         recyclerView2.setAdapter(adapter2);
 
         // Vertical RecyclerView
@@ -112,16 +112,36 @@ public class MainFragment extends Fragment {
         );
 
         List<String> verticalCaptionList = Arrays.asList(
-                "CPU",
-                "Graphics Card",
-                "Motherboard",
-                "Storage",
-                "Memory",
-                "Power"
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item"
                 // Add more captions here
         );
 
-        CarouselAdapter verticalAdapter = new CarouselAdapter(verticalImageList, verticalCaptionList, null);
+        List<Integer> priceList2 = Arrays.asList(
+                11,
+                11,
+                11,
+                11,
+                11,
+                11
+                // Add more captions here
+        );
+
+        List<String> descriptionList = Arrays.asList(
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet"
+                // Add more captions here
+        );
+
+        CarouselAdapter verticalAdapter = new CarouselAdapter(verticalImageList, verticalCaptionList, priceList2, descriptionList);
         verticalRecyclerView.setAdapter(verticalAdapter);
 
         return rootView;
