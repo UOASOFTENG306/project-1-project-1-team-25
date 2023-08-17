@@ -8,28 +8,90 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_height="wrap_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width = "match_parent"
-            android:layout_height = "?attr/actionBarSize" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0D324D"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="11dp">
 
-  </com.google.android.material.appbar.AppBarLayout>
+            <RelativeLayout
+                android:id="@+id/searchContainer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="6dp">
 
-  <include layout="@layout/content_main"/>
+                <!-- Search Icon -->
+                <ImageView
+                    android:id="@+id/searchIcon"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="2.5dp"
+                    android:clickable="true"
+                    android:contentDescription="@string/search"
+                    android:focusable="true"
+                    android:onClick="onSearchIconClick"
+                    android:src="@drawable/search" />
 
-  <com.google.android.material.floatingactionbutton.FloatingActionButton
-  android:id="@+id/fab"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  android:layout_gravity="bottom|end"
-  android:layout_marginEnd="@dimen/fab_margin"
-  android:layout_marginBottom="16dp"
-  app:srcCompat="@android:drawable/ic_dialog_email" />
+                <TextView
+                    android:id="@+id/logoText"
+                    style="@style/LogoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/techswap" />
 
-  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <!-- Search Bar (Initially hidden) -->
+                <EditText
+                    android:id="@+id/searchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/search_box_round"
+                    android:hint="@string/search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/accountView"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_margin="3dp"
+                android:contentDescription="@string/account"
+                app:srcCompat="@drawable/user" />
+
+            <ImageView
+                android:id="@+id/cartView"
+                android:layout_width="33dp"
+                android:layout_height="33dp"
+                android:layout_margin="3dp"
+                android:contentDescription="@string/cart"
+                android:paddingTop="5dp"
+                app:srcCompat="@drawable/cart" />
+
+        </LinearLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView3"
+            android:name="com.example.techswap.MainFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <!--    <include layout="@layout/content_main"/>-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
