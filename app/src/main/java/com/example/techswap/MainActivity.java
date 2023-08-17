@@ -3,8 +3,12 @@ package com.example.techswap;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,11 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.techswap.adapters.CarouselAdapter;
-
-import java.util.Arrays;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
 //    private AppBarConfiguration appBarConfiguration;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView searchIcon;
     private EditText searchBar;
     private TextView logoText;
+    private FragmentContainerView fragmentContainer;
     private Animation fadeInAnimation;
     private Animation fadeOutAnimation;
     private boolean isSearchBarVisible = false;
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         searchIcon = findViewById(R.id.searchIcon);
         searchBar = findViewById(R.id.searchBar);
         logoText = findViewById(R.id.logoText);
+        fragmentContainer = findViewById(R.id.mainFragmentContainer);
 
         fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in2);
         fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out);
@@ -76,6 +77,17 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        // initialize MainFragment
+        MainFragment fragment = new MainFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.mainFragmentContainer, fragment);
+
+        // Clear the entire back stack
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        transaction.commit();
     }
 
     public void onSearchIconClick(View view) {
@@ -100,6 +112,32 @@ public class MainActivity extends AppCompatActivity {
         logoText.setVisibility(View.VISIBLE);
         logoText.requestFocus();
         isSearchBarVisible = false;
+    }
+
+    public void onCartClick(View view) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
+        if (!(currentFragment instanceof CartFragment)) {
+            CartFragment fragment = new CartFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.mainFragmentContainer, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+
+    public void onLogoClick(View view) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
+        if (!(currentFragment instanceof MainFragment)) {
+            MainFragment fragment = new MainFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.mainFragmentContainer, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+
+    public void onUserClick(View view) {
+
     }
 
 //    private void closeKeyboard() {

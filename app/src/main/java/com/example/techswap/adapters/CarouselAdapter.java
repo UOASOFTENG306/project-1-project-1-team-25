@@ -99,8 +99,8 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         public CarouselViewHolderWithoutPriceOrDesc(@NonNull View itemView) {
             super(itemView);
-            carouselImage = itemView.findViewById(R.id.carouselImage);
-            captionText = itemView.findViewById(R.id.captionText);
+            carouselImage = itemView.findViewById(R.id.itemImage);
+            captionText = itemView.findViewById(R.id.itemTitle);
         }
     }
 
