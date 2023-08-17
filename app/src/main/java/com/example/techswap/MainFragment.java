@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MainFragment extends Fragment {
 
-private FragmentMainBinding binding;
+    private FragmentMainBinding binding;
 
     @Override
     public View onCreateView(
@@ -28,13 +28,14 @@ private FragmentMainBinding binding;
     ) {
 
         binding = FragmentMainBinding.inflate(inflater, container, false);
+        View rootView = binding.getRoot();
 
-        // initialise recycler view
-        RecyclerView recyclerView = binding.categoryRecyclerView;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        // First Carousel
+        RecyclerView recyclerView1 = binding.categoryRecyclerView;
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView1.setLayoutManager(layoutManager1);
 
-        List<Integer> imageList = Arrays.asList(
+        List<Integer> imageList1 = Arrays.asList(
                 R.drawable.cpu,
                 R.drawable.gpu,
                 R.drawable.motherboard,
@@ -44,7 +45,7 @@ private FragmentMainBinding binding;
                 R.drawable.pccase
         );
 
-        List<String> captionList = Arrays.asList(
+        List<String> captionList1 = Arrays.asList(
                 "CPU",
                 "Graphics Card",
                 "Motherboard",
@@ -54,11 +55,70 @@ private FragmentMainBinding binding;
                 "Case"
         );
 
-        CarouselAdapter adapter = new CarouselAdapter(imageList, captionList);
-        recyclerView.setAdapter(adapter);
+        CarouselAdapter adapter1 = new CarouselAdapter(imageList1, captionList1);
+        recyclerView1.setAdapter(adapter1);
 
-        return binding.getRoot();
+        // Second Carousel
+        RecyclerView recyclerView2 = binding.dealsRecyclerView;
+        LinearLayoutManager layoutManager2 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        recyclerView2.setLayoutManager(layoutManager2);
 
+        List<Integer> imageList2 = Arrays.asList(
+                R.drawable.cpu,
+                R.drawable.gpu,
+                R.drawable.motherboard,
+                R.drawable.harddisk,
+                R.drawable.ram,
+                R.drawable.powersupply,
+                R.drawable.pccase
+                // Add more images here
+        );
+
+        List<String> captionList2 = Arrays.asList(
+                "CPU",
+                "Graphics Card",
+                "Motherboard",
+                "Storage",
+                "Memory",
+                "Power",
+                "Case"
+                // Add more captions here
+        );
+
+        CarouselAdapter adapter2 = new CarouselAdapter(imageList2, captionList2);
+        recyclerView2.setAdapter(adapter2);
+
+        // Vertical RecyclerView
+        RecyclerView verticalRecyclerView = binding.bestSellersRecyclerView;
+        LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+        verticalRecyclerView.setLayoutManager(verticalLayoutManager);
+
+        List<Integer> verticalImageList = Arrays.asList(
+                R.drawable.cpu,
+                R.drawable.gpu,
+                R.drawable.motherboard,
+                R.drawable.harddisk,
+                R.drawable.ram,
+                R.drawable.powersupply,
+                R.drawable.pccase
+                // Add more images here
+        );
+
+        List<String> verticalCaptionList = Arrays.asList(
+                "CPU",
+                "Graphics Card",
+                "Motherboard",
+                "Storage",
+                "Memory",
+                "Power",
+                "Case"
+                // Add more captions here
+        );
+
+        CarouselAdapter verticalAdapter = new CarouselAdapter(verticalImageList, verticalCaptionList);
+        verticalRecyclerView.setAdapter(verticalAdapter);
+
+        return rootView;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -73,10 +133,9 @@ private FragmentMainBinding binding;
         });
     }
 
-@Override
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
-
 }
