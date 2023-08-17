@@ -31,9 +31,9 @@ public class MainFragment extends Fragment {
         View rootView = binding.getRoot();
 
         // First Carousel
-        RecyclerView recyclerView1 = binding.categoryRecyclerView;
-        LinearLayoutManager layoutManager1 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView1.setLayoutManager(layoutManager1);
+        RecyclerView categoryRecyclerView = binding.categoryRecyclerView;
+        LinearLayoutManager categoryLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        categoryRecyclerView.setLayoutManager(categoryLayoutManager);
 
         List<Integer> imageList1 = Arrays.asList(
                 R.drawable.cpu,
@@ -55,13 +55,13 @@ public class MainFragment extends Fragment {
                 "Case"
         );
 
-        CarouselAdapter adapter1 = new CarouselAdapter(imageList1, captionList1, null, null);
-        recyclerView1.setAdapter(adapter1);
+        CarouselAdapter categoryAdapter = new CarouselAdapter(imageList1, captionList1, null, null);
+        categoryRecyclerView.setAdapter(categoryAdapter);
 
         // Second Carousel
-        RecyclerView recyclerView2 = binding.dealsRecyclerView;
-        LinearLayoutManager layoutManager2 = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView2.setLayoutManager(layoutManager2);
+        RecyclerView dealsRecyclerView = binding.dealsRecyclerView;
+        LinearLayoutManager dealsLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        dealsRecyclerView.setLayoutManager(dealsLayoutManager);
 
         List<Integer> imageList2 = Arrays.asList(
                 R.drawable.tempimg,
@@ -70,7 +70,6 @@ public class MainFragment extends Fragment {
                 R.drawable.tempimg,
                 R.drawable.tempimg,
                 R.drawable.tempimg
-                // Add more images here
         );
 
         List<String> captionList2 = Arrays.asList(
@@ -80,7 +79,6 @@ public class MainFragment extends Fragment {
                 "Temp Item",
                 "Temp Item",
                 "Temp Item"
-                // Add more captions here
         );
 
         List<Integer> priceList = Arrays.asList(
@@ -90,35 +88,32 @@ public class MainFragment extends Fragment {
                 11,
                 11,
                 11
-                // Add more captions here
         );
 
-        CarouselAdapter adapter2 = new CarouselAdapter(imageList2, captionList2, priceList, null);
-        recyclerView2.setAdapter(adapter2);
+        CarouselAdapter dealsAdapter = new CarouselAdapter(imageList2, captionList2, priceList, null);
+        dealsRecyclerView.setAdapter(dealsAdapter);
 
         // Vertical RecyclerView
-        RecyclerView verticalRecyclerView = binding.bestSellersRecyclerView;
-        LinearLayoutManager verticalLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
-        verticalRecyclerView.setLayoutManager(verticalLayoutManager);
+        RecyclerView bestSellersRecyclerView = binding.bestSellersRecyclerView;
+        LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+        bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
 
-        List<Integer> verticalImageList = Arrays.asList(
+        List<Integer> imageList3 = Arrays.asList(
                 R.drawable.tempimg,
                 R.drawable.tempimg,
                 R.drawable.tempimg,
                 R.drawable.tempimg,
                 R.drawable.tempimg,
                 R.drawable.tempimg
-                // Add more images here
         );
 
-        List<String> verticalCaptionList = Arrays.asList(
+        List<String> captionList3 = Arrays.asList(
                 "Temp Item",
                 "Temp Item",
                 "Temp Item",
                 "Temp Item",
                 "Temp Item",
                 "Temp Item"
-                // Add more captions here
         );
 
         List<Integer> priceList2 = Arrays.asList(
@@ -128,7 +123,6 @@ public class MainFragment extends Fragment {
                 11,
                 11,
                 11
-                // Add more captions here
         );
 
         List<String> descriptionList = Arrays.asList(
@@ -138,11 +132,10 @@ public class MainFragment extends Fragment {
                 "Lorem ipsum dolor sit amet",
                 "Lorem ipsum dolor sit amet",
                 "Lorem ipsum dolor sit amet"
-                // Add more captions here
         );
 
-        CarouselAdapter verticalAdapter = new CarouselAdapter(verticalImageList, verticalCaptionList, priceList2, descriptionList);
-        verticalRecyclerView.setAdapter(verticalAdapter);
+        CarouselAdapter bestSellersAdapter = new CarouselAdapter(imageList3, captionList3, priceList2, descriptionList);
+        bestSellersRecyclerView.setAdapter(bestSellersAdapter);
 
         return rootView;
     }

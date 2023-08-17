@@ -38,7 +38,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_margin="2.5dp"
                     android:clickable="true"
-                    android:contentDescription="Search"
+                    android:contentDescription="@string/search"
                     android:focusable="true"
                     android:onClick="onSearchIconClick"
                     android:src="@drawable/search" />
@@ -48,7 +48,7 @@
                     style="@style/LogoText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="TechSwap" />
+                    android:text="@string/techswap" />
 
                 <!-- Search Bar (Initially hidden) -->
                 <EditText
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/search_box_round"
-                    android:hint="Search"
+                    android:hint="@string/search"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
@@ -70,7 +70,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_margin="3dp"
-                android:contentDescription="Account"
+                android:contentDescription="@string/account"
                 app:srcCompat="@drawable/user" />
 
             <ImageView
@@ -78,7 +78,7 @@
                 android:layout_width="33dp"
                 android:layout_height="33dp"
                 android:layout_margin="3dp"
-                android:contentDescription="Cart"
+                android:contentDescription="@string/cart"
                 android:paddingTop="5dp"
                 app:srcCompat="@drawable/cart" />
 

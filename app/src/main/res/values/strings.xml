@@ -48,4 +48,8 @@
     <string name="browse_our_range">Browse Our Range</string>
     <string name="hot_deals">Hot Deals</string>
     <string name="best_sellers">Best Sellers</string>
+    <string name="search">Search</string>
+    <string name="techswap">TechSwap</string>
+    <string name="account">Account</string>
+    <string name="cart">Cart</string>
 </resources>
