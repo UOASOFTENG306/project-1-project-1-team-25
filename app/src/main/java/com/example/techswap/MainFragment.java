@@ -55,7 +55,7 @@ public class MainFragment extends Fragment {
                 "Case"
         );
 
-        CarouselAdapter adapter1 = new CarouselAdapter(imageList1, captionList1);
+        CarouselAdapter adapter1 = new CarouselAdapter(imageList1, captionList1, null);
         recyclerView1.setAdapter(adapter1);
 
         // Second Carousel
@@ -64,13 +64,12 @@ public class MainFragment extends Fragment {
         recyclerView2.setLayoutManager(layoutManager2);
 
         List<Integer> imageList2 = Arrays.asList(
-                R.drawable.cpu,
-                R.drawable.gpu,
-                R.drawable.motherboard,
-                R.drawable.harddisk,
-                R.drawable.ram,
-                R.drawable.powersupply,
-                R.drawable.pccase
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg
                 // Add more images here
         );
 
@@ -80,12 +79,21 @@ public class MainFragment extends Fragment {
                 "Motherboard",
                 "Storage",
                 "Memory",
-                "Power",
-                "Case"
+                "Power"
                 // Add more captions here
         );
 
-        CarouselAdapter adapter2 = new CarouselAdapter(imageList2, captionList2);
+        List<Integer> priceList = Arrays.asList(
+                11,
+                11,
+                11,
+                11,
+                11,
+                11
+                // Add more captions here
+        );
+
+        CarouselAdapter adapter2 = new CarouselAdapter(imageList2, captionList2, priceList);
         recyclerView2.setAdapter(adapter2);
 
         // Vertical RecyclerView
@@ -94,13 +102,12 @@ public class MainFragment extends Fragment {
         verticalRecyclerView.setLayoutManager(verticalLayoutManager);
 
         List<Integer> verticalImageList = Arrays.asList(
-                R.drawable.cpu,
-                R.drawable.gpu,
-                R.drawable.motherboard,
-                R.drawable.harddisk,
-                R.drawable.ram,
-                R.drawable.powersupply,
-                R.drawable.pccase
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg
                 // Add more images here
         );
 
@@ -110,12 +117,11 @@ public class MainFragment extends Fragment {
                 "Motherboard",
                 "Storage",
                 "Memory",
-                "Power",
-                "Case"
+                "Power"
                 // Add more captions here
         );
 
-        CarouselAdapter verticalAdapter = new CarouselAdapter(verticalImageList, verticalCaptionList);
+        CarouselAdapter verticalAdapter = new CarouselAdapter(verticalImageList, verticalCaptionList, null);
         verticalRecyclerView.setAdapter(verticalAdapter);
 
         return rootView;
