@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,20 +40,21 @@ public class MainActivity extends AppCompatActivity {
         userIcon = findViewById(R.id.userIcon);
         searchIcon = findViewById(R.id.searchIcon);
         searchBar = findViewById(R.id.searchBar);
+
         fragmentContainer = findViewById(R.id.mainFragmentContainer);
 
         fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in2);
         fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 
-        searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    hideSearchBar();
-//                    closeKeyboard();
-                }
-            }
-        });
+//        searchBar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (!hasFocus) {
+//                    hideSearchBar();
+////                    closeKeyboard();
+//                }
+//            }
+//        });
 
         // Set a touch listener to detect clicks outside the search bar
         findViewById(android.R.id.content).setOnTouchListener(new View.OnTouchListener() {
@@ -143,6 +146,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void onUserClick(View view) {
+
+    }
+
 //    private void closeKeyboard() {
 //        View view = this.getCurrentFocus();
 //        if (view != null) {
@@ -151,3 +158,4 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 }
+

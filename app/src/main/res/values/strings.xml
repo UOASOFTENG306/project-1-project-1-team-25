@@ -3,50 +3,42 @@
     <string name="action_search">Search</string>
     <string name="action_user">User</string>
     <string name="action_cart">Login</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="main_fragment_label">Main Fragment</string>
     <string name="details_fragment_label">Details Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-    </string>
+    <!-- Strings for login/register page  -->
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="techswap">TechSwap</string>
+    <string name="sign_in">Sign In</string>
+
+    <!-- Strings used for headers and fragment content -->
+    <!-- Main -->
     <string name="browse_our_range">Browse Our Range</string>
     <string name="hot_deals">Hot Deals</string>
     <string name="best_sellers">Best Sellers</string>
     <string name="search">Search</string>
+    <string name="techswap">TechSwap</string>
     <string name="account">Account</string>
     <string name="cart">Cart</string>
+
     <!-- Details -->
     <string name="specifications_header">Specifications</string>
     <string name="add_to_cart">Add to Cart</string>
     <!-- Cart -->
     <string name="cart_header">Your Cart</string>
     <string name="cart_checkout">Checkout</string>
-    <string name="sign_in">Sign In</string>
 
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,
+        when an unknown printer took a galley of type and scrambled it to make a type specimen
+        book. It has survived not only five centuries, but also the leap into electronic
+        typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+        release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+        publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 </resources>
