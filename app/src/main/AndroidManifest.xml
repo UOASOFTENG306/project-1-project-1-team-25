@@ -23,6 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".UserInActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.TechSwap" >
+        </activity>
+        <activity
+            android:name=".UserNotInActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.TechSwap" >
+        </activity>
     </application>
 
 </manifest>

@@ -5,13 +5,37 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.TechSwap" parent="Base.Theme.TechSwap" />
-
     <style name="LogoText">
         <item name="android:textSize">18sp</item> <!-- Adjust the text size as needed -->
         <item name="android:textColor">#ffffff</item> <!-- Text color (white in this example) -->
+<!--        <item name="android:fontFamily">@font/your_custom_font</item> &lt;!&ndash; Set your custom font, if needed &ndash;&gt;-->
         <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">18dp</item>
+        <item name="android:paddingBottom">18dp</item>
+        <item name="android:paddingRight">18dp</item>
+        <item name="android:paddingLeft">26dp</item>
     </style>
+
+    <style name="ButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- Button style for active state -->
+    <style name="ActiveLoginSwitchButton" parent="ButtonStyle">
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/active_button_style</item>
+    </style>
+
+    <!-- Button style for inactive state -->
+    <style name="InactiveLoginSwitchButton" parent="ButtonStyle">
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@drawable/inactive_button_style</item>
+    </style>
+
+    <style name="Theme.TechSwap" parent="Base.Theme.TechSwap" />
 
     <style name="HeaderText">
         <item name="android:textSize">20sp</item> <!-- Adjust the text size as needed -->
