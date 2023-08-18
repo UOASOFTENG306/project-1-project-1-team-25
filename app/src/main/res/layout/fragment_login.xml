@@ -28,22 +28,22 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/register_view_button"
-                    style="@style/ActiveLoginSwitchButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/register"
-                    android:onClick="onViewRegister"
-                    app:backgroundTint="@null" />
-
-                <Button
                     android:id="@+id/login_view_button"
-                    style="@style/InactiveLoginSwitchButton"
+                    style="@style/ActiveLoginSwitchButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onViewLogin"
                     android:text="@string/login"
                     app:backgroundTint="@null"/>
+
+                <Button
+                    android:id="@+id/register_view_button"
+                    style="@style/InactiveLoginSwitchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register"
+                    android:onClick="onViewRegister"
+                    app:backgroundTint="@null" />
             </LinearLayout>
 
             <EditText
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_button"
-                android:text="Create Account"
+                android:text="@string/sign_in"
                 app:backgroundTint="@null" />
         </LinearLayout>
 

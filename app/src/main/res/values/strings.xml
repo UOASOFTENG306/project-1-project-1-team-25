@@ -47,5 +47,6 @@
     <!-- Cart -->
     <string name="cart_header">Your Cart</string>
     <string name="cart_checkout">Checkout</string>
+    <string name="sign_in">Sign In</string>
 
 </resources>
