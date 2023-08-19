@@ -22,9 +22,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private AppBarConfiguration appBarConfiguration;
-//    private ActivityMainBinding binding;
-
     private TextView logoText;
     private ImageView userIcon;
     private ImageView searchIcon;
@@ -43,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         userIcon = findViewById(R.id.userIcon);
         searchIcon = findViewById(R.id.searchIcon);
         searchBar = findViewById(R.id.searchBar);
+
         fragmentContainer = findViewById(R.id.mainFragmentContainer);
 
         fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in2);
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Code to switch to another activity
-                Intent intent = new Intent(MainActivity.this, UserInActivity.class);
+                Intent intent = new Intent(MainActivity.this, UserNotInActivity.class);
                 startActivity(intent);
             }
         });
@@ -148,6 +146,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void onUserClick(View view) {
+
+    }
+
 //    private void closeKeyboard() {
 //        View view = this.getCurrentFocus();
 //        if (view != null) {
@@ -157,31 +159,3 @@ public class MainActivity extends AppCompatActivity {
 //    }
 }
 
-//@Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_cart) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        return NavigationUI.navigateUp(navController, appBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }

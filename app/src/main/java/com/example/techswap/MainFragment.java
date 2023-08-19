@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MainFragment extends Fragment {
 
-private FragmentMainBinding binding;
+    private FragmentMainBinding binding;
 
     @Override
     public View onCreateView(
@@ -28,13 +28,14 @@ private FragmentMainBinding binding;
     ) {
 
         binding = FragmentMainBinding.inflate(inflater, container, false);
+        View rootView = binding.getRoot();
 
-        // initialise recycler view
-        RecyclerView recyclerView = binding.categoryRecyclerView;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        // First Carousel
+        RecyclerView categoryRecyclerView = binding.categoryRecyclerView;
+        LinearLayoutManager categoryLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        categoryRecyclerView.setLayoutManager(categoryLayoutManager);
 
-        List<Integer> imageList = Arrays.asList(
+        List<Integer> categoryImageList = Arrays.asList(
                 R.drawable.cpu,
                 R.drawable.gpu,
                 R.drawable.motherboard,
@@ -44,7 +45,7 @@ private FragmentMainBinding binding;
                 R.drawable.pccase
         );
 
-        List<String> captionList = Arrays.asList(
+        List<String> categoryCaptionList = Arrays.asList(
                 "CPU",
                 "Graphics Card",
                 "Motherboard",
@@ -54,11 +55,89 @@ private FragmentMainBinding binding;
                 "Case"
         );
 
-        CarouselAdapter adapter = new CarouselAdapter(imageList, captionList);
-        recyclerView.setAdapter(adapter);
+        CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null);
+        categoryRecyclerView.setAdapter(categoryAdapter);
 
-        return binding.getRoot();
+        // Second Carousel
+        RecyclerView dealsRecyclerView = binding.dealsRecyclerView;
+        LinearLayoutManager dealsLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        dealsRecyclerView.setLayoutManager(dealsLayoutManager);
 
+        List<Integer> dealsImageList = Arrays.asList(
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg
+        );
+
+        List<String> dealsCaptionList = Arrays.asList(
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item"
+        );
+
+        List<Integer> dealsPriceList = Arrays.asList(
+                11,
+                11,
+                11,
+                11,
+                11,
+                11
+        );
+
+        CarouselAdapter dealsAdapter = new CarouselAdapter(dealsImageList, dealsCaptionList, dealsPriceList, null);
+        dealsRecyclerView.setAdapter(dealsAdapter);
+
+        // Vertical RecyclerView
+        RecyclerView bestSellersRecyclerView = binding.bestSellersRecyclerView;
+        LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+        bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
+
+        List<Integer> bestSellersImageList = Arrays.asList(
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg
+        );
+
+        List<String> bestSellersCaptionList = Arrays.asList(
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item"
+        );
+
+        List<Integer> bestSellersPriceList = Arrays.asList(
+                11,
+                11,
+                11,
+                11,
+                11,
+                11
+        );
+
+        List<String> bestSellersDescriptionList = Arrays.asList(
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet",
+                "Lorem ipsum dolor sit amet"
+        );
+
+        CarouselAdapter bestSellersAdapter = new CarouselAdapter(bestSellersImageList, bestSellersCaptionList, bestSellersPriceList, bestSellersDescriptionList);
+        bestSellersRecyclerView.setAdapter(bestSellersAdapter);
+
+        return rootView;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -76,10 +155,9 @@ private FragmentMainBinding binding;
         });
     }
 
-@Override
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
-
 }

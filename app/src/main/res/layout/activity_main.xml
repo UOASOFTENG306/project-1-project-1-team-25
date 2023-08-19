@@ -38,7 +38,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="right|center_vertical"
                     android:clickable="true"
-                    android:contentDescription="Search"
+                    android:contentDescription="@string/search"
                     android:focusable="true"
                     android:onClick="onSearchIconClick"
                     android:padding="11dp"
@@ -64,7 +64,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="12dp"
                     android:background="@drawable/search_box_round"
-                    android:hint="Search"
+                    android:hint="@string/search"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
@@ -77,12 +77,12 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="3dp"
-                android:contentDescription="Account"
+                android:contentDescription="@string/account"
                 android:padding="8dp"
                 app:srcCompat="@drawable/user" />
 
             <ImageView
-                android:id="@+id/cartIcon"
+                android:id="@+id/cartView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="3dp"

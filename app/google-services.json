@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "307559124342",
+    "project_id": "techswap-e2b95",
+    "storage_bucket": "techswap-e2b95.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307559124342:android:0373981f6e0cd0d149fe57",
+        "android_client_info": {
+          "package_name": "com.example.techswap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307559124342-nfp0uhvvfpv9rvmqkduk6khqffs1u90b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBlS_x3nCF0lAJdjdfjBM57tktj753JNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307559124342-nfp0uhvvfpv9rvmqkduk6khqffs1u90b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
