@@ -14,6 +14,9 @@ public class Details {
 
     private int quantity;
 
+    public Details() {
+    }
+
     public float getPrice() {
         return price;
     }
