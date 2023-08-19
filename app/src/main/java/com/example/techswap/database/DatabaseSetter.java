@@ -52,7 +52,7 @@ public class DatabaseSetter {
      * Updates the cart in the Firestore DB, by adding or removing item from cart.
      * boolean true if add, false if remove.
      */
-    public void addRemoveItemToCart(String docName, long ItemDocName, boolean addOrRemove) {
+    public void addRemoveItemToCart(String docName, String ItemDocName, boolean addOrRemove) {
 
         Map<String, Object> data = new HashMap<>();
         data.put("user_id", docName);
@@ -86,6 +86,14 @@ public class DatabaseSetter {
 
         database.collection("items").document(docName).set(data);
         database.collection("items").document(docName).collection("specifications").document("specifications").set(specifications);
+    }
+
+    /**
+     * Removes a specified item instance in the Firestore DB
+     */
+    public void removeItem(String itemDocName) {
+        // TODO: Delete item from all carts containing it
+        database.collection("items").document(itemDocName).delete();
     }
 
 }
