@@ -14,11 +14,23 @@ public class DatabaseSetter {
         database = FirebaseFirestore.getInstance();
     }
 
-    public void addUser(String id, User user) {
+    /**
+     * Adds a new user / updates a user in the Firestore DB.
+     */
+    public void addUser(String docName, User user, Boolean isNew) {
+
+        // TODO: Check for duplicate username in database
+//        if (isNew) {
+//            addNewCart(docName, user.getId());
+//        }
+
         Map<String, Object> data = new HashMap<>();
+        data.put("password", user.getPassword());
         data.put("user_id", user.getId());
         data.put("username", user.getUsername());
-        data.put("password", user.getPassword());
-        database.collection("users").document(id).set(data);
+
+        database.collection("users").document(docName).set(data);
+
     }
+
 }
