@@ -17,8 +17,7 @@
             android:layout_height="wrap_content"
             android:background="#0D324D"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="11dp">
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:layout_width="0dp"
@@ -34,11 +33,28 @@
                     style="@style/LogoText"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
+                    android:layout_marginStart="12dp"
                     android:gravity="left|center_vertical"
                     android:onClick="onLogoClick"
                     android:text="@string/app_name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/logoText2"
+                    style="@style/LogoText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="center"
+                    android:onClick="onLogoClick"
+                    android:text="List an Item"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                    android:textColor="@color/material_dynamic_neutral80"
+                    android:textSize="20sp"
+                    android:textStyle="italic" />
 
                 <!-- Search Bar (Initially hidden) -->
             </RelativeLayout>
@@ -66,12 +82,14 @@
                         android:id="@+id/titleHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Title" />
+                        android:text="Title"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/titleInput"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:ems="10"
                         android:hint="Title"
                         android:inputType="text" />
@@ -81,12 +99,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Subtitle" />
+                        android:text="Subtitle"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/subtitleInput"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:ems="10"
                         android:hint="Subtitle"
                         android:inputType="text" />
@@ -96,12 +116,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Description" />
+                        android:text="Description"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/descriptionInput"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:ems="10"
                         android:gravity="start|top"
                         android:hint="Description"
@@ -112,12 +134,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Price ($)" />
+                        android:text="Price ($)"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/priceInput"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:ems="10"
                         android:hint="Price ($)"
                         android:inputType="numberDecimal" />
@@ -127,19 +151,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Category" />
+                        android:text="Category"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/categorySpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp" />
 
                     <TextView
                         android:id="@+id/imagesHeader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Images" />
+                        android:text="Images"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textStyle="bold" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/imagesRecyclerView"
@@ -157,6 +185,7 @@
                             android:id="@+id/addImageButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:text="Add image" />
 
@@ -164,6 +193,7 @@
                             android:id="@+id/removeImageButton"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
                             android:layout_weight="1"
                             android:text="Remove image" />
                     </LinearLayout>
