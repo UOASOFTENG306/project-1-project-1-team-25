@@ -3,9 +3,9 @@ package com.example.techswap.database;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,17 +37,31 @@ public class DatabaseSetter {
     }
 
     /**
-     * Creates a new cart in the Firestore DB, upon new user creation. Different from adding items to the cart.
+     * Creates a new cart in the Firestore DB. Different from adding items to the cart.
      */
     public void addNewCart(String docName, int id) {
 
         Map<String, Object> data = new HashMap<>();
 
-        data.put("item_id", new ArrayList<Integer>());
         data.put("user_id", id);
-
         database.collection("cart").document(docName).set(data);
 
+    }
+
+    /**
+     * Updates the cart in the Firestore DB, by adding or removing item from cart.
+     * boolean true if add, false if remove.
+     */
+    public void addRemoveItemToCart(String docName, long ItemDocName, boolean addOrRemove) {
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("user_id", docName);
+
+        if (addOrRemove) {
+            database.collection("cart").document(docName).update("item_id", FieldValue.arrayUnion(ItemDocName));
+        } else {
+            database.collection("cart").document(docName).update("item_id", FieldValue.arrayRemove(ItemDocName));
+        }
     }
 
     /**
