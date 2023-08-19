@@ -1,5 +1,7 @@
 package com.example.techswap.database;
 
+import com.example.techswap.item.Details;
+import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -46,6 +48,30 @@ public class DatabaseSetter {
 
         database.collection("cart").document(docName).set(data);
 
+    }
+
+    /**
+     * Creates an item instance in the Firestore DB
+     */
+    public void addItem(String docName, Item item) {
+        // TODO: Image upload
+        Map<String, Object> data = new HashMap<>();
+        Details details = item.getDetails();
+
+        data.put("item_id", item.getId());
+        data.put("category_id", details.getCategory());
+
+        data.put("title", details.getTitle());
+        data.put("subtitle", details.getSubtitle());
+
+        data.put("description", details.getDescription());
+        data.put("price", details.getPrice());
+        data.put("quantity", details.getQuantity());
+
+        Map<String, String> specifications = item.getSpecifications();
+
+        database.collection("items").document(docName).set(data);
+        database.collection("items").document(docName).collection("specifications").document("specifications").set(specifications);
     }
 
 }
