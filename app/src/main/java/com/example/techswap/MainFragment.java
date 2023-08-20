@@ -225,6 +225,10 @@ public class MainFragment extends Fragment {
         });
     }
 
+    /**
+     * Returns the requested user data
+     * Returned object: Map, representing cart
+     */
     private void fetchCartData(String id){
         userCollection.document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
