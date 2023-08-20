@@ -14,20 +14,30 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.fragments.DetailsFragment;
 import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.R;
+import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Integer> imageList;
     private List<String> titleList;
-    private List<Integer> priceList;
+    private List<Double> priceList;
     private List<String> subtitleList;
 
     private static final int CATEGORY = 0;
     private static final int HORIZONTAL_ITEM = 1;
     private static final int LIST_ITEM = 2;
 
-    public CarouselAdapter(List<Integer> imageList, List<String> titleList, List<Integer> priceList, List<String> subtitleList) {
+    public CarouselAdapter() {
+        this.imageList = new ArrayList<>();
+        this.titleList = new ArrayList<>();
+        this.subtitleList = new ArrayList<>();
+        this.priceList = new ArrayList<>();
+    }
+
+    public CarouselAdapter(List<Integer> imageList, List<String> titleList, List<Double> priceList, List<String> subtitleList) {
         this.imageList = imageList;
         this.titleList = titleList;
         this.subtitleList = subtitleList;
@@ -156,5 +166,26 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             priceText = itemView.findViewById(R.id.priceText);
             subtitleText = itemView.findViewById(R.id.descriptionText);
         }
+    }
+
+    public void updateData(List<Item> items) {
+        List<String> titleList = new ArrayList<String>();
+        List<String> subtitleList = new ArrayList<String>();
+        List<Double> priceList = new ArrayList<Double>();
+        List<Integer> imageList = new ArrayList<Integer>();
+
+        for (Item item : items) {
+            titleList.add(item.getDetails().getTitle());
+            subtitleList.add(item.getDetails().getSubtitle());
+            priceList.add(item.getDetails().getPrice());
+            imageList.add(R.drawable.tempimg);
+        }
+
+        this.titleList = titleList;
+        this.priceList = priceList;
+        this.subtitleList = subtitleList;
+        this.imageList = imageList;
+
+        notifyDataSetChanged();
     }
 }

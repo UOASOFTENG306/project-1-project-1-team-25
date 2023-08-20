@@ -20,6 +20,12 @@ import android.widget.TextView;
 
 import com.example.techswap.fragments.CartFragment;
 import com.example.techswap.fragments.MainFragment;
+import com.example.techswap.item.Details;
+import com.example.techswap.item.Item;
+import com.example.techswap.item.categories.CPU;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -141,6 +147,19 @@ public class MainActivity extends AppCompatActivity {
         if (!(currentFragment instanceof MainFragment)) {
             MainFragment fragment = new MainFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            List<Item> items = new ArrayList<Item>();
+            CPU cpu = new CPU();
+            Details details = new Details();
+            details.setTitle("Wow");
+            details.setSubtitle("Amazing");
+            details.setPrice(99.99);
+            cpu.setDetails(details);
+            items.add(cpu);
+
+            fragment.setBestSellers(items);
+
+
             transaction.replace(R.id.mainFragmentContainer, fragment);
             transaction.addToBackStack(null);
             transaction.commit();

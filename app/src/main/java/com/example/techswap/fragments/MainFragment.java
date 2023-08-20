@@ -7,20 +7,26 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.databinding.FragmentMainBinding;
+import com.example.techswap.item.Details;
+import com.example.techswap.item.Item;
+import com.example.techswap.item.categories.CPU;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;
+
+    CarouselAdapter dealsAdapter = new CarouselAdapter();
+    CarouselAdapter bestSellersAdapter = new CarouselAdapter();
 
     @Override
     public View onCreateView(
@@ -59,84 +65,46 @@ public class MainFragment extends Fragment {
         CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null);
         categoryRecyclerView.setAdapter(categoryAdapter);
 
+
         // Second Carousel
         RecyclerView dealsRecyclerView = binding.dealsRecyclerView;
         LinearLayoutManager dealsLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         dealsRecyclerView.setLayoutManager(dealsLayoutManager);
-
-        List<Integer> dealsImageList = Arrays.asList(
-                R.drawable.tempimg,
-                R.drawable.tempimg,
-                R.drawable.tempimg,
-                R.drawable.tempimg,
-                R.drawable.tempimg,
-                R.drawable.tempimg
-        );
-
-        List<String> dealsCaptionList = Arrays.asList(
-                "Temp Item",
-                "Temp Item",
-                "Temp Item",
-                "Temp Item",
-                "Temp Item",
-                "Temp Item"
-        );
-
-        List<Integer> dealsPriceList = Arrays.asList(
-                11,
-                11,
-                11,
-                11,
-                11,
-                11
-        );
-
-        CarouselAdapter dealsAdapter = new CarouselAdapter(dealsImageList, dealsCaptionList, dealsPriceList, null);
         dealsRecyclerView.setAdapter(dealsAdapter);
+
+        List<Item> items = new ArrayList<Item>();
+        CPU cpu = new CPU();
+        Details details = new Details();
+        details.setTitle("Wow");
+        details.setPrice(99.99);
+        cpu.setDetails(details);
+        for(int i = 0; i<7 ; i++) {
+            items.add(cpu);
+        }
+
+        setDeals(items);
+
 
         // Vertical RecyclerView
         RecyclerView bestSellersRecyclerView = binding.bestSellersRecyclerView;
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
-
-        List<Integer> bestSellersImageList = Arrays.asList(
-                R.drawable.tempimg,
-                R.drawable.tempimg,
-                R.drawable.tempimg,
-                R.drawable.tempimg,
-                R.drawable.tempimg,
-                R.drawable.tempimg
-        );
-
-        List<String> bestSellersCaptionList = Arrays.asList(
-                "Temp Item",
-                "Temp Item",
-                "Temp Item",
-                "Temp Item",
-                "Temp Item",
-                "Temp Item"
-        );
-
-        List<Integer> bestSellersPriceList = Arrays.asList(
-                11,
-                11,
-                11,
-                11,
-                11,
-                11
-        );
-
-        List<String> bestSellersDescriptionList = Arrays.asList(
-                "Lorem ipsum dolor sit amet",
-                "Lorem ipsum dolor sit amet",
-                "Lorem ipsum dolor sit amet",
-                "Lorem ipsum dolor sit amet",
-                "Lorem ipsum dolor sit amet",
-                "Lorem ipsum dolor sit amet"
-        );
-
-        CarouselAdapter bestSellersAdapter = new CarouselAdapter(bestSellersImageList, bestSellersCaptionList, bestSellersPriceList, bestSellersDescriptionList);
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
+
+        items = new ArrayList<Item>();
+        cpu = new CPU();
+        details = new Details();
+        details.setTitle("Wow");
+        details.setSubtitle("Amazing");
+        details.setPrice(99.99);
+        cpu.setDetails(details);
+        for(int i = 0; i<7 ; i++) {
+            items.add(cpu);
+        }
+
+        setBestSellers(items);
+
+
 
         return rootView;
     }
@@ -149,5 +117,13 @@ public class MainFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void setDeals(List<Item> items) {
+        dealsAdapter.updateData(items);
+    }
+
+    public void setBestSellers(List<Item> items) {
+        bestSellersAdapter.updateData(items);
     }
 }
