@@ -20,11 +20,11 @@ public class DatabaseSetter {
     /**
      * Adds a new user / updates a user in the Firestore DB.
      */
-    public void addUser(String docName, User user, Boolean isNew) {
+    public void addUser(User user, Boolean isNew) {
 
         // TODO: Check for duplicate username in database
         if (isNew) {
-            addNewCart(docName, user.getId());
+            addNewCart(user.getId());
         }
 
         Map<String, Object> data = new HashMap<>();
@@ -32,19 +32,19 @@ public class DatabaseSetter {
         data.put("user_id", user.getId());
         data.put("username", user.getUsername());
 
-        database.collection("users").document(docName).set(data);
+        database.collection("users").document(String.valueOf(user.getId())).set(data);
 
     }
 
     /**
      * Creates a new cart in the Firestore DB. Different from adding items to the cart.
      */
-    public void addNewCart(String docName, int id) {
+    public void addNewCart(int id) {
 
         Map<String, Object> data = new HashMap<>();
 
         data.put("user_id", id);
-        database.collection("cart").document(docName).set(data);
+        database.collection("cart").document(String.valueOf(id)).set(data);
 
     }
 
@@ -52,22 +52,22 @@ public class DatabaseSetter {
      * Updates the cart in the Firestore DB, by adding or removing item from cart.
      * boolean true if add, false if remove.
      */
-    public void addRemoveItemToCart(String docName, String ItemDocName, boolean addOrRemove) {
+    public void addRemoveItemToCart(int id, String ItemDocName, boolean addOrRemove) {
 
         Map<String, Object> data = new HashMap<>();
-        data.put("user_id", docName);
+        data.put("user_id", id);
 
         if (addOrRemove) {
-            database.collection("cart").document(docName).update("item_id", FieldValue.arrayUnion(ItemDocName));
+            database.collection("cart").document(String.valueOf(id)).update("item_id", FieldValue.arrayUnion(ItemDocName));
         } else {
-            database.collection("cart").document(docName).update("item_id", FieldValue.arrayRemove(ItemDocName));
+            database.collection("cart").document(String.valueOf(id)).update("item_id", FieldValue.arrayRemove(ItemDocName));
         }
     }
 
     /**
      * Creates an item instance in the Firestore DB
      */
-    public void addItem(String docName, Item item) {
+    public void addItem(Item item) {
         // TODO: Image uploads
         Map<String, Object> data = new HashMap<>();
         Details details = item.getDetails();
@@ -84,16 +84,16 @@ public class DatabaseSetter {
 
         Map<String, String> specifications = item.getSpecifications();
 
-        database.collection("items").document(docName).set(data);
-        database.collection("items").document(docName).collection("specifications").document("specifications").set(specifications);
+        database.collection("items").document(String.valueOf(item.getId())).set(data);
+        database.collection("items").document(String.valueOf(item.getId())).collection("specifications").document("specifications").set(specifications);
     }
 
     /**
      * Removes a specified item instance in the Firestore DB
      */
-    public void removeItem(String itemDocName) {
+    public void removeItem(int id) {
         // TODO: Delete item from all carts containing it
-        database.collection("items").document(itemDocName).delete();
+        database.collection("items").document(String.valueOf(id)).delete();
     }
 
 }
