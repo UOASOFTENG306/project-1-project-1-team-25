@@ -1,4 +1,4 @@
-package com.example.techswap;
+package com.example.techswap.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techswap.R;
 import com.example.techswap.adapters.ItemCardAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
 import com.example.techswap.databinding.FragmentCartBinding;

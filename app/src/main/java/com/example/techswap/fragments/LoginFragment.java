@@ -1,4 +1,4 @@
-package com.example.techswap;
+package com.example.techswap.fragments;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.techswap.R;
 
 public class LoginFragment extends Fragment {
 

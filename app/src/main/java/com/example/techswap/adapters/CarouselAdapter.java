@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.techswap.DetailsFragment;
-import com.example.techswap.ListFragment;
+import com.example.techswap.fragments.DetailsFragment;
+import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.R;
 
 import java.util.List;

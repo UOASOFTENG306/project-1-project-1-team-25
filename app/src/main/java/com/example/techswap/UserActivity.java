@@ -9,14 +9,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class UserNotInActivity extends AppCompatActivity {
+import com.example.techswap.fragments.LoginFragment;
+
+public class UserActivity extends AppCompatActivity {
 
     private ImageView userInBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_not_in);
+        setContentView(R.layout.activity_user);
 
         userInBack = findViewById(R.id.userInBack);
 
@@ -24,7 +26,7 @@ public class UserNotInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Code to switch to another activity
-                Intent intent = new Intent(UserNotInActivity.this, MainActivity.class);
+                Intent intent = new Intent(UserActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

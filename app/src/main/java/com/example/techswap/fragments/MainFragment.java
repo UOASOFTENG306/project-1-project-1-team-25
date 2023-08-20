@@ -1,4 +1,4 @@
-package com.example.techswap;
+package com.example.techswap.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,16 +11,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
-import com.example.techswap.databinding.FragmentListBinding;
 import com.example.techswap.databinding.FragmentMainBinding;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ListFragment extends Fragment {
+public class MainFragment extends Fragment {
 
-    private FragmentListBinding binding;
+    private FragmentMainBinding binding;
 
     @Override
     public View onCreateView(
@@ -28,11 +28,74 @@ public class ListFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentListBinding.inflate(inflater, container, false);
+        binding = FragmentMainBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
+        // First Carousel
+        RecyclerView categoryRecyclerView = binding.categoryRecyclerView;
+        LinearLayoutManager categoryLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        categoryRecyclerView.setLayoutManager(categoryLayoutManager);
+
+        List<Integer> categoryImageList = Arrays.asList(
+                R.drawable.cpu,
+                R.drawable.gpu,
+                R.drawable.motherboard,
+                R.drawable.harddisk,
+                R.drawable.ram,
+                R.drawable.powersupply,
+                R.drawable.pccase
+        );
+
+        List<String> categoryCaptionList = Arrays.asList(
+                "CPU",
+                "Graphics Card",
+                "Motherboard",
+                "Storage",
+                "Memory",
+                "Power",
+                "Case"
+        );
+
+        CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null);
+        categoryRecyclerView.setAdapter(categoryAdapter);
+
+        // Second Carousel
+        RecyclerView dealsRecyclerView = binding.dealsRecyclerView;
+        LinearLayoutManager dealsLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        dealsRecyclerView.setLayoutManager(dealsLayoutManager);
+
+        List<Integer> dealsImageList = Arrays.asList(
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg,
+                R.drawable.tempimg
+        );
+
+        List<String> dealsCaptionList = Arrays.asList(
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item",
+                "Temp Item"
+        );
+
+        List<Integer> dealsPriceList = Arrays.asList(
+                11,
+                11,
+                11,
+                11,
+                11,
+                11
+        );
+
+        CarouselAdapter dealsAdapter = new CarouselAdapter(dealsImageList, dealsCaptionList, dealsPriceList, null);
+        dealsRecyclerView.setAdapter(dealsAdapter);
+
         // Vertical RecyclerView
-        RecyclerView bestSellersRecyclerView = binding.listRecyclerView;
+        RecyclerView bestSellersRecyclerView = binding.bestSellersRecyclerView;
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
 
