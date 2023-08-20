@@ -25,8 +25,8 @@ public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;
 
-    CarouselAdapter dealsAdapter = new CarouselAdapter();
-    CarouselAdapter bestSellersAdapter = new CarouselAdapter();
+    CarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
+    CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
 
     @Override
     public View onCreateView(
@@ -62,7 +62,7 @@ public class MainFragment extends Fragment {
                 "Case"
         );
 
-        CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null);
+        CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null, CarouselAdapter.CarouselType.CATEGORY);
         categoryRecyclerView.setAdapter(categoryAdapter);
 
 
@@ -103,8 +103,6 @@ public class MainFragment extends Fragment {
         }
 
         setBestSellers(items);
-
-
 
         return rootView;
     }

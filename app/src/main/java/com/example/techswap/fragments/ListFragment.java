@@ -73,7 +73,7 @@ public class ListFragment extends Fragment {
                 "Lorem ipsum dolor sit amet"
         );
 
-        CarouselAdapter bestSellersAdapter = new CarouselAdapter(bestSellersImageList, bestSellersCaptionList, bestSellersPriceList, bestSellersDescriptionList);
+        CarouselAdapter bestSellersAdapter = new CarouselAdapter(bestSellersImageList, bestSellersCaptionList, bestSellersPriceList, bestSellersDescriptionList, CarouselAdapter.CarouselType.LIST_ITEM);
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
 
         return rootView;
