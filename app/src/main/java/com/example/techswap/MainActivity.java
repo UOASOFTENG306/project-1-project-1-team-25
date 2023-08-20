@@ -130,6 +130,9 @@ public class MainActivity extends AppCompatActivity {
         if (!(currentFragment instanceof CartFragment)) {
             CartFragment fragment = new CartFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
             transaction.replace(R.id.mainFragmentContainer, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -141,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
         if (!(currentFragment instanceof MainFragment)) {
             MainFragment fragment = new MainFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+
             transaction.replace(R.id.mainFragmentContainer, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
