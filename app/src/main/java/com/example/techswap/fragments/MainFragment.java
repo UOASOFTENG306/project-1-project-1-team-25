@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.databinding.FragmentMainBinding;
+import com.example.techswap.item.categories.ItemFactory;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.example.techswap.item.Details;
@@ -31,7 +32,7 @@ import java.util.Map;
 public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;
-    private final List<Map<String, Object>> itemList = new ArrayList<>();
+    private final List<Item> itemList = new ArrayList<Item>();
 
     CarouselAdapter dealsAdapter = new CarouselAdapter();
     CarouselAdapter bestSellersAdapter = new CarouselAdapter();
@@ -141,12 +142,30 @@ public class MainFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            itemList.add(document.getData());
+                            itemList.add(mapToItem(document.getData()));
                         }
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
                 });
+    }
+
+    private Item mapToItem(Map<String, Object> data) {
+        ItemFactory itemFactory = new ItemFactory();
+        Details details = new Details();
+
+        details.setCategory(data.get("category_id").toString());
+        details.setPrice(Double.parseDouble(data.get("price").toString()));
+        details.setDescription(data.get("description").toString());
+        details.setQuantity(Integer.parseInt(data.get("quantity").toString()));
+        details.setTitle(data.get("Title").toString());
+        details.setSubtitle(data.get("Subtitle").toString());
+
+        Item item = itemFactory.getItem(data.get("category_id").toString());
+        item.setDetails(details);
+        item.setId(Long.parseLong(data.get("item_id").toString()));
+
+        return item;
     }
 
     @Override
