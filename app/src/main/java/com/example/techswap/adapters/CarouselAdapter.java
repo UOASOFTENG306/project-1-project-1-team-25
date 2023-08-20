@@ -7,26 +7,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techswap.DetailsFragment;
+import com.example.techswap.ListFragment;
 import com.example.techswap.R;
 
 import java.util.List;
 
 public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Integer> imageList;
-    private List<String> captionList;
+    private List<String> titleList;
     private List<Integer> priceList;
-    private List<String> descriptionList;
+    private List<String> subtitleList;
 
-    private static final int TYPE_WITHOUT_PRICE_OR_DESC = 0;
-    private static final int TYPE_WITH_PRICE = 1;
-    private static final int TYPE_WITH_DESC_AND_PRICE = 2;
+    private static final int CATEGORY = 0;
+    private static final int HORIZONTAL_ITEM = 1;
+    private static final int LIST_ITEM = 2;
 
-    public CarouselAdapter(List<Integer> imageList, List<String> captionList, List<Integer> priceList, List<String> descriptionList) {
+    public CarouselAdapter(List<Integer> imageList, List<String> titleList, List<Integer> priceList, List<String> subtitleList) {
         this.imageList = imageList;
-        this.captionList = captionList;
-        this.descriptionList = descriptionList;
+        this.titleList = titleList;
+        this.subtitleList = subtitleList;
         this.priceList = priceList;
     }
 
@@ -35,15 +39,15 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         switch (viewType) {
-            case TYPE_WITHOUT_PRICE_OR_DESC:
+            case CATEGORY:
                 View itemViewWithoutPriceOrDesc = inflater.inflate(R.layout.carousel_item_category, parent, false);
-                return new CarouselViewHolderWithoutPriceOrDesc(itemViewWithoutPriceOrDesc);
-            case TYPE_WITH_PRICE:
+                return new CarouselViewHolderCategory(itemViewWithoutPriceOrDesc);
+            case HORIZONTAL_ITEM:
                 View itemViewWithPrice = inflater.inflate(R.layout.carousel_item_deal, parent, false);
-                return new CarouselViewHolderWithPrice(itemViewWithPrice);
-            case TYPE_WITH_DESC_AND_PRICE:
+                return new CarouselViewHolderHorizontalItem(itemViewWithPrice);
+            case LIST_ITEM:
                 View itemViewWithDescAndPrice = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
-                return new CarouselViewHolderWithDescAndPrice(itemViewWithDescAndPrice);
+                return new CarouselViewHolderListItem(itemViewWithDescAndPrice);
             default:
                 throw new IllegalArgumentException("Invalid view type");
         }
@@ -54,35 +58,57 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         int viewType = getItemViewType(position);
         int imageResId = imageList.get(position);
 
-        if (viewType == TYPE_WITHOUT_PRICE_OR_DESC) {
-            CarouselViewHolderWithoutPriceOrDesc viewHolder = (CarouselViewHolderWithoutPriceOrDesc) holder;
+        if (viewType == CATEGORY) {
+            CarouselViewHolderCategory viewHolder = (CarouselViewHolderCategory) holder;
             viewHolder.carouselImage.setImageResource(imageResId);
-            viewHolder.captionText.setText(captionList.get(position));
-        } else if (viewType == TYPE_WITH_PRICE) {
-            CarouselViewHolderWithPrice viewHolder = (CarouselViewHolderWithPrice) holder;
+            viewHolder.titleText.setText(titleList.get(position));
+        } else if (viewType == HORIZONTAL_ITEM) {
+            CarouselViewHolderHorizontalItem viewHolder = (CarouselViewHolderHorizontalItem) holder;
             viewHolder.carouselImage.setImageResource(imageResId);
-            viewHolder.captionText.setText(captionList.get(position));
+            viewHolder.titleText.setText(titleList.get(position));
             viewHolder.priceText.setText("$" + priceList.get(position).toString());
-        } else if (viewType == TYPE_WITH_DESC_AND_PRICE) {
-            CarouselViewHolderWithDescAndPrice viewHolder = (CarouselViewHolderWithDescAndPrice) holder;
+        } else if (viewType == LIST_ITEM) {
+            CarouselViewHolderListItem viewHolder = (CarouselViewHolderListItem) holder;
             viewHolder.carouselImage.setImageResource(imageResId);
-            viewHolder.captionText.setText(captionList.get(position));
-            viewHolder.additionalDataText.setText(descriptionList.get(position));
+            viewHolder.titleText.setText(titleList.get(position));
+            viewHolder.subtitleText.setText(subtitleList.get(position));
             viewHolder.priceText.setText("$" + priceList.get(position).toString());
         }
+
+        // Set OnClickListener for the item view
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle item click event
+                int viewType = getItemViewType(position);
+                if (viewType == CATEGORY) {
+                    ListFragment fragment = new ListFragment();
+                    FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.mainFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                } else if (viewType == HORIZONTAL_ITEM || viewType == LIST_ITEM) {
+                    DetailsFragment fragment = new DetailsFragment();
+                    FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.mainFragmentContainer, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            }
+        });
     }
 
     @Override
     public int getItemViewType(int position) {
         boolean hasPrice = priceList != null && priceList.size() > position;
-        boolean hasDesc = descriptionList != null && descriptionList.size() > position;
+        boolean hasDesc = subtitleList != null && subtitleList.size() > position;
 
         if (!hasPrice && !hasDesc) {
-            return TYPE_WITHOUT_PRICE_OR_DESC;
+            return CATEGORY;
         } else if (hasPrice && !hasDesc) {
-            return TYPE_WITH_PRICE;
+            return HORIZONTAL_ITEM;
         } else if (hasPrice && hasDesc) {
-            return TYPE_WITH_DESC_AND_PRICE;
+            return LIST_ITEM;
         } else {
             throw new IllegalArgumentException("Invalid item type");
         }
@@ -93,42 +119,42 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return imageList.size();
     }
 
-    public class CarouselViewHolderWithoutPriceOrDesc extends RecyclerView.ViewHolder {
+    public class CarouselViewHolderCategory extends RecyclerView.ViewHolder {
         ImageView carouselImage;
-        TextView captionText;
+        TextView titleText;
 
-        public CarouselViewHolderWithoutPriceOrDesc(@NonNull View itemView) {
+        public CarouselViewHolderCategory(@NonNull View itemView) {
             super(itemView);
             carouselImage = itemView.findViewById(R.id.itemImage);
-            captionText = itemView.findViewById(R.id.itemTitle);
+            titleText = itemView.findViewById(R.id.itemTitle);
         }
     }
 
-    public class CarouselViewHolderWithPrice extends RecyclerView.ViewHolder {
+    public class CarouselViewHolderHorizontalItem extends RecyclerView.ViewHolder {
         ImageView carouselImage;
-        TextView captionText;
+        TextView titleText;
         TextView priceText;
 
-        public CarouselViewHolderWithPrice(@NonNull View itemView) {
+        public CarouselViewHolderHorizontalItem(@NonNull View itemView) {
             super(itemView);
             carouselImage = itemView.findViewById(R.id.carouselImage);
-            captionText = itemView.findViewById(R.id.captionText);
+            titleText = itemView.findViewById(R.id.captionText);
             priceText = itemView.findViewById(R.id.priceText);
         }
     }
 
-    public class CarouselViewHolderWithDescAndPrice extends RecyclerView.ViewHolder {
+    public class CarouselViewHolderListItem extends RecyclerView.ViewHolder {
         ImageView carouselImage;
-        TextView captionText;
-        TextView additionalDataText;
+        TextView titleText;
+        TextView subtitleText;
         TextView priceText;
 
-        public CarouselViewHolderWithDescAndPrice(@NonNull View itemView) {
+        public CarouselViewHolderListItem(@NonNull View itemView) {
             super(itemView);
             carouselImage = itemView.findViewById(R.id.carouselImage);
-            captionText = itemView.findViewById(R.id.captionText);
+            titleText = itemView.findViewById(R.id.captionText);
             priceText = itemView.findViewById(R.id.priceText);
-            additionalDataText = itemView.findViewById(R.id.descriptionText);
+            subtitleText = itemView.findViewById(R.id.descriptionText);
         }
     }
 }
