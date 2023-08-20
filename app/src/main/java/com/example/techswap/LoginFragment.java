@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.user.User;
+
 public class LoginFragment extends Fragment {
 
     private EditText usernameInput;
@@ -15,6 +18,8 @@ public class LoginFragment extends Fragment {
     private Button registerButton;
     private Button loginButton;
     private Button confirmButton;
+    private User user;
+    private DatabaseSetter dbSetter = new DatabaseSetter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +46,22 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createUser();
+            }
+        });
+
         return view;
+    }
+
+    private void createUser() {
+        System.out.println("adding user");
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
+        user = new User(username, password);
+        dbSetter.addUser(user, true);
     }
 
     // Handle switching between the register page and the login page

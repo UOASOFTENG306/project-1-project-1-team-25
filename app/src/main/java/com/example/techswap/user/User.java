@@ -4,14 +4,16 @@ import java.util.Objects;
 
 public class User {
 
+    private static int nextId = 1;  // Initialize the first ID as 1
     private int id;
 
     private String username;
 
     private String password;
 
-    public User(int id, String username, String password) {
-        this.id = id;
+    public User(String username, String password) {
+        this.id = nextId;
+        nextId++;
         this.username = username;
         this.password = password;
     }
