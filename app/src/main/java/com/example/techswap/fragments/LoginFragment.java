@@ -3,6 +3,8 @@ package com.example.techswap.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import com.example.techswap.MainActivity;
 import com.example.techswap.R;
 import com.example.techswap.UserActivity;
+import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.user.CurrentUser;
 import com.example.techswap.user.User;
 
@@ -75,8 +78,16 @@ public class LoginFragment extends Fragment {
     }
 
     private void onViewConfirm() {
-        User currentUser = new User(0,usernameInput.getText().toString(),passwordInput.getText().toString());
-        CurrentUser.setCurrentUser(currentUser);
+        User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
+
+        if (isLoggingIn) {
+            CurrentUser.setCurrentUser(currentUser);
+        } else {
+            DatabaseSetter db = new DatabaseSetter();
+            db.addUser(currentUser, true);
+            CurrentUser.setCurrentUser(currentUser);
+        }
+
         Intent intent = new Intent(requireContext(), MainActivity.class);
         startActivity(intent);
     }

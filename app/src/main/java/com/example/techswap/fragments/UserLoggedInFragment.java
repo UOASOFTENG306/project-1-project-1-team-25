@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.techswap.MainActivity;
 import com.example.techswap.R;
 import com.example.techswap.SellActivity;
 import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.databinding.FragmentUserLoggedInBinding;
+import com.example.techswap.user.CurrentUser;
 
 public class UserLoggedInFragment extends Fragment {
 
@@ -22,6 +24,7 @@ public class UserLoggedInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentUserLoggedInBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
+
         return rootView;
     }
 
@@ -33,6 +36,16 @@ public class UserLoggedInFragment extends Fragment {
             public void onClick(View view) {
                 // Code to switch to another activity
                 Intent intent = new Intent(requireActivity(), SellActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.logOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Code to switch to another activity
+                CurrentUser.setCurrentUser(null);
+                Intent intent = new Intent(requireActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });

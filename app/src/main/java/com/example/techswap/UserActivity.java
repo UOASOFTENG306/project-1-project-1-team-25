@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import com.example.techswap.user.CurrentUser;
 public class UserActivity extends AppCompatActivity {
 
     private ImageView userInBack;
+    private TextView usernameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,9 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         userInBack = findViewById(R.id.userInBack);
+        usernameView = findViewById(R.id.username);
+
+
 
         userInBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +44,10 @@ public class UserActivity extends AppCompatActivity {
 
         Fragment fragment;
         if (CurrentUser.getCurrentUser() == null) {
+            usernameView.setText("Not logged in");
             fragment = new LoginFragment();
         } else {
+            usernameView.setText(CurrentUser.getCurrentUser().getUsername());
             fragment = new UserLoggedInFragment();
         }
 
