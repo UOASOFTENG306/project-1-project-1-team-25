@@ -22,6 +22,7 @@ public class LoginFragment extends Fragment {
     private Button confirmButton;
     private User user;
     private DatabaseSetter dbSetter = new DatabaseSetter();
+    private boolean isLogin = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,7 +53,11 @@ public class LoginFragment extends Fragment {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createUser();
+                if (isLogin) {
+
+                } else {
+                    createUser();
+                }
             }
         });
 
@@ -73,11 +78,13 @@ public class LoginFragment extends Fragment {
         registerButton.setBackgroundResource(R.drawable.active_button_style);
         loginButton.setBackgroundResource(R.drawable.inactive_button_style);
         confirmButton.setText("Create Account");
+        isLogin = false;
     }
 
     private void onViewLogin() {
         registerButton.setBackgroundResource(R.drawable.inactive_button_style);
         loginButton.setBackgroundResource(R.drawable.active_button_style);
         confirmButton.setText("Sign In");
+        isLogin = true;
     }
 }

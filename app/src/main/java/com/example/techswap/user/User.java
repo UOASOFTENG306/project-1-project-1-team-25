@@ -1,19 +1,24 @@
 package com.example.techswap.user;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class User {
 
-    private static int nextId = 1;  // Initialize the first ID as 1
+//    private static int nextId = 1;  // Initialize the first ID as 1
     private int id;
 
     private String username;
 
     private String password;
+    Random random = new Random();
+
+    // Generate a random integer between 0 (inclusive) and 10 (exclusive)
+    int randomInt = random.nextInt(100);
 
     public User(String username, String password) {
-        this.id = nextId;
-        nextId++;
+        this.id = randomInt;
+//        nextId++;
         this.username = username;
         this.password = password;
     }
