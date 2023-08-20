@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- res/drawable/bottom_border.xml -->
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:bottom="1dp"
-        android:left="-3dp"
-        android:right="-3dp"
-        android:top="-3dp">
-        <shape android:shape="rectangle">
-            <solid android:color="#00000000" /> <!-- Transparent color -->
-            <stroke android:color="@color/main" android:width="2dp" /> <!-- Border width -->
-        </shape>
-    </item>
-</layer-list>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/secondary" />
+    <corners android:radius="12dp" /> <!-- Adjust the radius as needed -->
+</shape>
+
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <item-->
+<!--        android:bottom="1dp"-->
+<!--        android:left="-3dp"-->
+<!--        android:right="-3dp"-->
+<!--        android:top="-3dp">-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <solid android:color="#ffffff" /> &lt;!&ndash; Transparent color &ndash;&gt;-->
+<!--            <stroke android:color="@color/main" android:width="2dp" /> &lt;!&ndash; Border width &ndash;&gt;-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</layer-list>-->
