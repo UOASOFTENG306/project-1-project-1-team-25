@@ -1,6 +1,9 @@
 package com.example.techswap;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +16,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.databinding.FragmentMainBinding;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;
+    private final List<Map<String, Object>> itemList = new ArrayList<>();
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        fetchTopItems();
+
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
@@ -149,6 +159,26 @@ public class MainFragment extends Fragment {
             transaction.addToBackStack(null);
             transaction.commit();
         });
+    }
+
+    /**
+     * Returns a map of the requested document data.
+     * Returned object: List of Maps, each map representing one object.
+     */
+    public void fetchTopItems(){
+        FirebaseFirestore.getInstance().collection("items")
+                .orderBy("title").limit(6)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            itemList.add(document.getData());
+                        }
+                        System.out.println(itemList);
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
     }
 
     @Override
