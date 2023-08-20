@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.techswap.R;
 import com.example.techswap.SellActivity;
+import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.databinding.FragmentUserLoggedInBinding;
 
 public class UserLoggedInFragment extends Fragment {
@@ -19,8 +20,9 @@ public class UserLoggedInFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_logged_in, container, false);
-        return view;
+        binding = FragmentUserLoggedInBinding.inflate(inflater, container, false);
+        View rootView = binding.getRoot();
+        return rootView;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

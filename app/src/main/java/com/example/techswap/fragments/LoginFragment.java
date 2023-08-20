@@ -1,5 +1,6 @@
 package com.example.techswap.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.techswap.MainActivity;
 import com.example.techswap.R;
+import com.example.techswap.UserActivity;
+import com.example.techswap.user.CurrentUser;
+import com.example.techswap.user.User;
 
 public class LoginFragment extends Fragment {
 
@@ -17,6 +22,7 @@ public class LoginFragment extends Fragment {
     private Button registerButton;
     private Button loginButton;
     private Button confirmButton;
+    private boolean isLoggingIn = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,6 +49,13 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onViewConfirm();
+            }
+        });
+
         return view;
     }
 
@@ -51,11 +64,20 @@ public class LoginFragment extends Fragment {
         registerButton.setBackgroundResource(R.drawable.active_button_style);
         loginButton.setBackgroundResource(R.drawable.inactive_button_style);
         confirmButton.setText("Create Account");
+        isLoggingIn = false;
     }
 
     private void onViewLogin() {
         registerButton.setBackgroundResource(R.drawable.inactive_button_style);
         loginButton.setBackgroundResource(R.drawable.active_button_style);
         confirmButton.setText("Sign In");
+        isLoggingIn = true;
+    }
+
+    private void onViewConfirm() {
+        User currentUser = new User(0,usernameInput.getText().toString(),passwordInput.getText().toString());
+        CurrentUser.setCurrentUser(currentUser);
+        Intent intent = new Intent(requireContext(), MainActivity.class);
+        startActivity(intent);
     }
 }

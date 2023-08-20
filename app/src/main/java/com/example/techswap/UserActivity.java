@@ -6,10 +6,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.techswap.fragments.LoginFragment;
+import com.example.techswap.fragments.UserLoggedInFragment;
+import com.example.techswap.user.CurrentUser;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -31,14 +34,17 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        // Load the LoginFragment
-        if (savedInstanceState == null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-            LoginFragment loginFragment = new LoginFragment();
-            fragmentTransaction.replace(R.id.mainFragmentContainer, loginFragment); // Replace the container with the fragment
-            fragmentTransaction.commit();
+        Fragment fragment;
+        if (CurrentUser.getCurrentUser() == null) {
+            fragment = new LoginFragment();
+        } else {
+            fragment = new UserLoggedInFragment();
         }
+
+        fragmentTransaction.replace(R.id.mainFragmentContainer, fragment);
+        fragmentTransaction.commit();
     }
 }
