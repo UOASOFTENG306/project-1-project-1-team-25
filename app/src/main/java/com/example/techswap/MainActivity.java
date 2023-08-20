@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +17,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.techswap.fragments.CartFragment;
+import com.example.techswap.fragments.MainFragment;
+import com.example.techswap.item.Details;
+import com.example.techswap.item.Item;
+import com.example.techswap.item.categories.CPU;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -83,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Code to switch to another activity
-                Intent intent = new Intent(MainActivity.this, UserNotInActivity.class);
+                Intent intent = new Intent(MainActivity.this, UserActivity.class);
                 startActivity(intent);
             }
         });
@@ -140,6 +147,19 @@ public class MainActivity extends AppCompatActivity {
         if (!(currentFragment instanceof MainFragment)) {
             MainFragment fragment = new MainFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            List<Item> items = new ArrayList<Item>();
+            CPU cpu = new CPU();
+            Details details = new Details();
+            details.setTitle("Wow");
+            details.setSubtitle("Amazing");
+            details.setPrice(99.99);
+            cpu.setDetails(details);
+            items.add(cpu);
+
+            fragment.setBestSellers(items);
+
+
             transaction.replace(R.id.mainFragmentContainer, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
