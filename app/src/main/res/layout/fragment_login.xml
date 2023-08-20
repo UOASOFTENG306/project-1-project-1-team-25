@@ -48,9 +48,10 @@
 
             <EditText
                 android:id="@+id/username_input_view"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:autofillHints="no"
                 android:textSize="16sp"
                 android:ems="10"
@@ -59,14 +60,26 @@
 
             <EditText
                 android:id="@+id/password_input_view"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:autofillHints="no"
                 android:textSize="16sp"
                 android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/successMessage"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account created successfully!"
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_green_dark"
+                android:layout_centerInParent="true"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/confirm_button"

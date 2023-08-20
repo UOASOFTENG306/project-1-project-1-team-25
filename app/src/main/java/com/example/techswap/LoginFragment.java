@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.user.User;
@@ -15,6 +16,7 @@ public class LoginFragment extends Fragment {
 
     private EditText usernameInput;
     private EditText passwordInput;
+    private TextView successMessageTextView;
     private Button registerButton;
     private Button loginButton;
     private Button confirmButton;
@@ -27,6 +29,7 @@ public class LoginFragment extends Fragment {
 
         usernameInput = view.findViewById(R.id.username_input_view);
         passwordInput = view.findViewById(R.id.password_input_view);
+        successMessageTextView = view.findViewById(R.id.successMessage);
         loginButton = view.findViewById(R.id.login_view_button);
         registerButton = view.findViewById(R.id.register_view_button);
         confirmButton = view.findViewById(R.id.confirm_button);
@@ -62,6 +65,7 @@ public class LoginFragment extends Fragment {
         String password = passwordInput.getText().toString();
         user = new User(username, password);
         dbSetter.addUser(user, true);
+        successMessageTextView.setVisibility(View.VISIBLE);
     }
 
     // Handle switching between the register page and the login page
