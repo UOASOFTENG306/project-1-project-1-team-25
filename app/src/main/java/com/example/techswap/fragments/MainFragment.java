@@ -32,7 +32,8 @@ import java.util.Map;
 public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;
-    private final List<Item> itemList = new ArrayList<Item>();
+    private final List<Item> bestSellersList = new ArrayList<>();
+    private final List<Item> dealsList = new ArrayList<>();
 
     CarouselAdapter dealsAdapter = new CarouselAdapter();
     CarouselAdapter bestSellersAdapter = new CarouselAdapter();
@@ -42,7 +43,8 @@ public class MainFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        fetchTopItems();
+        fetchBestSellers();
+        fetchDeals();
 
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
@@ -82,7 +84,7 @@ public class MainFragment extends Fragment {
         dealsRecyclerView.setLayoutManager(dealsLayoutManager);
         dealsRecyclerView.setAdapter(dealsAdapter);
 
-        List<Item> items = new ArrayList<Item>();
+        List<Item> items = new ArrayList<>();
         CPU cpu = new CPU();
         Details details = new Details();
         details.setTitle("Wow");
@@ -101,7 +103,7 @@ public class MainFragment extends Fragment {
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
 
-        items = new ArrayList<Item>();
+        items = new ArrayList<>();
         cpu = new CPU();
         details = new Details();
         details.setTitle("Wow");
@@ -131,19 +133,34 @@ public class MainFragment extends Fragment {
         });
     }
 
-    /**
-     * Returns a map of the requested document data.
-     * Returned object: List of Maps, each map representing one object.
-     */
-    public void fetchTopItems(){
+    private void fetchBestSellers(){
+        // TODO: Find metric for being "best seller"
         FirebaseFirestore.getInstance().collection("items")
                 .orderBy("title").limit(6)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            itemList.add(mapToItem(document.getData()));
+                            bestSellersList.add(mapToItem(document.getData()));
                         }
+                        setBestSellers(bestSellersList);
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+    }
+
+    private void fetchDeals() {
+        // TODO: Add metric for being "deals"
+        FirebaseFirestore.getInstance().collection("items")
+                .orderBy("title").limit(6)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            dealsList.add(mapToItem(document.getData()));
+                        }
+                        setDeals(dealsList);
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
@@ -158,8 +175,8 @@ public class MainFragment extends Fragment {
         details.setPrice(Double.parseDouble(data.get("price").toString()));
         details.setDescription(data.get("description").toString());
         details.setQuantity(Integer.parseInt(data.get("quantity").toString()));
-        details.setTitle(data.get("Title").toString());
-        details.setSubtitle(data.get("Subtitle").toString());
+        details.setTitle(data.get("title").toString());
+        details.setSubtitle(data.get("subtitle").toString());
 
         Item item = itemFactory.getItem(data.get("category_id").toString());
         item.setDetails(details);
