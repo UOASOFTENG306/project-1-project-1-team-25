@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.user.User;
 
 import com.example.techswap.MainActivity;
 import com.example.techswap.R;
@@ -22,10 +26,12 @@ public class LoginFragment extends Fragment {
 
     private EditText usernameInput;
     private EditText passwordInput;
+    private TextView successMessageTextView;
     private Button registerButton;
     private Button loginButton;
     private Button confirmButton;
-    private boolean isLoggingIn = true;
+    private DatabaseSetter dbSetter = new DatabaseSetter();
+    private boolean isLogin = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +39,7 @@ public class LoginFragment extends Fragment {
 
         usernameInput = view.findViewById(R.id.username_input_view);
         passwordInput = view.findViewById(R.id.password_input_view);
+        successMessageTextView = view.findViewById(R.id.successMessage);
         loginButton = view.findViewById(R.id.login_view_button);
         registerButton = view.findViewById(R.id.register_view_button);
         confirmButton = view.findViewById(R.id.confirm_button);
@@ -67,24 +74,24 @@ public class LoginFragment extends Fragment {
         registerButton.setBackgroundResource(R.drawable.active_button_style);
         loginButton.setBackgroundResource(R.drawable.inactive_button_style);
         confirmButton.setText("Create Account");
-        isLoggingIn = false;
+        isLogin = false;
     }
 
     private void onViewLogin() {
         registerButton.setBackgroundResource(R.drawable.inactive_button_style);
         loginButton.setBackgroundResource(R.drawable.active_button_style);
         confirmButton.setText("Sign In");
-        isLoggingIn = true;
+        isLogin = true;
     }
 
     private void onViewConfirm() {
         User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
 
-        if (isLoggingIn) {
+        if (isLogin) {
+            // TODO: check if login info is correct
             CurrentUser.setCurrentUser(currentUser);
         } else {
-            DatabaseSetter db = new DatabaseSetter();
-            db.addUser(currentUser, true);
+            dbSetter.addUser(currentUser, true);
             CurrentUser.setCurrentUser(currentUser);
         }
 

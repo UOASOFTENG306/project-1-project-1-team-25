@@ -1,6 +1,7 @@
 package com.example.techswap.user;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class User {
 
