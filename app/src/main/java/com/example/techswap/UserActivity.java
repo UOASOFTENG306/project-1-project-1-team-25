@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.techswap.fragments.LoginFragment;
 import com.example.techswap.fragments.UserLoggedInFragment;
-import com.example.techswap.user.CurrentUser;
+import com.example.techswap.user.User;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -43,11 +43,11 @@ public class UserActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         Fragment fragment;
-        if (CurrentUser.getCurrentUser() == null) {
+        if (User.getCurrentUser() == null) {
             usernameView.setText("Not logged in");
             fragment = new LoginFragment();
         } else {
-            usernameView.setText(CurrentUser.getCurrentUser().getUsername());
+            usernameView.setText(User.getCurrentUser().getUsername());
             fragment = new UserLoggedInFragment();
         }
 

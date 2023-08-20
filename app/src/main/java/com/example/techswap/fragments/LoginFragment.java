@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +16,6 @@ import com.example.techswap.user.User;
 
 import com.example.techswap.MainActivity;
 import com.example.techswap.R;
-import com.example.techswap.UserActivity;
-import com.example.techswap.database.DatabaseSetter;
-import com.example.techswap.user.CurrentUser;
-import com.example.techswap.user.User;
 
 public class LoginFragment extends Fragment {
 
@@ -89,10 +84,10 @@ public class LoginFragment extends Fragment {
 
         if (isLogin) {
             // TODO: check if login info is correct
-            CurrentUser.setCurrentUser(currentUser);
+            User.setCurrentUser(currentUser);
         } else {
             dbSetter.addUser(currentUser, true);
-            CurrentUser.setCurrentUser(currentUser);
+            User.setCurrentUser(currentUser);
         }
 
         Intent intent = new Intent(requireContext(), MainActivity.class);
