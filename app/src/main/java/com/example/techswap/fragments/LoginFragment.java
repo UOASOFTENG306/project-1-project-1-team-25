@@ -1,9 +1,12 @@
 package com.example.techswap.fragments;
 
 import static android.content.ContentValues.TAG;
+import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -27,7 +30,7 @@ public class LoginFragment extends Fragment {
 
     private EditText usernameInput;
     private EditText passwordInput;
-    private TextView successMessageTextView;
+    private TextView displayMessageTextView;
     private Button registerButton;
     private Button loginButton;
     private Button confirmButton;
@@ -40,7 +43,7 @@ public class LoginFragment extends Fragment {
 
         usernameInput = view.findViewById(R.id.username_input_view);
         passwordInput = view.findViewById(R.id.password_input_view);
-        successMessageTextView = view.findViewById(R.id.successMessage);
+        displayMessageTextView = view.findViewById(R.id.successMessage);
         loginButton = view.findViewById(R.id.login_view_button);
         registerButton = view.findViewById(R.id.register_view_button);
         confirmButton = view.findViewById(R.id.confirm_button);
@@ -74,6 +77,11 @@ public class LoginFragment extends Fragment {
     private void onViewRegister() {
         registerButton.setBackgroundResource(R.drawable.active_button_style);
         loginButton.setBackgroundResource(R.drawable.inactive_button_style);
+        registerButton.setTextColor(getResources().getColor(R.color.white));
+        loginButton.setTextColor(getResources().getColor(R.color.gray));
+        displayMessageTextView.setVisibility(View.INVISIBLE);
+        usernameInput.setText("");
+        passwordInput.setText("");
         confirmButton.setText("Create Account");
         isLogin = false;
     }
@@ -81,6 +89,11 @@ public class LoginFragment extends Fragment {
     private void onViewLogin() {
         registerButton.setBackgroundResource(R.drawable.inactive_button_style);
         loginButton.setBackgroundResource(R.drawable.active_button_style);
+        registerButton.setTextColor(getResources().getColor(R.color.gray));
+        loginButton.setTextColor(getResources().getColor(R.color.white));
+        displayMessageTextView.setVisibility(View.INVISIBLE);
+        usernameInput.setText("");
+        passwordInput.setText("");
         confirmButton.setText("Sign In");
         isLogin = true;
     }
@@ -96,16 +109,24 @@ public class LoginFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Map<String, Object> docData = task.getResult().getData();
+                        Intent intent = new Intent(requireContext(), MainActivity.class);
+//
                         if (isLoggingIn && task.getResult().exists() && docData.get("password").toString().equals(user.getPassword())) {
                             User.setCurrentUser(user);
+                            startActivity(intent);
                         } else if (!isLoggingIn && !task.getResult().exists())   {
                             dbSetter.addUser(user, true);
                             User.setCurrentUser(user);
-                        } else{
-                            return;
+                            startActivity(intent);
+                        } else if (isLoggingIn){
+                            displayMessageTextView.setText("Invalid password or username,\n please try again.");
+                            displayMessageTextView.setVisibility(VISIBLE);
+                        } else {
+                            displayMessageTextView.setText("Username already in use,\n please try a different one.");
+                            displayMessageTextView.setVisibility(VISIBLE);
                         }
-                        Intent intent = new Intent(requireContext(), MainActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(requireContext(), MainActivity.class);
+//                        startActivity(intent);
 
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());

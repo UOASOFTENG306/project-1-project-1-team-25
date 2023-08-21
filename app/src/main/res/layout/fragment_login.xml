@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
@@ -27,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:background="@drawable/input_bubble_edittext"
                 android:orientation="horizontal">
 
                 <Button
@@ -46,7 +47,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.5"
                     android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
+                    android:textColor="#999999"
                     android:text="@string/register"
                     android:onClick="onViewRegister"
                     app:backgroundTint="@null" />
@@ -84,11 +85,12 @@
             <TextView
                 android:id="@+id/successMessage"
                 android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Account created successfully!"
-                android:textSize="18sp"
-                android:textColor="@android:color/holo_green_dark"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:textColor="@android:color/holo_red_light"
                 android:visibility="invisible" />
 
             <Button
