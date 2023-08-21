@@ -106,8 +106,9 @@ public class SellActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Uri uri) {
                                 String imageUrl = uri.toString();
+                                // urlList gets added as firestore field
                                 imageUrlList.add(imageUrl);
-                                // TODO: Set image on sell activity, use URL
+                                // TODO: Set image on sell activity, use URL somewhere
                             }
                         });
                     }
