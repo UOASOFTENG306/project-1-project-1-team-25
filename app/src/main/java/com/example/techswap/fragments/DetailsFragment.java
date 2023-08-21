@@ -15,6 +15,7 @@ import com.example.techswap.R;
 import com.example.techswap.adapters.ImageAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
 import com.example.techswap.databinding.FragmentDetailsBinding;
+import com.example.techswap.item.Item;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -24,6 +25,14 @@ public class DetailsFragment extends Fragment {
 
 private FragmentDetailsBinding binding;
 
+    public static DetailsFragment newInstance(Item item) {
+        DetailsFragment fragment = new DetailsFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("item", item);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -32,29 +41,35 @@ private FragmentDetailsBinding binding;
 
         binding = FragmentDetailsBinding.inflate(inflater, container, false);
 
-        // set field text
-        binding.detailsTitle.setText("Title");
-        binding.detailsSubtitle.setText("Subtitle");
-        binding.detailsPrice.setText("$299.99");
-        // binding.detailsDescription.setText(LocalDateTime.now().toString());
+        Bundle args = getArguments();
+        if (args != null) {
+            Item item = (Item) args.getSerializable("item");
+            // set field text
+            binding.detailsTitle.setText(item.getDetails().getTitle());
+            binding.detailsSubtitle.setText(item.getDetails().getSubtitle());
+            binding.detailsPrice.setText("$" + item.getDetails().getPrice());
+            binding.detailsDescription.setText(item.getDetails().getDescription());
 
-        // specifications recycler view
-        RecyclerView recyclerView = binding.specificationRecyclerView;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+            // specifications recycler view
+            RecyclerView recyclerView = binding.specificationRecyclerView;
+            LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+            recyclerView.setLayoutManager(layoutManager);
 
-        List<String> specificationList = Arrays.asList(
-                "Brand",
-                "Clock speed"
-        );
+            List<String> specificationList = Arrays.asList(
+                    "Brand",
+                    "Clock speed"
+            );
 
-        List<String> valueList = Arrays.asList(
-                "Intel",
-                "Like, a bajillion"
-        );
+            List<String> valueList = Arrays.asList(
+                    "Intel",
+                    "Like, a bajillion"
+            );
 
-        SpecificationAdapter adapter = new SpecificationAdapter(specificationList, valueList);
-        recyclerView.setAdapter(adapter);
+            SpecificationAdapter adapter = new SpecificationAdapter(specificationList, valueList);
+            recyclerView.setAdapter(adapter);
+        } else {
+
+        }
 
         ViewPager2 mViewPager = binding.detailsPager;
 

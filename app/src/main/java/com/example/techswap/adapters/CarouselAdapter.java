@@ -24,6 +24,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private List<String> titleList;
     private List<Double> priceList;
     private List<String> subtitleList;
+    private List<Item> itemList;
 
     private CarouselType carouselType;
 
@@ -36,14 +37,16 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.titleList = new ArrayList<>();
         this.subtitleList = new ArrayList<>();
         this.priceList = new ArrayList<>();
+        this.itemList = new ArrayList<>();
         this.carouselType = carouselType;
     }
 
-    public CarouselAdapter(List<Integer> imageList, List<String> titleList, List<Double> priceList, List<String> subtitleList, CarouselType carouselType) {
+    public CarouselAdapter(List<Integer> imageList, List<String> titleList, List<Double> priceList, List<String> subtitleList, List<Item> itemList, CarouselType carouselType) {
         this.imageList = imageList;
         this.titleList = titleList;
         this.subtitleList = subtitleList;
         this.priceList = priceList;
+        this.itemList = itemList;
         this.carouselType = carouselType;
     }
 
@@ -91,6 +94,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int clickedPosition = holder.getAdapterPosition();
                 // Handle item click event
                 if (carouselType == CarouselType.CATEGORY) {
                     ListFragment fragment = new ListFragment();
@@ -102,7 +106,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     transaction.addToBackStack(null);
                     transaction.commit();
                 } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM) {
-                    DetailsFragment fragment = new DetailsFragment();
+                    DetailsFragment fragment = DetailsFragment.newInstance(itemList.get(clickedPosition));
                     FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
 
                     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -176,6 +180,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.priceList = priceList;
         this.subtitleList = subtitleList;
         this.imageList = imageList;
+        this.itemList = items;
 
         notifyDataSetChanged();
     }

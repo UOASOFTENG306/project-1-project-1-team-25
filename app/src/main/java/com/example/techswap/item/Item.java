@@ -2,13 +2,14 @@ package com.example.techswap.item;
 
 import android.media.Image;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public abstract class Item {
+public abstract class Item implements Serializable {
 
     private Long id;
 
