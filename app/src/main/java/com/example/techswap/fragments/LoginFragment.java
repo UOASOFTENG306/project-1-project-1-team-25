@@ -87,29 +87,25 @@ public class LoginFragment extends Fragment {
 
     private void onViewConfirm() {
         User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
-
-        if (isLogin) {
-            fetchUser(currentUser);
-        } else {
-            dbSetter.addUser(currentUser, true);
-            User.setCurrentUser(currentUser);
-            Intent intent = new Intent(requireContext(), MainActivity.class);
-            startActivity(intent);
-        }
+        fetchUser(currentUser, isLogin);
     }
 
-    private void fetchUser(User user) {
+    private void fetchUser(User user, boolean isLoggingIn) {
         FirebaseFirestore.getInstance().collection("users")
                 .document(user.getUsername()).get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Map<String, Object> docData = task.getResult().getData();
-
-                        if (docData.get("password").toString().equals(user.getPassword())) {
+                        if (isLoggingIn && task.getResult().exists() && docData.get("password").toString().equals(user.getPassword())) {
                             User.setCurrentUser(user);
-                            Intent intent = new Intent(requireContext(), MainActivity.class);
-                            startActivity(intent);
+                        } else if (!isLoggingIn && !task.getResult().exists())   {
+                            dbSetter.addUser(user, true);
+                            User.setCurrentUser(user);
+                        } else{
+                            return;
                         }
+                        Intent intent = new Intent(requireContext(), MainActivity.class);
+                        startActivity(intent);
 
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
