@@ -22,7 +22,6 @@ public class DatabaseSetter {
      */
     public void addUser(User user, Boolean isNew) {
 
-        // TODO: Check for duplicate username in database
         if (isNew) {
             addNewCart(user.getUsername());
         }
