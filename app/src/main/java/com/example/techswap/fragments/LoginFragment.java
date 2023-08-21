@@ -1,9 +1,12 @@
 package com.example.techswap.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,9 @@ import com.example.techswap.user.User;
 
 import com.example.techswap.MainActivity;
 import com.example.techswap.R;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Map;
 
 public class LoginFragment extends Fragment {
 
@@ -83,14 +89,31 @@ public class LoginFragment extends Fragment {
         User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
 
         if (isLogin) {
-            // TODO: check if login info is correct
-            User.setCurrentUser(currentUser);
+            fetchUser(currentUser);
         } else {
             dbSetter.addUser(currentUser, true);
             User.setCurrentUser(currentUser);
+            Intent intent = new Intent(requireContext(), MainActivity.class);
+            startActivity(intent);
         }
+    }
 
-        Intent intent = new Intent(requireContext(), MainActivity.class);
-        startActivity(intent);
+    private void fetchUser(User user) {
+        FirebaseFirestore.getInstance().collection("users")
+                .document(user.getUsername()).get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Map<String, Object> docData = task.getResult().getData();
+
+                        if (docData.get("password").toString().equals(user.getPassword())) {
+                            User.setCurrentUser(user);
+                            Intent intent = new Intent(requireContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
     }
 }
