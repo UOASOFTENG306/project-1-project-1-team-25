@@ -91,6 +91,7 @@ public class LoginFragment extends Fragment {
         loginButton.setBackgroundResource(R.drawable.active_button_style);
         registerButton.setTextColor(getResources().getColor(R.color.gray));
         loginButton.setTextColor(getResources().getColor(R.color.white));
+        displayMessageTextView.setVisibility(View.INVISIBLE);
         usernameInput.setText("");
         passwordInput.setText("");
         confirmButton.setText("Sign In");
