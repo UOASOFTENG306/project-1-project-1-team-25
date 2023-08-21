@@ -73,6 +73,7 @@ public class DatabaseSetter {
 
         data.put("item_id", item.getId());
         data.put("category_id", details.getCategory());
+        data.put("search_title", details.getSearchTitle());
 
         data.put("title", details.getTitle());
         data.put("subtitle", details.getSubtitle());
