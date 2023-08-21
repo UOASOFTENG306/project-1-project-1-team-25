@@ -12,18 +12,20 @@ import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity {
@@ -39,8 +41,8 @@ public class SellActivity extends AppCompatActivity {
     private Button removeImageButton;
     private Button listItemButton;
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
-
     private Uri imageUri;
+    private final List<String> imageUrlList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +102,14 @@ public class SellActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
-                        // TODO: Fill in
+                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String imageUrl = uri.toString();
+                                imageUrlList.add(imageUrl);
+                                // TODO: Set image on sell activity, use URL
+                            }
+                        });
                     }
                 }
             });
