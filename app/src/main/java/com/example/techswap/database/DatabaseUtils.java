@@ -17,6 +17,7 @@ public class DatabaseUtils {
         details.setQuantity(Integer.parseInt(data.get("quantity").toString()));
         details.setTitle(data.get("title").toString());
         details.setSubtitle(data.get("subtitle").toString());
+        details.setSearchTitle(data.get("search_title").toString());
 
         Item item = itemFactory.getItem(data.get("category_id").toString());
         item.setDetails(details);
