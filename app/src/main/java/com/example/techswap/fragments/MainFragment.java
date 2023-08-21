@@ -83,37 +83,11 @@ public class MainFragment extends Fragment {
         dealsRecyclerView.setLayoutManager(dealsLayoutManager);
         dealsRecyclerView.setAdapter(dealsAdapter);
 
-        List<Item> items = new ArrayList<>();
-        CPU cpu = new CPU();
-        Details details = new Details();
-        details.setTitle("Wow");
-        details.setPrice(99.99);
-        cpu.setDetails(details);
-        for(int i = 0; i<7 ; i++) {
-            items.add(cpu);
-        }
-
-        setDeals(items);
-
-
         // Vertical RecyclerView
         RecyclerView bestSellersRecyclerView = binding.bestSellersRecyclerView;
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
-
-        items = new ArrayList<>();
-        cpu = new CPU();
-        details = new Details();
-        details.setTitle("Wow");
-        details.setSubtitle("Amazing");
-        details.setPrice(99.99);
-        cpu.setDetails(details);
-        for(int i = 0; i<7 ; i++) {
-            items.add(cpu);
-        }
-
-        setBestSellers(items);
 
         return rootView;
     }

@@ -89,7 +89,12 @@ public class MainActivity extends AppCompatActivity {
         userIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Code to switch to another activity
+                // Load the animation from the XML resource
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_press);
+                // Start the animation on the ImageView
+                v.startAnimation(animation);
+
+                // Switch to user activity
                 Intent intent = new Intent(MainActivity.this, UserActivity.class);
                 startActivity(intent);
             }
@@ -133,9 +138,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCartClick(View view) {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
+
+        // Load the animation from the XML resource
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_press);
+        // Start the animation on the ImageView
+        view.startAnimation(animation);
+
         if (!(currentFragment instanceof CartFragment)) {
             CartFragment fragment = new CartFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
             transaction.replace(R.id.mainFragmentContainer, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
@@ -144,9 +158,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void onLogoClick(View view) {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
+
+        // Load the animation from the XML resource
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_press);
+        // Start the animation on the ImageView
+        view.startAnimation(animation);
+
         if (!(currentFragment instanceof MainFragment)) {
             MainFragment fragment = new MainFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
 
             List<Item> items = new ArrayList<Item>();
             CPU cpu = new CPU();
@@ -159,15 +181,10 @@ public class MainActivity extends AppCompatActivity {
 
             fragment.setBestSellers(items);
 
-
             transaction.replace(R.id.mainFragmentContainer, fragment);
             transaction.addToBackStack(null);
             transaction.commit();
         }
-    }
-
-    public void onUserClick(View view) {
-
     }
 
 //    private void closeKeyboard() {

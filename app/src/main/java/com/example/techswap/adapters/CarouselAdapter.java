@@ -95,12 +95,18 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 if (carouselType == CarouselType.CATEGORY) {
                     ListFragment fragment = new ListFragment();
                     FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
+
+                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
                     transaction.replace(R.id.mainFragmentContainer, fragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
                 } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM) {
                     DetailsFragment fragment = new DetailsFragment();
                     FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
+
+                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
                     transaction.replace(R.id.mainFragmentContainer, fragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
