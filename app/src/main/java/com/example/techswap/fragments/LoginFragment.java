@@ -108,17 +108,24 @@ public class LoginFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Map<String, Object> docData = task.getResult().getData();
+                        Intent intent = new Intent(requireContext(), MainActivity.class);
+//
                         if (isLoggingIn && task.getResult().exists() && docData.get("password").toString().equals(user.getPassword())) {
                             User.setCurrentUser(user);
+                            startActivity(intent);
                         } else if (!isLoggingIn && !task.getResult().exists())   {
                             dbSetter.addUser(user, true);
                             User.setCurrentUser(user);
-                        } else{
+                            startActivity(intent);
+                        } else if (isLoggingIn){
                             displayMessageTextView.setText("Invalid password or username,\n please try again.");
                             displayMessageTextView.setVisibility(VISIBLE);
+                        } else {
+                            displayMessageTextView.setText("Username already in use,\n please try a different one.");
+                            displayMessageTextView.setVisibility(VISIBLE);
                         }
-                        Intent intent = new Intent(requireContext(), MainActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(requireContext(), MainActivity.class);
+//                        startActivity(intent);
 
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
