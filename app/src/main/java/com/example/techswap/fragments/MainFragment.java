@@ -1,18 +1,25 @@
 package com.example.techswap.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.databinding.FragmentMainBinding;
+import com.example.techswap.database.DatabaseUtils;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.CPU;
@@ -24,7 +31,9 @@ import java.util.List;
 public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;
-
+    private final List<Item> bestSellersList = new ArrayList<>();
+    private final List<Item> dealsList = new ArrayList<>();
+    private final DatabaseUtils databaseUtils = new DatabaseUtils();
     CarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
     CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
 
@@ -33,6 +42,8 @@ public class MainFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
+        fetchBestSellers();
+        fetchDeals();
 
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
@@ -72,7 +83,7 @@ public class MainFragment extends Fragment {
         dealsRecyclerView.setLayoutManager(dealsLayoutManager);
         dealsRecyclerView.setAdapter(dealsAdapter);
 
-        List<Item> items = new ArrayList<Item>();
+        List<Item> items = new ArrayList<>();
         CPU cpu = new CPU();
         Details details = new Details();
         details.setTitle("Wow");
@@ -91,7 +102,7 @@ public class MainFragment extends Fragment {
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
 
-        items = new ArrayList<Item>();
+        items = new ArrayList<>();
         cpu = new CPU();
         details = new Details();
         details.setTitle("Wow");
@@ -109,6 +120,48 @@ public class MainFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.bestSellersHeader.setOnClickListener(view1 -> {
+            DetailsFragment fragment = new DetailsFragment();
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.mainFragmentContainer, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+    }
+
+    private void fetchBestSellers(){
+        // TODO: Find metric for being "best seller"
+        FirebaseFirestore.getInstance().collection("items")
+                .orderBy("title").limit(6)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            bestSellersList.add(databaseUtils.mapToItem(document.getData()));
+                        }
+                        setBestSellers(bestSellersList);
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+    }
+
+    private void fetchDeals() {
+        // TODO: Add metric for being "deals"
+        FirebaseFirestore.getInstance().collection("items")
+                .orderBy("title").limit(6)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            dealsList.add(databaseUtils.mapToItem(document.getData()));
+                        }
+                        setDeals(dealsList);
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
     }
 
     @Override
