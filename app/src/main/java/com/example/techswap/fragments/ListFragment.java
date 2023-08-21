@@ -55,13 +55,13 @@ public class ListFragment extends Fragment {
                 "Temp Item"
         );
 
-        List<Integer> bestSellersPriceList = Arrays.asList(
-                11,
-                11,
-                11,
-                11,
-                11,
-                11
+        List<Double> bestSellersPriceList = Arrays.asList(
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
         );
 
         List<String> bestSellersDescriptionList = Arrays.asList(
@@ -73,7 +73,7 @@ public class ListFragment extends Fragment {
                 "Lorem ipsum dolor sit amet"
         );
 
-        CarouselAdapter bestSellersAdapter = new CarouselAdapter(bestSellersImageList, bestSellersCaptionList, bestSellersPriceList, bestSellersDescriptionList);
+        CarouselAdapter bestSellersAdapter = new CarouselAdapter(bestSellersImageList, bestSellersCaptionList, bestSellersPriceList, bestSellersDescriptionList, CarouselAdapter.CarouselType.LIST_ITEM);
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
 
         return rootView;

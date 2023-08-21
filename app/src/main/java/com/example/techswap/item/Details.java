@@ -2,7 +2,7 @@ package com.example.techswap.item;
 
 public class Details {
 
-    private float price;
+    private double price;
 
     private String title;
 
@@ -17,11 +17,11 @@ public class Details {
     public Details() {
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
