@@ -11,6 +11,9 @@ public class DatabaseUtils {
         ItemFactory itemFactory = new ItemFactory();
         Details details = new Details();
 
+        details.setCategory(data.get("category_id").toString());
+        details.setPrice(Double.parseDouble(data.get("price").toString()));
+        details.setDescription(data.get("description").toString());
         details.setQuantity(Integer.parseInt(data.get("quantity").toString()));
         details.setTitle(data.get("title").toString());
         details.setSubtitle(data.get("subtitle").toString());
