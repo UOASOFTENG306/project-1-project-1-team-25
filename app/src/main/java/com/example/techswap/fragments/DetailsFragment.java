@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -118,6 +120,15 @@ public class DetailsFragment extends Fragment {
     private void onAddToCart() {
         DatabaseSetter db = new DatabaseSetter();
         db.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId().toString(), true);
+
+        CartFragment fragment = new CartFragment();
+        FragmentTransaction transaction = (getParentFragmentManager().beginTransaction());
+
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
+        transaction.replace(R.id.mainFragmentContainer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
