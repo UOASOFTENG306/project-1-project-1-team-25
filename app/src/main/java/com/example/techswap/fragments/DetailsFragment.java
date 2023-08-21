@@ -1,4 +1,4 @@
-package com.example.techswap;
+package com.example.techswap.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -61,14 +61,6 @@ private FragmentDetailsBinding binding;
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-//        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                NavHostFragment.findNavController(DetailsFragment.this)
-//                        .navigate(R.id.action_Details_to_Main);
-//            }
-//        });
     }
 
     @Override

@@ -1,17 +1,24 @@
 package com.example.techswap.user;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class User {
 
-    private int id;
+    private static User currentUser;
 
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        User.currentUser = currentUser;
+    }
     private String username;
 
     private String password;
 
-    public User(int id, String username, String password) {
-        this.id = id;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -22,14 +29,6 @@ public class User {
         } else {
             return false;
         }
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUsername() {
@@ -53,19 +52,18 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(username, password);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+                "username='" + username +
                 ", password='" + password + '\'' +
                 '}';
     }

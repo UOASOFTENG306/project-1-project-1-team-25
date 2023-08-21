@@ -6,23 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".LoginFragment">
+    tools:context=".fragments.LoginFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/login_fragment_background"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="60dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
@@ -30,8 +32,10 @@
                 <Button
                     android:id="@+id/login_view_button"
                     style="@style/ActiveLoginSwitchButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
                     android:onClick="onViewLogin"
                     android:text="@string/login"
                     app:backgroundTint="@null"/>
@@ -39,8 +43,10 @@
                 <Button
                     android:id="@+id/register_view_button"
                     style="@style/InactiveLoginSwitchButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
                     android:text="@string/register"
                     android:onClick="onViewRegister"
                     app:backgroundTint="@null" />
@@ -48,30 +54,47 @@
 
             <EditText
                 android:id="@+id/username_input_view"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints="no"
+                android:layout_marginTop="35dp"
+                android:padding="12dp"
+                android:background="@drawable/input_bubble_edittext"
                 android:textSize="16sp"
-                android:ems="10"
                 android:hint="@string/username"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColorHint="#999999"
+                android:textColor="#000000"
+                android:imeOptions="actionNext" />
 
             <EditText
                 android:id="@+id/password_input_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:padding="12dp"
+                android:background="@drawable/input_bubble_edittext"
+                android:textSize="16sp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textColorHint="#999999"
+                android:textColor="#000000"
+                android:imeOptions="actionDone" /> <!-- Optional: Set IME options for keyboard actions -->
+
+
+            <TextView
+                android:id="@+id/successMessage"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:autofillHints="no"
-                android:textSize="16sp"
-                android:ems="10"
-                android:hint="@string/password"
-                android:inputType="textPassword" />
+                android:text="Account created successfully!"
+                android:textSize="18sp"
+                android:textColor="@android:color/holo_green_dark"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/confirm_button"
                 android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_button"

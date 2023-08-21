@@ -24,27 +24,26 @@ public class DatabaseSetter {
 
         // TODO: Check for duplicate username in database
         if (isNew) {
-            addNewCart(user.getId());
+            addNewCart(user.getUsername());
         }
 
         Map<String, Object> data = new HashMap<>();
         data.put("password", user.getPassword());
-        data.put("user_id", user.getId());
         data.put("username", user.getUsername());
 
-        database.collection("users").document(String.valueOf(user.getId())).set(data);
+        database.collection("users").document(String.valueOf(user.getUsername())).set(data);
 
     }
 
     /**
      * Creates a new cart in the Firestore DB. Different from adding items to the cart.
      */
-    public void addNewCart(int id) {
+    public void addNewCart(String username) {
 
         Map<String, Object> data = new HashMap<>();
 
-        data.put("user_id", id);
-        database.collection("cart").document(String.valueOf(id)).set(data);
+        data.put("username", username);
+        database.collection("cart").document(String.valueOf(username)).set(data);
 
     }
 

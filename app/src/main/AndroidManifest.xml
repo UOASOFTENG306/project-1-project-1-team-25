@@ -24,13 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UserInActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.TechSwap" >
-        </activity>
-        <activity
-            android:name=".UserNotInActivity"
+            android:name=".UserActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.TechSwap" >
