@@ -4,15 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.techswap.adapters.CarouselAdapter;
+import com.example.techswap.R;
+import com.example.techswap.adapters.ImageAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
 import com.example.techswap.databinding.FragmentDetailsBinding;
 
@@ -54,6 +54,21 @@ private FragmentDetailsBinding binding;
 
         SpecificationAdapter adapter = new SpecificationAdapter(specificationList, valueList);
         recyclerView.setAdapter(adapter);
+
+        ViewPager2 mViewPager = binding.detailsPager;
+
+        List<Integer> imageList = Arrays.asList(
+                R.drawable.cpu,
+                R.drawable.gpu,
+                R.drawable.motherboard,
+                R.drawable.harddisk,
+                R.drawable.ram,
+                R.drawable.powersupply,
+                R.drawable.pccase
+        );
+
+        ImageAdapter adapterView = new ImageAdapter(imageList);
+        mViewPager.setAdapter(adapterView);
 
         return binding.getRoot();
 
