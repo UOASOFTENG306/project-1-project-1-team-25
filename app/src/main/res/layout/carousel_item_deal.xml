@@ -3,10 +3,11 @@
 <!-- item_carousel.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="130dp"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="20dp"
+    android:layout_marginEnd="15dp"
+    android:padding="10dp"
+    android:background="@drawable/carousel_item_border"
     android:orientation="vertical"
     android:gravity="center">
 
@@ -14,14 +15,14 @@
         android:id="@+id/carouselImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitCenter"
         android:contentDescription="Category Icons" />
 
     <TextView
         android:id="@+id/captionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="Item Caption"
         style="@style/CategoryText"
         android:gravity="center" />
@@ -30,7 +31,7 @@
         android:id="@+id/priceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="Item Caption"
         style="@style/CategoryText"
         android:gravity="center" />
