@@ -10,8 +10,21 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity {
 
@@ -25,12 +38,9 @@ public class SellActivity extends AppCompatActivity {
     private Button addImageButton;
     private Button removeImageButton;
     private Button listItemButton;
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
 
-    private Uri testImage;
-
-    // constant to compare
-    // the activity result code
-    private int SELECT_PICTURE = 200;
+    private Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,41 +87,34 @@ public class SellActivity extends AppCompatActivity {
         addImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imageChooser();
+                mGetContent.launch("image/*");
             }
         });
     }
 
-    // this function is triggered when
-    // the Select Image Button is clicked
-    private void imageChooser() {
+    private void uploadImage() {
+        if (imageUri != null) {
+            StorageReference reference = storage.getReference().child("images/" + UUID.randomUUID().toString());
 
-        // create an instance of the
-        // intent of the type image
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
-
-        // pass the constant to compare it
-        // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE);
-    }
-
-    // this function is triggered when user
-    // selects the image from the imageChooser
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-            if (requestCode == SELECT_PICTURE) {
-                // Get the url of the image from data
-                Uri selectedImageUri = data.getData();
-                if (null != selectedImageUri) {
-                    // update the preview image in the layout
-                    // IVPreviewImage.setImageURI(selectedImageUri);
-                    testImage = selectedImageUri;
+            reference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        // TODO: Fill in
+                    }
                 }
-            }
+            });
         }
     }
+
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult((new ActivityResultContracts.GetContent()),
+        new ActivityResultCallback<Uri>()   {
+            @Override
+            public void onActivityResult(Uri result) {
+                if (result != null) {
+                    imageUri = result;
+                    uploadImage();
+                }
+            }
+    });
 }
