@@ -110,7 +110,6 @@ public class LoginFragment extends Fragment {
                             User.setCurrentUser(user);
                             Intent intent = new Intent(requireContext(), MainActivity.class);
                             startActivity(intent);
-                            System.out.println("Yippee!");
                         }
 
                     } else {
