@@ -63,6 +63,16 @@ public class DatabaseSetter {
     }
 
     /**
+     * Clears the user's cart in the Firestore DB.
+     */
+    public void clearCart(String username) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", username);
+
+        database.collection("cart").document(username).update("item_id", FieldValue.delete());
+    }
+
+    /**
      * Creates an item instance in the Firestore DB
      */
     public void addItem(Item item) {
