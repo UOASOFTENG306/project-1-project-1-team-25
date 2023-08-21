@@ -5,6 +5,8 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -75,6 +77,8 @@ public class LoginFragment extends Fragment {
     private void onViewRegister() {
         registerButton.setBackgroundResource(R.drawable.active_button_style);
         loginButton.setBackgroundResource(R.drawable.inactive_button_style);
+        registerButton.setTextColor(getResources().getColor(R.color.white));
+        loginButton.setTextColor(getResources().getColor(R.color.gray));
         displayMessageTextView.setVisibility(View.INVISIBLE);
         usernameInput.setText("");
         passwordInput.setText("");
@@ -85,6 +89,8 @@ public class LoginFragment extends Fragment {
     private void onViewLogin() {
         registerButton.setBackgroundResource(R.drawable.inactive_button_style);
         loginButton.setBackgroundResource(R.drawable.active_button_style);
+        registerButton.setTextColor(getResources().getColor(R.color.gray));
+        loginButton.setTextColor(getResources().getColor(R.color.white));
         usernameInput.setText("");
         passwordInput.setText("");
         confirmButton.setText("Sign In");
