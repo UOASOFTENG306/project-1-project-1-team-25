@@ -89,7 +89,6 @@ public class LoginFragment extends Fragment {
         User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
 
         if (isLogin) {
-            // TODO: check if login info is correct
             fetchUser(currentUser);
         } else {
             dbSetter.addUser(currentUser, true);
