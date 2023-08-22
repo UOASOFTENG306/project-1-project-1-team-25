@@ -11,19 +11,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.techswap.R;
-import com.example.techswap.adapters.ItemCardAdapter;
-import com.example.techswap.adapters.SpecificationAdapter;
+import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.databinding.FragmentCartBinding;
-import com.example.techswap.databinding.FragmentDetailsBinding;
+import com.example.techswap.item.Details;
+import com.example.techswap.item.Item;
+import com.example.techswap.item.categories.CPU;
 import com.example.techswap.user.User;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class CartFragment extends Fragment {
 
-private FragmentCartBinding binding;
+    private FragmentCartBinding binding;
+    private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM);
 
     @Override
     public View onCreateView(
@@ -37,49 +40,19 @@ private FragmentCartBinding binding;
         RecyclerView recyclerView = binding.cartRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-
-        List<Integer> imageList = Arrays.asList(
-                R.drawable.cpu,
-                R.drawable.gpu,
-                R.drawable.motherboard,
-                R.drawable.harddisk,
-                R.drawable.ram,
-                R.drawable.powersupply,
-                R.drawable.pccase
-        );
-
-        List<String> titleList = Arrays.asList(
-                "CPU",
-                "Graphics Card",
-                "Motherboard",
-                "Storage",
-                "Memory",
-                "Power",
-                "Case"
-        );
-
-        List<String> subtitleList = Arrays.asList(
-                "CPU",
-                "Graphics Card",
-                "Motherboard",
-                "Storage",
-                "Memory",
-                "Power",
-                "Case"
-        );
-
-        List<String> priceList = Arrays.asList(
-                "CPU",
-                "Graphics Card",
-                "Motherboard",
-                "Storage",
-                "Memory",
-                "Power",
-                "Case"
-        );
-
-        ItemCardAdapter adapter = new ItemCardAdapter(imageList, titleList, subtitleList, priceList);
         recyclerView.setAdapter(adapter);
+
+        List<Item> items = new ArrayList<>();
+        CPU cpu = new CPU();
+        Details details = new Details();
+        details.setTitle("Wow");
+        details.setPrice(99.99);
+        cpu.setDetails(details);
+        for(int i = 0; i<7 ; i++) {
+            items.add(cpu);
+        }
+
+        setItems(items);
 
         binding.checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +80,8 @@ private FragmentCartBinding binding;
         binding = null;
     }
 
-
+    public void setItems(List<Item> items) {
+        adapter.updateData(items);
+    }
 
 }
