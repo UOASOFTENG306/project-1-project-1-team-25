@@ -3,7 +3,6 @@ package com.example.techswap;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,8 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.techswap.adapters.CarouselAdapter;
-import com.example.techswap.adapters.ImageAdapter;
+import com.example.techswap.adapters.SellImageAdapter;
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
@@ -51,7 +49,7 @@ public class SellActivity extends AppCompatActivity {
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private Uri imageUri;
     private final List<String> imageUrlList = new ArrayList<String>();
-    ImageAdapter imageAdapter = new ImageAdapter(this, null);
+    SellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +78,7 @@ public class SellActivity extends AppCompatActivity {
         // Images recycler view
         LinearLayoutManager imageLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         imagesRecyclerView.setLayoutManager(imageLayoutManager);
-        imagesRecyclerView.setAdapter(imageAdapter);
+        imagesRecyclerView.setAdapter(sellImageAdapter);
 
         logoText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +95,7 @@ public class SellActivity extends AppCompatActivity {
                 ItemFactory factory = new ItemFactory();
                 Item item = factory.getItem(categorySpinner.getSelectedItem().toString());
 
-                Details details = new Details();
+                Details details = item.getDetails();
                 details.setTitle(titleInput.getText().toString());
                 details.setSubtitle(subtitleInput.getText().toString());
                 details.setDescription(descriptionInput.getText().toString());
@@ -105,6 +103,9 @@ public class SellActivity extends AppCompatActivity {
 
                 item.setDetails(details);
                 item.setImageUrls(imageUrlList);
+
+                UUID uuid = UUID.randomUUID();
+                item.setId(uuid.toString());
 
                 DatabaseSetter db = new DatabaseSetter();
                 db.addItem(item);
@@ -137,7 +138,7 @@ public class SellActivity extends AppCompatActivity {
                                 String imageUrl = uri.toString();
                                 // urlList gets added as firestore field
                                 imageUrlList.add(imageUrl);
-                                imageAdapter.updateImages(imageUrlList);
+                                sellImageAdapter.updateImages(imageUrlList);
                                 // TODO: Set image on sell activity, use URL somewhere
                             }
                         });

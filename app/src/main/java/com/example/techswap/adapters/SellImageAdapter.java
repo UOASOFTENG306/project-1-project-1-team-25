@@ -12,17 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
-import com.example.techswap.item.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
+public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.ImageViewHolder> {
     private List<String> imageUrlList;
 
     private Context context;
 
-    public ImageAdapter(Context context, List<String> imageUrlList) {
+    public SellImageAdapter(Context context, List<String> imageUrlList) {
         this.context = context;
         this.imageUrlList = imageUrlList;
     }
@@ -31,7 +29,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.image, parent, false);
+                .inflate(R.layout.sell_image, parent, false);
         return new ImageViewHolder(itemView);
     }
 
