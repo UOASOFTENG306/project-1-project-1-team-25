@@ -52,20 +52,14 @@ public class MainFragment extends Fragment {
         categoryRecyclerView.setLayoutManager(categoryLayoutManager);
 
         List<String> categoryImageList = Arrays.asList(
-                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
-                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
-                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
-                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
-                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
-                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
-                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90"
-//                R.drawable.cpu,
-//                R.drawable.gpu,
-//                R.drawable.motherboard,
-//                R.drawable.harddisk,
-//                R.drawable.ram,
-//                R.drawable.powersupply,
-//                R.drawable.pccase
+            "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/res%2Fcpu.png?alt=media&token=50d5ec1f-35fb-411f-85ab-e8e6d90a4654",
+            "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/res%2Fgpu.png?alt=media&token=9faff4a5-f2fc-4473-81bc-d2beb2e6f087",
+            "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/res%2Fmotherboard.png?alt=media&token=36205014-d4db-456d-a6f6-f21a5f4873b4",
+            "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/res%2Fstorage.png?alt=media&token=d3b2f629-e198-4975-8fae-0c8853ce7acc",
+            "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/res%2Fmemory.png?alt=media&token=dc9d2068-3013-4840-8b25-70fe656e314e",
+            "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/res%2Fpowersupply.png?alt=media&token=16ea5f20-96d9-4660-8e82-992bccaf4aa1",
+            "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/res%2Fpccase.png?alt=media&token=2ba0a331-a666-439e-8682-a6951c063461",
+            "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/res%2Fother.png?alt=media&token=6cde2eee-4aaa-46f2-9ff2-1ae10db775b9"
         );
 
         List<String> categoryCaptionList = Arrays.asList(
@@ -75,7 +69,8 @@ public class MainFragment extends Fragment {
                 "Storage",
                 "Memory",
                 "Power",
-                "Case"
+                "Case",
+                "Other"
         );
 
         CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null, null, CarouselAdapter.CarouselType.CATEGORY);
