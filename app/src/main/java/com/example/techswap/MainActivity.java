@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.techswap.fragments.CartFragment;
+import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.fragments.MainFragment;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
@@ -133,6 +134,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void performSearch(String searchQuery) {
         // TODO: implement search functionality fetching items from db
+        ListFragment fragment = new ListFragment();
+
+        // Pass the search query as an argument to the fragment
+        Bundle args = new Bundle();
+        args.putString("searchQuery", searchQuery);
+        fragment.setArguments(args);
+
+        // Start a fragment transaction
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.replace(R.id.mainFragmentContainer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public void onSearchIconClick(View view) {
