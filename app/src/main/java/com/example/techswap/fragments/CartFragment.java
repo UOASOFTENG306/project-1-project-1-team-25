@@ -29,7 +29,6 @@ public class CartFragment extends Fragment {
 
     private FragmentCartBinding binding;
     private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM);
-    private Spinner cartSpinner;
 
     @Override
     public View onCreateView(
@@ -38,13 +37,6 @@ public class CartFragment extends Fragment {
     ) {
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();  // Use the inflated view from the binding
-
-//        cartSpinner = view.findViewById(R.id.quantitySpinner);
-//
-//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
-//                requireContext(), R.array.quantity_array, R.layout.spinner_selected_item); // Use the custom layout
-//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        cartSpinner.setAdapter(adapter2);
 
         // specifications recycler view
         RecyclerView recyclerView = binding.cartRecyclerView;
