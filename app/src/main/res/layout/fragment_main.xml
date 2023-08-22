@@ -9,7 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:background="@drawable/transparent_background"
+        android:padding="6dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,11 +31,9 @@
                 android:id="@+id/categoryRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:scrollbarThumbVertical="@drawable/scrollbar_thumb_vertical"
-                android:scrollbarTrackVertical="@drawable/scrollbar_track_vertical"
-                android:scrollbars="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:padding="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal" />
 
             <TextView
                 android:id="@+id/dealsHeader"
@@ -47,11 +46,9 @@
                 android:id="@+id/dealsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:scrollbarThumbVertical="@drawable/scrollbar_thumb_vertical"
-                android:scrollbarTrackVertical="@drawable/scrollbar_track_vertical"
-                android:scrollbars="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                android:padding="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="horizontal" />
 
             <TextView
                 android:id="@+id/bestSellersHeader"
@@ -64,6 +61,7 @@
                 android:id="@+id/bestSellersRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:orientation="vertical" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

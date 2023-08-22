@@ -1,5 +1,6 @@
 package com.example.techswap.adapters;
 
+import android.util.DisplayMetrics;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,12 +58,40 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        DisplayMetrics displayMetrics = parent.getContext().getResources().getDisplayMetrics();
+        int screenWidth = displayMetrics.widthPixels;
         switch (carouselType) {
             case CATEGORY:
                 View categoryView = inflater.inflate(R.layout.carousel_item_category, parent, false);
+                int numberOfItemsVisible = 3; // Display two items at a time
+
+                // Calculate the total padding to be used on both sides of the item
+                int horizontalPadding = categoryView.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+
+                // Calculate the item width by considering padding and dividing by the number of items
+                int itemWidth = (screenWidth - horizontalPadding * (numberOfItemsVisible - 1)) / numberOfItemsVisible;
+
+
+                ViewGroup.LayoutParams layoutParams = categoryView.getLayoutParams();
+                layoutParams.width = itemWidth;
+                categoryView.setLayoutParams(layoutParams);
+            
                 return new CarouselViewHolderCategory(categoryView);
             case HORIZONTAL_ITEM:
                 View horizontalItemView = inflater.inflate(R.layout.carousel_item_deal, parent, false);
+                int numberOfItemsVisible2 = 2; // Display two items at a time
+
+                // Calculate the total padding to be used on both sides of the item
+                int horizontalPadding2 = horizontalItemView.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+
+                // Calculate the item width by considering padding and dividing by the number of items
+                int itemWidth2 = (screenWidth - horizontalPadding2 * (numberOfItemsVisible2 - 1)) / numberOfItemsVisible2;
+
+
+                ViewGroup.LayoutParams layoutParams2 = horizontalItemView.getLayoutParams();
+                layoutParams2.width = itemWidth2;
+                horizontalItemView.setLayoutParams(layoutParams2);
+            
                 return new CarouselViewHolderHorizontalItem(horizontalItemView);
             case LIST_ITEM:
                 View listItemView = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
@@ -74,6 +103,8 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 throw new IllegalArgumentException("Invalid view type");
         }
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -116,7 +147,34 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 int clickedPosition = holder.getAdapterPosition();
                 // Handle item click event
                 if (carouselType == CarouselType.CATEGORY) {
-                    ListFragment fragment = new ListFragment();
+                    ListFragment fragment;
+                    switch (clickedPosition){
+                        case 0:
+                            fragment = ListFragment.listCategory("CPU");
+                            break;
+                        case 1:
+                            fragment = ListFragment.listCategory("GPU");
+                            break;
+                        case 2:
+                            fragment = ListFragment.listCategory("Motherboard");
+                            break;
+                        case 3:
+                            fragment = ListFragment.listCategory("Storage");
+                            break;
+                        case 4:
+                            fragment = ListFragment.listCategory("Memory");
+                            break;
+                        case 5:
+                            fragment = ListFragment.listCategory("Power");
+                            break;
+                        case 6:
+                            fragment = ListFragment.listCategory("Case");
+                            break;
+                        default:
+                            fragment = ListFragment.listCategory("Other");
+                            break;
+                    }
+
                     FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
 
                     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -124,6 +182,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     transaction.replace(R.id.mainFragmentContainer, fragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
+
+
+
                 } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM) {
                     DetailsFragment fragment = DetailsFragment.newInstance(itemList.get(clickedPosition));
                     FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();

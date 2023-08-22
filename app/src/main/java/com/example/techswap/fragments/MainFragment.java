@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.techswap.R;
@@ -63,9 +64,9 @@ public class MainFragment extends Fragment {
         );
 
         List<String> categoryCaptionList = Arrays.asList(
-                "CPU",
-                "Graphics Card",
-                "Motherboard",
+                "CPUs",
+                "GPUs",
+                "MOBOs",
                 "Storage",
                 "Memory",
                 "Power",
@@ -73,9 +74,15 @@ public class MainFragment extends Fragment {
                 "Other"
         );
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
+        categoryRecyclerView.setLayoutManager(layoutManager);
+
         CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null, null, CarouselAdapter.CarouselType.CATEGORY);
         categoryAdapter.setContext(requireContext());
         categoryRecyclerView.setAdapter(categoryAdapter);
+
+        PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(categoryRecyclerView);
 
 
         // Second Carousel
@@ -97,14 +104,6 @@ public class MainFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        binding.bestSellersHeader.setOnClickListener(view1 -> {
-            DetailsFragment fragment = new DetailsFragment();
-            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.mainFragmentContainer, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        });
     }
 
     private void fetchBestSellers(){

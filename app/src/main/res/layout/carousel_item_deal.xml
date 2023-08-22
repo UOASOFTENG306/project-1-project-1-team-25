@@ -1,38 +1,41 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-
-<!-- item_carousel.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
     android:layout_marginEnd="20dp"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="@drawable/card_background"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/carouselImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="Category Icons" />
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:contentDescription="Category Icons"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/captionText"
-        android:layout_width="wrap_content"
+        style="@style/TitleText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        android:text="Item Caption"
-        style="@style/CategoryText"
-        android:gravity="center" />
+        android:layout_gravity="left"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:text="Item Caption" />
 
     <TextView
         android:id="@+id/priceText"
-        android:layout_width="wrap_content"
+        style="@style/PriceText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
+        android:layout_gravity="left"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:text="Item Caption"
-        style="@style/CategoryText"
-        android:gravity="center" />
-</LinearLayout>
+        android:textAlignment="textEnd"
+        android:textColor="@android:color/holo_red_dark" />
 
+</LinearLayout>

@@ -3,9 +3,11 @@ package com.example.techswap.item;
 import android.media.Image;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -15,7 +17,7 @@ public abstract class Item implements Serializable {
 
     private Details details;
 
-    private Set<Image> images = new HashSet<>();
+    private List<String> imageUrls = new ArrayList<>();
 
     protected Item() {
     }
@@ -27,18 +29,12 @@ public abstract class Item implements Serializable {
         this.id = id;
     }
 
-    public Set<Image> getImages() {
-        // Wrap the Set of Image objects with a wrapper that provides read-only
-        // access. Clients thus can't change the state of the returned Set.
-        return Collections.unmodifiableSet(images);
+    public List<String> getImageUrls() {
+        return this.imageUrls;
     }
 
-    public void addImage(Image image) {
-        images.add(image);
-    }
-
-    public void removeImage(Image image) {
-        images.remove(image);
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 
     public Details getDetails() {
