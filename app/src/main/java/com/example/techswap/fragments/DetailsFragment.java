@@ -4,11 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.techswap.R;
@@ -23,7 +27,12 @@ import java.util.List;
 
 public class DetailsFragment extends Fragment {
 
-private FragmentDetailsBinding binding;
+    private FragmentDetailsBinding binding;
+
+    ViewPager2 viewPager;
+    LinearLayout sliderDotspanel;
+    private int dotscount;
+    private ImageView[] dots;
 
     public static DetailsFragment newInstance(Item item) {
         DetailsFragment fragment = new DetailsFragment();
@@ -67,11 +76,10 @@ private FragmentDetailsBinding binding;
 
             SpecificationAdapter adapter = new SpecificationAdapter(specificationList, valueList);
             recyclerView.setAdapter(adapter);
-        } else {
-
         }
 
-        ViewPager2 mViewPager = binding.detailsPager;
+        // view pager
+        viewPager = binding.detailsPager;
 
         List<Integer> imageList = Arrays.asList(
                 R.drawable.cpu,
@@ -84,7 +92,43 @@ private FragmentDetailsBinding binding;
         );
 
         ImageAdapter adapterView = new ImageAdapter(imageList);
-        mViewPager.setAdapter(adapterView);
+        viewPager.setAdapter(adapterView);
+
+        // view pager dots
+        sliderDotspanel = binding.sliderDotsPanel;
+        dotscount = adapterView.getItemCount();
+        dots = new ImageView[dotscount];
+
+        for(int i = 0; i < dotscount; i++){
+
+            dots[i] = new ImageView(requireContext());
+            dots[i].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.inactive_dot));
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            params.setMargins(8, 0, 8, 0);
+
+            sliderDotspanel.addView(dots[i], params);
+
+        }
+
+        dots[0].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.active_dot));
+
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            @Override
+            public void onPageSelected(int position) {
+                for(int i = 0; i< dotscount; i++){
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.inactive_dot));
+                }
+                dots[position].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.active_dot));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {}
+        });
 
         return binding.getRoot();
 
