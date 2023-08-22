@@ -19,6 +19,7 @@ import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.database.DatabaseUtils;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.example.techswap.item.Item;
@@ -107,37 +108,80 @@ public class MainFragment extends Fragment {
     }
 
     private void fetchBestSellers(){
-        // TODO: Find metric for being "best seller"
-        FirebaseFirestore.getInstance().collection("items")
-                .orderBy("title").limit(6)
+        CollectionReference collection = FirebaseFirestore.getInstance().collection("items");
+
+        collection.orderBy("title").limit(6)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            bestSellersList.add(databaseUtils.mapToItem(document.getData()));
+                            Item item = databaseUtils.mapToItem(document.getData());
+                            List<String> urls = new ArrayList<>();
+
+                            String mainDocId = document.getId();
+                            CollectionReference subCollection = collection.document(mainDocId).collection("images");
+
+                            subCollection.get().addOnCompleteListener(subTask -> {
+                                if (subTask.isSuccessful()) {
+                                    for (QueryDocumentSnapshot urlDoc : subTask.getResult()) {
+                                        urls.add(urlDoc.getData().get("url").toString());
+
+                                        Log.d("Firestore", "Main Document ID: " + mainDocId +
+                                                " Sub Document ID: " + urlDoc.getId() +
+                                                " => " + urlDoc.getData());
+                                    }
+                                } else {
+                                    Log.w("Firestore", "Error getting sub-collection documents.", subTask.getException());
+                                }
+                                item.setImageUrls(urls);
+                                bestSellersList.add(item);
+                                setBestSellers(bestSellersList);
+                            });
                         }
-                        setBestSellers(bestSellersList);
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
                 });
+
     }
 
     private void fetchDeals() {
         // TODO: Add metric for being "deals"
-        FirebaseFirestore.getInstance().collection("items")
-                .orderBy("title").limit(6)
+        CollectionReference collection = FirebaseFirestore.getInstance().collection("items");
+
+        collection.orderBy("title").limit(6)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            dealsList.add(databaseUtils.mapToItem(document.getData()));
+                            Item item = databaseUtils.mapToItem(document.getData());
+                            List<String> urls = new ArrayList<>();
+
+                            String mainDocId = document.getId();
+                            CollectionReference subCollection = collection.document(mainDocId).collection("images");
+
+                            subCollection.get().addOnCompleteListener(subTask -> {
+                                if (subTask.isSuccessful()) {
+                                    for (QueryDocumentSnapshot urlDoc : subTask.getResult()) {
+                                        urls.add(urlDoc.getData().get("url").toString());
+
+                                        Log.d("Firestore", "Main Document ID: " + mainDocId +
+                                                " Sub Document ID: " + urlDoc.getId() +
+                                                " => " + urlDoc.getData());
+                                    }
+                                } else {
+                                    Log.w("Firestore", "Error getting sub-collection documents.", subTask.getException());
+                                }
+                                item.setImageUrls(urls);
+                                dealsList.add(item);
+                                setDeals(dealsList);
+                            });
                         }
-                        setDeals(dealsList);
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
                 });
+
     }
 
     @Override

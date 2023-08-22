@@ -32,6 +32,12 @@ public abstract class Item implements Serializable {
     public List<String> getImageUrls() {
         return this.imageUrls;
     }
+    public String getFirstImageUrl() {
+        if (this.imageUrls.size() == 0) {
+            return "https://static.thenounproject.com/png/1269202-200.png";
+        }
+        return this.imageUrls.get(0);
+    }
 
     public void setImageUrls(List<String> imageUrls) {
         this.imageUrls = imageUrls;
