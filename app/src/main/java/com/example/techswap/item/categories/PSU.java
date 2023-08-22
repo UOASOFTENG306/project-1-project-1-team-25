@@ -1,6 +1,7 @@
 package com.example.techswap.item.categories;
 
 import com.example.techswap.item.Brand;
+import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.Socket;
 
@@ -13,6 +14,9 @@ public class PSU extends Item {
     private int wattage;
 
     public PSU() {
+        Details details = new Details();
+        details.setCategory("Power");
+        this.setDetails(details);
     }
 
     private Brand getBrand() {

@@ -21,6 +21,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.adapters.ImageAdapter;
+import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.item.Details;
+import com.example.techswap.item.Item;
+import com.example.techswap.item.categories.ItemFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -90,6 +94,21 @@ public class SellActivity extends AppCompatActivity {
         listItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ItemFactory factory = new ItemFactory();
+                Item item = factory.getItem(categorySpinner.getSelectedItem().toString());
+
+                Details details = new Details();
+                details.setTitle(titleInput.getText().toString());
+                details.setSubtitle(subtitleInput.getText().toString());
+                details.setDescription(descriptionInput.getText().toString());
+                details.setPrice(Double.parseDouble(priceInput.getText().toString()));
+
+                item.setDetails(details);
+                item.setImageUrls(imageUrlList);
+
+                DatabaseSetter db = new DatabaseSetter();
+                db.addItem(item);
+
                 // switch to another activity
                 Intent intent = new Intent(SellActivity.this, MainActivity.class);
                 startActivity(intent);

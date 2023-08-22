@@ -1,6 +1,7 @@
 package com.example.techswap.item.categories;
 
 import com.example.techswap.item.Brand;
+import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.Socket;
 
@@ -19,6 +20,9 @@ public class RAM extends Item {
     private int latencyCL;
 
     public RAM() {
+        Details details = new Details();
+        details.setCategory("Memory");
+        this.setDetails(details);
     }
 
     private Brand getBrand() {
