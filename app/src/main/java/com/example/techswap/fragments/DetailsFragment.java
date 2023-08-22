@@ -77,8 +77,8 @@ private FragmentDetailsBinding binding;
                 R.drawable.cpu,
                 R.drawable.gpu,
                 R.drawable.motherboard,
-                R.drawable.harddisk,
-                R.drawable.ram,
+                R.drawable.storage,
+                R.drawable.memory,
                 R.drawable.powersupply,
                 R.drawable.pccase
         );
