@@ -25,7 +25,7 @@ public class ListFragment extends Fragment {
 
     private FragmentListBinding binding;
 
-    CarouselAdapter carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
+    CarouselAdapter carouselAdapter = new CarouselAdapter(requireContext(), CarouselAdapter.CarouselType.LIST_ITEM);
 
     @Override
     public View onCreateView(

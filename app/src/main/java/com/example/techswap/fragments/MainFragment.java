@@ -34,8 +34,8 @@ public class MainFragment extends Fragment {
     private final List<Item> bestSellersList = new ArrayList<>();
     private final List<Item> dealsList = new ArrayList<>();
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
-    CarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
-    CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
+    CarouselAdapter dealsAdapter = new CarouselAdapter(requireContext(), CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
+    CarouselAdapter bestSellersAdapter = new CarouselAdapter(requireContext(), CarouselAdapter.CarouselType.LIST_ITEM);
 
     @Override
     public View onCreateView(
@@ -48,19 +48,32 @@ public class MainFragment extends Fragment {
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
+        return rootView;
+    }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         // First Carousel
         RecyclerView categoryRecyclerView = binding.categoryRecyclerView;
         LinearLayoutManager categoryLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         categoryRecyclerView.setLayoutManager(categoryLayoutManager);
 
-        List<Integer> categoryImageList = Arrays.asList(
-                R.drawable.cpu,
-                R.drawable.gpu,
-                R.drawable.motherboard,
-                R.drawable.harddisk,
-                R.drawable.ram,
-                R.drawable.powersupply,
-                R.drawable.pccase
+        List<String> categoryImageList = Arrays.asList(
+                "http://via.placeholder.com/300.png",
+                "http://via.placeholder.com/300.png",
+                "http://via.placeholder.com/300.png",
+                "http://via.placeholder.com/300.png",
+                "http://via.placeholder.com/300.png",
+                "http://via.placeholder.com/300.png",
+                "http://via.placeholder.com/300.png"
+//                R.drawable.cpu,
+//                R.drawable.gpu,
+//                R.drawable.motherboard,
+//                R.drawable.harddisk,
+//                R.drawable.ram,
+//                R.drawable.powersupply,
+//                R.drawable.pccase
         );
 
         List<String> categoryCaptionList = Arrays.asList(
@@ -73,7 +86,7 @@ public class MainFragment extends Fragment {
                 "Case"
         );
 
-        CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null, null, CarouselAdapter.CarouselType.CATEGORY);
+        CarouselAdapter categoryAdapter = new CarouselAdapter(requireContext(),categoryImageList, categoryCaptionList, null, null, null, CarouselAdapter.CarouselType.CATEGORY);
         categoryRecyclerView.setAdapter(categoryAdapter);
 
 
@@ -88,12 +101,6 @@ public class MainFragment extends Fragment {
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
-
-        return rootView;
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         binding.bestSellersHeader.setOnClickListener(view1 -> {
             DetailsFragment fragment = new DetailsFragment();

@@ -1,5 +1,6 @@
 package com.example.techswap.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.techswap.fragments.DetailsFragment;
 import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.R;
@@ -20,20 +22,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Integer> imageList;
+    private List<String> imageUrlList;
     private List<String> titleList;
     private List<Double> priceList;
     private List<String> subtitleList;
     private List<Item> itemList;
 
+    private Context context;
     private CarouselType carouselType;
 
     public enum CarouselType {
         CATEGORY, HORIZONTAL_ITEM, LIST_ITEM
     }
 
-    public CarouselAdapter(CarouselType carouselType) {
-        this.imageList = new ArrayList<>();
+    public CarouselAdapter(Context context, CarouselType carouselType) {
+        this.context = context;
+        this.imageUrlList = new ArrayList<>();
         this.titleList = new ArrayList<>();
         this.subtitleList = new ArrayList<>();
         this.priceList = new ArrayList<>();
@@ -41,8 +45,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.carouselType = carouselType;
     }
 
-    public CarouselAdapter(List<Integer> imageList, List<String> titleList, List<Double> priceList, List<String> subtitleList, List<Item> itemList, CarouselType carouselType) {
-        this.imageList = imageList;
+    public CarouselAdapter(Context context, List<String> imageUrlList, List<String> titleList, List<Double> priceList, List<String> subtitleList, List<Item> itemList, CarouselType carouselType) {
+        this.context = context;
+        this.imageUrlList = imageUrlList;
         this.titleList = titleList;
         this.subtitleList = subtitleList;
         this.priceList = priceList;
@@ -71,23 +76,28 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        int imageResId = imageList.get(position);
+        String url = imageUrlList.get(position);
 
         if (carouselType == CarouselType.CATEGORY) {
             CarouselViewHolderCategory viewHolder = (CarouselViewHolderCategory) holder;
-            viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
+
+            Glide.with(context).load(url).into(viewHolder.carouselImage);
+
         } else if (carouselType == CarouselType.HORIZONTAL_ITEM) {
             CarouselViewHolderHorizontalItem viewHolder = (CarouselViewHolderHorizontalItem) holder;
-            viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            Glide.with(context).load(url).into(viewHolder.carouselImage);
+
         } else if (carouselType == CarouselType.LIST_ITEM) {
             CarouselViewHolderListItem viewHolder = (CarouselViewHolderListItem) holder;
-            viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.subtitleText.setText(subtitleList.get(position));
             viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            Glide.with(context).load(url).into(viewHolder.carouselImage);
         }
 
         // Set OnClickListener for the item view
@@ -121,7 +131,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        return imageUrlList.size();
     }
 
     public class CarouselViewHolderCategory extends RecyclerView.ViewHolder {
@@ -167,19 +177,19 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         List<String> titleList = new ArrayList<String>();
         List<String> subtitleList = new ArrayList<String>();
         List<Double> priceList = new ArrayList<Double>();
-        List<Integer> imageList = new ArrayList<Integer>();
+        List<String> imageUrlList = new ArrayList<String>();
 
         for (Item item : items) {
             titleList.add(item.getDetails().getTitle());
             subtitleList.add(item.getDetails().getSubtitle());
             priceList.add(item.getDetails().getPrice());
-            imageList.add(R.drawable.tempimg);
+            imageUrlList.add("http://via.placeholder.com/300.png");
         }
 
         this.titleList = titleList;
         this.priceList = priceList;
         this.subtitleList = subtitleList;
-        this.imageList = imageList;
+        this.imageUrlList = imageUrlList;
         this.itemList = items;
 
         notifyDataSetChanged();
