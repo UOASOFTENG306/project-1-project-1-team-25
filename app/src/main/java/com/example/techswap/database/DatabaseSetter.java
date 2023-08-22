@@ -42,7 +42,7 @@ public class DatabaseSetter {
 
         Map<String, Object> data = new HashMap<>();
 
-        data.put("items", new ArrayList<String>());
+        data.put("item_id", new ArrayList<String>());
         database.collection("cart").document(String.valueOf(username)).set(data);
 
     }
