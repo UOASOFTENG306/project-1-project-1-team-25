@@ -92,9 +92,6 @@ public class MainFragment extends Fragment {
         dealsRecyclerView.setLayoutManager(dealsLayoutManager);
         dealsRecyclerView.setAdapter(dealsAdapter);
 
-//        PagerSnapHelper snapHelper2 = new PagerSnapHelper();
-        snapHelper.attachToRecyclerView(dealsRecyclerView);
-
         // Vertical RecyclerView
         RecyclerView bestSellersRecyclerView = binding.bestSellersRecyclerView;
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
