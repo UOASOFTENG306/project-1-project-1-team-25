@@ -20,9 +20,7 @@ import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.database.DatabaseUtils;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.categories.CPU;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,25 +32,19 @@ public class MainFragment extends Fragment {
     private final List<Item> bestSellersList = new ArrayList<>();
     private final List<Item> dealsList = new ArrayList<>();
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
-    CarouselAdapter dealsAdapter = new CarouselAdapter(requireContext(), CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
-    CarouselAdapter bestSellersAdapter = new CarouselAdapter(requireContext(), CarouselAdapter.CarouselType.LIST_ITEM);
+    CarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
+    CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        fetchBestSellers();
-        fetchDeals();
-
         binding = FragmentMainBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
 
-        return rootView;
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        fetchBestSellers();
+        fetchDeals();
 
         // First Carousel
         RecyclerView categoryRecyclerView = binding.categoryRecyclerView;
@@ -60,13 +52,13 @@ public class MainFragment extends Fragment {
         categoryRecyclerView.setLayoutManager(categoryLayoutManager);
 
         List<String> categoryImageList = Arrays.asList(
-                "http://via.placeholder.com/300.png",
-                "http://via.placeholder.com/300.png",
-                "http://via.placeholder.com/300.png",
-                "http://via.placeholder.com/300.png",
-                "http://via.placeholder.com/300.png",
-                "http://via.placeholder.com/300.png",
-                "http://via.placeholder.com/300.png"
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90"
 //                R.drawable.cpu,
 //                R.drawable.gpu,
 //                R.drawable.motherboard,
@@ -86,7 +78,8 @@ public class MainFragment extends Fragment {
                 "Case"
         );
 
-        CarouselAdapter categoryAdapter = new CarouselAdapter(requireContext(),categoryImageList, categoryCaptionList, null, null, null, CarouselAdapter.CarouselType.CATEGORY);
+        CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null, null, CarouselAdapter.CarouselType.CATEGORY);
+        categoryAdapter.setContext(requireContext());
         categoryRecyclerView.setAdapter(categoryAdapter);
 
 
@@ -94,13 +87,21 @@ public class MainFragment extends Fragment {
         RecyclerView dealsRecyclerView = binding.dealsRecyclerView;
         LinearLayoutManager dealsLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         dealsRecyclerView.setLayoutManager(dealsLayoutManager);
+        dealsAdapter.setContext(requireContext());
         dealsRecyclerView.setAdapter(dealsAdapter);
 
         // Vertical RecyclerView
         RecyclerView bestSellersRecyclerView = binding.bestSellersRecyclerView;
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
+        bestSellersAdapter.setContext(requireContext());
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
+
+        return rootView;
+    }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         binding.bestSellersHeader.setOnClickListener(view1 -> {
             DetailsFragment fragment = new DetailsFragment();

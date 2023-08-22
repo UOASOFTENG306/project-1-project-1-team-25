@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.databinding.FragmentListBinding;
 import com.example.techswap.item.Details;
@@ -18,14 +17,13 @@ import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.CPU;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ListFragment extends Fragment {
 
     private FragmentListBinding binding;
 
-    CarouselAdapter carouselAdapter = new CarouselAdapter(requireContext(), CarouselAdapter.CarouselType.LIST_ITEM);
+    CarouselAdapter carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
 
     @Override
     public View onCreateView(
@@ -40,6 +38,7 @@ public class ListFragment extends Fragment {
         RecyclerView bestSellersRecyclerView = binding.listRecyclerView;
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
+        carouselAdapter.setContext(requireContext());
         bestSellersRecyclerView.setAdapter(carouselAdapter);
 
         List<Item> items = new ArrayList<>();

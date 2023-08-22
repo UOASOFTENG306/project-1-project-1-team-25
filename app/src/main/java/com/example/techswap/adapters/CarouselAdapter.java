@@ -29,14 +29,13 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private List<Item> itemList;
 
     private Context context;
-    private CarouselType carouselType;
+    private final CarouselType carouselType;
 
     public enum CarouselType {
         CATEGORY, HORIZONTAL_ITEM, LIST_ITEM
     }
 
-    public CarouselAdapter(Context context, CarouselType carouselType) {
-        this.context = context;
+    public CarouselAdapter(CarouselType carouselType) {
         this.imageUrlList = new ArrayList<>();
         this.titleList = new ArrayList<>();
         this.subtitleList = new ArrayList<>();
@@ -45,8 +44,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.carouselType = carouselType;
     }
 
-    public CarouselAdapter(Context context, List<String> imageUrlList, List<String> titleList, List<Double> priceList, List<String> subtitleList, List<Item> itemList, CarouselType carouselType) {
-        this.context = context;
+    public CarouselAdapter(List<String> imageUrlList, List<String> titleList, List<Double> priceList, List<String> subtitleList, List<Item> itemList, CarouselType carouselType) {
         this.imageUrlList = imageUrlList;
         this.titleList = titleList;
         this.subtitleList = subtitleList;
@@ -183,7 +181,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             titleList.add(item.getDetails().getTitle());
             subtitleList.add(item.getDetails().getSubtitle());
             priceList.add(item.getDetails().getPrice());
-            imageUrlList.add("http://via.placeholder.com/300.png");
+            imageUrlList.add("https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90");
         }
 
         this.titleList = titleList;
@@ -193,5 +191,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.itemList = items;
 
         notifyDataSetChanged();
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }
