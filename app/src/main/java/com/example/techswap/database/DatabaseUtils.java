@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.ItemFactory;
 
-import java.util.List;
 import java.util.Map;
 
 public class DatabaseUtils {
@@ -22,8 +21,7 @@ public class DatabaseUtils {
 
         Item item = itemFactory.getItem(data.get("category_id").toString());
         item.setDetails(details);
-        item.setId(Long.parseLong(data.get("item_id").toString()));
-        item.setImageUrls((List<String>) data.get("images"));
+        item.setId(data.get("item_id").toString());
 
         return item;
     }

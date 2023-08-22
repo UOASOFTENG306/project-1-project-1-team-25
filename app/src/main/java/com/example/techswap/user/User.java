@@ -1,21 +1,17 @@
 package com.example.techswap.user;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class User {
 
     private static User currentUser;
-
     public static User getCurrentUser() {
         return currentUser;
     }
-
     public static void setCurrentUser(User currentUser) {
         User.currentUser = currentUser;
     }
     private String username;
-
     private String password;
 
     public User(String username, String password) {
@@ -24,11 +20,7 @@ public class User {
     }
 
     public boolean login(String inputPassword) {
-        if (inputPassword.equals(password)) {
-            return true;
-        } else {
-            return false;
-        }
+        return inputPassword.equals(password);
     }
 
     public String getUsername() {
