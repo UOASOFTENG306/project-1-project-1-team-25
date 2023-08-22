@@ -35,6 +35,22 @@ public class ListFragment extends Fragment {
 
     CarouselAdapter carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
 
+    public static ListFragment listCategory(String category) {
+        ListFragment fragment = new ListFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("category", category);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static ListFragment listSearch(String searchTerm) {
+        ListFragment fragment = new ListFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("searchTerm", searchTerm);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -43,6 +59,20 @@ public class ListFragment extends Fragment {
 
         binding = FragmentListBinding.inflate(inflater, container, false);
         View rootView = binding.getRoot();
+
+        Bundle args = getArguments();
+        if (args != null) {
+            String category = (String) args.getSerializable("category");
+            if (category != null) {
+                fetchItems(category);
+                setHeader(category);
+            } else {
+                String searchTerm = (String) args.getSerializable("searchTerm");
+                if (searchTerm != null) {
+                    // do search
+                }
+            }
+        }
 
         // Vertical RecyclerView
         RecyclerView bestSellersRecyclerView = binding.listRecyclerView;
@@ -62,7 +92,6 @@ public class ListFragment extends Fragment {
             items.add(cpu);
         }
         setContent(items);
-        setHeader("test");
 
         return rootView;
     }
@@ -77,7 +106,7 @@ public class ListFragment extends Fragment {
         binding = null;
     }
 
-    private void fetchItems(String categoryName) {
+    public void fetchItems(String categoryName) {
         FirebaseFirestore.getInstance().collection("items")
                 .whereEqualTo("category_id", categoryName).orderBy("title").limit(6)
                 .get()
