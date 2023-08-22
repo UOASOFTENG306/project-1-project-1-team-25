@@ -69,7 +69,7 @@ public class ListFragment extends Fragment {
             } else {
                 String searchTerm = (String) args.getSerializable("searchTerm");
                 if (searchTerm != null) {
-                    // do search
+                    searchItems(searchTerm);
                 }
             }
         }
@@ -123,6 +123,35 @@ public class ListFragment extends Fragment {
                 });
     }
 
+    public void searchItems(String keyword) {
+        FirebaseFirestore.getInstance().collection("items")
+                .whereGreaterThanOrEqualTo("search_title", keyword)
+                .whereLessThanOrEqualTo("search_title", keyword + "\uf8ff")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        itemList.clear();
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            itemList.add(databaseUtils.mapToItem(document.getData()));
+                        }
+                        setContent(itemList);
+                        switch (itemList.size()){
+                            case 0:
+                                setHeader("No results found. Try searching again!");
+                                break;
+                            case 1:
+                                setHeader(itemList.size() + " result found for " + keyword);
+                                break;
+                            default:
+                                setHeader(itemList.size() + " results found for " + keyword);
+                        }
+
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
+    }
+
     public void setContent(List<Item> items) {
         carouselAdapter.updateData(items);
     }
@@ -131,3 +160,7 @@ public class ListFragment extends Fragment {
         binding.listTitle.setText(text);
     }
 }
+
+
+
+
