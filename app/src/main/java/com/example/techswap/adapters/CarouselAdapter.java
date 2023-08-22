@@ -1,6 +1,7 @@
 package com.example.techswap.adapters;
 
 import android.util.DisplayMetrics;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.techswap.fragments.DetailsFragment;
 import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.R;
@@ -21,20 +23,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Integer> imageList;
+    private List<String> imageUrlList;
     private List<String> titleList;
     private List<Double> priceList;
     private List<String> subtitleList;
     private List<Item> itemList;
 
-    private CarouselType carouselType;
+    private Context context;
+    private final CarouselType carouselType;
 
     public enum CarouselType {
-        CATEGORY, HORIZONTAL_ITEM, LIST_ITEM
+        CATEGORY, HORIZONTAL_ITEM, LIST_ITEM, CART_ITEM
     }
 
     public CarouselAdapter(CarouselType carouselType) {
-        this.imageList = new ArrayList<>();
+        this.imageUrlList = new ArrayList<>();
         this.titleList = new ArrayList<>();
         this.subtitleList = new ArrayList<>();
         this.priceList = new ArrayList<>();
@@ -42,8 +45,8 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.carouselType = carouselType;
     }
 
-    public CarouselAdapter(List<Integer> imageList, List<String> titleList, List<Double> priceList, List<String> subtitleList, List<Item> itemList, CarouselType carouselType) {
-        this.imageList = imageList;
+    public CarouselAdapter(List<String> imageUrlList, List<String> titleList, List<Double> priceList, List<String> subtitleList, List<Item> itemList, CarouselType carouselType) {
+        this.imageUrlList = imageUrlList;
         this.titleList = titleList;
         this.subtitleList = subtitleList;
         this.priceList = priceList;
@@ -59,42 +62,43 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         int screenWidth = displayMetrics.widthPixels;
         switch (carouselType) {
             case CATEGORY:
-                View itemViewWithoutPriceOrDesc = inflater.inflate(R.layout.carousel_item_category, parent, false);
-
+                View categoryView = inflater.inflate(R.layout.carousel_item_category, parent, false);
                 int numberOfItemsVisible = 3; // Display two items at a time
 
                 // Calculate the total padding to be used on both sides of the item
-                int horizontalPadding = itemViewWithoutPriceOrDesc.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+                int horizontalPadding = categoryView.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
 
                 // Calculate the item width by considering padding and dividing by the number of items
                 int itemWidth = (screenWidth - horizontalPadding * (numberOfItemsVisible - 1)) / numberOfItemsVisible;
 
 
-                ViewGroup.LayoutParams layoutParams = itemViewWithoutPriceOrDesc.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams = categoryView.getLayoutParams();
                 layoutParams.width = itemWidth;
-                itemViewWithoutPriceOrDesc.setLayoutParams(layoutParams);
-                return new CarouselViewHolderCategory(itemViewWithoutPriceOrDesc);
+                categoryView.setLayoutParams(layoutParams);
+            
+                return new CarouselViewHolderCategory(categoryView);
             case HORIZONTAL_ITEM:
-                View itemViewWithPrice = inflater.inflate(R.layout.carousel_item_deal, parent, false);
-
-
+                View horizontalItemView = inflater.inflate(R.layout.carousel_item_deal, parent, false);
                 int numberOfItemsVisible2 = 2; // Display two items at a time
 
                 // Calculate the total padding to be used on both sides of the item
-                int horizontalPadding2 = itemViewWithPrice.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+                int horizontalPadding2 = horizontalItemView.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
 
                 // Calculate the item width by considering padding and dividing by the number of items
                 int itemWidth2 = (screenWidth - horizontalPadding2 * (numberOfItemsVisible2 - 1)) / numberOfItemsVisible2;
 
 
-                ViewGroup.LayoutParams layoutParams2 = itemViewWithPrice.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams2 = horizontalItemView.getLayoutParams();
                 layoutParams2.width = itemWidth2;
-                itemViewWithPrice.setLayoutParams(layoutParams2);
-
-                return new CarouselViewHolderHorizontalItem(itemViewWithPrice);
+                horizontalItemView.setLayoutParams(layoutParams2);
+            
+                return new CarouselViewHolderHorizontalItem(horizontalItemView);
             case LIST_ITEM:
-                View itemViewWithDescAndPrice = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
-                return new CarouselViewHolderListItem(itemViewWithDescAndPrice);
+                View listItemView = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
+                return new CarouselViewHolderListItem(listItemView);
+            case CART_ITEM:
+                View cartItemView = inflater.inflate(R.layout.item_card, parent, false);
+                return new CarouselViewHolderCartItem(cartItemView);
             default:
                 throw new IllegalArgumentException("Invalid view type");
         }
@@ -104,23 +108,36 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        int imageResId = imageList.get(position);
+        String url = imageUrlList.get(position);
 
         if (carouselType == CarouselType.CATEGORY) {
             CarouselViewHolderCategory viewHolder = (CarouselViewHolderCategory) holder;
-            viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
+
+            Glide.with(context).load(url).into(viewHolder.carouselImage);
+
         } else if (carouselType == CarouselType.HORIZONTAL_ITEM) {
             CarouselViewHolderHorizontalItem viewHolder = (CarouselViewHolderHorizontalItem) holder;
-            viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            Glide.with(context).load(url).into(viewHolder.carouselImage);
+
         } else if (carouselType == CarouselType.LIST_ITEM) {
             CarouselViewHolderListItem viewHolder = (CarouselViewHolderListItem) holder;
-            viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.subtitleText.setText(subtitleList.get(position));
             viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            Glide.with(context).load(url).into(viewHolder.carouselImage);
+
+        } else if (carouselType == CarouselType.CART_ITEM) {
+            CarouselViewHolderCartItem viewHolder = (CarouselViewHolderCartItem) holder;
+            viewHolder.titleText.setText(titleList.get(position));
+            viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            Glide.with(context).load(url).into(viewHolder.carouselImage);
+
         }
 
         // Set OnClickListener for the item view
@@ -154,7 +171,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        return imageUrlList.size();
     }
 
     public class CarouselViewHolderCategory extends RecyclerView.ViewHolder {
@@ -196,25 +213,42 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    public class CarouselViewHolderCartItem extends RecyclerView.ViewHolder {
+        ImageView carouselImage;
+        TextView titleText;
+        TextView priceText;
+
+        public CarouselViewHolderCartItem(@NonNull View itemView) {
+            super(itemView);
+            carouselImage = itemView.findViewById(R.id.itemImage);
+            titleText = itemView.findViewById(R.id.itemTitle);
+            priceText = itemView.findViewById(R.id.itemPrice);
+        }
+    }
+
     public void updateData(List<Item> items) {
         List<String> titleList = new ArrayList<String>();
         List<String> subtitleList = new ArrayList<String>();
         List<Double> priceList = new ArrayList<Double>();
-        List<Integer> imageList = new ArrayList<Integer>();
+        List<String> imageUrlList = new ArrayList<String>();
 
         for (Item item : items) {
             titleList.add(item.getDetails().getTitle());
             subtitleList.add(item.getDetails().getSubtitle());
             priceList.add(item.getDetails().getPrice());
-            imageList.add(R.drawable.tempimg);
+            imageUrlList.add("https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90");
         }
 
         this.titleList = titleList;
         this.priceList = priceList;
         this.subtitleList = subtitleList;
-        this.imageList = imageList;
+        this.imageUrlList = imageUrlList;
         this.itemList = items;
 
         notifyDataSetChanged();
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }
