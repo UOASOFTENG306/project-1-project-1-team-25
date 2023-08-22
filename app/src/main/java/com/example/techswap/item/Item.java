@@ -30,6 +30,11 @@ public abstract class Item implements Serializable {
     }
 
     public List<String> getImageUrls() {
+        if (this.imageUrls == null || this.imageUrls.size() == 0) {
+            List<String> urls = new ArrayList<String>();
+            urls.add("https://static.thenounproject.com/png/1269202-200.png");
+            return urls;
+        }
         return this.imageUrls;
     }
     public String getFirstImageUrl() {
