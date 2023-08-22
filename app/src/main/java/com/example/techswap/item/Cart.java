@@ -1,25 +1,25 @@
 package com.example.techswap.item;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public class Cart {
 
-    private HashSet<Item> contents;
+    private ArrayList<String> contents;
 
-    public HashSet<Item> getContents() {
+    public ArrayList<String> getContents() {
         return contents;
     }
 
-    public void setContents(HashSet<Item> contents) {
+    public void setContents(ArrayList<String> contents) {
         this.contents = contents;
     }
 
     public void addItemToCart(Item item) {
-        contents.add(item);
+        contents.add(item.getId().toString());
     }
 
     public void removeFromCart(Item item) {
-        contents.remove(item);
+        contents.remove(item.getId().toString());
     }
 
     public void clearCart() {
