@@ -6,8 +6,12 @@ public class Cart {
 
     private HashSet<Item> contents;
 
-    public HashSet<Item> getCart() {
+    public HashSet<Item> getContents() {
         return contents;
+    }
+
+    public void setContents(HashSet<Item> contents) {
+        this.contents = contents;
     }
 
     public void addItemToCart(Item item) {
