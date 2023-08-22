@@ -1,5 +1,6 @@
 package com.example.techswap.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,15 +9,19 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.techswap.R;
 
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
-    private List<Integer> imageList;
+    private List<String> imageUrlList;
 
-    public ImageAdapter(List<Integer> imageList) {
-        this.imageList = imageList;
+    private Context context;
+
+    public ImageAdapter(Context context, List<String> imageUrlList) {
+        this.context = context;
+        this.imageUrlList = imageUrlList;
     }
 
     @NonNull
@@ -29,14 +34,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        int imageResId = imageList.get(position);
-        holder.image.setImageResource(imageResId);
+        String url = imageUrlList.get(position);
+
+        Glide.with(context).load(url).into(holder.image);
     }
 
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        return imageUrlList.size();
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
@@ -46,5 +52,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             super(itemView);
             image = itemView.findViewById(R.id.image);
         }
+    }
+
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }
