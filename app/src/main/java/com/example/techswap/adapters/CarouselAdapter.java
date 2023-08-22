@@ -266,7 +266,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             titleList.add(item.getDetails().getTitle());
             subtitleList.add(item.getDetails().getSubtitle());
             priceList.add(item.getDetails().getPrice());
-            imageUrlList.add("https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90");
+            imageUrlList.add(item.getFirstImageUrl());
         }
 
         this.titleList = titleList;

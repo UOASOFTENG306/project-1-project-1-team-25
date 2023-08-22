@@ -19,6 +19,7 @@ import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.database.DatabaseUtils;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.example.techswap.item.Item;
@@ -107,7 +108,7 @@ public class MainFragment extends Fragment {
     }
 
     private void fetchBestSellers(){
-        // TODO: Find metric for being "best seller"
+        // TODO: Add metric for being "best sellers"
         FirebaseFirestore.getInstance().collection("items")
                 .orderBy("title").limit(6)
                 .get()
