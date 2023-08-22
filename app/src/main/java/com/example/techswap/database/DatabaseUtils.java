@@ -21,7 +21,7 @@ public class DatabaseUtils {
 
         Item item = itemFactory.getItem(data.get("category_id").toString());
         item.setDetails(details);
-        item.setId(Long.parseLong(data.get("item_id").toString()));
+        item.setId(data.get("item_id").toString());
 
         return item;
     }

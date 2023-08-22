@@ -53,9 +53,6 @@ public class DatabaseSetter {
      */
     public void addRemoveItemToCart(String username, String ItemDocName, boolean addOrRemove) {
 
-        Map<String, Object> data = new HashMap<>();
-        data.put("username", username);
-
         if (addOrRemove) {
             database.collection("cart").document(username).update("item_id", FieldValue.arrayUnion(ItemDocName));
         } else {
@@ -67,9 +64,6 @@ public class DatabaseSetter {
      * Clears the user's cart in the Firestore DB.
      */
     public void clearCart(String username) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("username", username);
-
         database.collection("cart").document(username).update("item_id", FieldValue.delete());
     }
 
@@ -94,8 +88,8 @@ public class DatabaseSetter {
 
         Map<String, String> specifications = item.getSpecifications();
 
-        database.collection("items").document(String.valueOf(item.getId())).set(data);
-        database.collection("items").document(String.valueOf(item.getId())).collection("specifications").document("specifications").set(specifications);
+        database.collection("items").document(item.getId()).set(data);
+        database.collection("items").document(item.getId()).collection("specifications").document("specifications").set(specifications);
     }
 
     /**

@@ -1,19 +1,14 @@
 package com.example.techswap.item;
 
-import android.media.Image;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public abstract class Item implements Serializable {
 
-    private Long id;
+    private String id;
 
     private Details details;
 
@@ -22,10 +17,10 @@ public abstract class Item implements Serializable {
     protected Item() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
