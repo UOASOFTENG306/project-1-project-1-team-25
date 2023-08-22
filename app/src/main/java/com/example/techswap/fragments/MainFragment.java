@@ -60,7 +60,8 @@ public class MainFragment extends Fragment {
                 R.drawable.storage,
                 R.drawable.memory,
                 R.drawable.powersupply,
-                R.drawable.pccase
+                R.drawable.pccase,
+                R.drawable.other
         );
 
         List<String> categoryCaptionList = Arrays.asList(
@@ -70,7 +71,8 @@ public class MainFragment extends Fragment {
                 "Storage",
                 "Memory",
                 "Power",
-                "Case"
+                "Case",
+                "Other"
         );
 
         CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null, null, CarouselAdapter.CarouselType.CATEGORY);
