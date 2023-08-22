@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,14 +29,22 @@ public class CartFragment extends Fragment {
 
     private FragmentCartBinding binding;
     private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM);
+    private Spinner cartSpinner;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentCartBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();  // Use the inflated view from the binding
+
+//        cartSpinner = view.findViewById(R.id.quantitySpinner);
+//
+//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
+//                requireContext(), R.array.quantity_array, R.layout.spinner_selected_item); // Use the custom layout
+//        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        cartSpinner.setAdapter(adapter2);
 
         // specifications recycler view
         RecyclerView recyclerView = binding.cartRecyclerView;
@@ -49,7 +59,7 @@ public class CartFragment extends Fragment {
         details.setTitle("Wow");
         details.setPrice(99.99);
         cpu.setDetails(details);
-        for(int i = 0; i<7 ; i++) {
+        for (int i = 0; i < 7; i++) {
             items.add(cpu);
         }
 
@@ -62,9 +72,9 @@ public class CartFragment extends Fragment {
             }
         });
 
-        return binding.getRoot();
-
+        return view;  // Return the inflated view
     }
+
 
     private void onCheckout() {
         DatabaseSetter db = new DatabaseSetter();
