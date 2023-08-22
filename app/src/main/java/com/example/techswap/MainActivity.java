@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -119,6 +120,19 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
         transaction.commit();
+
+        // listener for search action
+        searchBar.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                performSearch(searchBar.getText().toString());
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void performSearch(String searchQuery) {
+        // TODO: implement search functionality fetching items from db
     }
 
     public void onSearchIconClick(View view) {
@@ -195,13 +209,5 @@ public class MainActivity extends AppCompatActivity {
             transaction.commit();
         }
     }
-
-//    private void closeKeyboard() {
-//        View view = this.getCurrentFocus();
-//        if (view != null) {
-//            InputMethodManager imm = (InputMethodManager) MainActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//        }
-//    }
 }
 
