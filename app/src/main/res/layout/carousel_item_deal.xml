@@ -22,12 +22,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Item Caption"
-        style="@style/CategoryText"
+        style="@style/TitleText"
         android:layout_gravity="left" />
 
         <TextView
             android:id="@+id/priceText"
-            style="@style/CategoryText"
+            style="@style/PriceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"

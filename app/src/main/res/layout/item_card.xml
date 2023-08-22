@@ -21,14 +21,14 @@
 
         <TextView
             android:id="@+id/itemTitle"
-            style="@style/CategoryText"
+            style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left" />
 
         <TextView
             android:id="@+id/itemSubtitle"
-            style="@style/CategoryText"
+            style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left" />
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/itemPrice"
-                style="@style/CategoryText"
+                style="@style/TitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right" />

@@ -38,15 +38,27 @@
     <style name="Theme.TechSwap" parent="Base.Theme.TechSwap" />
 
     <style name="HeaderText">
-        <item name="android:textSize">20sp</item> <!-- Adjust the text size as needed -->
+        <item name="android:textSize">22sp</item> <!-- Adjust the text size as needed -->
         <item name="android:textColor">#000000</item> <!-- Text color (white in this example) -->
         <item name="android:textStyle">bold</item>
         <item name="android:padding">6dp</item>
         <item name="android:paddingLeft">9dp</item>
     </style>
 
-    <style name="CategoryText">
-        <item name="android:textSize">14sp</item> <!-- Adjust the text size as needed -->
+    <style name="TitleText">
+        <item name="android:textSize">16sp</item> <!-- Adjust the text size as needed -->
+        <item name="android:textColor">#000000</item> <!-- Text color (white in this example) -->
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SubtitleText">
+        <item name="android:textSize">15sp</item> <!-- Adjust the text size as needed -->
+        <item name="android:textColor">@color/gray</item> <!-- Text color (white in this example) -->
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PriceText">
+        <item name="android:textSize">18sp</item> <!-- Adjust the text size as needed -->
         <item name="android:textColor">#000000</item> <!-- Text color (white in this example) -->
         <item name="android:textStyle">bold</item>
     </style>

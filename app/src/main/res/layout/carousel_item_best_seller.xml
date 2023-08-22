@@ -24,7 +24,7 @@
 
         <TextView
             android:id="@+id/captionText"
-            style="@style/CategoryText"
+            style="@style/TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/descriptionText"
-            style="@style/CategoryText"
+            style="@style/SubtitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -53,7 +53,7 @@
 
     <TextView
         android:id="@+id/priceText"
-        style="@style/CategoryText"
+        style="@style/PriceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
