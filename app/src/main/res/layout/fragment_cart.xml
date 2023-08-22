@@ -69,23 +69,87 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
                     android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/subtotalText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#000000"
+                        android:text="Subtotal" />
+
+                    <TextView
+                        android:id="@+id/subtotalPriceText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textColor="#000000"
+                        android:text="$550.00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/feesText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#000000"
+                        android:text="Delivery Fees" />
+
+                    <TextView
+                        android:id="@+id/feesPriceText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:textColor="#000000"
+                        android:text="$20.00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cartTotal2"
+                        style="@style/HeaderText"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#000000"
+                        android:text="Total:" />
 
                     <TextView
                         android:id="@+id/cartTotal"
                         style="@style/HeaderText"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Total:" />
-
-                    <Button
-                        android:id="@+id/checkoutButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/cart_checkout" />
+                        android:gravity="end"
+                        android:textColor="#000000"
+                        android:text="NZD $570.00" />
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/checkoutButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button"
+                    app:backgroundTint="@null"
+                    android:text="@string/cart_checkout"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"/>
+
             </LinearLayout>
 
         </LinearLayout>
