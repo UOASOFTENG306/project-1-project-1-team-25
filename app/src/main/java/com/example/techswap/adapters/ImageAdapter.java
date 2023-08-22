@@ -1,6 +1,7 @@
 package com.example.techswap.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
+import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
@@ -28,7 +31,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.image, parent, false);
+                .inflate(R.layout.sell_image, parent, false);
         return new ImageViewHolder(itemView);
     }
 
@@ -42,6 +45,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public int getItemCount() {
+        if (imageUrlList == null) {
+            return 0;
+        }
         return imageUrlList.size();
     }
 
@@ -54,8 +60,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         }
     }
 
-
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    public void updateImages(List<String> imageUrlList) {
+        this.imageUrlList = imageUrlList;
+        Log.println(Log.INFO,"tag",imageUrlList.toString());
+        notifyDataSetChanged();
     }
 }

@@ -3,6 +3,7 @@ package com.example.techswap;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,8 +16,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techswap.adapters.CarouselAdapter;
+import com.example.techswap.adapters.ImageAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -43,6 +47,7 @@ public class SellActivity extends AppCompatActivity {
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private Uri imageUri;
     private final List<String> imageUrlList = new ArrayList<String>();
+    ImageAdapter imageAdapter = new ImageAdapter(this, null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,11 @@ public class SellActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         categorySpinner.setAdapter(adapter);
+
+        // Images recycler view
+        LinearLayoutManager imageLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        imagesRecyclerView.setLayoutManager(imageLayoutManager);
+        imagesRecyclerView.setAdapter(imageAdapter);
 
         logoText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +118,7 @@ public class SellActivity extends AppCompatActivity {
                                 String imageUrl = uri.toString();
                                 // urlList gets added as firestore field
                                 imageUrlList.add(imageUrl);
+                                imageAdapter.updateImages(imageUrlList);
                                 // TODO: Set image on sell activity, use URL somewhere
                             }
                         });
