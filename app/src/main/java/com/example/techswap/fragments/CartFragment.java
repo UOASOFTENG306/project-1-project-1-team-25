@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.database.DatabaseUtils;
 import com.example.techswap.databinding.FragmentCartBinding;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
@@ -20,12 +20,13 @@ import com.example.techswap.item.categories.CPU;
 import com.example.techswap.user.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CartFragment extends Fragment {
 
     private FragmentCartBinding binding;
+    private final List<Item> dealsList = new ArrayList<>();
+    private final DatabaseUtils databaseUtils = new DatabaseUtils();
     private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM);
 
     @Override
