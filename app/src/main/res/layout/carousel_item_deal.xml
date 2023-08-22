@@ -1,21 +1,19 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-
-<!-- item_carousel.xml -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="130dp"
+    android:layout_width="140dp"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="15dp"
-    android:padding="10dp"
-    android:background="@drawable/carousel_item_border"
+    android:layout_marginEnd="20dp"
+    android:padding="15dp"
     android:orientation="vertical"
+    android:background="@drawable/card_background"
     android:gravity="center">
 
     <ImageView
         android:id="@+id/carouselImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="fitCenter"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:scaleType="centerCrop"
         android:contentDescription="Category Icons" />
 
     <TextView
@@ -25,15 +23,15 @@
         android:layout_marginTop="10dp"
         android:text="Item Caption"
         style="@style/CategoryText"
-        android:gravity="center" />
+        android:layout_gravity="left" />
 
-    <TextView
-        android:id="@+id/priceText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Item Caption"
-        style="@style/CategoryText"
-        android:gravity="center" />
+        <TextView
+            android:id="@+id/priceText"
+            style="@style/CategoryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"
+            android:text="Item Caption" />
+
 </LinearLayout>
-

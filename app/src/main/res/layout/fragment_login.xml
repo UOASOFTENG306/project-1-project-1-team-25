@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/login_fragment_background"
+        android:background="@drawable/transparent_background"
         android:orientation="vertical">
 
         <LinearLayout
