@@ -15,7 +15,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TechSwap" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,13 +25,11 @@
         <activity
             android:name=".UserActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TechSwap" >
         </activity>
         <activity
             android:name=".SellActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.TechSwap" >
         </activity>
     </application>
