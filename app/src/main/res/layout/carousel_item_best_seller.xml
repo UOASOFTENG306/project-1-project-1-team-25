@@ -3,9 +3,10 @@
 <!-- item_carousel.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="20dp"
+    android:layout_height="150dp"
+    android:padding="15dp"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/card_background"
     android:gravity="center"
     android:orientation="horizontal">
 
@@ -23,7 +24,7 @@
 
         <TextView
             android:id="@+id/captionText"
-            style="@style/CategoryText"
+            style="@style/TitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -31,21 +32,33 @@
 
         <TextView
             android:id="@+id/descriptionText"
-            style="@style/CategoryText"
+            style="@style/SubtitleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingTop="5dp"
             android:text="Item Caption" />
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/imageButton"-->
+<!--            android:padding="8dp"-->
+<!--            android:layout_width="35dp"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:src="@drawable/cart"-->
+<!--            android:background="@drawable/rounded_button"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:contentDescription="Image Button"-->
+<!--            android:onClick="buttonClicked" />-->
     </LinearLayout>
 
     <TextView
         android:id="@+id/priceText"
-        style="@style/CategoryText"
+        style="@style/PriceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="end"
+        android:layout_gravity="top"
         android:text="Item Caption" />
 
 </LinearLayout>

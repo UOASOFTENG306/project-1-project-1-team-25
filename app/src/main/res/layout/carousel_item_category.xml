@@ -3,18 +3,18 @@
 <!-- item_carousel.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
-    android:layout_marginEnd="20dp"
+    android:layout_marginEnd="21dp"
     android:orientation="vertical"
     android:gravity="center">
 
     <ImageView
         android:id="@+id/itemImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
         android:contentDescription="Category Icons" />
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="5dp"
         android:text="Item Caption"
-        style="@style/CategoryText"
+        style="@style/TitleText"
         android:gravity="center" />
 </LinearLayout>
 
