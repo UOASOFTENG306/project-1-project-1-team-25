@@ -116,7 +116,34 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 int clickedPosition = holder.getAdapterPosition();
                 // Handle item click event
                 if (carouselType == CarouselType.CATEGORY) {
-                    ListFragment fragment = new ListFragment();
+                    ListFragment fragment;
+                    switch (clickedPosition){
+                        case 0:
+                            fragment = ListFragment.listCategory("CPU");
+                            break;
+                        case 1:
+                            fragment = ListFragment.listCategory("GPU");
+                            break;
+                        case 2:
+                            fragment = ListFragment.listCategory("Motherboard");
+                            break;
+                        case 3:
+                            fragment = ListFragment.listCategory("Storage");
+                            break;
+                        case 4:
+                            fragment = ListFragment.listCategory("Memory");
+                            break;
+                        case 5:
+                            fragment = ListFragment.listCategory("Power");
+                            break;
+                        case 6:
+                            fragment = ListFragment.listCategory("Case");
+                            break;
+                        default:
+                            fragment = ListFragment.listCategory("Other");
+                            break;
+                    }
+
                     FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
 
                     transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -124,6 +151,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     transaction.replace(R.id.mainFragmentContainer, fragment);
                     transaction.addToBackStack(null);
                     transaction.commit();
+
+
+
                 } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM) {
                     DetailsFragment fragment = DetailsFragment.newInstance(itemList.get(clickedPosition));
                     FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();

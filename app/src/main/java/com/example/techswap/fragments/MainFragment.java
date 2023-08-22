@@ -97,14 +97,6 @@ public class MainFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        binding.bestSellersHeader.setOnClickListener(view1 -> {
-            DetailsFragment fragment = new DetailsFragment();
-            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.mainFragmentContainer, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        });
     }
 
     private void fetchBestSellers(){
