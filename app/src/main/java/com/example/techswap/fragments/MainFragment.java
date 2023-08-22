@@ -73,7 +73,7 @@ public class MainFragment extends Fragment {
                 "Case"
         );
 
-        CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null, CarouselAdapter.CarouselType.CATEGORY);
+        CarouselAdapter categoryAdapter = new CarouselAdapter(categoryImageList, categoryCaptionList, null, null, null, CarouselAdapter.CarouselType.CATEGORY);
         categoryRecyclerView.setAdapter(categoryAdapter);
 
 

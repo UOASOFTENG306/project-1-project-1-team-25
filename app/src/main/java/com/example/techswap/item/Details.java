@@ -12,6 +12,8 @@ public class Details {
 
     private String category;
 
+    private String searchTitle;
+
     private int quantity;
 
     public Details() {
@@ -49,13 +51,17 @@ public class Details {
         this.description = description;
     }
 
-    public String getCategory() {
-        return category;
-    }
+    public String getCategory() { return category; }
 
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getSearchTitle() {
+        return searchTitle;
+    }
+
+    public void setSearchTitle(String searchTitle) { this.searchTitle = searchTitle; }
 
     public int getQuantity() {
         return quantity;

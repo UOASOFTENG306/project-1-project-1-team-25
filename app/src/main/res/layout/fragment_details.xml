@@ -1,87 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
     tools:context=".fragments.DetailsFragment">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/detailsPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40"
+        android:padding="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/detailsImage"
-                    android:layout_width="250dp"
-                    android:layout_height="200dp"
-                    android:scaleType="centerInside"
-                    app:srcCompat="@drawable/cpu"
-                    tools:src="@tools:sample/avatars" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/detailsPrice"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="$299.99" />
-
-                    <Button
-                        android:id="@+id/addToCartButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Add to Cart" />
-                </LinearLayout>
-            </LinearLayout>
+            android:layout_weight="50"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/detailsTitle"
+                android:id="@+id/detailsPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:text="$299.999"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="28sp" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/detailsSubtitle"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/addToCartButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Subtitle"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:text="Add to Cart" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/detailsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/detailsSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="10dp"
+        android:text="Subtitle"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="55">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/detailsDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:padding="16dp"
                 android:text="@string/lorem_ipsum" />
 
             <TextView
                 android:id="@+id/detailsSpecificationsHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:paddingStart="16dp"
+                android:paddingEnd="10dp"
                 android:text="Specifications"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/specificationRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:padding="16dp" />
 
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+    </ScrollView>
+
+</LinearLayout>
