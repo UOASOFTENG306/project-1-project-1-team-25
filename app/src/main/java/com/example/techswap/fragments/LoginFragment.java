@@ -6,7 +6,6 @@ import static android.view.View.VISIBLE;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -125,8 +124,6 @@ public class LoginFragment extends Fragment {
                             displayMessageTextView.setText("Username already in use,\n please try a different one.");
                             displayMessageTextView.setVisibility(VISIBLE);
                         }
-//                        Intent intent = new Intent(requireContext(), MainActivity.class);
-//                        startActivity(intent);
 
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());

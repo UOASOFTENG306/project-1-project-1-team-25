@@ -6,6 +6,7 @@ import com.example.techswap.user.User;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public class DatabaseSetter {
 
         Map<String, Object> data = new HashMap<>();
 
-        data.put("username", username);
+        data.put("item_id", new ArrayList<String>());
         database.collection("cart").document(String.valueOf(username)).set(data);
 
     }
@@ -51,9 +52,6 @@ public class DatabaseSetter {
      * boolean true if add, false if remove.
      */
     public void addRemoveItemToCart(String username, String ItemDocName, boolean addOrRemove) {
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("username", username);
 
         if (addOrRemove) {
             database.collection("cart").document(username).update("item_id", FieldValue.arrayUnion(ItemDocName));
@@ -66,9 +64,6 @@ public class DatabaseSetter {
      * Clears the user's cart in the Firestore DB.
      */
     public void clearCart(String username) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("username", username);
-
         database.collection("cart").document(username).update("item_id", FieldValue.delete());
     }
 

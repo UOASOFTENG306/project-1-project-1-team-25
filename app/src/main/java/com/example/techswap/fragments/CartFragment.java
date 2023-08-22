@@ -1,6 +1,10 @@
 package com.example.techswap.fragments;
 
+
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,23 +16,27 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.database.DatabaseUtils;
 import com.example.techswap.databinding.FragmentCartBinding;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.CPU;
 import com.example.techswap.user.User;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CartFragment extends Fragment {
 
     private FragmentCartBinding binding;
     private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM);
+    private final List<Item> itemList = new ArrayList<>();
+    private final DatabaseUtils databaseUtils = new DatabaseUtils();
 
     @Override
     public View onCreateView(
@@ -57,6 +65,12 @@ public class CartFragment extends Fragment {
 
         setItems(items);
 
+        if (User.getCurrentUser() != null){
+            fetchCart();
+        } else{
+            System.out.println("NULULUUUL");
+        }
+
         binding.checkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +95,37 @@ public class CartFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void fetchCart() {
+        FirebaseFirestore.getInstance().collection("cart").document(User.getCurrentUser().getUsername())
+                .get().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            ArrayList<String> cartData = (ArrayList<String>) document.getData().get("item_id");
+                            fetchCartItems(cartData);
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                });
+    }
+
+    private void fetchCartItems(ArrayList<String> cartData) {
+        FirebaseFirestore.getInstance().collection("items")
+                .whereIn("item_id", cartData)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            itemList.add(databaseUtils.mapToItem(document.getData()));
+                        }
+                        setItems(itemList);
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+                });
     }
 
     public void setItems(List<Item> items) {
