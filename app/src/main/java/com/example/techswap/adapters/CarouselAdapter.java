@@ -29,7 +29,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private CarouselType carouselType;
 
     public enum CarouselType {
-        CATEGORY, HORIZONTAL_ITEM, LIST_ITEM
+        CATEGORY, HORIZONTAL_ITEM, LIST_ITEM, CART_ITEM
     }
 
     public CarouselAdapter(CarouselType carouselType) {
@@ -56,14 +56,17 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         switch (carouselType) {
             case CATEGORY:
-                View itemViewWithoutPriceOrDesc = inflater.inflate(R.layout.carousel_item_category, parent, false);
-                return new CarouselViewHolderCategory(itemViewWithoutPriceOrDesc);
+                View categoryView = inflater.inflate(R.layout.carousel_item_category, parent, false);
+                return new CarouselViewHolderCategory(categoryView);
             case HORIZONTAL_ITEM:
-                View itemViewWithPrice = inflater.inflate(R.layout.carousel_item_deal, parent, false);
-                return new CarouselViewHolderHorizontalItem(itemViewWithPrice);
+                View horizontalItemView = inflater.inflate(R.layout.carousel_item_deal, parent, false);
+                return new CarouselViewHolderHorizontalItem(horizontalItemView);
             case LIST_ITEM:
-                View itemViewWithDescAndPrice = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
-                return new CarouselViewHolderListItem(itemViewWithDescAndPrice);
+                View listItemView = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
+                return new CarouselViewHolderListItem(listItemView);
+            case CART_ITEM:
+                View cartItemView = inflater.inflate(R.layout.item_card, parent, false);
+                return new CarouselViewHolderCartItem(cartItemView);
             default:
                 throw new IllegalArgumentException("Invalid view type");
         }
@@ -77,17 +80,26 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             CarouselViewHolderCategory viewHolder = (CarouselViewHolderCategory) holder;
             viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
+
         } else if (carouselType == CarouselType.HORIZONTAL_ITEM) {
             CarouselViewHolderHorizontalItem viewHolder = (CarouselViewHolderHorizontalItem) holder;
             viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
         } else if (carouselType == CarouselType.LIST_ITEM) {
             CarouselViewHolderListItem viewHolder = (CarouselViewHolderListItem) holder;
             viewHolder.carouselImage.setImageResource(imageResId);
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.subtitleText.setText(subtitleList.get(position));
             viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+        } else if (carouselType == CarouselType.CART_ITEM) {
+            CarouselViewHolderCartItem viewHolder = (CarouselViewHolderCartItem) holder;
+            viewHolder.carouselImage.setImageResource(imageResId);
+            viewHolder.titleText.setText(titleList.get(position));
+            viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
         }
 
         // Set OnClickListener for the item view
@@ -160,6 +172,19 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             titleText = itemView.findViewById(R.id.captionText);
             priceText = itemView.findViewById(R.id.priceText);
             subtitleText = itemView.findViewById(R.id.descriptionText);
+        }
+    }
+
+    public class CarouselViewHolderCartItem extends RecyclerView.ViewHolder {
+        ImageView carouselImage;
+        TextView titleText;
+        TextView priceText;
+
+        public CarouselViewHolderCartItem(@NonNull View itemView) {
+            super(itemView);
+            carouselImage = itemView.findViewById(R.id.itemImage);
+            titleText = itemView.findViewById(R.id.itemTitle);
+            priceText = itemView.findViewById(R.id.itemPrice);
         }
     }
 
