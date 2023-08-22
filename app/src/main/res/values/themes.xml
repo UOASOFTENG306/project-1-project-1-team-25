@@ -3,6 +3,11 @@
     <style name="Base.Theme.TechSwap" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Add the following line to change the navigation bar color -->
+        <item name="android:navigationBarColor">@color/transparent_gray</item>
+        <item name="android:statusBarColor">@color/main</item>
+<!--        <item name="android:windowTranslucentNavigation">true</item>-->
     </style>
 
     <style name="LogoText">
