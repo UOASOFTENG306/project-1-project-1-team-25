@@ -4,27 +4,27 @@ import java.util.ArrayList;
 
 public class Cart {
 
-    private ArrayList<String> contents;
+    private ArrayList<String> items;
 
     public Cart() {}
 
-    public ArrayList<String> getContents() {
-        return contents;
+    public ArrayList<String> getItems() {
+        return items;
     }
 
-    public void setContents(ArrayList<String> contents) {
-        this.contents = contents;
+    public void setItems(ArrayList<String> contents) {
+        this.items = items;
     }
 
     public void addItemToCart(Item item) {
-        contents.add(item.getId().toString());
+        items.add(item.getId().toString());
     }
 
     public void removeFromCart(Item item) {
-        contents.remove(item.getId().toString());
+        items.remove(item.getId().toString());
     }
 
     public void clearCart() {
-        contents.clear();
+        items.clear();
     }
 }
