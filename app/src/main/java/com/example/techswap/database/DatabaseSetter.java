@@ -6,6 +6,7 @@ import com.example.techswap.user.User;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public class DatabaseSetter {
 
         Map<String, Object> data = new HashMap<>();
 
-        data.put("username", username);
+        data.put("items", new ArrayList<String>());
         database.collection("cart").document(String.valueOf(username)).set(data);
 
     }
