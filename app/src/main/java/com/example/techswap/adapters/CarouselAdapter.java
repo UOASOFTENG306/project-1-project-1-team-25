@@ -55,26 +55,41 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        DisplayMetrics displayMetrics = parent.getContext().getResources().getDisplayMetrics();
+        int screenWidth = displayMetrics.widthPixels;
         switch (carouselType) {
             case CATEGORY:
                 View itemViewWithoutPriceOrDesc = inflater.inflate(R.layout.carousel_item_category, parent, false);
-                return new CarouselViewHolderCategory(itemViewWithoutPriceOrDesc);
-            case HORIZONTAL_ITEM:
-                View itemViewWithPrice = inflater.inflate(R.layout.carousel_item_deal, parent, false);
-                DisplayMetrics displayMetrics = parent.getContext().getResources().getDisplayMetrics();
-                int screenWidth = displayMetrics.widthPixels;
-                int numberOfItemsVisible = 2; // Display two items at a time
+
+                int numberOfItemsVisible = 3; // Display two items at a time
 
                 // Calculate the total padding to be used on both sides of the item
-                int horizontalPadding = itemViewWithPrice.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+                int horizontalPadding = itemViewWithoutPriceOrDesc.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
 
                 // Calculate the item width by considering padding and dividing by the number of items
                 int itemWidth = (screenWidth - horizontalPadding * (numberOfItemsVisible - 1)) / numberOfItemsVisible;
 
 
-                ViewGroup.LayoutParams layoutParams = itemViewWithPrice.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams = itemViewWithoutPriceOrDesc.getLayoutParams();
                 layoutParams.width = itemWidth;
-                itemViewWithPrice.setLayoutParams(layoutParams);
+                itemViewWithoutPriceOrDesc.setLayoutParams(layoutParams);
+                return new CarouselViewHolderCategory(itemViewWithoutPriceOrDesc);
+            case HORIZONTAL_ITEM:
+                View itemViewWithPrice = inflater.inflate(R.layout.carousel_item_deal, parent, false);
+
+
+                int numberOfItemsVisible2 = 2; // Display two items at a time
+
+                // Calculate the total padding to be used on both sides of the item
+                int horizontalPadding2 = itemViewWithPrice.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+
+                // Calculate the item width by considering padding and dividing by the number of items
+                int itemWidth2 = (screenWidth - horizontalPadding2 * (numberOfItemsVisible2 - 1)) / numberOfItemsVisible2;
+
+
+                ViewGroup.LayoutParams layoutParams2 = itemViewWithPrice.getLayoutParams();
+                layoutParams2.width = itemWidth2;
+                itemViewWithPrice.setLayoutParams(layoutParams2);
 
                 return new CarouselViewHolderHorizontalItem(itemViewWithPrice);
             case LIST_ITEM:
