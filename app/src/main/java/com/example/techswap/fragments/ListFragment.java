@@ -48,6 +48,7 @@ public class ListFragment extends Fragment {
         RecyclerView bestSellersRecyclerView = binding.listRecyclerView;
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
+        carouselAdapter.setContext(requireContext());
         bestSellersRecyclerView.setAdapter(carouselAdapter);
 
         List<Item> items = new ArrayList<>();

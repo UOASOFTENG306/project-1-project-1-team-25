@@ -96,17 +96,17 @@ public class DetailsFragment extends Fragment {
         // view pager
         viewPager = binding.detailsPager;
 
-        List<Integer> imageList = Arrays.asList(
-                R.drawable.cpu,
-                R.drawable.gpu,
-                R.drawable.motherboard,
-                R.drawable.harddisk,
-                R.drawable.ram,
-                R.drawable.powersupply,
-                R.drawable.pccase
+        List<String> imageList = Arrays.asList(
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90",
+                "https://firebasestorage.googleapis.com/v0/b/techswap-e2b95.appspot.com/o/images%2Fc184b8c3-3361-4272-8f68-d56f8c72c4a1?alt=media&token=7a716214-fb89-4e21-879d-90c2a4f37d90"
         );
 
-        ImageAdapter adapterView = new ImageAdapter(imageList);
+        ImageAdapter adapterView = new ImageAdapter(requireContext(), imageList);
         viewPager.setAdapter(adapterView);
 
         // view pager dots
