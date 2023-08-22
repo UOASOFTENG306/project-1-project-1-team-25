@@ -1,7 +1,6 @@
 package com.example.techswap;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +13,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
@@ -134,12 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void performSearch(String searchQuery) {
         // TODO: implement search functionality fetching items from db
-        ListFragment fragment = new ListFragment();
-
-        // Pass the search query as an argument to the fragment
-        Bundle args = new Bundle();
-        args.putString("searchQuery", searchQuery);
-        fragment.setArguments(args);
+        ListFragment fragment = ListFragment.listSearch(searchQuery);
 
         // Start a fragment transaction
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -224,4 +217,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
