@@ -64,9 +64,9 @@ public class MainFragment extends Fragment {
         );
 
         List<String> categoryCaptionList = Arrays.asList(
-                "CPU",
-                "Graphics Card",
-                "Motherboard",
+                "CPUs",
+                "GPUs",
+                "MOBOs",
                 "Storage",
                 "Memory",
                 "Power",
