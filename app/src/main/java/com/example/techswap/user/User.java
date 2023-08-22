@@ -1,7 +1,5 @@
 package com.example.techswap.user;
 
-import com.example.techswap.item.Cart;
-
 import java.util.Objects;
 
 public class User {
@@ -13,7 +11,6 @@ public class User {
     public static void setCurrentUser(User currentUser) {
         User.currentUser = currentUser;
     }
-    private Cart cart;
     private String username;
     private String password;
 
@@ -24,14 +21,6 @@ public class User {
 
     public boolean login(String inputPassword) {
         return inputPassword.equals(password);
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     public String getUsername() {
