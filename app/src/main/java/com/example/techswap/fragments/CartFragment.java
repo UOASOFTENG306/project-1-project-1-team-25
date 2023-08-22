@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -41,8 +43,8 @@ public class CartFragment extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
         binding = FragmentCartBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();  // Use the inflated view from the binding
 
         // specifications recycler view
         RecyclerView recyclerView = binding.cartRecyclerView;
@@ -57,7 +59,7 @@ public class CartFragment extends Fragment {
         details.setTitle("Wow");
         details.setPrice(99.99);
         cpu.setDetails(details);
-        for(int i = 0; i<7 ; i++) {
+        for (int i = 0; i < 7; i++) {
             items.add(cpu);
         }
 
@@ -76,9 +78,9 @@ public class CartFragment extends Fragment {
             }
         });
 
-        return binding.getRoot();
-
+        return view;  // Return the inflated view
     }
+
 
     private void onCheckout() {
         DatabaseSetter db = new DatabaseSetter();

@@ -1,27 +1,28 @@
 package com.example.techswap.item.categories;
 
+import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.item.Item;
 
 public class ItemFactory {
 
     public Item getItem(String itemType) {
         switch (itemType) {
-            case "case":
-                return new Case();
-            case "cpu":
+            case "CPU":
                 return new CPU();
-            case "gpu":
+            case "GPU":
                 return new GPU();
-            case "motherboard":
+            case "Motherboard":
                 return new Motherboard();
-            case "other":
-                return new Other();
-            case "psu":
-                return new PSU();
-            case "ram":
-                return new RAM();
-            case "storage":
+            case "Storage":
                 return new Storage();
+            case "Memory":
+                return new RAM();
+            case "Power":
+                return new PSU();
+            case "Case":
+                return new Case();
+            case "Other":
+                return new Other();
         }
         return new Other();
     }
