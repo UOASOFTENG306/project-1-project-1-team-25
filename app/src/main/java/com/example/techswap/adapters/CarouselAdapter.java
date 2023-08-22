@@ -97,7 +97,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 View listItemView = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
                 return new CarouselViewHolderListItem(listItemView);
             case CART_ITEM:
-                View cartItemView = inflater.inflate(R.layout.item_card, parent, false);
+                View cartItemView = inflater.inflate(R.layout.cart_item, parent, false);
                 return new CarouselViewHolderCartItem(cartItemView);
             default:
                 throw new IllegalArgumentException("Invalid view type");
