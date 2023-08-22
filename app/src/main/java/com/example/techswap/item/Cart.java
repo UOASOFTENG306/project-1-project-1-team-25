@@ -6,6 +6,8 @@ public class Cart {
 
     private ArrayList<String> contents;
 
+    public Cart() {}
+
     public ArrayList<String> getContents() {
         return contents;
     }
