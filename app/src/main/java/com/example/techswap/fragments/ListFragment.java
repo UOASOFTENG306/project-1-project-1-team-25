@@ -81,18 +81,6 @@ public class ListFragment extends Fragment {
         carouselAdapter.setContext(requireContext());
         bestSellersRecyclerView.setAdapter(carouselAdapter);
 
-        List<Item> items = new ArrayList<>();
-        CPU cpu = new CPU();
-        Details details = new Details();
-        details.setTitle("Wow");
-        details.setSubtitle("Amazing");
-        details.setPrice(99.99);
-        cpu.setDetails(details);
-        for(int i = 0; i<7 ; i++) {
-            items.add(cpu);
-        }
-        setContent(items);
-
         return rootView;
     }
 
