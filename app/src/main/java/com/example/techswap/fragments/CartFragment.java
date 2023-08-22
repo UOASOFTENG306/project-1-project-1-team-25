@@ -13,8 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.R;
 import com.example.techswap.adapters.ItemCardAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
+import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.databinding.FragmentCartBinding;
 import com.example.techswap.databinding.FragmentDetailsBinding;
+import com.example.techswap.user.User;
 
 import java.util.Arrays;
 import java.util.List;
@@ -79,8 +81,20 @@ private FragmentCartBinding binding;
         ItemCardAdapter adapter = new ItemCardAdapter(imageList, titleList, subtitleList, priceList);
         recyclerView.setAdapter(adapter);
 
+        binding.checkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCheckout();
+            }
+        });
+
         return binding.getRoot();
 
+    }
+
+    private void onCheckout() {
+        DatabaseSetter db = new DatabaseSetter();
+        db.clearCart(User.getCurrentUser().getUsername());
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -92,5 +106,7 @@ private FragmentCartBinding binding;
         super.onDestroyView();
         binding = null;
     }
+
+
 
 }

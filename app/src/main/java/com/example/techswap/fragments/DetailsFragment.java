@@ -1,6 +1,11 @@
 package com.example.techswap.fragments;
 
+import static android.content.ContentValues.TAG;
+import static android.view.View.VISIBLE;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,20 +15,27 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.techswap.MainActivity;
 import com.example.techswap.R;
 import com.example.techswap.adapters.ImageAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
+import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.database.DatabaseUtils;
 import com.example.techswap.databinding.FragmentDetailsBinding;
 import com.example.techswap.item.Item;
+import com.example.techswap.user.User;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class DetailsFragment extends Fragment {
 
@@ -33,6 +45,7 @@ public class DetailsFragment extends Fragment {
     LinearLayout sliderDotspanel;
     private int dotscount;
     private ImageView[] dots;
+    private Item item;
 
     public static DetailsFragment newInstance(Item item) {
         DetailsFragment fragment = new DetailsFragment();
@@ -53,6 +66,8 @@ public class DetailsFragment extends Fragment {
         Bundle args = getArguments();
         if (args != null) {
             Item item = (Item) args.getSerializable("item");
+            this.item = item;
+
             // set field text
             binding.detailsTitle.setText(item.getDetails().getTitle());
             binding.detailsSubtitle.setText(item.getDetails().getSubtitle());
@@ -130,8 +145,33 @@ public class DetailsFragment extends Fragment {
             public void onPageScrollStateChanged(int state) {}
         });
 
+        if (User.getCurrentUser() != null) {
+            binding.addToCartButton.setVisibility(VISIBLE);
+        }
+
+        binding.addToCartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onAddToCart();
+            }
+        });
+
         return binding.getRoot();
 
+    }
+
+    private void onAddToCart() {
+        DatabaseSetter db = new DatabaseSetter();
+        db.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId().toString(), true);
+
+        CartFragment fragment = new CartFragment();
+        FragmentTransaction transaction = (getParentFragmentManager().beginTransaction());
+
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
+        transaction.replace(R.id.mainFragmentContainer, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

@@ -1,6 +1,8 @@
 package com.example.techswap.item;
 
-public class Details {
+import java.io.Serializable;
+
+public class Details implements Serializable {
 
     private double price;
 

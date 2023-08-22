@@ -50,16 +50,26 @@ public class DatabaseSetter {
      * Updates the cart in the Firestore DB, by adding or removing item from cart.
      * boolean true if add, false if remove.
      */
-    public void addRemoveItemToCart(int id, String ItemDocName, boolean addOrRemove) {
+    public void addRemoveItemToCart(String username, String ItemDocName, boolean addOrRemove) {
 
         Map<String, Object> data = new HashMap<>();
-        data.put("user_id", id);
+        data.put("username", username);
 
         if (addOrRemove) {
-            database.collection("cart").document(String.valueOf(id)).update("item_id", FieldValue.arrayUnion(ItemDocName));
+            database.collection("cart").document(username).update("item_id", FieldValue.arrayUnion(ItemDocName));
         } else {
-            database.collection("cart").document(String.valueOf(id)).update("item_id", FieldValue.arrayRemove(ItemDocName));
+            database.collection("cart").document(username).update("item_id", FieldValue.arrayRemove(ItemDocName));
         }
+    }
+
+    /**
+     * Clears the user's cart in the Firestore DB.
+     */
+    public void clearCart(String username) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", username);
+
+        database.collection("cart").document(username).update("item_id", FieldValue.delete());
     }
 
     /**
