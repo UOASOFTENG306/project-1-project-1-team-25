@@ -1,5 +1,6 @@
 package com.example.techswap.adapters;
 
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,21 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 return new CarouselViewHolderCategory(itemViewWithoutPriceOrDesc);
             case HORIZONTAL_ITEM:
                 View itemViewWithPrice = inflater.inflate(R.layout.carousel_item_deal, parent, false);
+                DisplayMetrics displayMetrics = parent.getContext().getResources().getDisplayMetrics();
+                int screenWidth = displayMetrics.widthPixels;
+                int numberOfItemsVisible = 2; // Display two items at a time
+
+                // Calculate the total padding to be used on both sides of the item
+                int horizontalPadding = itemViewWithPrice.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+
+                // Calculate the item width by considering padding and dividing by the number of items
+                int itemWidth = (screenWidth - horizontalPadding * (numberOfItemsVisible - 1)) / numberOfItemsVisible;
+
+
+                ViewGroup.LayoutParams layoutParams = itemViewWithPrice.getLayoutParams();
+                layoutParams.width = itemWidth;
+                itemViewWithPrice.setLayoutParams(layoutParams);
+
                 return new CarouselViewHolderHorizontalItem(itemViewWithPrice);
             case LIST_ITEM:
                 View itemViewWithDescAndPrice = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
@@ -68,6 +84,8 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 throw new IllegalArgumentException("Invalid view type");
         }
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
