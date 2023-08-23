@@ -8,9 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -113,19 +110,21 @@ public class CartFragment extends Fragment {
     }
 
     private void fetchCartItems(ArrayList<String> cartData) {
-        FirebaseFirestore.getInstance().collection("items")
-                .whereIn("item_id", cartData)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            itemList.add(databaseUtils.mapToItem(document.getData()));
+        if (cartData.size() > 0) {
+            FirebaseFirestore.getInstance().collection("items")
+                    .whereIn("item_id", cartData)
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                itemList.add(databaseUtils.mapToItem(document.getData()));
+                            }
+                            setItems(itemList);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
                         }
-                        setItems(itemList);
-                    } else {
-                        Log.d(TAG, "Error getting documents: ", task.getException());
-                    }
-                });
+                    });
+        }
     }
 
     public void setItems(List<Item> items) {
