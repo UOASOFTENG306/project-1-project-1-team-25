@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_background"
         android:orientation="vertical"
+        android:background="@color/white"
         android:weightSum="100">
 
         <LinearLayout
@@ -19,6 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
+            android:background="@drawable/gradient_background"
+
             android:gravity="center"
             android:orientation="vertical"
             android:padding="11dp">
@@ -49,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:gravity="center"
-                android:text="Not signed in"
+                android:text="Sign In"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/white" />
         </LinearLayout>
@@ -57,7 +59,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="12dp"
             android:layout_weight="0">
 
 <!--            <LinearLayout-->
