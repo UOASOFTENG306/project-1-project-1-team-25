@@ -94,7 +94,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             
                 return new CarouselViewHolderHorizontalItem(horizontalItemView);
             case LIST_ITEM:
-                View listItemView = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
+                View listItemView = inflater.inflate(R.layout.carousel_item_list, parent, false);
                 return new CarouselViewHolderListItem(listItemView);
             case CART_ITEM:
                 View cartItemView = inflater.inflate(R.layout.cart_item, parent, false);
