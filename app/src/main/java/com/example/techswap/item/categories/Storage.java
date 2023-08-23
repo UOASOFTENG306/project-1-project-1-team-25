@@ -3,6 +3,7 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,23 +21,33 @@ public class Storage extends Item {
         this.setDetails(details);
     }
 
-    private String getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private String isSolidState() {
+    public String isSolidState() {
         return isSolidState;
     }
 
-    private String getCapacityGB() {
+    public String getCapacityGB() {
         return capacityGB;
     }
 
     @Override
-    public void setSpecifications(List<String> specificationsList) {
-        brand = specificationsList.get(1);
-        isSolidState = specificationsList.get(3);
-        capacityGB = specificationsList.get(5);
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(isSolidState);
+        valuesList.add(capacityGB);
+
+        return valuesList;
+    }
+
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        isSolidState = valuesList.get(1);
+        capacityGB = valuesList.get(2);
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,28 +23,39 @@ public class Motherboard extends Item {
         this.setDetails(details);
     }
 
-    private String getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private String getSocket() {
+    public String getSocket() {
         return socket;
     }
 
-    private String getRamSlots() {
+    public String getRamSlots() {
         return ramSlots;
     }
 
-    private String getFormFactor() {
+    public String getFormFactor() {
         return formFactor;
     }
 
     @Override
-    public void setSpecifications(List<String> specificationsList) {
-        brand = specificationsList.get(1);
-        socket = specificationsList.get(3);
-        ramSlots = specificationsList.get(5);
-        formFactor = specificationsList.get(7);
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(socket);
+        valuesList.add(ramSlots);
+        valuesList.add(formFactor);
+
+        return valuesList;
+    }
+
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        socket = valuesList.get(1);
+        ramSlots = valuesList.get(2);
+        formFactor = valuesList.get(3);
     }
 
 }

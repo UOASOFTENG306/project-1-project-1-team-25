@@ -3,6 +3,7 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,16 +20,25 @@ public class Case extends Item {
     }
 
     @Override
-    public void setSpecifications(List<String> specificationsList) {
-        brand = specificationsList.get(1);
-        formFactor = specificationsList.get(3);
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(formFactor);
+
+        return valuesList;
     }
 
-    private String getBrand() {
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        formFactor = valuesList.get(1);
+    }
+
+    public String getBrand() {
         return brand;
     }
 
-    private String getFormFactor() {
+    public String getFormFactor() {
         return formFactor;
     }
 

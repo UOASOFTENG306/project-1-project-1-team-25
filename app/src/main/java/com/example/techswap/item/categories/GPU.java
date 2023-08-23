@@ -3,6 +3,7 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,28 +23,39 @@ public class GPU extends Item {
         this.setDetails(details);
     }
 
-    private String getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private String getModel() {
+    public String getModel() {
         return model;
     }
 
-    private String getMemorySizeGB() {
+    public String getMemorySizeGB() {
         return memorySizeGB;
     }
 
-    private String getClockSpeedMHz() {
+    public String getClockSpeedMHz() {
         return clockSpeedMHz;
     }
 
     @Override
-    public void setSpecifications(List<String> specificationsList) {
-        brand = specificationsList.get(1);
-        model = specificationsList.get(3);
-        memorySizeGB = specificationsList.get(5);
-        clockSpeedMHz = specificationsList.get(7);
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(model);
+        valuesList.add(memorySizeGB);
+        valuesList.add(clockSpeedMHz);
+
+        return valuesList;
+    }
+
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        model = valuesList.get(1);
+        memorySizeGB = valuesList.get(2);
+        clockSpeedMHz = valuesList.get(3);
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,33 +25,45 @@ public class RAM extends Item {
         this.setDetails(details);
     }
 
-    private String getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private String getNumSticks() {
+    public String getNumSticks() {
         return numSticks;
     }
 
-    private String getSingleCapacityGB() {
+    public String getSingleCapacityGB() {
         return singleCapacityGB;
     }
 
-    private String getSpeedMHz() {
+    public String getSpeedMHz() {
         return speedMHz;
     }
 
-    private String getLatencyCL() {
+    public String getLatencyCL() {
         return latencyCL;
     }
 
     @Override
-    public void setSpecifications(List<String> specificationsList) {
-        brand = specificationsList.get(1);
-        numSticks = specificationsList.get(3);
-        singleCapacityGB = specificationsList.get(5);
-        speedMHz = specificationsList.get(7);
-        latencyCL = specificationsList.get(9);
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(numSticks);
+        valuesList.add(singleCapacityGB);
+        valuesList.add(speedMHz);
+        valuesList.add(latencyCL);
+
+        return valuesList;
+    }
+
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        numSticks = valuesList.get(1);
+        singleCapacityGB = valuesList.get(2);
+        speedMHz = valuesList.get(3);
+        latencyCL = valuesList.get(4);
     }
 
 }

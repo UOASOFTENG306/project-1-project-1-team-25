@@ -3,6 +3,7 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,18 +19,27 @@ public class PSU extends Item {
         this.setDetails(details);
     }
 
-    private String getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private String getWattage() {
+    public String getWattage() {
         return wattage;
     }
 
     @Override
-    public void setSpecifications(List<String> specificationsList) {
-        brand = specificationsList.get(1);
-        wattage = specificationsList.get(3);
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(wattage);
+
+        return valuesList;
+    }
+
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        wattage = valuesList.get(1);
     }
 
 }

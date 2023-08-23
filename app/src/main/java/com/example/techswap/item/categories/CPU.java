@@ -3,6 +3,7 @@ package com.example.techswap.item.categories;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,28 +23,39 @@ public class CPU extends Item {
         this.setDetails(details);
     }
 
-    private String getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private String getSocket() {
+    public String getSocket() {
         return socket;
     }
 
-    private String getClockSpeedMHz() {
+    public String getClockSpeedMHz() {
         return clockSpeedMHz;
     }
 
-    private String getNumCores() {
+    public String getNumCores() {
         return numCores;
     }
 
     @Override
-    public void setSpecifications(List<String> specificationsList) {
-        brand = specificationsList.get(1);
-        socket = specificationsList.get(3);
-        clockSpeedMHz = specificationsList.get(5);
-        numCores = specificationsList.get(7);
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(socket);
+        valuesList.add(clockSpeedMHz);
+        valuesList.add(numCores);
+
+        return valuesList;
+    }
+
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        socket = valuesList.get(1);
+        clockSpeedMHz = valuesList.get(2);
+        numCores = valuesList.get(3);
     }
 
 }
