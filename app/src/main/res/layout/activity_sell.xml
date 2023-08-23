@@ -56,7 +56,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/material_dynamic_neutral80"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold|italic" />
 
                 <!-- Search Bar (Initially hidden) -->
             </RelativeLayout>
@@ -137,7 +137,7 @@
                         style="@style/CustomEditTextStyle"
 
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:ems="10"
                         android:gravity="start|top"
                         android:hint="Description"
@@ -175,10 +175,17 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textStyle="bold" />
 
-                    <Spinner
-                        android:id="@+id/categorySpinner"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp" />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/input_bubble_edittext">
+
+                        <Spinner
+                            android:id="@+id/categorySpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:theme="@style/Theme.Material3.Light" />
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/imagesHeader"
