@@ -4,6 +4,7 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Storage extends Item {
 
@@ -23,24 +24,19 @@ public class Storage extends Item {
         return brand;
     }
 
-    private void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     private String isSolidState() {
         return isSolidState;
-    }
-
-    private void setSolidState(String solidState) {
-        isSolidState = solidState;
     }
 
     private String getCapacityGB() {
         return capacityGB;
     }
 
-    private void setCapacityGB(String capacityGB) {
-        this.capacityGB = capacityGB;
+    @Override
+    public void setSpecifications(List<String> specificationsList) {
+        brand = specificationsList.get(1);
+        isSolidState = specificationsList.get(3);
+        capacityGB = specificationsList.get(5);
     }
 
 }

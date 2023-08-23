@@ -4,6 +4,7 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class PSU extends Item {
 
@@ -21,16 +22,14 @@ public class PSU extends Item {
         return brand;
     }
 
-    private void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     private String getWattage() {
         return wattage;
     }
 
-    private void setWattage(String wattage) {
-        this.wattage = wattage;
+    @Override
+    public void setSpecifications(List<String> specificationsList) {
+        brand = specificationsList.get(1);
+        wattage = specificationsList.get(3);
     }
 
 }

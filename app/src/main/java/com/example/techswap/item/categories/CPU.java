@@ -4,6 +4,7 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class CPU extends Item {
 
@@ -25,32 +26,24 @@ public class CPU extends Item {
         return brand;
     }
 
-    private void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     private String getSocket() {
         return socket;
-    }
-
-    private void setSocket(String socket) {
-        this.socket = socket;
     }
 
     private String getClockSpeedMHz() {
         return clockSpeedMHz;
     }
 
-    private void setClockSpeedMHz(String clockSpeedMHz) {
-        this.clockSpeedMHz = clockSpeedMHz;
-    }
-
     private String getNumCores() {
         return numCores;
     }
 
-    private void setNumCores(String numCores) {
-        this.numCores = numCores;
+    @Override
+    public void setSpecifications(List<String> specificationsList) {
+        brand = specificationsList.get(1);
+        socket = specificationsList.get(3);
+        clockSpeedMHz = specificationsList.get(5);
+        numCores = specificationsList.get(7);
     }
 
 }

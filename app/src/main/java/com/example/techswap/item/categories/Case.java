@@ -4,6 +4,7 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Case extends Item {
 
@@ -17,20 +18,19 @@ public class Case extends Item {
         this.setDetails(details);
     }
 
-    private String getBrand() {
-        return brand;
+    @Override
+    public void setSpecifications(List<String> specificationsList) {
+        brand = specificationsList.get(1);
+        formFactor = specificationsList.get(3);
     }
 
-    private void setBrand(String brand) {
-        this.brand = brand;
+    private String getBrand() {
+        return brand;
     }
 
     private String getFormFactor() {
         return formFactor;
     }
 
-    private void setFormFactor(String formFactor) {
-        this.formFactor = formFactor;
-    }
 
 }

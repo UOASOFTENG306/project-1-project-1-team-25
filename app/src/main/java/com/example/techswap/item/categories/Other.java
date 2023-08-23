@@ -4,6 +4,7 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Other extends Item {
 
@@ -19,8 +20,9 @@ public class Other extends Item {
         return brand;
     }
 
-    private void setBrand(String brand) {
-        this.brand = brand;
+    @Override
+    public void setSpecifications(List<String> specificationsList) {
+        brand = specificationsList.get(1);
     }
 
 }

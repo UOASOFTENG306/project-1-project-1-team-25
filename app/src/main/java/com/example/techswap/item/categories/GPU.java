@@ -4,6 +4,7 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class GPU extends Item {
 
@@ -25,32 +26,24 @@ public class GPU extends Item {
         return brand;
     }
 
-    private void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     private String getModel() {
         return model;
-    }
-
-    private void setModel(String model) {
-        this.model = model;
     }
 
     private String getMemorySizeGB() {
         return memorySizeGB;
     }
 
-    private void setMemorySizeGB(String memorySizeGB) {
-        this.memorySizeGB = memorySizeGB;
-    }
-
     private String getClockSpeedMHz() {
         return clockSpeedMHz;
     }
 
-    private void setClockSpeedMHz(String clockSpeedMHz) {
-        this.clockSpeedMHz = clockSpeedMHz;
+    @Override
+    public void setSpecifications(List<String> specificationsList) {
+        brand = specificationsList.get(1);
+        model = specificationsList.get(3);
+        memorySizeGB = specificationsList.get(5);
+        clockSpeedMHz = specificationsList.get(7);
     }
 
 }
