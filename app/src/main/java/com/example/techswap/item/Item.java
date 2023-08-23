@@ -51,6 +51,8 @@ public abstract class Item implements Serializable {
         this.details = details;
     }
 
+    public abstract void setSpecifications(List<String> specificationsList);
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
