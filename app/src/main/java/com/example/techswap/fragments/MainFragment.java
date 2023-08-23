@@ -23,6 +23,7 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.categories.CPU;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.example.techswap.item.Item;
 
@@ -138,7 +139,7 @@ public class MainFragment extends Fragment {
     private void fetchDeals() {
         // TODO: Add metric for being "deals"
         FirebaseFirestore.getInstance().collection("items")
-                .orderBy("title").limit(6)
+                .orderBy("title", Query.Direction.DESCENDING).limit(6)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
