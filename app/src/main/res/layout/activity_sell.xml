@@ -82,6 +82,8 @@
 
                     <TextView
                         android:id="@+id/titleHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Title"
@@ -100,6 +102,8 @@
 
                     <TextView
                         android:id="@+id/subtitleHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -119,6 +123,8 @@
 
                     <TextView
                         android:id="@+id/descriptionHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -139,6 +145,8 @@
 
                     <TextView
                         android:id="@+id/priceHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -158,6 +166,8 @@
 
                     <TextView
                         android:id="@+id/categoryHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
