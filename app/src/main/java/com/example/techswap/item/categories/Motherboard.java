@@ -1,23 +1,21 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Brand;
 import com.example.techswap.item.Details;
-import com.example.techswap.item.FormFactor;
-import com.example.techswap.item.GPUModel;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.Socket;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Motherboard extends Item {
 
-    private Brand brand;
+    private String brand;
 
-    private Socket socket;
+    private String socket;
 
-    private int ramSlots;
+    private String ramSlots;
 
-    private FormFactor formFactor;
+    private String formFactor;
 
     public Motherboard() {
         Details details = new Details();
@@ -25,53 +23,39 @@ public class Motherboard extends Item {
         this.setDetails(details);
     }
 
-    private Brand getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    private Socket getSocket() {
+    public String getSocket() {
         return socket;
     }
 
-    private void setSocket(Socket socket) {
-        this.socket = socket;
-    }
-
-    private int getRamSlots() {
+    public String getRamSlots() {
         return ramSlots;
     }
 
-    private void setRamSlots(int ramSlots) {
-        this.ramSlots = ramSlots;
-    }
-
-    private FormFactor getFormFactor() {
+    public String getFormFactor() {
         return formFactor;
     }
 
-    private void setFormFactor(FormFactor formFactor) {
-        this.formFactor = formFactor;
+    @Override
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(socket);
+        valuesList.add(ramSlots);
+        valuesList.add(formFactor);
+
+        return valuesList;
     }
 
-    public HashMap<String,String> getSpecifications() {
-        HashMap<String,String> specifications = new HashMap<String,String>();
-        specifications.put("Brand", brand.toString());
-        specifications.put("Socket", socket.toString());
-        specifications.put("No. of ram slots", String.valueOf(ramSlots));
-        specifications.put("Form factor", formFactor.toString());
-
-        return specifications;
-    }
-
-    public void setSpecifications(HashMap<String,String> specifications) {
-        brand = Brand.valueOf(specifications.get("Brand"));
-        socket = Socket.valueOf(specifications.get("Socket"));
-        ramSlots = Integer.parseInt(specifications.get("No. of ram slots"));
-        formFactor = FormFactor.valueOf(specifications.get("Form factor"));
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        socket = valuesList.get(1);
+        ramSlots = valuesList.get(2);
+        formFactor = valuesList.get(3);
     }
 
 }

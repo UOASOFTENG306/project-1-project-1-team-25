@@ -79,15 +79,8 @@ public class DetailsFragment extends Fragment {
             LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
             recyclerView.setLayoutManager(layoutManager);
 
-            List<String> specificationList = Arrays.asList(
-                    "Brand",
-                    "Clock speed"
-            );
-
-            List<String> valueList = Arrays.asList(
-                    "Intel",
-                    "Like, a bajillion"
-            );
+            List<String> specificationList = item.getSpecificationsTitleList();
+            List<String> valueList = item.getSpecifications();
 
             SpecificationAdapter adapter = new SpecificationAdapter(specificationList, valueList);
             recyclerView.setAdapter(adapter);

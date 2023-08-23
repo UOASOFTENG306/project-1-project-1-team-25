@@ -1,17 +1,17 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Brand;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.Socket;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class PSU extends Item {
 
-    private Brand brand;
+    private String brand;
 
-    private int wattage;
+    private String wattage;
 
     public PSU() {
         Details details = new Details();
@@ -19,32 +19,27 @@ public class PSU extends Item {
         this.setDetails(details);
     }
 
-    private Brand getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    private int getWattage() {
+    public String getWattage() {
         return wattage;
     }
 
-    private void setWattage(int wattage) {
-        this.wattage = wattage;
+    @Override
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(wattage);
+
+        return valuesList;
     }
 
-    public HashMap<String,String> getSpecifications() {
-        HashMap<String,String> specifications = new HashMap<String,String>();
-        specifications.put("Brand", brand.toString());
-        specifications.put("Rated capacity", String.valueOf(wattage));
-
-        return specifications;
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        wattage = valuesList.get(1);
     }
 
-    public void setSpecifications(HashMap<String,String> specifications) {
-        brand = Brand.valueOf(specifications.get("Brand"));
-        wattage = Integer.parseInt(specifications.get("Rated capacity"));
-    }
 }

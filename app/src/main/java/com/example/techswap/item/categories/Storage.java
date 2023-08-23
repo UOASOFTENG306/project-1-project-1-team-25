@@ -1,19 +1,19 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Brand;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.Socket;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Storage extends Item {
 
-    private Brand brand;
+    private String brand;
 
-    private boolean isSolidState;
+    private String isSolidState;
 
-    private int capacityGB;
+    private String capacityGB;
 
     public Storage() {
         Details details = new Details();
@@ -21,43 +21,33 @@ public class Storage extends Item {
         this.setDetails(details);
     }
 
-    private Brand getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    private boolean isSolidState() {
+    public String isSolidState() {
         return isSolidState;
     }
 
-    private void setSolidState(boolean solidState) {
-        isSolidState = solidState;
-    }
-
-    private int getCapacityGB() {
+    public String getCapacityGB() {
         return capacityGB;
     }
 
-    private void setCapacityGB(int capacityGB) {
-        this.capacityGB = capacityGB;
+    @Override
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(isSolidState);
+        valuesList.add(capacityGB);
+
+        return valuesList;
     }
 
-    public HashMap<String,String> getSpecifications() {
-        HashMap<String,String> specifications = new HashMap<String,String>();
-        specifications.put("Brand", brand.toString());
-        specifications.put("Solid state", String.valueOf(isSolidState));
-        specifications.put("Capacity", String.valueOf(capacityGB));
-
-        return specifications;
-    }
-
-    public void setSpecifications(HashMap<String,String> specifications) {
-        brand = Brand.valueOf(specifications.get("Brand"));
-        isSolidState = Boolean.parseBoolean(specifications.get("Solid state"));
-        capacityGB = Integer.parseInt(specifications.get("Capacity"));
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        isSolidState = valuesList.get(1);
+        capacityGB = valuesList.get(2);
     }
 
 }

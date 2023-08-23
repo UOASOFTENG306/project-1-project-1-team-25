@@ -1,14 +1,15 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Brand;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Other extends Item {
 
-    private Brand brand;
+    private String brand;
 
     public Other() {
         Details details = new Details();
@@ -16,22 +17,21 @@ public class Other extends Item {
         this.setDetails(details);
     }
 
-    private Brand getBrand() {
+    public String getBrand() {
         return brand;
     }
 
-    private void setBrand(Brand brand) {
-        this.brand = brand;
+    @Override
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+
+        return valuesList;
     }
 
-    public HashMap<String,String> getSpecifications() {
-        HashMap<String,String> specifications = new HashMap<String,String>();
-        specifications.put("Brand", brand.toString());
-
-        return specifications;
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
     }
 
-    public void setSpecifications(HashMap<String,String> specifications) {
-        brand = Brand.valueOf(specifications.get("Brand"));
-    }
 }

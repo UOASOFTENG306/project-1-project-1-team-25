@@ -1,17 +1,17 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Brand;
 import com.example.techswap.item.Details;
-import com.example.techswap.item.FormFactor;
 import com.example.techswap.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Case extends Item {
 
-    private Brand brand;
+    private String brand;
 
-    private FormFactor formFactor;
+    private String formFactor;
 
     public Case() {
         Details details = new Details();
@@ -19,32 +19,28 @@ public class Case extends Item {
         this.setDetails(details);
     }
 
-    private Brand getBrand() {
+    @Override
+    public List<String> getSpecifications() {
+        List<String> valuesList = new ArrayList<>();
+        valuesList.add(brand);
+        valuesList.add(formFactor);
+
+        return valuesList;
+    }
+
+    @Override
+    public void setSpecifications(List<String> valuesList) {
+        brand = valuesList.get(0);
+        formFactor = valuesList.get(1);
+    }
+
+    public String getBrand() {
         return brand;
     }
 
-    private void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    private FormFactor getFormFactor() {
+    public String getFormFactor() {
         return formFactor;
     }
 
-    private void setFormFactor(FormFactor formFactor) {
-        this.formFactor = formFactor;
-    }
 
-    public HashMap<String,String> getSpecifications() {
-        HashMap<String,String> specifications = new HashMap<String,String>();
-        specifications.put("Brand", brand.toString());
-        specifications.put("Form factor", formFactor.toString());
-
-        return specifications;
-    }
-
-    public void setSpecifications(HashMap<String,String> specifications) {
-        brand = Brand.valueOf(specifications.get("Brand"));
-        formFactor = FormFactor.valueOf(specifications.get("Form factor"));
-    }
 }
