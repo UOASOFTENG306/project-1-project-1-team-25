@@ -14,6 +14,8 @@ public abstract class Item implements Serializable {
 
     private List<String> imageUrls = new ArrayList<>();
 
+    private List<String> specificationsTitleList = new ArrayList<>();
+
     protected Item() {
     }
 
@@ -54,6 +56,14 @@ public abstract class Item implements Serializable {
     public abstract void setSpecifications(List<String> valuesList);
 
     public abstract List<String> getSpecifications();
+
+    public void setSpecificationsTitleList(List<String> specificationsTitleList) {
+        this.specificationsTitleList = specificationsTitleList;
+    }
+
+    public List<String> getSpecificationsTitleList() {
+        return specificationsTitleList;
+    }
 
     @Override
     public boolean equals(Object o) {
