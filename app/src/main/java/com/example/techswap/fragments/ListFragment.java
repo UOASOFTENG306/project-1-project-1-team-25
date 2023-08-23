@@ -19,6 +19,13 @@ import com.example.techswap.databinding.FragmentListBinding;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.CPU;
+import com.example.techswap.item.categories.Case;
+import com.example.techswap.item.categories.GPU;
+import com.example.techswap.item.categories.Motherboard;
+import com.example.techswap.item.categories.Other;
+import com.example.techswap.item.categories.PSU;
+import com.example.techswap.item.categories.RAM;
+import com.example.techswap.item.categories.Storage;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -33,7 +40,7 @@ public class ListFragment extends Fragment {
 
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
 
-    CarouselAdapter carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
+    CarouselAdapter carouselAdapter;
 
     public static ListFragment listCategory(String category) {
         ListFragment fragment = new ListFragment();
@@ -66,20 +73,26 @@ public class ListFragment extends Fragment {
             if (category != null) {
                 fetchItems(category);
                 setHeader(category);
+                if (category == "GPU" || category == "Motherboard" || category == "Case") {
+                    carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LARGE_LIST_ITEM);
+                } else {
+                    carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
+                }
             } else {
                 String searchTerm = (String) args.getSerializable("searchTerm");
                 if (searchTerm != null) {
                     searchItems(searchTerm);
+                    carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
                 }
             }
         }
 
         // Vertical RecyclerView
-        RecyclerView bestSellersRecyclerView = binding.listRecyclerView;
-        LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
-        bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
+        RecyclerView listRecyclerView = binding.listRecyclerView;
+        LinearLayoutManager listLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+        listRecyclerView.setLayoutManager(listLayoutManager);
         carouselAdapter.setContext(requireContext());
-        bestSellersRecyclerView.setAdapter(carouselAdapter);
+        listRecyclerView.setAdapter(carouselAdapter);
 
         return rootView;
     }

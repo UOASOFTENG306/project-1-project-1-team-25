@@ -1,0 +1,77 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+<!-- item_carousel.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/card_background"
+    android:elevation="2dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/carouselImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Category Icons"
+            android:scaleType="centerCrop" />
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/captionText"
+            style="@style/TitleText"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center"
+            android:text="Item Caption"
+            android:textAlignment="viewStart" />
+
+        <TextView
+            android:id="@+id/descriptionText"
+            style="@style/SubtitleText"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:text="Item Caption"
+            android:textAlignment="viewStart" />
+
+        <TextView
+            android:id="@+id/priceText"
+            style="@style/PriceText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:gravity="bottom|right"
+            android:text="Item Caption"
+            android:textAlignment="textEnd" />
+
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/imageButton"-->
+        <!--            android:padding="8dp"-->
+        <!--            android:layout_width="35dp"-->
+        <!--            android:layout_height="35dp"-->
+        <!--            android:src="@drawable/cart"-->
+        <!--            android:background="@drawable/rounded_button"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            android:contentDescription="Image Button"-->
+        <!--            android:onClick="buttonClicked" />-->
+    </LinearLayout>
+
+</LinearLayout>
+

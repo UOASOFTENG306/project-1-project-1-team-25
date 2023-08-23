@@ -33,7 +33,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final CarouselType carouselType;
 
     public enum CarouselType {
-        CATEGORY, HORIZONTAL_ITEM, LIST_ITEM, CART_ITEM
+        CATEGORY, HORIZONTAL_ITEM, LIST_ITEM, LARGE_LIST_ITEM, CART_ITEM
     }
 
     public CarouselAdapter(CarouselType carouselType) {
@@ -59,46 +59,54 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         DisplayMetrics displayMetrics = parent.getContext().getResources().getDisplayMetrics();
+        View view;
+
         int screenWidth = displayMetrics.widthPixels;
         switch (carouselType) {
             case CATEGORY:
-                View categoryView = inflater.inflate(R.layout.carousel_item_category, parent, false);
+                view = inflater.inflate(R.layout.carousel_item_category, parent, false);
                 int numberOfItemsVisible = 3; // Display two items at a time
 
                 // Calculate the total padding to be used on both sides of the item
-                int horizontalPadding = categoryView.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+                int horizontalPadding = view.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
 
                 // Calculate the item width by considering padding and dividing by the number of items
                 int itemWidth = (screenWidth - horizontalPadding * (numberOfItemsVisible - 1)) / numberOfItemsVisible;
 
 
-                ViewGroup.LayoutParams layoutParams = categoryView.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
                 layoutParams.width = itemWidth;
-                categoryView.setLayoutParams(layoutParams);
+                view.setLayoutParams(layoutParams);
             
-                return new CarouselViewHolderCategory(categoryView);
+                return new CarouselViewHolderCategory(view);
             case HORIZONTAL_ITEM:
-                View horizontalItemView = inflater.inflate(R.layout.carousel_item_deal, parent, false);
+                view = inflater.inflate(R.layout.carousel_item_deal, parent, false);
                 int numberOfItemsVisible2 = 2; // Display two items at a time
 
                 // Calculate the total padding to be used on both sides of the item
-                int horizontalPadding2 = horizontalItemView.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
+                int horizontalPadding2 = view.getResources().getDimensionPixelSize(R.dimen.item_horizontal_padding);
 
                 // Calculate the item width by considering padding and dividing by the number of items
                 int itemWidth2 = (screenWidth - horizontalPadding2 * (numberOfItemsVisible2 - 1)) / numberOfItemsVisible2;
 
 
-                ViewGroup.LayoutParams layoutParams2 = horizontalItemView.getLayoutParams();
+                ViewGroup.LayoutParams layoutParams2 = view.getLayoutParams();
                 layoutParams2.width = itemWidth2;
-                horizontalItemView.setLayoutParams(layoutParams2);
+                view.setLayoutParams(layoutParams2);
             
-                return new CarouselViewHolderHorizontalItem(horizontalItemView);
+                return new CarouselViewHolderHorizontalItem(view);
             case LIST_ITEM:
-                View listItemView = inflater.inflate(R.layout.carousel_item_best_seller, parent, false);
-                return new CarouselViewHolderListItem(listItemView);
+                view = inflater.inflate(R.layout.carousel_item_list, parent, false);
+                return new CarouselViewHolderListItem(view);
+
+            case LARGE_LIST_ITEM:
+                view = inflater.inflate(R.layout.carousel_item_large_list, parent, false);
+                return new CarouselViewHolderListItem(view);
+
             case CART_ITEM:
-                View cartItemView = inflater.inflate(R.layout.cart_item, parent, false);
-                return new CarouselViewHolderCartItem(cartItemView);
+                view = inflater.inflate(R.layout.cart_item, parent, false);
+                return new CarouselViewHolderCartItem(view);
+
             default:
                 throw new IllegalArgumentException("Invalid view type");
         }
@@ -123,7 +131,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             Glide.with(context).load(url).into(viewHolder.carouselImage);
 
-        } else if (carouselType == CarouselType.LIST_ITEM) {
+        } else if (carouselType == CarouselType.LIST_ITEM || carouselType == CarouselType.LARGE_LIST_ITEM) {
             CarouselViewHolderListItem viewHolder = (CarouselViewHolderListItem) holder;
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.subtitleText.setText(subtitleList.get(position));
@@ -185,7 +193,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
 
-                } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM) {
+                } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM || carouselType == CarouselType.LARGE_LIST_ITEM) {
                     DetailsFragment fragment = DetailsFragment.newInstance(itemList.get(clickedPosition));
                     FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
 

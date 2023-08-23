@@ -44,7 +44,7 @@ public class UserActivity extends AppCompatActivity {
 
         Fragment fragment;
         if (User.getCurrentUser() == null) {
-            usernameView.setText("Not logged in");
+            usernameView.setText("Sign in");
             fragment = new LoginFragment();
         } else {
             usernameView.setText(User.getCurrentUser().getUsername());

@@ -3,9 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main">#0D324D</color>
-    <color name="secondary">#1565C0</color>
+    <color name="secondary">#214A67</color>
     <color name="gray">#999999</color>
     <color name="transparent_gray">#77CCCCCC</color>
-    <color name="red">#FF4242</color>
+    <color name="red">#A02C2F</color>
 
 </resources>
