@@ -67,11 +67,18 @@ public class SellActivity extends AppCompatActivity {
         removeImageButton = findViewById(R.id.removeImageButton);
         listItemButton = findViewById(R.id.listItemButton);
 
+        List<CharSequence> list = new ArrayList<>();
+        list.add("CPU");
+        list.add("GPU");
+        list.add("Motherboard");
+        list.add("Storage");
+        list.add("Memory");
+        list.add("Power");
+        list.add("Case");
+        list.add("Other");
+
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.categories_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, list);
         // Apply the adapter to the spinner
         categorySpinner.setAdapter(adapter);
 

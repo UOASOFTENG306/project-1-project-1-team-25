@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@color/white"
     tools:context=".SellActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/transparent_background"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#0D324D"
+            android:background="@color/main"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -54,7 +56,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
                     android:textColor="@color/material_dynamic_neutral80"
                     android:textSize="20sp"
-                    android:textStyle="italic" />
+                    android:textStyle="bold|italic" />
 
                 <!-- Search Bar (Initially hidden) -->
             </RelativeLayout>
@@ -64,7 +66,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="12dp"
+            android:padding="16dp"
             android:orientation="vertical"
             android:weightSum="100">
 
@@ -80,6 +82,8 @@
 
                     <TextView
                         android:id="@+id/titleHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Title"
@@ -88,6 +92,8 @@
 
                     <EditText
                         android:id="@+id/titleInput"
+                        style="@style/CustomEditTextStyle"
+
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:ems="10"
@@ -96,6 +102,8 @@
 
                     <TextView
                         android:id="@+id/subtitleHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -105,6 +113,8 @@
 
                     <EditText
                         android:id="@+id/subtitleInput"
+                        style="@style/CustomEditTextStyle"
+
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:ems="10"
@@ -113,6 +123,8 @@
 
                     <TextView
                         android:id="@+id/descriptionHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -122,8 +134,10 @@
 
                     <EditText
                         android:id="@+id/descriptionInput"
+                        style="@style/CustomEditTextStyle"
+
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:ems="10"
                         android:gravity="start|top"
                         android:hint="Description"
@@ -131,6 +145,8 @@
 
                     <TextView
                         android:id="@+id/priceHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -140,6 +156,8 @@
 
                     <EditText
                         android:id="@+id/priceInput"
+                        style="@style/CustomEditTextStyle"
+                        android:background="@drawable/input_bubble_edittext"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:ems="10"
@@ -148,6 +166,8 @@
 
                     <TextView
                         android:id="@+id/categoryHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -155,13 +175,22 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         android:textStyle="bold" />
 
-                    <Spinner
-                        android:id="@+id/categorySpinner"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp" />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/input_bubble_edittext">
+
+                        <Spinner
+                            android:id="@+id/categorySpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:theme="@style/Theme.Material3.Light" />
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/imagesHeader"
+                        android:textColor="@color/black"
+                        android:padding="2dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -183,6 +212,9 @@
 
                         <Button
                             android:id="@+id/addImageButton"
+                            android:background="@drawable/rounded_button"
+                            app:backgroundTint="@null"
+                            android:textColor="@color/white"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -191,6 +223,9 @@
 
                         <Button
                             android:id="@+id/removeImageButton"
+                            android:background="@drawable/rounded_button"
+                            app:backgroundTint="@null"
+                            android:textColor="@color/white"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -208,6 +243,10 @@
 
                 <Button
                     android:id="@+id/listItemButton"
+                    android:background="@drawable/rounded_button"
+                    app:backgroundTint="@null"
+                    android:textColor="@color/white"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="List item" />
