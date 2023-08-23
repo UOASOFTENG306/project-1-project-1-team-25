@@ -38,60 +38,17 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:theme="@style/Theme.Material3.Light">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/addToCartButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_button"
-                android:text="Add to Cart"
-                android:textColor="#ffffff"
-                android:textSize="16sp"
-                app:backgroundTint="@null" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/detailsPrice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="$299.99"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="28sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/detailsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="16dp"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingBottom="4dp"
         android:text="Title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:theme="@style/Theme.Material3.Light" />
+        android:textSize="26sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/detailsSubtitle"
@@ -102,6 +59,17 @@
         android:text="Subtitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:theme="@style/Theme.Material3.Light" />
+
+    <TextView
+        android:id="@+id/detailsPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="$299.99"
+        android:paddingStart="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="6dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="28sp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -114,16 +82,50 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:theme="@style/Theme.Material3.Light">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/detailsDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                android:padding="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="6dp"
+                android:textColor="@color/black"
                 android:text="@string/lorem_ipsum" />
 
             <TextView
                 android:id="@+id/detailsSpecificationsHeader"
+                android:paddingBottom="0dp"
+                style="@style/HeaderText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
@@ -137,9 +139,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="50"
-                android:padding="16dp" />
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/addToCartButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="Add to Cart"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        app:backgroundTint="@null" />
 
 </LinearLayout>

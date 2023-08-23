@@ -32,6 +32,7 @@
                 android:id="@+id/specificationValue"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:padding="5dp" />
         </LinearLayout>
 
