@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.user.User;
@@ -109,18 +110,22 @@ public class LoginFragment extends Fragment {
                     if (task.isSuccessful()) {
                         Map<String, Object> docData = task.getResult().getData();
                         Intent intent = new Intent(requireContext(), MainActivity.class);
-//
+
+                        // login success
                         if (isLoggingIn && task.getResult().exists() && docData.get("password").toString().equals(user.getPassword())) {
                             User.setCurrentUser(user);
                             startActivity(intent);
-                        } else if (!isLoggingIn && !task.getResult().exists())   {
+                            // Inside your activity or fragment
+                            Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_LONG).show();
+                        } else if (!isLoggingIn && !task.getResult().exists())   { // register success
                             dbSetter.addUser(user, true);
                             User.setCurrentUser(user);
                             startActivity(intent);
-                        } else if (isLoggingIn){
+                            Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_LONG).show();
+                        } else if (isLoggingIn){ //login fail
                             displayMessageTextView.setText("Invalid password or username,\n please try again.");
                             displayMessageTextView.setVisibility(VISIBLE);
-                        } else {
+                        } else { // register fail
                             displayMessageTextView.setText("Username already in use,\n please try a different one.");
                             displayMessageTextView.setVisibility(VISIBLE);
                         }
