@@ -1,17 +1,15 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Brand;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.Socket;
 
 import java.util.HashMap;
 
 public class PSU extends Item {
 
-    private Brand brand;
+    private String brand;
 
-    private int wattage;
+    private String wattage;
 
     public PSU() {
         Details details = new Details();
@@ -19,32 +17,20 @@ public class PSU extends Item {
         this.setDetails(details);
     }
 
-    private Brand getBrand() {
+    private String getBrand() {
         return brand;
     }
 
-    private void setBrand(Brand brand) {
+    private void setBrand(String brand) {
         this.brand = brand;
     }
 
-    private int getWattage() {
+    private String getWattage() {
         return wattage;
     }
 
-    private void setWattage(int wattage) {
+    private void setWattage(String wattage) {
         this.wattage = wattage;
     }
 
-    public HashMap<String,String> getSpecifications() {
-        HashMap<String,String> specifications = new HashMap<String,String>();
-        specifications.put("Brand", brand.toString());
-        specifications.put("Rated capacity", String.valueOf(wattage));
-
-        return specifications;
-    }
-
-    public void setSpecifications(HashMap<String,String> specifications) {
-        brand = Brand.valueOf(specifications.get("Brand"));
-        wattage = Integer.parseInt(specifications.get("Rated capacity"));
-    }
 }

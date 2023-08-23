@@ -1,17 +1,15 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Brand;
 import com.example.techswap.item.Details;
-import com.example.techswap.item.FormFactor;
 import com.example.techswap.item.Item;
 
 import java.util.HashMap;
 
 public class Case extends Item {
 
-    private Brand brand;
+    private String brand;
 
-    private FormFactor formFactor;
+    private String formFactor;
 
     public Case() {
         Details details = new Details();
@@ -19,32 +17,20 @@ public class Case extends Item {
         this.setDetails(details);
     }
 
-    private Brand getBrand() {
+    private String getBrand() {
         return brand;
     }
 
-    private void setBrand(Brand brand) {
+    private void setBrand(String brand) {
         this.brand = brand;
     }
 
-    private FormFactor getFormFactor() {
+    private String getFormFactor() {
         return formFactor;
     }
 
-    private void setFormFactor(FormFactor formFactor) {
+    private void setFormFactor(String formFactor) {
         this.formFactor = formFactor;
     }
 
-    public HashMap<String,String> getSpecifications() {
-        HashMap<String,String> specifications = new HashMap<String,String>();
-        specifications.put("Brand", brand.toString());
-        specifications.put("Form factor", formFactor.toString());
-
-        return specifications;
-    }
-
-    public void setSpecifications(HashMap<String,String> specifications) {
-        brand = Brand.valueOf(specifications.get("Brand"));
-        formFactor = FormFactor.valueOf(specifications.get("Form factor"));
-    }
 }

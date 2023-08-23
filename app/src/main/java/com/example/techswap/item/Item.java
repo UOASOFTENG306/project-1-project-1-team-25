@@ -51,10 +51,6 @@ public abstract class Item implements Serializable {
         this.details = details;
     }
 
-    public abstract HashMap<String,String> getSpecifications();
-
-    public abstract void setSpecifications(HashMap<String,String> specifications);
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

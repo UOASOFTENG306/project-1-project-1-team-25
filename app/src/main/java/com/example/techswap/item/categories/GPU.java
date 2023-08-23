@@ -1,22 +1,19 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Brand;
 import com.example.techswap.item.Details;
-import com.example.techswap.item.GPUModel;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.Socket;
 
 import java.util.HashMap;
 
 public class GPU extends Item {
 
-    private Brand brand;
+    private String brand;
 
-    private GPUModel model;
+    private String model;
 
-    private int memorySizeGB;
+    private String memorySizeGB;
 
-    private int clockSpeedMHz;
+    private String clockSpeedMHz;
 
     public GPU() {
         Details details = new Details();
@@ -24,53 +21,36 @@ public class GPU extends Item {
         this.setDetails(details);
     }
 
-    private Brand getBrand() {
+    private String getBrand() {
         return brand;
     }
 
-    private void setBrand(Brand brand) {
+    private void setBrand(String brand) {
         this.brand = brand;
     }
 
-    private GPUModel getModel() {
+    private String getModel() {
         return model;
     }
 
-    private void setModel(GPUModel model) {
+    private void setModel(String model) {
         this.model = model;
     }
 
-    private int getMemorySizeGB() {
+    private String getMemorySizeGB() {
         return memorySizeGB;
     }
 
-    private void setMemorySizeGB(int memorySizeGB) {
+    private void setMemorySizeGB(String memorySizeGB) {
         this.memorySizeGB = memorySizeGB;
     }
 
-    private int getClockSpeedMHz() {
+    private String getClockSpeedMHz() {
         return clockSpeedMHz;
     }
 
-    private void setClockSpeedMHz(int clockSpeedMHz) {
+    private void setClockSpeedMHz(String clockSpeedMHz) {
         this.clockSpeedMHz = clockSpeedMHz;
-    }
-
-    public HashMap<String,String> getSpecifications() {
-        HashMap<String,String> specifications = new HashMap<String,String>();
-        specifications.put("Brand", brand.toString());
-        specifications.put("Model", model.toString());
-        specifications.put("Memory size", String.valueOf(memorySizeGB));
-        specifications.put("Clock speed", String.valueOf(clockSpeedMHz));
-
-        return specifications;
-    }
-
-    public void setSpecifications(HashMap<String,String> specifications) {
-        brand = Brand.valueOf(specifications.get("Brand"));
-        model = GPUModel.valueOf(specifications.get("Model"));
-        memorySizeGB = Integer.parseInt(specifications.get("Memory size"));
-        clockSpeedMHz = Integer.parseInt(specifications.get("Clock speed"));
     }
 
 }
