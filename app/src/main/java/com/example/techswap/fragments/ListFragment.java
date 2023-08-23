@@ -109,7 +109,7 @@ public class ListFragment extends Fragment {
 
     public void fetchItems(String categoryName) {
         FirebaseFirestore.getInstance().collection("items")
-                .whereEqualTo("category_id", categoryName).orderBy("title").limit(6)
+                .whereEqualTo("category_id", categoryName).orderBy("title").limit(10)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
