@@ -19,6 +19,8 @@ import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.database.DatabaseUtils;
+import com.example.techswap.item.Details;
+import com.example.techswap.item.categories.CPU;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -99,6 +101,15 @@ public class MainFragment extends Fragment {
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
         bestSellersAdapter.setContext(requireContext());
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
+
+        List<Item> items = new ArrayList<>();
+        CPU cpu = new CPU();
+        for(int i = 0; i<7 ; i++) {
+            items.add(cpu);
+        }
+
+        setDeals(items);
+        setBestSellers(items);
 
         return rootView;
     }
