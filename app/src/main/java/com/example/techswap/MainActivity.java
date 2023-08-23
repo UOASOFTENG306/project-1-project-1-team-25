@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -123,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
         // listener for search action
         searchBar.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH && event.getAction() == KeyEvent.ACTION_DOWN) {
                 performSearch(searchBar.getText().toString());
                 return true;
             }
@@ -136,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         ListFragment fragment = ListFragment.listSearch(searchQuery);
 
         // Start a fragment transaction
+        Log.println(Log.INFO, "bruh", "why");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.replace(R.id.mainFragmentContainer, fragment);
