@@ -25,12 +25,18 @@
     <!-- Button style for active state -->
     <style name="ActiveLoginSwitchButton" parent="ButtonStyle">
         <item name="android:textColor">#000000</item>
+        <item name="android:textSize">16sp</item> <!-- Adjust the text size as needed -->
+
+        <item name="android:padding">11dp</item>
         <item name="android:background">@drawable/active_button_style</item>
     </style>
 
     <!-- Button style for inactive state -->
     <style name="InactiveLoginSwitchButton" parent="ButtonStyle">
         <item name="android:textColor">#000000</item>
+        <item name="android:textSize">16sp</item> <!-- Adjust the text size as needed -->
+
+        <item name="android:padding">11dp</item>
         <item name="android:background">@drawable/inactive_button_style</item>
     </style>
 
@@ -66,7 +72,14 @@
         <item name="android:textColor">#000000</item>
         <item name="android:padding">12dp</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:background">@drawable/input_bubble_edittext</item>
     </style>
 
+
+    <style name="DefaultButton">
+        <item name="android:textSize">17sp</item> <!-- Adjust the text size as needed -->
+        <item name="android:textColor">#FFFFFF</item> <!-- Text color (white in this example) -->
+        <item name="android:padding">12dp</item>
+    </style>
 </resources>
