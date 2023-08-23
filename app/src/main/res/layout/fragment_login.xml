@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="60dp"
             android:padding="16dp"
             android:orientation="vertical">
@@ -53,12 +53,21 @@
                     app:backgroundTint="@null" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/usernameHeader"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:padding="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="Username" />
             <EditText
                 android:id="@+id/username_input_view"
                 style="@style/CustomEditTextStyle"
                 android:layout_width="match_parent"
 
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="2dp"
                 android:background="@drawable/input_bubble_edittext"
                 android:hint="@string/username"
                 android:inputType="text"
@@ -66,12 +75,21 @@
                 android:textColor="#000000"
                 android:imeOptions="actionNext" />
 
+            <TextView
+                android:id="@+id/passwordHeader"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:padding="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Password" />
             <EditText
                 android:id="@+id/password_input_view"
                 style="@style/CustomEditTextStyle"
                 android:layout_width="match_parent"
 
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="2dp"
 
                 android:background="@drawable/input_bubble_edittext"
                 android:hint="@string/password"
@@ -95,7 +113,7 @@
             <Button
                 android:id="@+id/confirm_button"
                 style="@style/DefaultButton"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
