@@ -140,6 +140,8 @@ public class SellActivity extends AppCompatActivity {
     private void uploadImage() {
         if (imageUri != null) {
             StorageReference reference = storage.getReference().child("images/" + UUID.randomUUID().toString());
+            imageUrlList.add("https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg");
+            sellImageAdapter.updateImages(imageUrlList);
 
             reference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -150,6 +152,7 @@ public class SellActivity extends AppCompatActivity {
                             public void onSuccess(Uri uri) {
                                 String imageUrl = uri.toString();
                                 // urlList gets added as firestore field
+                                imageUrlList.remove(imageUrlList.size() - 1);
                                 imageUrlList.add(imageUrl);
                                 sellImageAdapter.updateImages(imageUrlList);
                                 // TODO: Set image on sell activity, use URL somewhere
