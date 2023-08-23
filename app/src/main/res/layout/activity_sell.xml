@@ -90,6 +90,8 @@
 
                     <EditText
                         android:id="@+id/titleInput"
+                        style="@style/CustomEditTextStyle"
+
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:ems="10"
@@ -107,6 +109,8 @@
 
                     <EditText
                         android:id="@+id/subtitleInput"
+                        style="@style/CustomEditTextStyle"
+
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:ems="10"
@@ -124,6 +128,8 @@
 
                     <EditText
                         android:id="@+id/descriptionInput"
+                        style="@style/CustomEditTextStyle"
+
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:ems="10"
@@ -142,6 +148,8 @@
 
                     <EditText
                         android:id="@+id/priceInput"
+                        style="@style/CustomEditTextStyle"
+                        android:background="@drawable/input_bubble_edittext"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:ems="10"
