@@ -52,10 +52,12 @@ public class CPU extends Item {
 
     @Override
     public void setSpecifications(List<String> valuesList) {
-        brand = valuesList.get(0);
-        socket = valuesList.get(1);
-        clockSpeedMHz = valuesList.get(2);
-        numCores = valuesList.get(3);
+        if (valuesList.size() == 4) {
+            brand = valuesList.get(0);
+            socket = valuesList.get(1);
+            clockSpeedMHz = valuesList.get(2);
+            numCores = valuesList.get(3);
+        }
     }
 
 }

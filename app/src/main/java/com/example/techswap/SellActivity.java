@@ -99,27 +99,33 @@ public class SellActivity extends AppCompatActivity {
         listItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemFactory factory = new ItemFactory();
-                Item item = factory.getItem(categorySpinner.getSelectedItem().toString());
+                if (titleInput.getText().toString().equals("") || subtitleInput.getText().toString().equals("") || descriptionInput.getText().toString().equals("") || priceInput.getText().toString().equals("")) {
+                    return;
 
-                Details details = item.getDetails();
-                details.setTitle(titleInput.getText().toString());
-                details.setSubtitle(subtitleInput.getText().toString());
-                details.setDescription(descriptionInput.getText().toString());
-                details.setPrice(Double.parseDouble(priceInput.getText().toString()));
+                } else {
 
-                item.setDetails(details);
-                item.setImageUrls(imageUrlList);
+                    ItemFactory factory = new ItemFactory();
+                    Item item = factory.getItem(categorySpinner.getSelectedItem().toString());
 
-                UUID uuid = UUID.randomUUID();
-                item.setId(uuid.toString());
+                    Details details = item.getDetails();
+                    details.setTitle(titleInput.getText().toString());
+                    details.setSubtitle(subtitleInput.getText().toString());
+                    details.setDescription(descriptionInput.getText().toString());
+                    details.setPrice(Double.parseDouble(priceInput.getText().toString()));
 
-                DatabaseSetter db = new DatabaseSetter();
-                db.addItem(item);
+                    item.setDetails(details);
+                    item.setImageUrls(imageUrlList);
 
-                // switch to another activity
-                Intent intent = new Intent(SellActivity.this, MainActivity.class);
-                startActivity(intent);
+                    UUID uuid = UUID.randomUUID();
+                    item.setId(uuid.toString());
+
+                    DatabaseSetter db = new DatabaseSetter();
+                    db.addItem(item);
+
+                    // switch to another activity
+                    Intent intent = new Intent(SellActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -134,6 +140,8 @@ public class SellActivity extends AppCompatActivity {
     private void uploadImage() {
         if (imageUri != null) {
             StorageReference reference = storage.getReference().child("images/" + UUID.randomUUID().toString());
+            imageUrlList.add("https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg");
+            sellImageAdapter.updateImages(imageUrlList);
 
             reference.putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -144,6 +152,7 @@ public class SellActivity extends AppCompatActivity {
                             public void onSuccess(Uri uri) {
                                 String imageUrl = uri.toString();
                                 // urlList gets added as firestore field
+                                imageUrlList.remove(imageUrlList.size() - 1);
                                 imageUrlList.add(imageUrl);
                                 sellImageAdapter.updateImages(imageUrlList);
                                 // TODO: Set image on sell activity, use URL somewhere

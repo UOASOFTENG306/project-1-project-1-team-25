@@ -99,8 +99,18 @@ public class LoginFragment extends Fragment {
     }
 
     private void onViewConfirm() {
-        User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
-        fetchUser(currentUser, isLogin);
+        if (usernameInput.getText().toString().equals("") || passwordInput.getText().toString().equals("")) {
+            if (isLogin){ //login fail
+                displayMessageTextView.setText("Invalid password or username,\n please try again.");
+                displayMessageTextView.setVisibility(VISIBLE);
+            } else { // register fail
+                displayMessageTextView.setText("Username already in use,\n please try a different one.");
+                displayMessageTextView.setVisibility(VISIBLE);
+            }
+        } else {
+            User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
+            fetchUser(currentUser, isLogin);
+        }
     }
 
     private void fetchUser(User user, boolean isLoggingIn) {

@@ -41,7 +41,10 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
 
     @Override
     public int getItemCount() {
-        return specificationList.size();
+        if (specificationList.get(0).equals("")) {
+            return 0;
+        }
+        return Integer.min(specificationList.size(), valueList.size());
     }
 
     public class SpecificationViewHolder extends RecyclerView.ViewHolder {
