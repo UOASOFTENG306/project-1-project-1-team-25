@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,7 +78,7 @@ public class DatabaseSetter {
 
         data.put("item_id", item.getId());
         data.put("category_id", details.getCategory());
-        data.put("search_title", details.getSearchTitle());
+        data.put("search_title", details.getTitle().toLowerCase());
 
         data.put("title", details.getTitle());
         data.put("subtitle", details.getSubtitle());
@@ -86,6 +87,11 @@ public class DatabaseSetter {
         data.put("price", details.getPrice());
         data.put("quantity", details.getQuantity());
         data.put("images", item.getImageUrls());
+
+        String[] stringArray = new String[] { "", "", "", "", "" };
+
+        data.put("specifications", Arrays.asList(stringArray));
+        data.put("specifications_id", Arrays.asList(stringArray));
 
         database.collection("items").document(String.valueOf(item.getId())).set(data);
     }
