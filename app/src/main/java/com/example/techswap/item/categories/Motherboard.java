@@ -1,6 +1,7 @@
 package com.example.techswap.item.categories;
 
 import com.example.techswap.item.Brand;
+import com.example.techswap.item.Details;
 import com.example.techswap.item.FormFactor;
 import com.example.techswap.item.GPUModel;
 import com.example.techswap.item.Item;
@@ -19,6 +20,9 @@ public class Motherboard extends Item {
     private FormFactor formFactor;
 
     public Motherboard() {
+        Details details = new Details();
+        details.setCategory("Motherboard");
+        this.setDetails(details);
     }
 
     private Brand getBrand() {
