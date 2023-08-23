@@ -25,13 +25,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements CarouselAdapter.AdapterCallback {
 
     private FragmentCartBinding binding;
-    private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM);
+    private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private final List<Item> itemList = new ArrayList<>();
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
 
@@ -52,6 +53,7 @@ public class CartFragment extends Fragment {
 
         if (User.getCurrentUser() != null){
             fetchCart();
+            setItems(itemList);
         }
 
         binding.checkoutButton.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +98,7 @@ public class CartFragment extends Fragment {
     }
 
     private void fetchCartItems(ArrayList<String> cartData) {
-        if (cartData.size() > 0) {
+        if (cartData != null && cartData.size() > 0) {
             FirebaseFirestore.getInstance().collection("items")
                     .whereIn("item_id", cartData)
                     .get()
@@ -115,6 +117,29 @@ public class CartFragment extends Fragment {
 
     public void setItems(List<Item> items) {
         adapter.updateData(items);
+        Double total = new Double(0), gst, subTotal;
+
+        for (Item item : items){
+            total += item.getDetails().getPrice();
+        }
+
+        subTotal = total * 0.85;
+        gst = total - subTotal;
+
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setMaximumFractionDigits(2);
+
+        String totalString = "$" + df.format(total);
+        String subtotalString = "$" + df.format(subTotal);
+        String gstString = "$" + df.format(gst);
+
+        binding.cartTotal.setText(totalString);
+        binding.subtotalPriceText.setText(subtotalString);
+        binding.feesPriceText.setText(gstString);
     }
 
+    @Override
+    public void onAdapterItemClick(List<Item> items) {
+        setItems(items);
+    }
 }

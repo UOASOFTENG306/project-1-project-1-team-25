@@ -50,7 +50,6 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="12dp"
                     android:gravity="center"
-                    android:onClick="onLogoClick"
                     android:text="List an Item"
                     android:textAllCaps="false"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
@@ -225,14 +224,15 @@
                         <Button
                             android:id="@+id/removeImageButton"
                             style="@style/DefaultButton"
-                            android:background="@drawable/rounded_button"
-                            app:backgroundTint="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
-                            android:text="Remove Image" />
+                            android:background="@drawable/rounded_button"
+                            android:text="Remove Image"
+                            android:visibility="gone"
+                            app:backgroundTint="@null" />
                     </LinearLayout>
 
                 </LinearLayout>
