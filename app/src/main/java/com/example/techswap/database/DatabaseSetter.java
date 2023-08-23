@@ -81,25 +81,13 @@ public class DatabaseSetter {
 
         data.put("title", details.getTitle());
         data.put("subtitle", details.getSubtitle());
-        data.put("search_title", details.getTitle());
 
         data.put("description", details.getDescription());
         data.put("price", details.getPrice());
         data.put("quantity", details.getQuantity());
         data.put("images", item.getImageUrls());
 
-//        Map<String, String> specifications = item.getSpecifications();
-
         database.collection("items").document(String.valueOf(item.getId())).set(data);
-//        database.collection("items").document(String.valueOf(item.getId())).collection("specifications").document("specifications").set(specifications);
-    }
-
-    /**
-     * Removes a specified item instance in the Firestore DB
-     */
-    public void removeItem(int id) {
-        // TODO: Delete item from all carts containing it
-        database.collection("items").document(String.valueOf(id)).delete();
     }
 
 }
