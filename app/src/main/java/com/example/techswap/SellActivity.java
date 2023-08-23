@@ -22,7 +22,7 @@ import com.example.techswap.adapters.SellImageAdapter;
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.categories.ItemFactory;
+import com.example.techswap.item.ItemFactory;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

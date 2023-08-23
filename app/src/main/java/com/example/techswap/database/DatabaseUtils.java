@@ -2,7 +2,7 @@ package com.example.techswap.database;
 
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.categories.ItemFactory;
+import com.example.techswap.item.ItemFactory;
 
 import java.util.List;
 import java.util.Map;
