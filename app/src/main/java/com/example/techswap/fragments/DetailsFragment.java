@@ -32,6 +32,7 @@ import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -71,7 +72,12 @@ public class DetailsFragment extends Fragment {
             // set field text
             binding.detailsTitle.setText(item.getDetails().getTitle());
             binding.detailsSubtitle.setText(item.getDetails().getSubtitle());
-            binding.detailsPrice.setText("$" + item.getDetails().getPrice());
+
+            DecimalFormat df = new DecimalFormat("0.00");
+            df.setMaximumFractionDigits(2);
+            String price = "$" + df.format(item.getDetails().getPrice());
+
+            binding.detailsPrice.setText(price);
             binding.detailsDescription.setText(item.getDetails().getDescription());
 
             // specifications recycler view
@@ -128,7 +134,15 @@ public class DetailsFragment extends Fragment {
         });
 
         if (User.getCurrentUser() != null) {
-            binding.addToCartButton.setVisibility(VISIBLE);
+            binding.addToCartButton.setEnabled(true);
+            binding.addToCartButton.setBackgroundResource(R.drawable.rounded_button);
+            binding.addToCartButton.setText("Add to Cart");
+            binding.addToCartButton.setTextSize(16);
+        } else {
+            binding.addToCartButton.setEnabled(false);
+            binding.addToCartButton.setBackgroundResource(R.drawable.rounded_button_grey);
+            binding.addToCartButton.setText("Sign in to Purchase");
+            binding.addToCartButton.setTextSize(14);
         }
 
         binding.addToCartButton.setOnClickListener(new View.OnClickListener() {

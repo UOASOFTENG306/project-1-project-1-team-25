@@ -26,6 +26,7 @@ import com.example.techswap.fragments.MainFragment;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.CPU;
+import com.example.techswap.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView logoText;
     private ImageView userIcon;
     private ImageView searchIcon;
+    private ImageView cartIcon;
     private EditText searchBar;
     private Animation fadeInAnimation;
     private Animation fadeOutAnimation;
@@ -50,14 +52,13 @@ public class MainActivity extends AppCompatActivity {
         userIcon = findViewById(R.id.userIcon);
         searchIcon = findViewById(R.id.searchIcon);
         searchBar = findViewById(R.id.searchBar);
+        cartIcon = findViewById(R.id.cartIcon);
+
+        if (User.getCurrentUser() == null) {
+            cartIcon.setVisibility(View.GONE);
+        }
 
         fragmentContainer = findViewById(R.id.mainFragmentContainer);
-
-        // change status bar color
-        Window window = this.getWindow();
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//        window.setStatusBarColor(this.getResources().getColor(R.color.main));
 
         fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in2);
         fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out);

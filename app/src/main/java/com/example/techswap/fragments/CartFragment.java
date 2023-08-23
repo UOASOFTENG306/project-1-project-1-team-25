@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,14 +27,15 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartFragment extends Fragment {
+public class CartFragment extends Fragment implements CarouselAdapter.AdapterCallback {
 
     private FragmentCartBinding binding;
-    private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM);
-    private final List<Item> itemList = new ArrayList<>();
+    private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
+    private static final List<Item> itemList = new ArrayList<>();
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
 
     @Override
@@ -50,22 +53,9 @@ public class CartFragment extends Fragment {
         adapter.setContext(requireContext());
         recyclerView.setAdapter(adapter);
 
-        List<Item> items = new ArrayList<>();
-        CPU cpu = new CPU();
-        Details details = new Details();
-        details.setTitle("Wow");
-        details.setPrice(99.99);
-        cpu.setDetails(details);
-        for (int i = 0; i < 7; i++) {
-            items.add(cpu);
-        }
-
-        setItems(items);
-
         if (User.getCurrentUser() != null){
             fetchCart();
-        } else{
-            System.out.println("NULULUUUL");
+            setItems(itemList);
         }
 
         binding.checkoutButton.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +72,9 @@ public class CartFragment extends Fragment {
     private void onCheckout() {
         DatabaseSetter db = new DatabaseSetter();
         db.clearCart(User.getCurrentUser().getUsername());
+        itemList.clear();
+        setItems(itemList);
+        Toast.makeText(requireContext(), "Checkout complete", Toast.LENGTH_LONG).show();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -110,12 +103,13 @@ public class CartFragment extends Fragment {
     }
 
     private void fetchCartItems(ArrayList<String> cartData) {
-        if (cartData.size() > 0) {
+        if (cartData != null && cartData.size() > 0) {
             FirebaseFirestore.getInstance().collection("items")
                     .whereIn("item_id", cartData)
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            itemList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 itemList.add(databaseUtils.mapToItem(document.getData()));
                             }
@@ -129,6 +123,29 @@ public class CartFragment extends Fragment {
 
     public void setItems(List<Item> items) {
         adapter.updateData(items);
+        Double total = new Double(0), gst, subTotal;
+
+        for (Item item : items){
+            total += item.getDetails().getPrice();
+        }
+
+        subTotal = total * 0.85;
+        gst = total - subTotal;
+
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setMaximumFractionDigits(2);
+
+        String totalString = "$" + df.format(total);
+        String subtotalString = "$" + df.format(subTotal);
+        String gstString = "$" + df.format(gst);
+
+        binding.cartTotal.setText(totalString);
+        binding.subtotalPriceText.setText(subtotalString);
+        binding.feesPriceText.setText(gstString);
     }
 
+    @Override
+    public void onAdapterItemClick(List<Item> items) {
+        setItems(items);
+    }
 }

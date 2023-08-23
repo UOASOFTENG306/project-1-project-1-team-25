@@ -83,7 +83,7 @@
                 app:srcCompat="@drawable/user" />
 
             <ImageView
-                android:id="@+id/cartView"
+                android:id="@+id/cartIcon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="3dp"

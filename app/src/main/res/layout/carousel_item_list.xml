@@ -36,10 +36,13 @@
             android:id="@+id/captionText"
             style="@style/TitleText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
             android:gravity="start"
             android:text="Item Caption"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:maxLines="1" />
 
         <TextView
             android:id="@+id/descriptionText"
@@ -49,7 +52,10 @@
             android:gravity="start"
             android:paddingTop="5dp"
             android:text="Item Caption"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:maxLines="1" />
 
         <TextView
             android:id="@+id/priceText"
@@ -59,7 +65,10 @@
             android:layout_gravity="top"
             android:gravity="bottom|end"
             android:text="Item Caption"
-            android:textAlignment="textEnd" />
+            android:textAlignment="textEnd"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:maxLines="1" />
 
         <!--        <ImageButton-->
         <!--            android:id="@+id/imageButton"-->

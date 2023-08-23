@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,11 +15,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.fragments.DetailsFragment;
 import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.R;
 import com.example.techswap.item.Item;
+import com.example.techswap.user.User;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,17 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public enum CarouselType {
         CATEGORY, HORIZONTAL_ITEM, LIST_ITEM, LARGE_LIST_ITEM, CART_ITEM
+    }
+    private AdapterCallback callback;
+
+    public CarouselAdapter(CarouselType carouselType, AdapterCallback callback) {
+        this.imageUrlList = new ArrayList<>();
+        this.titleList = new ArrayList<>();
+        this.subtitleList = new ArrayList<>();
+        this.priceList = new ArrayList<>();
+        this.itemList = new ArrayList<>();
+        this.carouselType = carouselType;
+        this.callback = callback;
     }
 
     public CarouselAdapter(CarouselType carouselType) {
@@ -117,6 +132,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         String url = imageUrlList.get(position);
+        String priceString;
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setMaximumFractionDigits(2);
 
         if (carouselType == CarouselType.CATEGORY) {
             CarouselViewHolderCategory viewHolder = (CarouselViewHolderCategory) holder;
@@ -127,7 +145,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (carouselType == CarouselType.HORIZONTAL_ITEM) {
             CarouselViewHolderHorizontalItem viewHolder = (CarouselViewHolderHorizontalItem) holder;
             viewHolder.titleText.setText(titleList.get(position));
-            viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            priceString = "$" + df.format(priceList.get(position));
+            viewHolder.priceText.setText(priceString);
 
             Glide.with(context).load(url).into(viewHolder.carouselImage);
 
@@ -135,17 +155,33 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             CarouselViewHolderListItem viewHolder = (CarouselViewHolderListItem) holder;
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.subtitleText.setText(subtitleList.get(position));
-            viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            priceString = "$" + df.format(priceList.get(position));
+            viewHolder.priceText.setText(priceString);
 
             Glide.with(context).load(url).into(viewHolder.carouselImage);
 
         } else if (carouselType == CarouselType.CART_ITEM) {
             CarouselViewHolderCartItem viewHolder = (CarouselViewHolderCartItem) holder;
             viewHolder.titleText.setText(titleList.get(position));
-            viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            priceString = "$" + df.format(priceList.get(position));
+            viewHolder.priceText.setText(priceString);
 
             Glide.with(context).load(url).into(viewHolder.carouselImage);
 
+            viewHolder.removeFromCartButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int clickedPosition = viewHolder.getAdapterPosition();
+                    DatabaseSetter db = new DatabaseSetter();
+                    db.addRemoveItemToCart(User.getCurrentUser().getUsername(), itemList.get(clickedPosition).getId().toString(), false);
+                    itemList.remove(clickedPosition);
+                    if (callback != null) {
+                        callback.onAdapterItemClick(itemList);
+                    }
+                }
+            });
         }
 
         // Set OnClickListener for the item view
@@ -255,12 +291,14 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ImageView carouselImage;
         TextView titleText;
         TextView priceText;
+        Button removeFromCartButton;
 
         public CarouselViewHolderCartItem(@NonNull View itemView) {
             super(itemView);
             carouselImage = itemView.findViewById(R.id.itemImage);
             titleText = itemView.findViewById(R.id.itemTitle);
             priceText = itemView.findViewById(R.id.itemPrice);
+            removeFromCartButton = itemView.findViewById(R.id.removeFromCartButton);
         }
     }
 
@@ -288,5 +326,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    public interface AdapterCallback {
+        void onAdapterItemClick(List<Item> items);
     }
 }
