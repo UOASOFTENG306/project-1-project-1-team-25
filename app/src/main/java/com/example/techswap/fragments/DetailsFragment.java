@@ -80,7 +80,6 @@ public class DetailsFragment extends Fragment {
             recyclerView.setLayoutManager(layoutManager);
 
             List<String> specificationList = item.getSpecificationsTitleList();
-
             List<String> valueList = item.getSpecifications();
 
             SpecificationAdapter adapter = new SpecificationAdapter(specificationList, valueList);
