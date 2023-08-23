@@ -19,6 +19,7 @@ import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.R;
 import com.example.techswap.item.Item;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,6 +118,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         String url = imageUrlList.get(position);
+        String priceString;
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.setMaximumFractionDigits(2);
 
         if (carouselType == CarouselType.CATEGORY) {
             CarouselViewHolderCategory viewHolder = (CarouselViewHolderCategory) holder;
@@ -127,7 +131,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         } else if (carouselType == CarouselType.HORIZONTAL_ITEM) {
             CarouselViewHolderHorizontalItem viewHolder = (CarouselViewHolderHorizontalItem) holder;
             viewHolder.titleText.setText(titleList.get(position));
-            viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            priceString = "$" + df.format(priceList.get(position));
+            viewHolder.priceText.setText(priceString);
 
             Glide.with(context).load(url).into(viewHolder.carouselImage);
 
@@ -135,14 +141,18 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             CarouselViewHolderListItem viewHolder = (CarouselViewHolderListItem) holder;
             viewHolder.titleText.setText(titleList.get(position));
             viewHolder.subtitleText.setText(subtitleList.get(position));
-            viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            priceString = "$" + df.format(priceList.get(position));
+            viewHolder.priceText.setText(priceString);
 
             Glide.with(context).load(url).into(viewHolder.carouselImage);
 
         } else if (carouselType == CarouselType.CART_ITEM) {
             CarouselViewHolderCartItem viewHolder = (CarouselViewHolderCartItem) holder;
             viewHolder.titleText.setText(titleList.get(position));
-            viewHolder.priceText.setText("$" + priceList.get(position).toString());
+
+            priceString = "$" + df.format(priceList.get(position));
+            viewHolder.priceText.setText(priceString);
 
             Glide.with(context).load(url).into(viewHolder.carouselImage);
 

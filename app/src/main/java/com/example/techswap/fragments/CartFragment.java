@@ -50,22 +50,8 @@ public class CartFragment extends Fragment {
         adapter.setContext(requireContext());
         recyclerView.setAdapter(adapter);
 
-        List<Item> items = new ArrayList<>();
-        CPU cpu = new CPU();
-        Details details = new Details();
-        details.setTitle("Wow");
-        details.setPrice(99.99);
-        cpu.setDetails(details);
-        for (int i = 0; i < 7; i++) {
-            items.add(cpu);
-        }
-
-        setItems(items);
-
         if (User.getCurrentUser() != null){
             fetchCart();
-        } else{
-            System.out.println("NULULUUUL");
         }
 
         binding.checkoutButton.setOnClickListener(new View.OnClickListener() {
