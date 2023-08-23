@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,7 +35,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
 
     private FragmentCartBinding binding;
     private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
-    private final List<Item> itemList = new ArrayList<>();
+    private static final List<Item> itemList = new ArrayList<>();
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
 
     @Override
@@ -70,6 +72,9 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     private void onCheckout() {
         DatabaseSetter db = new DatabaseSetter();
         db.clearCart(User.getCurrentUser().getUsername());
+        itemList.clear();
+        setItems(itemList);
+        Toast.makeText(requireContext(), "Checkout complete", Toast.LENGTH_LONG).show();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -104,6 +109,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            itemList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 itemList.add(databaseUtils.mapToItem(document.getData()));
                             }

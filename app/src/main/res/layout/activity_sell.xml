@@ -212,14 +212,14 @@
                         <Button
                             android:id="@+id/addImageButton"
                             style="@style/DefaultButton"
-                            android:background="@drawable/rounded_button"
-                            app:backgroundTint="@null"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_weight="1"
-                            android:text="Add Image" />
+                            android:background="@drawable/rounded_button"
+                            android:text="Add Image"
+                            app:backgroundTint="@null" />
 
                         <Button
                             android:id="@+id/removeImageButton"
