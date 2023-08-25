@@ -18,14 +18,6 @@ public class PSU extends Item {
         this.setDetails(details);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getWattage() {
-        return wattage;
-    }
-
     @Override
     public List<String> getSpecifications() {
         List<String> valuesList = new ArrayList<>();

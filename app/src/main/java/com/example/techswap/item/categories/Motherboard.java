@@ -22,22 +22,6 @@ public class Motherboard extends Item {
         this.setDetails(details);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getSocket() {
-        return socket;
-    }
-
-    public String getRamSlots() {
-        return ramSlots;
-    }
-
-    public String getFormFactor() {
-        return formFactor;
-    }
-
     @Override
     public List<String> getSpecifications() {
         List<String> valuesList = new ArrayList<>();

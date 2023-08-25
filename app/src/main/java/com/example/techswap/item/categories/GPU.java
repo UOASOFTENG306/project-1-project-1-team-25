@@ -22,22 +22,6 @@ public class GPU extends Item {
         this.setDetails(details);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public String getMemorySizeGB() {
-        return memorySizeGB;
-    }
-
-    public String getClockSpeedMHz() {
-        return clockSpeedMHz;
-    }
-
     @Override
     public List<String> getSpecifications() {
         List<String> valuesList = new ArrayList<>();

@@ -20,18 +20,6 @@ public class Storage extends Item {
         this.setDetails(details);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String isSolidState() {
-        return isSolidState;
-    }
-
-    public String getCapacityGB() {
-        return capacityGB;
-    }
-
     @Override
     public List<String> getSpecifications() {
         List<String> valuesList = new ArrayList<>();

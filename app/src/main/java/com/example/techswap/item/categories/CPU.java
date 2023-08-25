@@ -22,22 +22,6 @@ public class CPU extends Item {
         this.setDetails(details);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getSocket() {
-        return socket;
-    }
-
-    public String getClockSpeedMHz() {
-        return clockSpeedMHz;
-    }
-
-    public String getNumCores() {
-        return numCores;
-    }
-
     @Override
     public List<String> getSpecifications() {
         List<String> valuesList = new ArrayList<>();

@@ -33,13 +33,4 @@ public class Case extends Item {
         formFactor = valuesList.get(1);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getFormFactor() {
-        return formFactor;
-    }
-
-
 }

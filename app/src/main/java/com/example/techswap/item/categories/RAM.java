@@ -24,26 +24,6 @@ public class RAM extends Item {
         this.setDetails(details);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getNumSticks() {
-        return numSticks;
-    }
-
-    public String getSingleCapacityGB() {
-        return singleCapacityGB;
-    }
-
-    public String getSpeedMHz() {
-        return speedMHz;
-    }
-
-    public String getLatencyCL() {
-        return latencyCL;
-    }
-
     @Override
     public List<String> getSpecifications() {
         List<String> valuesList = new ArrayList<>();

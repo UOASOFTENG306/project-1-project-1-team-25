@@ -35,7 +35,7 @@ public abstract class Item implements Serializable {
     }
     public String getFirstImageUrl() {
         if (this.imageUrls == null || this.imageUrls.size() == 0) {
-            return "https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png";
+            return "https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png"; // TODO: add resource for URL
         }
         return this.imageUrls.get(0);
     }
