@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.techswap.activities.MainActivity;
@@ -23,6 +24,7 @@ import com.example.techswap.user.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class LoginFragment extends Fragment {
 
@@ -32,7 +34,7 @@ public class LoginFragment extends Fragment {
     private Button registerButton;
     private Button loginButton;
     private Button confirmButton;
-    private DatabaseSetter dbSetter = new DatabaseSetter();
+    private final DatabaseSetter dbSetter = new DatabaseSetter();
     private boolean isLogin = true;
 
     @Override
@@ -47,26 +49,11 @@ public class LoginFragment extends Fragment {
         confirmButton = view.findViewById(R.id.confirm_button);
 
         // Set click listeners for buttons
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onViewRegister();
-            }
-        });
+        registerButton.setOnClickListener(v -> onViewRegister());
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onViewLogin();
-            }
-        });
+        loginButton.setOnClickListener(v -> onViewLogin());
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onViewConfirm();
-            }
-        });
+        confirmButton.setOnClickListener(v -> onViewConfirm());
 
         return view;
     }
@@ -75,24 +62,24 @@ public class LoginFragment extends Fragment {
     private void onViewRegister() {
         registerButton.setBackgroundResource(R.drawable.active_button_style);
         loginButton.setBackgroundResource(R.drawable.inactive_button_style);
-        registerButton.setTextColor(getResources().getColor(R.color.white));
-        loginButton.setTextColor(getResources().getColor(R.color.gray));
+        registerButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
+        loginButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray));
         displayMessageTextView.setVisibility(View.INVISIBLE);
         usernameInput.setText("");
         passwordInput.setText("");
-        confirmButton.setText("Create Account");
+        confirmButton.setText(R.string.create_account);
         isLogin = false;
     }
 
     private void onViewLogin() {
         registerButton.setBackgroundResource(R.drawable.inactive_button_style);
         loginButton.setBackgroundResource(R.drawable.active_button_style);
-        registerButton.setTextColor(getResources().getColor(R.color.gray));
-        loginButton.setTextColor(getResources().getColor(R.color.white));
+        registerButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray));
+        loginButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
         displayMessageTextView.setVisibility(View.INVISIBLE);
         usernameInput.setText("");
         passwordInput.setText("");
-        confirmButton.setText("Sign In");
+        confirmButton.setText(R.string.sign_in);
         isLogin = true;
     }
 
@@ -120,7 +107,7 @@ public class LoginFragment extends Fragment {
                         Intent intent = new Intent(requireContext(), MainActivity.class);
 
                         // login success
-                        if (isLoggingIn && task.getResult().exists() && docData.get("password").toString().equals(user.getPassword())) {
+                        if (isLoggingIn && task.getResult().exists() && Objects.requireNonNull(Objects.requireNonNull(docData).get("password")).toString().equals(user.getPassword())) {
                             User.setCurrentUser(user);
                             startActivity(intent);
                             // Inside your activity or fragment

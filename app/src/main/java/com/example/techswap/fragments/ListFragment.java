@@ -51,7 +51,7 @@ public class ListFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
@@ -64,7 +64,7 @@ public class ListFragment extends Fragment {
             if (category != null) {
                 fetchItems(category);
                 setHeader(category);
-                if (category == "GPU" || category == "Motherboard" || category == "Case") {
+                if (category.equals("GPU") || category.equals("Motherboard") || category.equals("Case")) {
                     carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LARGE_LIST_ITEM);
                 } else {
                     carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);

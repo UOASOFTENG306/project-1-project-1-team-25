@@ -46,7 +46,7 @@ public class DetailsFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
@@ -124,21 +124,16 @@ public class DetailsFragment extends Fragment {
         if (User.getCurrentUser() != null) {
             binding.addToCartButton.setEnabled(true);
             binding.addToCartButton.setBackgroundResource(R.drawable.rounded_button);
-            binding.addToCartButton.setText("Add to Cart");
+            binding.addToCartButton.setText(R.string.add_to_cart);
             binding.addToCartButton.setTextSize(16);
         } else {
             binding.addToCartButton.setEnabled(false);
             binding.addToCartButton.setBackgroundResource(R.drawable.rounded_button_grey);
-            binding.addToCartButton.setText("Sign in to Purchase");
+            binding.addToCartButton.setText(R.string.sign_in_to_purchase);
             binding.addToCartButton.setTextSize(14);
         }
 
-        binding.addToCartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onAddToCart();
-            }
-        });
+        binding.addToCartButton.setOnClickListener(v -> onAddToCart());
 
         return binding.getRoot();
 
@@ -146,7 +141,7 @@ public class DetailsFragment extends Fragment {
 
     private void onAddToCart() {
         DatabaseSetter db = new DatabaseSetter();
-        db.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId().toString(), true);
+        db.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId(), true);
 
         CartFragment fragment = new CartFragment();
         FragmentTransaction transaction = (getParentFragmentManager().beginTransaction());
