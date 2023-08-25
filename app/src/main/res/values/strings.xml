@@ -16,6 +16,7 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
 
     <!-- Strings used for headers and fragment content -->
     <!-- Main -->
@@ -30,9 +31,16 @@
     <!-- Details -->
     <string name="specifications_header">Specifications</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="sign_in_to_purchase">Sign in to Purchase</string>
+
     <!-- Cart -->
     <string name="cart_header">Your Cart</string>
     <string name="cart_checkout">Checkout</string>
+
+    <!-- Image URLs -->
+    <string name="image_placeholder">https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg</string>
+    <string name="image_transparent">https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png</string>
+
 
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,
@@ -41,6 +49,4 @@
         typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
         release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
         publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-    <string name="sign_in_to_purchase">Sign in to Purchase</string>
-    <string name="create_account">Create Account</string>
 </resources>

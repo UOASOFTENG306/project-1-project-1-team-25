@@ -114,7 +114,7 @@ public class SellActivity extends AppCompatActivity {
     private void uploadImage() {
         if (imageUri != null) {
             StorageReference reference = storage.getReference().child("images/" + UUID.randomUUID().toString());
-            imageUrlList.add("https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg"); // TODO: pull placeholder url from resource
+            imageUrlList.add(getResources().getString(R.string.image_placeholder));
             sellImageAdapter.updateImages(imageUrlList);
 
             reference.putFile(imageUri).addOnCompleteListener(task -> {
@@ -125,7 +125,6 @@ public class SellActivity extends AppCompatActivity {
                         imageUrlList.remove(imageUrlList.size() - 1);
                         imageUrlList.add(imageUrl);
                         sellImageAdapter.updateImages(imageUrlList);
-                        // TODO: Set image on sell activity, use URL somewhere
                     });
                 }
             });
