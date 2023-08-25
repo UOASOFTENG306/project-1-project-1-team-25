@@ -242,8 +242,8 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class CarouselViewHolderCategory extends RecyclerView.ViewHolder {
-        ImageView carouselImage;
-        TextView titleText;
+        final ImageView carouselImage;
+        final TextView titleText;
 
         public CarouselViewHolderCategory(@NonNull View itemView) {
             super(itemView);
@@ -253,9 +253,9 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class CarouselViewHolderHorizontalItem extends RecyclerView.ViewHolder {
-        ImageView carouselImage;
-        TextView titleText;
-        TextView priceText;
+        final ImageView carouselImage;
+        final TextView titleText;
+        final TextView priceText;
 
         public CarouselViewHolderHorizontalItem(@NonNull View itemView) {
             super(itemView);
@@ -266,10 +266,10 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class CarouselViewHolderListItem extends RecyclerView.ViewHolder {
-        ImageView carouselImage;
-        TextView titleText;
-        TextView subtitleText;
-        TextView priceText;
+        final ImageView carouselImage;
+        final TextView titleText;
+        final TextView subtitleText;
+        final TextView priceText;
 
         public CarouselViewHolderListItem(@NonNull View itemView) {
             super(itemView);
@@ -281,10 +281,10 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public static class CarouselViewHolderCartItem extends RecyclerView.ViewHolder {
-        ImageView carouselImage;
-        TextView titleText;
-        TextView priceText;
-        Button removeFromCartButton;
+        final ImageView carouselImage;
+        final TextView titleText;
+        final TextView priceText;
+        final Button removeFromCartButton;
 
         public CarouselViewHolderCartItem(@NonNull View itemView) {
             super(itemView);

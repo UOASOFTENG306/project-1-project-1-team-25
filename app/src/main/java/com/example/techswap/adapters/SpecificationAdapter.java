@@ -48,8 +48,8 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
     }
 
     public static class SpecificationViewHolder extends RecyclerView.ViewHolder {
-        TextView specificationText;
-        TextView valueText;
+        final TextView specificationText;
+        final TextView valueText;
 
         public SpecificationViewHolder(@NonNull View itemView) {
             super(itemView);

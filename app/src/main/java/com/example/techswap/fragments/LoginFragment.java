@@ -14,12 +14,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.techswap.activities.MainActivity;
 import com.example.techswap.R;
 import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.databinding.FragmentLoginBinding;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,15 +40,17 @@ public class LoginFragment extends Fragment {
     private boolean isLogin = true;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        usernameInput = view.findViewById(R.id.username_input_view);
-        passwordInput = view.findViewById(R.id.password_input_view);
-        displayMessageTextView = view.findViewById(R.id.successMessage);
-        loginButton = view.findViewById(R.id.login_view_button);
-        registerButton = view.findViewById(R.id.register_view_button);
-        confirmButton = view.findViewById(R.id.confirm_button);
+        FragmentLoginBinding binding = FragmentLoginBinding.inflate(inflater, container, false);
+        View viewRoot = binding.getRoot();
+
+        usernameInput = binding.usernameInputView;
+        passwordInput = binding.passwordInputView;
+        displayMessageTextView = binding.successMessage;
+        loginButton = binding.loginViewButton;
+        registerButton = binding.registerViewButton;
+        confirmButton = binding.confirmButton;
 
         // Set click listeners for buttons
         registerButton.setOnClickListener(v -> onViewRegister());
@@ -55,7 +59,7 @@ public class LoginFragment extends Fragment {
 
         confirmButton.setOnClickListener(v -> onViewConfirm());
 
-        return view;
+        return viewRoot;
     }
 
     // Handle switching between the register page and the login page

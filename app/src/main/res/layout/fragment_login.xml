@@ -23,7 +23,6 @@
             android:padding="16dp">
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -36,7 +35,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:onClick="onViewLogin"
                     android:text="@string/login"
                     android:textColor="#ffffff"
                     app:backgroundTint="@null" />
@@ -47,7 +45,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:onClick="onViewRegister"
                     android:text="@string/register"
                     android:textColor="#999999"
                     app:backgroundTint="@null" />

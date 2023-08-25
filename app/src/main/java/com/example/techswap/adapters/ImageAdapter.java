@@ -49,7 +49,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     }
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+        final ImageView image;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);

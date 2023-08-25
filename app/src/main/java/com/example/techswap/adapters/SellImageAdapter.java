@@ -51,7 +51,7 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
     }
 
     public static class ImageViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+        final ImageView image;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -39,7 +39,7 @@ public class SellActivity extends AppCompatActivity {
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private Uri imageUri;
     private final List<String> imageUrlList = new ArrayList<>();
-    SellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
+    final SellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +131,7 @@ public class SellActivity extends AppCompatActivity {
         }
     }
 
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult((new ActivityResultContracts.GetContent()),
+    final ActivityResultLauncher<String> mGetContent = registerForActivityResult((new ActivityResultContracts.GetContent()),
         new ActivityResultCallback<Uri>()   {
             @Override
             public void onActivityResult(Uri result) {
