@@ -125,9 +125,11 @@ public class MainActivity extends AppCompatActivity {
 
         // listener for search action
         searchBar.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH && event.getAction() == KeyEvent.ACTION_DOWN) {
-                performSearch(searchBar.getText().toString());
-                return true;
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                if (event == null || event.getAction() == KeyEvent.ACTION_DOWN) {
+                    performSearch(searchBar.getText().toString());
+                    return true;
+                }
             }
             return false;
         });
@@ -138,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         ListFragment fragment = ListFragment.listSearch(searchQuery);
 
         // Start a fragment transaction
-        Log.println(Log.INFO, "bruh", "why");
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.replace(R.id.mainFragmentContainer, fragment);
@@ -203,17 +204,6 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-
-            List<Item> items = new ArrayList<Item>();
-            CPU cpu = new CPU();
-            Details details = new Details();
-            details.setTitle("Wow");
-            details.setSubtitle("Amazing");
-            details.setPrice(99.99);
-            cpu.setDetails(details);
-            items.add(cpu);
-
-            fragment.setBestSellers(items);
 
             transaction.replace(R.id.mainFragmentContainer, fragment);
             transaction.addToBackStack(null);
