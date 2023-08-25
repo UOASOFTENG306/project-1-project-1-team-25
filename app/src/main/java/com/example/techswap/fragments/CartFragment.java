@@ -28,17 +28,18 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CartFragment extends Fragment implements CarouselAdapter.AdapterCallback {
 
     private FragmentCartBinding binding;
-    private CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
+    private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private static final List<Item> itemList = new ArrayList<>();
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
         binding = FragmentCartBinding.inflate(inflater, container, false);
@@ -56,12 +57,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
             setItems(itemList);
         }
 
-        binding.checkoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onCheckout();
-            }
-        });
+        binding.checkoutButton.setOnClickListener(v -> onCheckout());
 
         return view;  // Return the inflated view
     }
@@ -85,13 +81,14 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         binding = null;
     }
 
+    @SuppressWarnings("unchecked")
     public void fetchCart() {
         FirebaseFirestore.getInstance().collection("cart").document(User.getCurrentUser().getUsername())
                 .get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            ArrayList<String> cartData = (ArrayList<String>) document.getData().get("item_id");
+                            ArrayList<String> cartData = (ArrayList<String>) Objects.requireNonNull(document.getData()).get("item_id");
                             fetchCartItems(cartData);
                         }
                     } else {
@@ -121,7 +118,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
 
     public void setItems(List<Item> items) {
         adapter.updateData(items);
-        Double total = new Double(0), gst, subTotal;
+        double total = 0, gst, subTotal;
 
         for (Item item : items){
             total += item.getDetails().getPrice();

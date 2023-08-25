@@ -1,5 +1,6 @@
 package com.example.techswap.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,6 +63,7 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
         this.context = context;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateImages(List<String> imageUrlList) {
         this.imageUrlList = imageUrlList;
         Log.println(Log.INFO,"tag",imageUrlList.toString());

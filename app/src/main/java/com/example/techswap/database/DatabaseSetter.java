@@ -72,7 +72,6 @@ public class DatabaseSetter {
      * Creates an item instance in the Firestore DB
      */
     public void addItem(Item item) {
-        // TODO: Image uploads
         Map<String, Object> data = new HashMap<>();
         Details details = item.getDetails();
 

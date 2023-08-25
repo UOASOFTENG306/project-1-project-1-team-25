@@ -6,23 +6,38 @@ import com.example.techswap.item.ItemFactory;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class DatabaseUtils {
+    @SuppressWarnings("unchecked")
     public Item mapToItem(Map<String, Object> data) {
         ItemFactory itemFactory = new ItemFactory();
         Details details = new Details();
 
-        details.setCategory(data.get("category_id").toString());
-        details.setPrice(Double.parseDouble(data.get("price").toString()));
-        details.setDescription(data.get("description").toString());
-        details.setQuantity(Integer.parseInt(data.get("quantity").toString()));
-        details.setTitle(data.get("title").toString());
-        details.setSubtitle(data.get("subtitle").toString());
-        details.setSearchTitle(data.get("search_title").toString());
+        String category, description, title, subtitle, searchTitle, id;
+        double  price;
+        int quantity;
 
-        Item item = itemFactory.getItem(data.get("category_id").toString());
+        category = Objects.requireNonNull(data.get("category_id")).toString();
+        price = Double.parseDouble(Objects.requireNonNull(data.get("price")).toString());
+        description = Objects.requireNonNull(data.get("description")).toString();
+        quantity = Integer.parseInt(Objects.requireNonNull(data.get("quantity")).toString());
+        title = Objects.requireNonNull(data.get("title")).toString();
+        subtitle = Objects.requireNonNull(data.get("subtitle")).toString();
+        searchTitle = Objects.requireNonNull(data.get("search_title")).toString();
+        id = Objects.requireNonNull(data.get("item_id")).toString();
+
+        details.setCategory(category);
+        details.setPrice(price);
+        details.setDescription(description);
+        details.setQuantity(quantity);
+        details.setTitle(title);
+        details.setSubtitle(subtitle);
+        details.setSearchTitle(searchTitle);
+
+        Item item = itemFactory.getItem(category);
         item.setDetails(details);
-        item.setId(data.get("item_id").toString());
+        item.setId(id);
         item.setImageUrls((List<String>) data.get("images"));
         item.setSpecifications((List<String>) data.get("specifications"));
         item.setSpecificationsTitleList((List<String>) data.get("specifications_id"));

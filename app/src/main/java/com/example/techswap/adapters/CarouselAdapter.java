@@ -1,5 +1,6 @@
 package com.example.techswap.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -294,6 +295,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateData(List<Item> items) {
         List<String> titleList = new ArrayList<>();
         List<String> subtitleList = new ArrayList<>();
