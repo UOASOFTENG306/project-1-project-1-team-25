@@ -17,6 +17,7 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="sign_in">Sign In</string>
+    <string name="log_out">Log out</string>
     <string name="create_account">Create Account</string>
     <string name="user_avatar">User Avatar</string>
 
@@ -31,7 +32,7 @@
     <string name="cart">Cart</string>
 
     <!-- Details -->
-    <string name="specifications_header">Specifications</string>
+    <string name="specifications">Specifications</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="sign_in_to_purchase">Sign in to Purchase</string>
     <string name="image">Image</string>
@@ -39,6 +40,10 @@
     <!-- Cart -->
     <string name="cart_header">Your Cart</string>
     <string name="cart_checkout">Checkout</string>
+    <string name="cart_total">Total:</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="gst">GST</string>
+    <string name="price_placeholder">$0.00</string>
 
     <!-- Sell an Item -->
     <string name="sell_an_item">Sell an Item</string>
