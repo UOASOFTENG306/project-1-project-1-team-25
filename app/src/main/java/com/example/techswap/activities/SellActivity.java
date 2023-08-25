@@ -67,7 +67,7 @@ public class SellActivity extends AppCompatActivity {
         list.add("Other");
 
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, list);
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(this, R.layout.adapter_spinner_item, list);
         // Apply the adapter to the spinner
         categorySpinner.setAdapter(adapter);
 

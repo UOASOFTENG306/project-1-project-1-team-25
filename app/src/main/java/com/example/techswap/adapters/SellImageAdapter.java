@@ -29,7 +29,7 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.sell_image, parent, false);
+                .inflate(R.layout.adapter_image_selling, parent, false);
         return new ImageViewHolder(itemView);
     }
 

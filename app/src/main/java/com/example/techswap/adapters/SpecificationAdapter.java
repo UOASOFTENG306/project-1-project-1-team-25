@@ -25,7 +25,7 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
     @Override
     public SpecificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.specification_row, parent, false);
+                .inflate(R.layout.adapter_specification_row, parent, false);
         return new SpecificationViewHolder(itemView);
     }
 

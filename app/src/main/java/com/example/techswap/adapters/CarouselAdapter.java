@@ -79,7 +79,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         int screenWidth = displayMetrics.widthPixels;
         switch (carouselType) {
             case CATEGORY:
-                view = inflater.inflate(R.layout.carousel_item_category, parent, false);
+                view = inflater.inflate(R.layout.adapter_item_category, parent, false);
                 int numberOfItemsVisible = 3; // Display two items at a time
 
                 // Calculate the total padding to be used on both sides of the item
@@ -95,7 +95,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             
                 return new CarouselViewHolderCategory(view);
             case HORIZONTAL_ITEM:
-                view = inflater.inflate(R.layout.carousel_item_deal, parent, false);
+                view = inflater.inflate(R.layout.adapter_item_deals, parent, false);
                 int numberOfItemsVisible2 = 2; // Display two items at a time
 
                 // Calculate the total padding to be used on both sides of the item
@@ -111,15 +111,15 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             
                 return new CarouselViewHolderHorizontalItem(view);
             case LIST_ITEM:
-                view = inflater.inflate(R.layout.carousel_item_list, parent, false);
+                view = inflater.inflate(R.layout.adapter_item_list, parent, false);
                 return new CarouselViewHolderListItem(view);
 
             case LARGE_LIST_ITEM:
-                view = inflater.inflate(R.layout.carousel_item_large_list, parent, false);
+                view = inflater.inflate(R.layout.adapter_item_large_list, parent, false);
                 return new CarouselViewHolderListItem(view);
 
             case CART_ITEM:
-                view = inflater.inflate(R.layout.cart_item, parent, false);
+                view = inflater.inflate(R.layout.adapter_item_cart, parent, false);
                 return new CarouselViewHolderCartItem(view);
 
             default:
