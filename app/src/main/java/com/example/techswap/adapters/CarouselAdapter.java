@@ -1,7 +1,7 @@
 package com.example.techswap.adapters;
 
-import android.util.DisplayMetrics;
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +15,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.techswap.R;
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.fragments.DetailsFragment;
 import com.example.techswap.fragments.ListFragment;
-import com.example.techswap.R;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
 

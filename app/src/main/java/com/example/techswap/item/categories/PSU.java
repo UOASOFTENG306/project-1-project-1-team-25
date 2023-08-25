@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class PSU extends Item {

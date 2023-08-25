@@ -16,16 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.DatabaseUtils;
 import com.example.techswap.databinding.FragmentListBinding;
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
-import com.example.techswap.item.categories.CPU;
-import com.example.techswap.item.categories.Case;
-import com.example.techswap.item.categories.GPU;
-import com.example.techswap.item.categories.Motherboard;
-import com.example.techswap.item.categories.Other;
-import com.example.techswap.item.categories.PSU;
-import com.example.techswap.item.categories.RAM;
-import com.example.techswap.item.categories.Storage;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 

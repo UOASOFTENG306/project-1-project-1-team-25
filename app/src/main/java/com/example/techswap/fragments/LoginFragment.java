@@ -5,9 +5,6 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.techswap.database.DatabaseSetter;
-import com.example.techswap.user.User;
+import androidx.fragment.app.Fragment;
 
 import com.example.techswap.MainActivity;
 import com.example.techswap.R;
+import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.user.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;

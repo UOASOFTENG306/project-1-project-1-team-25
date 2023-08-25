@@ -1,11 +1,6 @@
 package com.example.techswap.fragments;
 
-import static android.content.ContentValues.TAG;
-import static android.view.View.VISIBLE;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,25 +13,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.techswap.MainActivity;
 import com.example.techswap.R;
 import com.example.techswap.adapters.ImageAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
 import com.example.techswap.database.DatabaseSetter;
-import com.example.techswap.database.DatabaseUtils;
 import com.example.techswap.databinding.FragmentDetailsBinding;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class DetailsFragment extends Fragment {
 
