@@ -1,4 +1,4 @@
-package com.example.techswap;
+package com.example.techswap.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techswap.R;
 import com.example.techswap.adapters.SellImageAdapter;
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.item.Details;

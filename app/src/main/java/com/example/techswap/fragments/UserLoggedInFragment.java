@@ -10,8 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.techswap.MainActivity;
-import com.example.techswap.SellActivity;
+import com.example.techswap.activities.MainActivity;
+import com.example.techswap.activities.SellActivity;
 import com.example.techswap.databinding.FragmentUserLoggedInBinding;
 import com.example.techswap.user.User;
 

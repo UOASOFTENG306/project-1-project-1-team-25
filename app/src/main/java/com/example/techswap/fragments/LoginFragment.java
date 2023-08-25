@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.techswap.MainActivity;
+import com.example.techswap.activities.MainActivity;
 import com.example.techswap.R;
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.user.User;

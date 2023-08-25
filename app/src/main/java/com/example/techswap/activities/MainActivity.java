@@ -1,4 +1,4 @@
-package com.example.techswap;
+package com.example.techswap.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.techswap.R;
 import com.example.techswap.fragments.CartFragment;
 import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.fragments.MainFragment;
