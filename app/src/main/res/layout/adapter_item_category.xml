@@ -13,7 +13,7 @@
         android:id="@+id/itemImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="Category Icons"
+        android:contentDescription="@string/item_image"
         android:scaleType="fitCenter" />
 
     <TextView
@@ -23,6 +23,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="5dp"
-        android:text="Item Caption" />
+        android:text="@string/item_title" />
 </LinearLayout>
 

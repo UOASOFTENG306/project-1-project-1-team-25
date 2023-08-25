@@ -53,6 +53,9 @@
 
     <!-- Item card -->
     <string name="item_image">Item image</string>
+    <string name="item_title">Item title</string>
+    <string name="item_subtitle">Item subtitle</string>
+    <string name="item_price">Item price</string>
     <string name="remove">Remove</string>
 
     <!-- Image URLs -->
