@@ -16,12 +16,10 @@ public class DatabaseUtils {
 
         String category, description, title, subtitle, searchTitle, id;
         double  price;
-        int quantity;
 
         category = Objects.requireNonNull(data.get("category_id")).toString();
         price = Double.parseDouble(Objects.requireNonNull(data.get("price")).toString());
         description = Objects.requireNonNull(data.get("description")).toString();
-        quantity = Integer.parseInt(Objects.requireNonNull(data.get("quantity")).toString());
         title = Objects.requireNonNull(data.get("title")).toString();
         subtitle = Objects.requireNonNull(data.get("subtitle")).toString();
         searchTitle = Objects.requireNonNull(data.get("search_title")).toString();
@@ -30,7 +28,6 @@ public class DatabaseUtils {
         details.setCategory(category);
         details.setPrice(price);
         details.setDescription(description);
-        details.setQuantity(quantity);
         details.setTitle(title);
         details.setSubtitle(subtitle);
         details.setSearchTitle(searchTitle);

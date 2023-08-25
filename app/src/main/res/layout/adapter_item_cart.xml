@@ -54,49 +54,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="bottom"
-                android:orientation="vertical">
-
-                <!--                <Spinner-->
-                <!--                    android:id="@+id/quantitySpinner"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:entries="@array/quantity_array"-->
-                <!--                    android:padding="3dp" />-->
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:id="@+id/minusButton"
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:contentDescription="Minus"
-                        android:padding="2dp"
-                        android:src="@drawable/minus" />
-
-                    <TextView
-                        android:id="@+id/quantityTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="8dp"
-                        android:text="1"
-                        android:textColor="#000000"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/plusButton"
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:contentDescription="Plus"
-                        android:padding="2dp"
-                        android:src="@drawable/plus" />
-                </LinearLayout>
-
-            </LinearLayout>
+                android:orientation="vertical"/>
 
             <LinearLayout
                 android:layout_width="0dp"

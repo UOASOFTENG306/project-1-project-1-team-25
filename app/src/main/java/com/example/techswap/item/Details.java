@@ -16,8 +16,6 @@ public class Details implements Serializable {
 
     private String searchTitle;
 
-    private int quantity;
-
     public Details() {
     }
 
@@ -64,13 +62,5 @@ public class Details implements Serializable {
     }
 
     public void setSearchTitle(String searchTitle) { this.searchTitle = searchTitle; }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
 }

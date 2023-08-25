@@ -33,15 +33,6 @@
     <!-- Cart -->
     <string name="cart_header">Your Cart</string>
     <string name="cart_checkout">Checkout</string>
-    <string-array name="quantity_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <!-- Add more quantity options as needed -->
-    </string-array>
-
 
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,

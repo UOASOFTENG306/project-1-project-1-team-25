@@ -84,7 +84,6 @@ public class DatabaseSetter {
 
         data.put("description", details.getDescription());
         data.put("price", details.getPrice());
-        data.put("quantity", details.getQuantity());
         data.put("images", item.getImageUrls());
 
         String[] stringArray = new String[] { "", "", "", "", "" };
