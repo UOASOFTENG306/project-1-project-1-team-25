@@ -127,8 +127,6 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         String url = imageUrlList.get(position);
@@ -170,75 +168,69 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             Glide.with(context).load(url).into(viewHolder.carouselImage);
 
-            viewHolder.removeFromCartButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int clickedPosition = viewHolder.getAdapterPosition();
-                    DatabaseSetter db = new DatabaseSetter();
-                    db.addRemoveItemToCart(User.getCurrentUser().getUsername(), itemList.get(clickedPosition).getId().toString(), false);
-                    itemList.remove(clickedPosition);
-                    if (callback != null) {
-                        callback.onAdapterItemClick(itemList);
-                    }
+            viewHolder.removeFromCartButton.setOnClickListener(v -> {
+                int clickedPosition = viewHolder.getAdapterPosition();
+                DatabaseSetter db = new DatabaseSetter();
+                db.addRemoveItemToCart(User.getCurrentUser().getUsername(), itemList.get(clickedPosition).getId(), false);
+                itemList.remove(clickedPosition);
+                if (callback != null) {
+                    callback.onAdapterItemClick(itemList);
                 }
             });
         }
 
         // Set OnClickListener for the item view
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int clickedPosition = holder.getAdapterPosition();
-                // Handle item click event
-                if (carouselType == CarouselType.CATEGORY) {
-                    ListFragment fragment;
-                    switch (clickedPosition){
-                        case 0:
-                            fragment = ListFragment.listCategory("CPU");
-                            break;
-                        case 1:
-                            fragment = ListFragment.listCategory("GPU");
-                            break;
-                        case 2:
-                            fragment = ListFragment.listCategory("Motherboard");
-                            break;
-                        case 3:
-                            fragment = ListFragment.listCategory("Storage");
-                            break;
-                        case 4:
-                            fragment = ListFragment.listCategory("Memory");
-                            break;
-                        case 5:
-                            fragment = ListFragment.listCategory("Power");
-                            break;
-                        case 6:
-                            fragment = ListFragment.listCategory("Case");
-                            break;
-                        default:
-                            fragment = ListFragment.listCategory("Other");
-                            break;
-                    }
-
-                    FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
-
-                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-
-                    transaction.replace(R.id.mainFragmentContainer, fragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
-
-
-
-                } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM || carouselType == CarouselType.LARGE_LIST_ITEM) {
-                    DetailsFragment fragment = DetailsFragment.newInstance(itemList.get(clickedPosition));
-                    FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
-
-                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-
-                    transaction.replace(R.id.mainFragmentContainer, fragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+        holder.itemView.setOnClickListener(v -> {
+            int clickedPosition = holder.getAdapterPosition();
+            // Handle item click event
+            if (carouselType == CarouselType.CATEGORY) {
+                ListFragment fragment;
+                switch (clickedPosition){
+                    case 0:
+                        fragment = ListFragment.listCategory("CPU");
+                        break;
+                    case 1:
+                        fragment = ListFragment.listCategory("GPU");
+                        break;
+                    case 2:
+                        fragment = ListFragment.listCategory("Motherboard");
+                        break;
+                    case 3:
+                        fragment = ListFragment.listCategory("Storage");
+                        break;
+                    case 4:
+                        fragment = ListFragment.listCategory("Memory");
+                        break;
+                    case 5:
+                        fragment = ListFragment.listCategory("Power");
+                        break;
+                    case 6:
+                        fragment = ListFragment.listCategory("Case");
+                        break;
+                    default:
+                        fragment = ListFragment.listCategory("Other");
+                        break;
                 }
+
+                FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
+
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
+                transaction.replace(R.id.mainFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+
+
+            } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM || carouselType == CarouselType.LARGE_LIST_ITEM) {
+                DetailsFragment fragment = DetailsFragment.newInstance(itemList.get(clickedPosition));
+                FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
+
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+
+                transaction.replace(R.id.mainFragmentContainer, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
     }
@@ -248,7 +240,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return imageUrlList.size();
     }
 
-    public class CarouselViewHolderCategory extends RecyclerView.ViewHolder {
+    public static class CarouselViewHolderCategory extends RecyclerView.ViewHolder {
         ImageView carouselImage;
         TextView titleText;
 
@@ -259,7 +251,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public class CarouselViewHolderHorizontalItem extends RecyclerView.ViewHolder {
+    public static class CarouselViewHolderHorizontalItem extends RecyclerView.ViewHolder {
         ImageView carouselImage;
         TextView titleText;
         TextView priceText;
@@ -272,7 +264,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public class CarouselViewHolderListItem extends RecyclerView.ViewHolder {
+    public static class CarouselViewHolderListItem extends RecyclerView.ViewHolder {
         ImageView carouselImage;
         TextView titleText;
         TextView subtitleText;
@@ -287,7 +279,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
-    public class CarouselViewHolderCartItem extends RecyclerView.ViewHolder {
+    public static class CarouselViewHolderCartItem extends RecyclerView.ViewHolder {
         ImageView carouselImage;
         TextView titleText;
         TextView priceText;
@@ -303,10 +295,10 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void updateData(List<Item> items) {
-        List<String> titleList = new ArrayList<String>();
-        List<String> subtitleList = new ArrayList<String>();
-        List<Double> priceList = new ArrayList<Double>();
-        List<String> imageUrlList = new ArrayList<String>();
+        List<String> titleList = new ArrayList<>();
+        List<String> subtitleList = new ArrayList<>();
+        List<Double> priceList = new ArrayList<>();
+        List<String> imageUrlList = new ArrayList<>();
 
         for (Item item : items) {
             titleList.add(item.getDetails().getTitle());
