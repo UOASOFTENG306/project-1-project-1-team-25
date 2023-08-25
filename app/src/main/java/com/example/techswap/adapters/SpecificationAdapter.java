@@ -13,8 +13,8 @@ import com.example.techswap.R;
 import java.util.List;
 
 public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdapter.SpecificationViewHolder> {
-    private List<String> specificationList;
-    private List<String> valueList;
+    private final List<String> specificationList;
+    private final List<String> valueList;
 
     public SpecificationAdapter(List<String> specificationList, List<String> valueList) {
         this.specificationList = specificationList;
@@ -47,7 +47,7 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
         return Integer.min(specificationList.size(), valueList.size());
     }
 
-    public class SpecificationViewHolder extends RecyclerView.ViewHolder {
+    public static class SpecificationViewHolder extends RecyclerView.ViewHolder {
         TextView specificationText;
         TextView valueText;
 

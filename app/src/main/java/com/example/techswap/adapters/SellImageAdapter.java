@@ -49,7 +49,7 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
         return imageUrlList.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder {
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
 
         public ImageViewHolder(@NonNull View itemView) {
