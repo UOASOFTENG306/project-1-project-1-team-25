@@ -20,35 +20,28 @@ public class UserLoggedInFragment extends Fragment {
     private FragmentUserLoggedInBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentUserLoggedInBinding.inflate(inflater, container, false);
-        View rootView = binding.getRoot();
 
-        return rootView;
+        return binding.getRoot();
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.sellItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Code to switch to another activity
-                Intent intent = new Intent(requireActivity(), SellActivity.class);
-                startActivity(intent);
-            }
+        binding.sellItemButton.setOnClickListener(view1 -> {
+            // Code to switch to another activity
+            Intent intent = new Intent(requireActivity(), SellActivity.class);
+            startActivity(intent);
         });
 
-        binding.logOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Code to switch to another activity
-                User.setCurrentUser(null);
-                Intent intent = new Intent(requireActivity(), MainActivity.class);
-                startActivity(intent);
-                Toast.makeText(requireContext(), "Logged Out", Toast.LENGTH_LONG).show();
+        binding.logOutButton.setOnClickListener(view2 -> {
+            // Code to switch to another activity
+            User.setCurrentUser(null);
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            startActivity(intent);
+            Toast.makeText(requireContext(), "Logged Out", Toast.LENGTH_LONG).show();
 
-            }
         });
     }
 }
