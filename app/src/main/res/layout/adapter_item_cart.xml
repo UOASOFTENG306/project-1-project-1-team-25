@@ -22,7 +22,7 @@
             android:id="@+id/itemImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="Category Icons"
+            android:contentDescription="@string/item_image"
             android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
@@ -30,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
+        android:gravity="end"
         android:orientation="vertical">
 
         <TextView
@@ -37,58 +38,42 @@
             style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="24dp"
-            android:gravity="start"
-            android:text="This is a long title so"
-            android:scrollHorizontally="true"
             android:ellipsize="end"
-            android:maxLines="1" />
+            android:gravity="start"
+            android:maxLines="1"
+            android:scrollHorizontally="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-            android:orientation="horizontal">
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/itemPrice"
+                style="@style/PriceText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="bottom"
-                android:orientation="vertical"/>
+                android:layout_weight="2"
+                android:ellipsize="end"
+                android:gravity="bottom|start"
+                android:maxLines="1"
+                android:paddingBottom="5dp"
+                android:scrollHorizontally="true" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.2"
-                android:gravity="end"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/itemPrice"
-                    style="@style/PriceText"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="bottom|end"
-                    android:paddingBottom="5dp"
-                    android:scrollHorizontally="true"
-                    android:ellipsize="end"
-                    android:maxLines="1" />
-
-
-                <Button
-                    android:id="@+id/removeFromCartButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:background="@drawable/rounded_button_red"
-                    android:text="Remove"
-                    android:textColor="@color/white"
-                    android:textSize="14dp"
-                    app:backgroundTint="@null" />
-            </LinearLayout>
-
-
+            <Button
+                android:id="@+id/removeFromCartButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/rounded_button_red"
+                android:gravity="center"
+                android:text="@string/remove"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:backgroundTint="@null" />
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
