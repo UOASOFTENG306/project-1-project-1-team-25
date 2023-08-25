@@ -7,40 +7,28 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.techswap.fragments.CartFragment;
 import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.fragments.MainFragment;
-import com.example.techswap.item.Details;
-import com.example.techswap.item.Item;
-import com.example.techswap.item.categories.CPU;
 import com.example.techswap.user.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView logoText;
-    private ImageView searchIcon;
-    private ImageView cartIcon;
     private EditText searchBar;
     private Animation fadeInAnimation;
     private Animation fadeOutAnimation;
@@ -52,31 +40,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         logoText = findViewById(R.id.logoText);
-        searchIcon = findViewById(R.id.searchIcon);
         searchBar = findViewById(R.id.searchBar);
-        cartIcon = findViewById(R.id.cartIcon);
 
         if (User.getCurrentUser() == null) {
-            cartIcon.setVisibility(View.GONE);
+            findViewById(R.id.cartIcon).setVisibility(View.GONE);
         }
-
-        FragmentContainerView fragmentContainer = findViewById(R.id.mainFragmentContainer);
 
         fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in2);
         fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 
-        findViewById(R.id.userIcon).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Load the animation from the XML resource
-                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_press);
-                // Start the animation on the ImageView
-                v.startAnimation(animation);
+        findViewById(R.id.userIcon).setOnClickListener(v -> {
+            // Load the animation from the XML resource
+            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_press);
+            // Start the animation on the ImageView
+            v.startAnimation(animation);
 
-                // Switch to user activity
-                Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                startActivity(intent);
-            }
+            // Switch to user activity
+            Intent intent = new Intent(MainActivity.this, UserActivity.class);
+            startActivity(intent);
         });
 
         // initialize MainFragment
