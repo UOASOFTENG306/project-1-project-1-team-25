@@ -5,6 +5,10 @@ import com.example.techswap.item.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The `CPU` class represents a Central Processing Unit (CPU), which is a subclass of the `Item` class.
+ * It encapsulates information about the brand, socket type, clock speed, and number of cores of the CPU.
+ */
 public class CPU extends Item {
 
     private String brand;
@@ -15,10 +19,18 @@ public class CPU extends Item {
 
     private String numCores;
 
+    /**
+     * Constructs a new `CPU` object with default values and sets the category in the details.
+     */
     public CPU() {
         this.details.setCategory("CPU");
     }
 
+    /**
+     * Retrieves the specifications of the CPU.
+     *
+     * @return A list containing the brand, socket type, clock speed, and number of cores of the CPU.
+     */
     @Override
     public List<String> getSpecifications() {
         List<String> valuesList = new ArrayList<>();
@@ -30,6 +42,11 @@ public class CPU extends Item {
         return valuesList;
     }
 
+    /**
+     * Sets the specifications of the CPU using the provided values.
+     *
+     * @param valuesList A list containing the brand, socket type, clock speed, and number of cores of the CPU.
+     */
     @Override
     public void setSpecifications(List<String> valuesList) {
         if (valuesList.size() == 4) {
