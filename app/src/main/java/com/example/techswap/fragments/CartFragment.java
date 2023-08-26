@@ -33,6 +33,10 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private FragmentCartBinding binding;
 
+    public static void clearCart() {
+        itemList.clear();
+    }
+
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -58,9 +62,9 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         return view;  // Return the inflated view
     }
 
-
     private void onCheckout() {
-        Database.clearCart(User.getCurrentUser().getUsername());
+        Database db = new Database();
+        db.clearCart(User.getCurrentUser().getUsername());
         itemList.clear();
         setItems(itemList);
         Toast.makeText(requireContext(), "Checkout complete", Toast.LENGTH_LONG).show();
@@ -109,10 +113,6 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
                         }
                     });
         }
-    }
-
-    public static void clearCart() {
-        itemList.clear();
     }
 
     public void setItems(List<Item> items) {

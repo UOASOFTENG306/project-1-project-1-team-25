@@ -112,7 +112,8 @@ public class LoginFragment extends Fragment {
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_LONG).show();
                         } else if (!isLoggingIn && !task.getResult().exists()) { // register success
-                            Database.addUser(username, password);
+                            Database db = new Database();
+                            db.addUser(username, password);
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_LONG).show();
                         } else if (isLoggingIn) { //login fail

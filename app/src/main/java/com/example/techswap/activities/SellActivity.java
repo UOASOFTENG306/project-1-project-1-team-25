@@ -102,7 +102,8 @@ public class SellActivity extends AppCompatActivity {
                 UUID uuid = UUID.randomUUID();
                 item.setId(uuid.toString());
 
-                Database.addItem(item);
+                Database db = new Database();
+                db.addItem(item);
 
                 // switch to another activity
                 Intent intent = new Intent(SellActivity.this, MainActivity.class);

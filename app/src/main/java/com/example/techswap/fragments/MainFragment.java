@@ -15,7 +15,6 @@ import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.ItemFactory;
-import com.example.techswap.item.categories.CPU;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

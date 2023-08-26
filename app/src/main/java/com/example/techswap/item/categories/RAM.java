@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;

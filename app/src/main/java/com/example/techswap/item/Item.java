@@ -9,10 +9,8 @@ import java.util.Objects;
 
 public abstract class Item implements Serializable {
 
-    private String id;
-
     protected Details details = new Details();
-
+    private String id;
     private List<String> imageUrls = new ArrayList<>();
 
     private List<String> specificationsTitleList = new ArrayList<>();

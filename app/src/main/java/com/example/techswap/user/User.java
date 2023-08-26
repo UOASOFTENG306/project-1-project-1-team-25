@@ -23,17 +23,17 @@ public class User {
         User.currentUser = currentUser;
     }
 
+    public static void userLogin(String username, String password) {
+        User user = new User(username, password);
+        User.setCurrentUser(user);
+    }
+
     public String getUsername() {
         return username;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public static void userLogin(String username, String password) {
-        User user = new User(username, password);
-        User.setCurrentUser(user);
     }
 
     @Override

@@ -143,7 +143,8 @@ public class DetailsFragment extends Fragment {
     }
 
     private void onAddToCart() {
-        Database.addRemoveItemToCart(item.getId(), true);
+        Database db = new Database();
+        db.addRemoveItemToCart(item.getId(), true);
 
         CartFragment fragment = new CartFragment();
         FragmentTransaction transaction = (getParentFragmentManager().beginTransaction());
