@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentCartBinding;
+import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -63,7 +64,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     }
 
     private void onCheckout() {
-        Database db = new Database();
+        IDatabase db = new Database();
         db.clearCart(User.getCurrentUser().getUsername());
         itemList.clear();
         setItems(itemList);

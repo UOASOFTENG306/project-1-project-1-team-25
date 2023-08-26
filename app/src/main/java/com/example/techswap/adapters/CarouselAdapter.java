@@ -18,6 +18,7 @@ import com.example.techswap.R;
 import com.example.techswap.database.Database;
 import com.example.techswap.fragments.DetailsFragment;
 import com.example.techswap.fragments.ListFragment;
+import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.item.Item;
 
 import java.text.DecimalFormat;
@@ -163,7 +164,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             viewHolder.removeFromCartButton.setOnClickListener(v -> {
                 int clickedPosition = viewHolder.getAdapterPosition();
-                Database db = new Database();
+                IDatabase db = new Database();
                 db.addRemoveItemToCart(itemList.get(clickedPosition).getId(), false);
                 itemList.remove(clickedPosition);
                 if (callback != null) {

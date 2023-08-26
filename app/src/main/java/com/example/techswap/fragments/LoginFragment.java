@@ -17,6 +17,7 @@ import com.example.techswap.R;
 import com.example.techswap.activities.MainActivity;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentLoginBinding;
+import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -112,7 +113,7 @@ public class LoginFragment extends Fragment {
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_LONG).show();
                         } else if (!isLoggingIn && !task.getResult().exists()) { // register success
-                            Database db = new Database();
+                            IDatabase db = new Database();
                             db.addUser(username, password);
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_LONG).show();

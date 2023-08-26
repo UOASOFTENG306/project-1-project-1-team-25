@@ -1,5 +1,6 @@
 package com.example.techswap.database;
 
+import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.ItemFactory;
@@ -9,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.*;
 
-public class Database {
+public class Database implements IDatabase {
 
     private final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
