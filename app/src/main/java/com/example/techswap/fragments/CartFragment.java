@@ -6,11 +6,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentCartBinding;
@@ -40,6 +43,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     public static void clearCart() {
         itemList.clear();
     }
+    private TextView emptyCartMessage;
 
     @Override
     public View onCreateView(
@@ -48,6 +52,8 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     ) {
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();  // Use the inflated view from the binding
+
+        emptyCartMessage = binding.emptyCartTextView;
 
         // specifications recycler view
         RecyclerView recyclerView = binding.cartRecyclerView;
@@ -120,25 +126,38 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
 
     public void setItems(List<Item> items) {
         adapter.updateData(items);
-        double total = 0, gst, subTotal;
 
-        for (Item item : items) {
-            total += item.getDetails().getPrice();
+        if (items.isEmpty()) {
+            binding.cartTotal.setText(R.string.price_placeholder);
+            binding.subtotalPriceText.setText(R.string.price_placeholder);
+            binding.feesPriceText.setText(R.string.price_placeholder);
+                // Hide the cart total information if the cart is empty
+            emptyCartMessage.setVisibility(View.VISIBLE);
+        } else {
+            double total = 0, gst, subTotal;
+
+            for (Item item : items){
+                total += item.getDetails().getPrice();
+            }
+
+            subTotal = total * 0.85;
+            gst = total - subTotal;
+
+            DecimalFormat df = new DecimalFormat("0.00");
+            df.setMaximumFractionDigits(2);
+
+            String totalString = "$" + df.format(total);
+            String subtotalString = "$" + df.format(subTotal);
+            String gstString = "$" + df.format(gst);
+
+            binding.cartTotal.setText(totalString);
+            binding.subtotalPriceText.setText(subtotalString);
+            binding.feesPriceText.setText(gstString);
+
+            emptyCartMessage.setVisibility(View.GONE);
         }
 
-        subTotal = total * 0.85;
-        gst = total - subTotal;
 
-        DecimalFormat df = new DecimalFormat("0.00");
-        df.setMaximumFractionDigits(2);
-
-        String totalString = "$" + df.format(total);
-        String subtotalString = "$" + df.format(subTotal);
-        String gstString = "$" + df.format(gst);
-
-        binding.cartTotal.setText(totalString);
-        binding.subtotalPriceText.setText(subtotalString);
-        binding.feesPriceText.setText(gstString);
     }
 
     @Override

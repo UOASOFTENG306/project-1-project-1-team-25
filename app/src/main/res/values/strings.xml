@@ -44,6 +44,7 @@
     <string name="subtotal">Subtotal</string>
     <string name="gst">GST</string>
     <string name="price_placeholder">$0.00</string>
+    <string name="your_cart_is_empty">Your cart is empty</string>
 
     <!-- Sell an Item -->
     <string name="sell_an_item">Sell an Item</string>
