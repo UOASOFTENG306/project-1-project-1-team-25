@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
     private Animation fadeOutAnimation;
     private boolean isSearchBarVisible = false;
 
+    /**
+     * Called when the activity is first created. This method initializes the activity's UI components,
+     * sets up listeners, and loads the initial fragment.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           this Bundle contains the data it most recently supplied in {@link #onSaveInstanceState}.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         logoText = findViewById(R.id.logoText);
         searchBar = findViewById(R.id.searchBar);
 
+        // Conditional visibility of cart icon depending on user
         if (User.getCurrentUser() == null) {
             findViewById(R.id.cartIcon).setVisibility(View.GONE);
         }
@@ -80,8 +88,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Overrides the touch event dispatcher to manage interactions with the current Activity's views,
+     * particularly focusing on EditText elements and handling touch events that occur outside them.
+     * This method is responsible for dismissing the keyboard or hiding specific UI components,
+     * ensuring a user-friendly experience when interacting with input fields and related UI elements.
+     *
+     * @param event The MotionEvent representing the touch event being dispatched.
+     * @return True if the event was processed and consumed, false otherwise.
+     */
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
+        // Action down motion actions
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
             if (v instanceof EditText) {
@@ -96,6 +114,14 @@ public class MainActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(event);
     }
 
+    /**
+     * Hides the on-screen keyboard (soft input) associated with the provided view.
+     * This method utilizes the InputMethodManager to programmatically hide the keyboard.
+     * It should be called when you want to dismiss the keyboard after a user interaction
+     * with an input field to provide a smoother user experience.
+     *
+     * @param view The view currently in focus that triggered the keyboard to appear.
+     */
     private void hideKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
@@ -103,6 +129,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Displays the on-screen keyboard (soft input) for the provided view.
+     * This method utilizes the InputMethodManager to programmatically show the keyboard.
+     * It should be called when you want to display the keyboard automatically in response
+     * to a user interaction with an input field, ensuring a smooth user experience.
+     *
+     * @param view The view that requires keyboard input focus and triggers its appearance.
+     */
     private void showKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
@@ -110,6 +144,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initiates a search operation with the provided search query and updates the UI accordingly.
+     * This method is responsible for conducting a search using the given query and updating the
+     * displayed content based on the search results. It involves hiding the search bar, creating
+     * a new list fragment populated with the search results, and managing the fragment transaction.
+     *
+     * @param searchQuery The search query entered by the user.
+     */
     private void performSearch(String searchQuery) {
         ListFragment fragment = ListFragment.listSearch(searchQuery);
         hideSearchBar();
@@ -122,12 +164,27 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    /**
+     * Callback method triggered when the search icon is clicked to initiate a search.
+     * This method handles the user interaction when the search icon is clicked. It checks
+     * whether the search bar is currently visible, and if not, it triggers the display of
+     * the search bar to initiate a search operation.
+     *
+     * @param view The view representing the search icon that was clicked.
+     */
     public void onSearchIconClick(View view) {
         if (!isSearchBarVisible) {
             showSearchBar();
         }
     }
 
+    /**
+     * Displays the search bar and transitions UI elements accordingly.
+     * This method is responsible for showing the search bar while managing UI transitions.
+     * It makes the search bar visible, fades it in with an animation, hides the logo text,
+     * and requests focus on the search bar for user interaction. Additionally, it ensures
+     * that the keyboard is displayed to allow seamless search input.
+     */
     private void showSearchBar() {
         searchBar.setVisibility(View.VISIBLE);
         searchBar.requestFocus();
@@ -139,6 +196,12 @@ public class MainActivity extends AppCompatActivity {
         showKeyboard(searchBar);
     }
 
+    /**
+     * Hides the search bar and manages associated UI elements.
+     * This method is responsible for hiding the search bar while handling UI transitions.
+     * It starts a fade-out animation for the search bar, hides it from view, clears focus,
+     * shows the logo text, and ensures that the keyboard is dismissed if it was visible.
+     */
     private void hideSearchBar() {
         searchBar.startAnimation(fadeOutAnimation);
         searchBar.setVisibility(View.GONE);
@@ -149,6 +212,14 @@ public class MainActivity extends AppCompatActivity {
         hideKeyboard(searchBar);
     }
 
+    /**
+     * Callback method triggered when the cart icon is clicked to manage cart-related actions.
+     * This method handles the user interaction when the cart icon is clicked. It checks the current
+     * fragment displayed and transitions to the CartFragment if the current fragment is not the cart
+     * fragment. It also applies a button press animation to provide visual feedback.
+     *
+     * @param view The view representing the cart icon that was clicked.
+     */
     public void onCartClick(View view) {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
 
@@ -169,6 +240,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Callback method triggered when the logo is clicked to manage main screen navigation.
+     * This method handles the user interaction when the logo is clicked. It checks the current
+     * fragment displayed and transitions to the MainFragment if the current fragment is not the
+     * main fragment. It also applies a button press animation to provide visual feedback.
+     *
+     * @param view The view representing the logo that was clicked.
+     */
     public void onLogoClick(View view) {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.mainFragmentContainer);
 
