@@ -87,7 +87,7 @@ public class ListFragment extends Fragment {
             } else {
                 String searchTerm = (String) args.getSerializable("searchTerm");
                 if (searchTerm != null) {
-                    searchItems(searchTerm);
+                    searchItems(searchTerm.toLowerCase());
                     carouselAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
                 }
             }
