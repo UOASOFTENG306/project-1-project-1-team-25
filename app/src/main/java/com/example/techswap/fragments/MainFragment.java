@@ -34,6 +34,14 @@ public class MainFragment extends Fragment {
     private final List<Item> dealsList = new ArrayList<>();
     private FragmentMainBinding binding;
 
+    /**
+     * Inflates the layout for the login fragment's UI and initializes UI components and click listeners.
+     *
+     * @param inflater           The LayoutInflater used to inflate the layout.
+     * @param container          The parent ViewGroup for the fragment UI.
+     * @param savedInstanceState A Bundle containing saved state information.
+     * @return The root View of the fragment's UI.
+     */
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -109,12 +117,23 @@ public class MainFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Called when the fragment's view has been created and is ready to be populated with UI elements.
+     *
+     * @param view The root view of the fragment.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state.
+     *                           Any data that was previously saved in the state can be obtained from here.
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    /**
+     * Fetches a list of best-selling items from the Firestore database.
+     * The fetched items are ordered by title and limited to a maximum of 6.
+     * The retrieved items are added to the bestSellersList and then set as the best sellers.
+     */
     private void fetchBestSellers() {
-        // TODO: Add metric for being "best sellers"
         FirebaseFirestore.getInstance().collection("items")
                 .orderBy("title").limit(6)
                 .get()
@@ -130,8 +149,12 @@ public class MainFragment extends Fragment {
                 });
     }
 
+    /**
+     * Fetches a list of deals from the Firestore database.
+     * The fetched deals are ordered by title in descending order and limited to a maximum of 6.
+     * The retrieved deals are added to the dealsList and then set as the deals.
+     */
     private void fetchDeals() {
-        // TODO: Add metric for being "deals"
         FirebaseFirestore.getInstance().collection("items")
                 .orderBy("title", Query.Direction.DESCENDING).limit(6)
                 .get()
@@ -147,16 +170,31 @@ public class MainFragment extends Fragment {
                 });
     }
 
+    /**
+     * Called when the fragment's view is about to be destroyed.
+     * This is an appropriate place to release resources associated with the view.
+     * The binding instance is set to null to prevent memory leaks.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
 
+    /**
+     * Sets the list of items as the deals for display.
+     *
+     * @param items The list of Item objects representing the deals to be displayed.
+     */
     public void setDeals(List<Item> items) {
         dealsAdapter.updateData(items);
     }
 
+    /**
+     * Sets the list of items as the best sellers for display.
+     *
+     * @param items The list of Item objects representing the best sellers to be displayed.
+     */
     public void setBestSellers(List<Item> items) {
         bestSellersAdapter.updateData(items);
     }
