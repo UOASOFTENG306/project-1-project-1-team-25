@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             findViewById(R.id.cartIcon).setVisibility(View.GONE);
         }
 
-        fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in2);
+        fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in);
         fadeOutAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 
         findViewById(R.id.userIcon).setOnClickListener(v -> {
