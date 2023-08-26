@@ -48,6 +48,13 @@ public class SellActivity extends AppCompatActivity {
                 }
             });
 
+    /**
+     * Called when the activity is first created. This method initializes the UI components and sets up
+     * listeners for user interactions such as adding images, listing an item for sale, and navigating back.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down,
+     *                           this Bundle contains the data it most recently supplied in {@link #onSaveInstanceState}.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +123,12 @@ public class SellActivity extends AppCompatActivity {
         addImageButton.setOnClickListener(v -> mGetContent.launch("image/*"));
     }
 
+    /**
+     * Uploads the selected image to the Firebase Storage and updates the UI accordingly.
+     * This method handles the process of uploading the selected image to the Firebase Storage.
+     * It updates the image URL list for display, replacing the placeholder with the actual
+     * image URL once the upload is successful. The UI is updated through the adapter.
+     */
     private void uploadImage() {
         if (imageUri != null) {
             StorageReference reference = storage.getReference().child("images/" + UUID.randomUUID().toString());

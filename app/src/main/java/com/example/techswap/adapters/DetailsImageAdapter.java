@@ -4,10 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import com.bumptech.glide.Glide;
 import com.example.techswap.R;
 import com.example.techswap.interfaces.IDetailsImageAdapter;
 
@@ -19,6 +16,16 @@ public class DetailsImageAdapter extends ImageAdapter implements IDetailsImageAd
         super(context, imageUrlList);
     }
 
+    /**
+     * Called when RecyclerView needs a new {@link ImageViewHolder} of the given type to represent an item.
+     * This method inflates the layout for the item view and creates a new {@link ImageViewHolder} instance
+     * to hold the views within the item. It returns the created {@link ImageViewHolder} to be used for
+     * displaying and managing the data of the item.
+     *
+     * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+     * @param viewType The view type of the new View.
+     * @return A new {@link ImageViewHolder} that holds an item view of the given view type.
+     */
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

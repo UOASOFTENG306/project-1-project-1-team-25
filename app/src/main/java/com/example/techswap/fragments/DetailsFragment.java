@@ -33,9 +33,9 @@ public class DetailsFragment extends Fragment {
     IDetailsImageAdapter imageAdapter;
     ISpecificationAdapter specificationAdapter;
     ViewPager2 viewPager;
-    LinearLayout sliderDotspanel;
+    LinearLayout sliderDotsPanel;
     private FragmentDetailsBinding binding;
-    private int dotscount;
+    private int dotsCount;
     private ImageView[] dots;
     private Item item;
 
@@ -47,6 +47,14 @@ public class DetailsFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Inflates the layout for the fragment's UI and initializes the UI components.
+     *
+     * @param inflater           The LayoutInflater used to inflate the layout.
+     * @param container          The parent ViewGroup for the fragment UI.
+     * @param savedInstanceState A Bundle containing saved state information.
+     * @return The root View of the fragment's UI.
+     */
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -96,11 +104,11 @@ public class DetailsFragment extends Fragment {
         viewPager.setAdapter((RecyclerView.Adapter<?>) imageAdapter);
 
         // view pager dots
-        sliderDotspanel = binding.sliderDotsPanel;
-        dotscount = imageAdapter.getItemCount();
-        dots = new ImageView[dotscount];
+        sliderDotsPanel = binding.sliderDotsPanel;
+        dotsCount = imageAdapter.getItemCount();
+        dots = new ImageView[dotsCount];
 
-        for (int i = 0; i < dotscount; i++) {
+        for (int i = 0; i < dotsCount; i++) {
 
             dots[i] = new ImageView(requireContext());
             dots[i].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.inactive_dot));
@@ -109,7 +117,7 @@ public class DetailsFragment extends Fragment {
 
             params.setMargins(8, 0, 8, 0);
 
-            sliderDotspanel.addView(dots[i], params);
+            sliderDotsPanel.addView(dots[i], params);
 
         }
 
@@ -122,7 +130,7 @@ public class DetailsFragment extends Fragment {
 
             @Override
             public void onPageSelected(int position) {
-                for (int i = 0; i < dotscount; i++) {
+                for (int i = 0; i < dotsCount; i++) {
                     dots[i].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.inactive_dot));
                 }
                 dots[position].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.active_dot));
@@ -148,6 +156,11 @@ public class DetailsFragment extends Fragment {
 
     }
 
+    /**
+     * Adds the current item to the user's cart and navigates to the CartFragment.
+     * This method updates the cart database, replaces the current fragment with the CartFragment,
+     * and adds the transaction to the fragment back stack.
+     */
     private void onAddToCart() {
         db.addRemoveItemToCart(item.getId(), true);
 
@@ -161,10 +174,21 @@ public class DetailsFragment extends Fragment {
         transaction.commit();
     }
 
+    /**
+     * Called when the fragment's view has been created and is ready to be populated with UI elements.
+     *
+     * @param view           The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    /**
+     * Called when the view previously created by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}
+     * has been detached from the fragment.
+     * This method releases references to the ViewBinding and performs necessary cleanup.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -38,6 +38,14 @@ public class LoginFragment extends Fragment {
     private Button confirmButton;
     private boolean isLogin = true;
 
+    /**
+     * Inflates the layout for the login fragment's UI and initializes UI components and click listeners.
+     *
+     * @param inflater           The LayoutInflater used to inflate the layout.
+     * @param container          The parent ViewGroup for the fragment UI.
+     * @param savedInstanceState A Bundle containing saved state information.
+     * @return The root View of the fragment's UI.
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -61,7 +69,11 @@ public class LoginFragment extends Fragment {
         return viewRoot;
     }
 
-    // Handle switching between the register page and the login page
+    /**
+     * Performs UI updates when the user clicks the Register button.
+     * This method changes button styles, text colors, and visibility of UI components.
+     * It also sets the appropriate state for registration.
+     */
     private void onViewRegister() {
         registerButton.setBackgroundResource(R.drawable.active_button_style);
         loginButton.setBackgroundResource(R.drawable.inactive_button_style);
@@ -74,6 +86,11 @@ public class LoginFragment extends Fragment {
         isLogin = false;
     }
 
+    /**
+     * Performs UI updates when the user clicks the Login button.
+     * This method changes button styles, text colors, and visibility of UI components.
+     * It also sets the appropriate state for the login process.
+     */
     private void onViewLogin() {
         registerButton.setBackgroundResource(R.drawable.inactive_button_style);
         loginButton.setBackgroundResource(R.drawable.active_button_style);
@@ -86,6 +103,10 @@ public class LoginFragment extends Fragment {
         isLogin = true;
     }
 
+    /**
+     * Handles the confirmation action when the user clicks the Confirm button.
+     * This method validates input, displays a message if input is missing, and initiates user authentication if input is valid.
+     */
     private void onViewConfirm() {
         if (usernameInput.getText().toString().equals("") || passwordInput.getText().toString().equals("")) {
             displayMessageTextView.setText("Please enter a username and password.");
@@ -95,6 +116,13 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    /**
+     * Fetches user information from the Firestore database based on the provided username.
+     *
+     * @param username The username of the user to fetch.
+     * @param password The password associated with the user.
+     * @param isLoggingIn Indicates whether the operation is a login attempt.
+     */
     private void fetchUser(String username, String password, boolean isLoggingIn) {
         FirebaseFirestore.getInstance().collection("users")
                 .document(username).get()

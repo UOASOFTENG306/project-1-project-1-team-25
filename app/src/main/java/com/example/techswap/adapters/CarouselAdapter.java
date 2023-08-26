@@ -66,6 +66,18 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.carouselType = carouselType;
     }
 
+    /**
+     * Called when RecyclerView needs a new {@link RecyclerView.ViewHolder} of the given type to represent
+     * an item.
+     * This method creates and returns a new ViewHolder based on the specified view type. It inflates the
+     * appropriate layout for the item view based on the carousel type, calculates item width, and adjusts
+     * the layout parameters accordingly to achieve the desired appearance for the carousel item.
+     *
+     * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+     * @param viewType The view type of the new View.
+     * @return A new ViewHolder that holds an item view of the given view type.
+     * @throws IllegalArgumentException if the provided view type is not recognized or supported.
+     */
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -124,6 +136,16 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         }
     }
 
+    /**
+     * Called by RecyclerView to display the data at the specified position.
+     * This method binds the data to the given ViewHolder based on the carousel type.
+     * It populates the ViewHolder's views with appropriate data such as titles, prices,
+     * and images. Depending on the carousel type, it also sets click listeners for various
+     * actions, including navigation to detailed views and handling cart item removal.
+     *
+     * @param holder The ViewHolder that should be updated to represent the contents of the item at the given position.
+     * @param position The position of the item within the adapter's data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         String url = imageUrlList.get(position);
@@ -230,11 +252,25 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         });
     }
 
+    /**
+     * Returns the total number of items in the adapter's data set.
+     * This method provides the count of items that will be displayed within the RecyclerView.
+     *
+     * @return The total number of items in the adapter's data set.
+     */
     @Override
     public int getItemCount() {
         return imageUrlList.size();
     }
 
+    /**
+     * Updates the data displayed in the adapter and triggers a data set change notification.
+     * This method takes a list of items and extracts relevant information such as titles, subtitles,
+     * prices, and image URLs to update the data displayed in the adapter. After updating the data, it
+     * calls {@link #notifyDataSetChanged()} to inform the RecyclerView to refresh its view with the new data.
+     *
+     * @param items The list of items containing the updated data to be displayed in the adapter.
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void updateData(List<Item> items) {
         List<String> titleList = new ArrayList<>();
@@ -242,6 +278,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         List<Double> priceList = new ArrayList<>();
         List<String> imageUrlList = new ArrayList<>();
 
+        // Update each item with details
         for (Item item : items) {
             titleList.add(item.getDetails().getTitle());
             subtitleList.add(item.getDetails().getSubtitle());
@@ -249,6 +286,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             imageUrlList.add(item.getFirstImageUrl());
         }
 
+        // Update data in carousel
         this.titleList = titleList;
         this.priceList = priceList;
         this.subtitleList = subtitleList;
@@ -258,6 +296,13 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         notifyDataSetChanged();
     }
 
+    /**
+     * Sets the context for the adapter.
+     * This method allows setting the context to be used for various purposes within the adapter,
+     * such as accessing resources or services associated with the provided context.
+     *
+     * @param context The context to be set for the adapter.
+     */
     public void setContext(Context context) {
         this.context = context;
     }
@@ -267,6 +312,15 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public interface AdapterCallback {
+
+        /**
+         * Callback method triggered when an item within the adapter is clicked.
+         * This method is intended to be implemented by classes that utilize the adapter to handle
+         * item click events. It receives a list of items that reflects the updated state after
+         * an item has been interacted with.
+         *
+         * @param items The list of items reflecting the updated state after an item has been clicked.
+         */
         void onAdapterItemClick(List<Item> items);
     }
 
@@ -274,6 +328,14 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final ImageView carouselImage;
         final TextView titleText;
 
+        /**
+         * Constructor for the ViewHolder used in the Category carousel type.
+         * This constructor initializes the views within the ViewHolder for displaying items of the
+         * Category carousel type. It associates the layout views with the corresponding variables to
+         * be used for populating data and handling interactions.
+         *
+         * @param itemView The view representing an individual item in the RecyclerView.
+         */
         public CarouselViewHolderCategory(@NonNull View itemView) {
             super(itemView);
             carouselImage = itemView.findViewById(R.id.itemImage);
@@ -286,6 +348,14 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final TextView titleText;
         final TextView priceText;
 
+        /**
+         * Constructor for the ViewHolder used in the Horizontal Item carousel type.
+         * This constructor initializes the views within the ViewHolder for displaying items of the
+         * Horizontal Item carousel type. It associates the layout views with the corresponding variables
+         * to be used for populating data and handling interactions.
+         *
+         * @param itemView The view representing an individual item in the RecyclerView.
+         */
         public CarouselViewHolderHorizontalItem(@NonNull View itemView) {
             super(itemView);
             carouselImage = itemView.findViewById(R.id.carouselImage);
@@ -300,6 +370,14 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final TextView subtitleText;
         final TextView priceText;
 
+        /**
+         * Constructor for the ViewHolder used in the List Item carousel type.
+         * This constructor initializes the views within the ViewHolder for displaying items of the
+         * List Item carousel type. It associates the layout views with the corresponding variables
+         * to be used for populating data and handling interactions.
+         *
+         * @param itemView The view representing an individual item in the RecyclerView.
+         */
         public CarouselViewHolderListItem(@NonNull View itemView) {
             super(itemView);
             carouselImage = itemView.findViewById(R.id.carouselImage);
@@ -315,6 +393,14 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final TextView priceText;
         final Button removeFromCartButton;
 
+        /**
+         * Constructor for the ViewHolder used in the Cart Item carousel type.
+         * This constructor initializes the views within the ViewHolder for displaying items of the
+         * List Item carousel type. It associates the layout views with the corresponding variables
+         * to be used for populating data and handling interactions.
+         *
+         * @param itemView The view representing an individual item in the RecyclerView.
+         */
         public CarouselViewHolderCartItem(@NonNull View itemView) {
             super(itemView);
             carouselImage = itemView.findViewById(R.id.itemImage);
