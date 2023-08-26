@@ -86,7 +86,7 @@ public class DatabaseSetter {
         data.put("price", details.getPrice());
         data.put("images", item.getImageUrls());
 
-        String[] stringArray = new String[] { "", "", "", "", "" };
+        String[] stringArray = new String[]{"", "", "", "", ""};
 
         data.put("specifications", Arrays.asList(stringArray));
         data.put("specifications_id", Arrays.asList(stringArray));

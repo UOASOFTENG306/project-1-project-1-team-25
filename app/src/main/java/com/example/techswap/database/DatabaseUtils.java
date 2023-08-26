@@ -15,7 +15,7 @@ public class DatabaseUtils {
         Details details = new Details();
 
         String category, description, title, subtitle, searchTitle, id;
-        double  price;
+        double price;
 
         category = Objects.requireNonNull(data.get("category_id")).toString();
         price = Double.parseDouble(Objects.requireNonNull(data.get("price")).toString());

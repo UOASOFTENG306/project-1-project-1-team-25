@@ -9,12 +9,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
 import com.example.techswap.database.DatabaseSetter;
@@ -28,18 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private final CarouselType carouselType;
     private List<String> imageUrlList;
     private List<String> titleList;
     private List<Double> priceList;
     private List<String> subtitleList;
     private List<Item> itemList;
-
     private Context context;
-    private final CarouselType carouselType;
-
-    public enum CarouselType {
-        CATEGORY, HORIZONTAL_ITEM, LIST_ITEM, LARGE_LIST_ITEM, CART_ITEM
-    }
     private AdapterCallback callback;
 
     public CarouselAdapter(CarouselType carouselType, AdapterCallback callback) {
@@ -93,7 +86,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
                 layoutParams.width = itemWidth;
                 view.setLayoutParams(layoutParams);
-            
+
                 return new CarouselViewHolderCategory(view);
             case HORIZONTAL_ITEM:
                 view = inflater.inflate(R.layout.adapter_item_deals, parent, false);
@@ -109,7 +102,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 ViewGroup.LayoutParams layoutParams2 = view.getLayoutParams();
                 layoutParams2.width = itemWidth2;
                 view.setLayoutParams(layoutParams2);
-            
+
                 return new CarouselViewHolderHorizontalItem(view);
             case LIST_ITEM:
                 view = inflater.inflate(R.layout.adapter_item_list, parent, false);
@@ -186,7 +179,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             // Handle item click event
             if (carouselType == CarouselType.CATEGORY) {
                 ListFragment fragment;
-                switch (clickedPosition){
+                switch (clickedPosition) {
                     case 0:
                         fragment = ListFragment.listCategory("CPU");
                         break;
@@ -222,7 +215,6 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 transaction.commit();
 
 
-
             } else if (carouselType == CarouselType.HORIZONTAL_ITEM || carouselType == CarouselType.LIST_ITEM || carouselType == CarouselType.LARGE_LIST_ITEM) {
                 DetailsFragment fragment = DetailsFragment.newInstance(itemList.get(clickedPosition));
                 FragmentTransaction transaction = ((AppCompatActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
@@ -239,6 +231,41 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemCount() {
         return imageUrlList.size();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateData(List<Item> items) {
+        List<String> titleList = new ArrayList<>();
+        List<String> subtitleList = new ArrayList<>();
+        List<Double> priceList = new ArrayList<>();
+        List<String> imageUrlList = new ArrayList<>();
+
+        for (Item item : items) {
+            titleList.add(item.getDetails().getTitle());
+            subtitleList.add(item.getDetails().getSubtitle());
+            priceList.add(item.getDetails().getPrice());
+            imageUrlList.add(item.getFirstImageUrl());
+        }
+
+        this.titleList = titleList;
+        this.priceList = priceList;
+        this.subtitleList = subtitleList;
+        this.imageUrlList = imageUrlList;
+        this.itemList = items;
+
+        notifyDataSetChanged();
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public enum CarouselType {
+        CATEGORY, HORIZONTAL_ITEM, LIST_ITEM, LARGE_LIST_ITEM, CART_ITEM
+    }
+
+    public interface AdapterCallback {
+        void onAdapterItemClick(List<Item> items);
     }
 
     public static class CarouselViewHolderCategory extends RecyclerView.ViewHolder {
@@ -293,36 +320,5 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             priceText = itemView.findViewById(R.id.itemPrice);
             removeFromCartButton = itemView.findViewById(R.id.removeFromCartButton);
         }
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    public void updateData(List<Item> items) {
-        List<String> titleList = new ArrayList<>();
-        List<String> subtitleList = new ArrayList<>();
-        List<Double> priceList = new ArrayList<>();
-        List<String> imageUrlList = new ArrayList<>();
-
-        for (Item item : items) {
-            titleList.add(item.getDetails().getTitle());
-            subtitleList.add(item.getDetails().getSubtitle());
-            priceList.add(item.getDetails().getPrice());
-            imageUrlList.add(item.getFirstImageUrl());
-        }
-
-        this.titleList = titleList;
-        this.priceList = priceList;
-        this.subtitleList = subtitleList;
-        this.imageUrlList = imageUrlList;
-        this.itemList = items;
-
-        notifyDataSetChanged();
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
-
-    public interface AdapterCallback {
-        void onAdapterItemClick(List<Item> items);
     }
 }

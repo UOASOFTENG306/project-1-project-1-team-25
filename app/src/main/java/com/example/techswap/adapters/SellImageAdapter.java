@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
 
@@ -50,15 +48,6 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
         return imageUrlList.size();
     }
 
-    public static class ImageViewHolder extends RecyclerView.ViewHolder {
-        final ImageView image;
-
-        public ImageViewHolder(@NonNull View itemView) {
-            super(itemView);
-            image = itemView.findViewById(R.id.image);
-        }
-    }
-
     public void setContext(Context context) {
         this.context = context;
     }
@@ -66,7 +55,15 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
     @SuppressLint("NotifyDataSetChanged")
     public void updateImages(List<String> imageUrlList) {
         this.imageUrlList = imageUrlList;
-        Log.println(Log.INFO,"tag",imageUrlList.toString());
         notifyDataSetChanged();
+    }
+
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
+        final ImageView image;
+
+        public ImageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            image = itemView.findViewById(R.id.image);
+        }
     }
 }

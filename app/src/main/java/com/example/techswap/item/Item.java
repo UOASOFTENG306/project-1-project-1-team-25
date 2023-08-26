@@ -23,6 +23,7 @@ public abstract class Item implements Serializable {
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -35,15 +36,16 @@ public abstract class Item implements Serializable {
         }
         return this.imageUrls;
     }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
     public String getFirstImageUrl() {
         if (this.imageUrls == null || this.imageUrls.size() == 0) {
             return "https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png"; // TODO: add resource for URL
         }
         return this.imageUrls.get(0);
-    }
-
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
     }
 
     public Details getDetails() {
@@ -54,16 +56,16 @@ public abstract class Item implements Serializable {
         this.details = details;
     }
 
-    public abstract void setSpecifications(List<String> valuesList);
-
     public abstract List<String> getSpecifications();
 
-    public void setSpecificationsTitleList(List<String> specificationsTitleList) {
-        this.specificationsTitleList = specificationsTitleList;
-    }
+    public abstract void setSpecifications(List<String> valuesList);
 
     public List<String> getSpecificationsTitleList() {
         return specificationsTitleList;
+    }
+
+    public void setSpecificationsTitleList(List<String> specificationsTitleList) {
+        this.specificationsTitleList = specificationsTitleList;
     }
 
     @Override

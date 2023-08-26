@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -14,7 +13,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
-
 import com.example.techswap.R;
 import com.example.techswap.adapters.ImageAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
@@ -28,10 +26,9 @@ import java.util.List;
 
 public class DetailsFragment extends Fragment {
 
-    private FragmentDetailsBinding binding;
-
     ViewPager2 viewPager;
     LinearLayout sliderDotspanel;
+    private FragmentDetailsBinding binding;
     private int dotscount;
     private ImageView[] dots;
     private Item item;
@@ -90,7 +87,7 @@ public class DetailsFragment extends Fragment {
         dotscount = adapterView.getItemCount();
         dots = new ImageView[dotscount];
 
-        for(int i = 0; i < dotscount; i++){
+        for (int i = 0; i < dotscount; i++) {
 
             dots[i] = new ImageView(requireContext());
             dots[i].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.inactive_dot));
@@ -107,18 +104,20 @@ public class DetailsFragment extends Fragment {
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
             @Override
             public void onPageSelected(int position) {
-                for(int i = 0; i< dotscount; i++){
+                for (int i = 0; i < dotscount; i++) {
                     dots[i].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.inactive_dot));
                 }
                 dots[position].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.active_dot));
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+            }
         });
 
         if (User.getCurrentUser() != null) {

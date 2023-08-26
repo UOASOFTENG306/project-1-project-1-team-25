@@ -1,20 +1,16 @@
 package com.example.techswap.fragments;
 
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.database.DatabaseUtils;
@@ -30,12 +26,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static android.content.ContentValues.TAG;
+
 public class CartFragment extends Fragment implements CarouselAdapter.AdapterCallback {
 
-    private FragmentCartBinding binding;
-    private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private static final List<Item> itemList = new ArrayList<>();
+    private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
+    private FragmentCartBinding binding;
 
     @Override
     public View onCreateView(
@@ -52,7 +50,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         adapter.setContext(requireContext());
         recyclerView.setAdapter(adapter);
 
-        if (User.getCurrentUser() != null){
+        if (User.getCurrentUser() != null) {
             fetchCart();
             setItems(itemList);
         }
@@ -120,7 +118,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         adapter.updateData(items);
         double total = 0, gst, subTotal;
 
-        for (Item item : items){
+        for (Item item : items) {
             total += item.getDetails().getPrice();
         }
 

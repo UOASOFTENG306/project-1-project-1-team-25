@@ -5,10 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
 
@@ -48,6 +46,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return imageUrlList.size();
     }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     public static class ImageViewHolder extends RecyclerView.ViewHolder {
         final ImageView image;
 
@@ -55,10 +57,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             super(itemView);
             image = itemView.findViewById(R.id.image);
         }
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
     }
 
 }

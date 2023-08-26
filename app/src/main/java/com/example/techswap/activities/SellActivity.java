@@ -3,19 +3,13 @@ package com.example.techswap.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-
+import android.widget.*;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.techswap.R;
 import com.example.techswap.adapters.SellImageAdapter;
 import com.example.techswap.database.DatabaseSetter;
@@ -31,15 +25,25 @@ import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity {
 
+    final SellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
+    private final List<String> imageUrlList = new ArrayList<>();
     private EditText titleInput;
     private EditText subtitleInput;
     private EditText descriptionInput;
     private EditText priceInput;
     private Spinner categorySpinner;
-    private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private Uri imageUri;
-    private final List<String> imageUrlList = new ArrayList<>();
-    final SellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
+    final ActivityResultLauncher<String> mGetContent = registerForActivityResult((new ActivityResultContracts.GetContent()),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri result) {
+                    if (result != null) {
+                        imageUri = result;
+                        uploadImage();
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,15 +134,4 @@ public class SellActivity extends AppCompatActivity {
             });
         }
     }
-
-    final ActivityResultLauncher<String> mGetContent = registerForActivityResult((new ActivityResultContracts.GetContent()),
-        new ActivityResultCallback<Uri>()   {
-            @Override
-            public void onActivityResult(Uri result) {
-                if (result != null) {
-                    imageUri = result;
-                    uploadImage();
-                }
-            }
-    });
 }

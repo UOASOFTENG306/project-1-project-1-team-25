@@ -1,8 +1,5 @@
 package com.example.techswap.fragments;
 
-import static android.content.ContentValues.TAG;
-import static android.view.View.VISIBLE;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,13 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import com.example.techswap.activities.MainActivity;
 import com.example.techswap.R;
+import com.example.techswap.activities.MainActivity;
 import com.example.techswap.database.DatabaseSetter;
 import com.example.techswap.databinding.FragmentLoginBinding;
 import com.example.techswap.user.User;
@@ -28,15 +23,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Map;
 import java.util.Objects;
 
+import static android.content.ContentValues.TAG;
+import static android.view.View.VISIBLE;
+
 public class LoginFragment extends Fragment {
 
+    private final DatabaseSetter dbSetter = new DatabaseSetter();
     private EditText usernameInput;
     private EditText passwordInput;
     private TextView displayMessageTextView;
     private Button registerButton;
     private Button loginButton;
     private Button confirmButton;
-    private final DatabaseSetter dbSetter = new DatabaseSetter();
     private boolean isLogin = true;
 
     @Override
@@ -89,7 +87,7 @@ public class LoginFragment extends Fragment {
 
     private void onViewConfirm() {
         if (usernameInput.getText().toString().equals("") || passwordInput.getText().toString().equals("")) {
-            if (isLogin){ //login fail
+            if (isLogin) { //login fail
                 displayMessageTextView.setText("Invalid password or username,\n please try again.");
                 displayMessageTextView.setVisibility(VISIBLE);
             } else { // register fail
@@ -97,7 +95,7 @@ public class LoginFragment extends Fragment {
                 displayMessageTextView.setVisibility(VISIBLE);
             }
         } else {
-            User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
+            User currentUser = new User(usernameInput.getText().toString(), passwordInput.getText().toString());
             fetchUser(currentUser, isLogin);
         }
     }
@@ -116,12 +114,12 @@ public class LoginFragment extends Fragment {
                             startActivity(intent);
                             // Inside your activity or fragment
                             Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_LONG).show();
-                        } else if (!isLoggingIn && !task.getResult().exists())   { // register success
+                        } else if (!isLoggingIn && !task.getResult().exists()) { // register success
                             dbSetter.addUser(user, true);
                             User.setCurrentUser(user);
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_LONG).show();
-                        } else if (isLoggingIn){ //login fail
+                        } else if (isLoggingIn) { //login fail
                             displayMessageTextView.setText("Invalid password or username,\n please try again.");
                             displayMessageTextView.setVisibility(VISIBLE);
                         } else { // register fail

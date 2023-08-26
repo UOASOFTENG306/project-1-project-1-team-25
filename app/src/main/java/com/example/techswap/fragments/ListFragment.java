@@ -1,18 +1,14 @@
 package com.example.techswap.fragments;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.DatabaseUtils;
 import com.example.techswap.databinding.FragmentListBinding;
@@ -23,15 +19,14 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class ListFragment extends Fragment {
 
-    private FragmentListBinding binding;
-
     private final List<Item> itemList = new ArrayList<>();
-
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
-
     CarouselAdapter carouselAdapter;
+    private FragmentListBinding binding;
 
     public static ListFragment listCategory(String category) {
         ListFragment fragment = new ListFragment();
@@ -127,7 +122,7 @@ public class ListFragment extends Fragment {
                             itemList.add(databaseUtils.mapToItem(document.getData()));
                         }
                         setContent(itemList);
-                        switch (itemList.size()){
+                        switch (itemList.size()) {
                             case 0:
                                 setHeader("No results found for \"" + keyword + "\". Try searching again!");
                                 break;
