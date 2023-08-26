@@ -10,10 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
+import com.example.techswap.interfaces.ISellImageAdapter;
 
 import java.util.List;
 
-public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.ImageViewHolder> {
+public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.ImageViewHolder> implements ISellImageAdapter {
     private List<String> imageUrlList;
 
     private Context context;

@@ -8,12 +8,14 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.helper.widget.Carousel;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.R;
 import com.example.techswap.adapters.SellImageAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.interfaces.IDatabase;
+import com.example.techswap.interfaces.ISellImageAdapter;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.ItemFactory;
@@ -27,8 +29,7 @@ import java.util.UUID;
 public class SellActivity extends AppCompatActivity {
 
     IDatabase db = new Database();
-
-    final SellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
+    final ISellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private final List<String> imageUrlList = new ArrayList<>();
     private EditText titleInput;
@@ -81,7 +82,7 @@ public class SellActivity extends AppCompatActivity {
         // Images recycler view
         LinearLayoutManager imageLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         imagesRecyclerView.setLayoutManager(imageLayoutManager);
-        imagesRecyclerView.setAdapter(sellImageAdapter);
+        imagesRecyclerView.setAdapter((RecyclerView.Adapter) sellImageAdapter);
 
         logoText.setOnClickListener(v -> {
             // switch to another activity
