@@ -14,6 +14,7 @@ import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.item.Item;
+import com.example.techswap.item.ItemFactory;
 import com.example.techswap.item.categories.CPU;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -81,7 +82,6 @@ public class MainFragment extends Fragment {
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(categoryRecyclerView);
 
-
         // Second Carousel
         RecyclerView dealsRecyclerView = binding.dealsRecyclerView;
         LinearLayoutManager dealsLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -96,10 +96,11 @@ public class MainFragment extends Fragment {
         bestSellersAdapter.setContext(requireContext());
         bestSellersRecyclerView.setAdapter(bestSellersAdapter);
 
+        // Populate recyclerview with placeholder items
         List<Item> items = new ArrayList<>();
-        CPU cpu = new CPU();
+        Item placeholderItem = ItemFactory.getItem("Other");
         for (int i = 0; i < 7; i++) {
-            items.add(cpu);
+            items.add(placeholderItem);
         }
 
         setDeals(items);

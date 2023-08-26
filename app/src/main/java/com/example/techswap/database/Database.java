@@ -90,7 +90,6 @@ public class Database {
 
     @SuppressWarnings("unchecked")
     public static Item mapToItem(Map<String, Object> data) {
-        ItemFactory itemFactory = new ItemFactory();
         Details details = new Details();
 
         String category, description, title, subtitle, searchTitle, id;
@@ -111,7 +110,7 @@ public class Database {
         details.setSubtitle(subtitle);
         details.setSearchTitle(searchTitle);
 
-        Item item = itemFactory.getItem(category);
+        Item item = ItemFactory.getItem(category);
         item.setDetails(details);
         item.setId(id);
         item.setImageUrls((List<String>) data.get("images"));

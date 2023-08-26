@@ -88,8 +88,7 @@ public class SellActivity extends AppCompatActivity {
 
         listItemButton.setOnClickListener(v -> {
             if (!(titleInput.getText().toString().equals("") || subtitleInput.getText().toString().equals("") || descriptionInput.getText().toString().equals("") || priceInput.getText().toString().equals(""))) {
-                ItemFactory factory = new ItemFactory();
-                Item item = factory.getItem(categorySpinner.getSelectedItem().toString());
+                Item item = ItemFactory.getItem(categorySpinner.getSelectedItem().toString());
 
                 Details details = item.getDetails();
                 details.setTitle(titleInput.getText().toString());

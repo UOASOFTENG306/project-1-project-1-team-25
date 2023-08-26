@@ -4,7 +4,7 @@ import com.example.techswap.item.categories.*;
 
 public class ItemFactory {
 
-    public Item getItem(String itemType) {
+    public static Item getItem(String itemType) {
         switch (itemType) {
             case "CPU":
                 return new CPU();
