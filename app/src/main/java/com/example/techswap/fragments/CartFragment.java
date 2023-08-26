@@ -124,6 +124,9 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         adapter.updateData(items);
 
         if (items.isEmpty()) {
+            binding.cartTotal.setText("$0.00");
+            binding.subtotalPriceText.setText("$0.00");
+            binding.feesPriceText.setText("$0.00");
                 // Hide the cart total information if the cart is empty
             emptyCartMessage.setVisibility(View.VISIBLE);
         } else {
