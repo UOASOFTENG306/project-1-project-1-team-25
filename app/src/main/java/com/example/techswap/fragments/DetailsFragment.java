@@ -20,6 +20,7 @@ import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentDetailsBinding;
 import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.interfaces.IDetailsImageAdapter;
+import com.example.techswap.interfaces.ISpecificationAdapter;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
 
@@ -29,7 +30,8 @@ import java.util.List;
 public class DetailsFragment extends Fragment {
 
     IDatabase db = new Database();
-    IDetailsImageAdapter adapter;
+    IDetailsImageAdapter imageAdapter;
+    ISpecificationAdapter specificationAdapter;
     ViewPager2 viewPager;
     LinearLayout sliderDotspanel;
     private FragmentDetailsBinding binding;
@@ -77,10 +79,10 @@ public class DetailsFragment extends Fragment {
             List<String> specificationList = item.getSpecificationsTitleList();
             List<String> valueList = item.getSpecifications();
 
-            SpecificationAdapter adapter = new SpecificationAdapter(specificationList, valueList);
-            recyclerView.setAdapter(adapter);
+            specificationAdapter = new SpecificationAdapter(specificationList, valueList);
+            recyclerView.setAdapter((RecyclerView.Adapter<?>) specificationAdapter);
 
-            if (adapter.getItemCount() == 0) {
+            if (specificationAdapter.getItemCount() == 0) {
                 binding.detailsSpecificationsHeader.setVisibility(View.GONE);
             } else {
                 binding.detailsSpecificationsHeader.setVisibility(View.VISIBLE);
@@ -90,12 +92,12 @@ public class DetailsFragment extends Fragment {
 
         // view pager
         viewPager = binding.detailsPager;
-        adapter = new DetailsImageAdapter(requireContext(), item.getImageUrls());
-        viewPager.setAdapter((RecyclerView.Adapter<?>) adapter);
+        imageAdapter = new DetailsImageAdapter(requireContext(), item.getImageUrls());
+        viewPager.setAdapter((RecyclerView.Adapter<?>) imageAdapter);
 
         // view pager dots
         sliderDotspanel = binding.sliderDotsPanel;
-        dotscount = adapter.getItemCount();
+        dotscount = imageAdapter.getItemCount();
         dots = new ImageView[dotscount];
 
         for (int i = 0; i < dotscount; i++) {

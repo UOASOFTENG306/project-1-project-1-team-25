@@ -7,10 +7,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.R;
+import com.example.techswap.interfaces.ISpecificationAdapter;
 
 import java.util.List;
 
-public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdapter.SpecificationViewHolder> {
+public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdapter.SpecificationViewHolder> implements ISpecificationAdapter {
     private final List<String> specificationList;
     private final List<String> valueList;
 
