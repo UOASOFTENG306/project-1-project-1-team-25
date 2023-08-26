@@ -75,6 +75,13 @@ public class DetailsFragment extends Fragment {
 
             SpecificationAdapter adapter = new SpecificationAdapter(specificationList, valueList);
             recyclerView.setAdapter(adapter);
+
+            if (adapter.getItemCount() == 0) {
+                binding.detailsSpecificationsHeader.setVisibility(View.GONE);
+            } else {
+                binding.detailsSpecificationsHeader.setVisibility(View.VISIBLE);
+            }
+
         }
 
         // view pager
@@ -115,9 +122,6 @@ public class DetailsFragment extends Fragment {
                 dots[position].setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.active_dot));
             }
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
         });
 
         if (User.getCurrentUser() != null) {
@@ -139,7 +143,7 @@ public class DetailsFragment extends Fragment {
     }
 
     private void onAddToCart() {
-        Database.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId(), true);
+        Database.addRemoveItemToCart(item.getId(), true);
 
         CartFragment fragment = new CartFragment();
         FragmentTransaction transaction = (getParentFragmentManager().beginTransaction());

@@ -16,17 +16,17 @@ public class Database {
     /**
      * Adds a new user / updates a user in the Firestore DB.
      */
-    public static void addUser(User user, Boolean isNew) {
+    public static void addUser(String username, String password) {
 
-        if (isNew) {
-            addNewCart(user.getUsername());
-        }
+        addNewCart(username);
 
         Map<String, Object> data = new HashMap<>();
-        data.put("password", user.getPassword());
-        data.put("username", user.getUsername());
+        data.put("password", username);
+        data.put("username", password);
 
-        database.collection("users").document(String.valueOf(user.getUsername())).set(data);
+        User.userLogin(username, password);
+
+        database.collection("users").document(String.valueOf(User.getCurrentUser().getUsername())).set(data);
 
     }
 
@@ -46,12 +46,12 @@ public class Database {
      * Updates the cart in the Firestore DB, by adding or removing item from cart.
      * boolean true if add, false if remove.
      */
-    public static void addRemoveItemToCart(String username, String ItemDocName, boolean addOrRemove) {
+    public static void addRemoveItemToCart(String ItemDocName, boolean addOrRemove) {
 
         if (addOrRemove) {
-            database.collection("cart").document(username).update("item_id", FieldValue.arrayUnion(ItemDocName));
+            database.collection("cart").document(User.getCurrentUser().getUsername()).update("item_id", FieldValue.arrayUnion(ItemDocName));
         } else {
-            database.collection("cart").document(username).update("item_id", FieldValue.arrayRemove(ItemDocName));
+            database.collection("cart").document(User.getCurrentUser().getUsername()).update("item_id", FieldValue.arrayRemove(ItemDocName));
         }
     }
 

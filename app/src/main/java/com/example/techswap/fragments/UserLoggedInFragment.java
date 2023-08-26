@@ -36,6 +36,7 @@ public class UserLoggedInFragment extends Fragment {
         binding.logOutButton.setOnClickListener(view2 -> {
             // Code to switch to another activity
             User.setCurrentUser(null);
+            CartFragment.clearCart();
             Intent intent = new Intent(requireActivity(), MainActivity.class);
             startActivity(intent);
             Toast.makeText(requireContext(), "Logged Out", Toast.LENGTH_LONG).show();

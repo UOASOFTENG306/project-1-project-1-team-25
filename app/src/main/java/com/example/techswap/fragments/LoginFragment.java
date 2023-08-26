@@ -94,28 +94,25 @@ public class LoginFragment extends Fragment {
                 displayMessageTextView.setVisibility(VISIBLE);
             }
         } else {
-            User currentUser = new User(usernameInput.getText().toString(), passwordInput.getText().toString());
-            fetchUser(currentUser, isLogin);
+            fetchUser(usernameInput.getText().toString(), passwordInput.getText().toString(), isLogin);
         }
     }
 
-    private void fetchUser(User user, boolean isLoggingIn) {
+    private void fetchUser(String username, String password, boolean isLoggingIn) {
         FirebaseFirestore.getInstance().collection("users")
-                .document(user.getUsername()).get()
+                .document(username).get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Map<String, Object> docData = task.getResult().getData();
                         Intent intent = new Intent(requireContext(), MainActivity.class);
 
                         // login success
-                        if (isLoggingIn && task.getResult().exists() && Objects.requireNonNull(Objects.requireNonNull(docData).get("password")).toString().equals(user.getPassword())) {
-                            User.setCurrentUser(user);
+                        if (isLoggingIn && task.getResult().exists() && Objects.requireNonNull(Objects.requireNonNull(docData).get("password")).toString().equals(password)) {
+                            User.userLogin(username, password);
                             startActivity(intent);
-                            // Inside your activity or fragment
                             Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_LONG).show();
                         } else if (!isLoggingIn && !task.getResult().exists()) { // register success
-                            Database.addUser(user, true);
-                            User.setCurrentUser(user);
+                            Database.addUser(username, password);
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_LONG).show();
                         } else if (isLoggingIn) { //login fail

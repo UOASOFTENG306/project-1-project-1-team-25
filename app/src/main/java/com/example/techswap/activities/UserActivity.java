@@ -20,8 +20,8 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         findViewById(R.id.userInBack).setOnClickListener(v -> {
-            // Code to switch to another activity
-            Intent intent = new Intent(UserActivity.this, MainActivity.class);
+            // switch to main
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
 

@@ -111,6 +111,10 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         }
     }
 
+    public static void clearCart() {
+        itemList.clear();
+    }
+
     public void setItems(List<Item> items) {
         adapter.updateData(items);
         double total = 0, gst, subTotal;

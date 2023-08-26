@@ -31,6 +31,11 @@ public class User {
         return password;
     }
 
+    public static void userLogin(String username, String password) {
+        User user = new User(username, password);
+        User.setCurrentUser(user);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
