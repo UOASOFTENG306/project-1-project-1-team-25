@@ -19,6 +19,7 @@ import com.example.techswap.adapters.SpecificationAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentDetailsBinding;
 import com.example.techswap.interfaces.IDatabase;
+import com.example.techswap.interfaces.IDetailsImageAdapter;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
 
@@ -28,6 +29,7 @@ import java.util.List;
 public class DetailsFragment extends Fragment {
 
     IDatabase db = new Database();
+    IDetailsImageAdapter adapter;
     ViewPager2 viewPager;
     LinearLayout sliderDotspanel;
     private FragmentDetailsBinding binding;
@@ -88,12 +90,12 @@ public class DetailsFragment extends Fragment {
 
         // view pager
         viewPager = binding.detailsPager;
-        DetailsImageAdapter adapterView = new DetailsImageAdapter(requireContext(), item.getImageUrls());
-        viewPager.setAdapter(adapterView);
+        adapter = new DetailsImageAdapter(requireContext(), item.getImageUrls());
+        viewPager.setAdapter((RecyclerView.Adapter<?>) adapter);
 
         // view pager dots
         sliderDotspanel = binding.sliderDotsPanel;
-        dotscount = adapterView.getItemCount();
+        dotscount = adapter.getItemCount();
         dots = new ImageView[dotscount];
 
         for (int i = 0; i < dotscount; i++) {

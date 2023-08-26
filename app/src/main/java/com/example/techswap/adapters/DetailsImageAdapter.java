@@ -9,10 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
+import com.example.techswap.interfaces.IDetailsImageAdapter;
 
 import java.util.List;
 
-public class DetailsImageAdapter extends ImageAdapter {
+public class DetailsImageAdapter extends ImageAdapter implements IDetailsImageAdapter {
 
     public DetailsImageAdapter(Context context, List<String> imageUrlList) {
         super(context, imageUrlList);
