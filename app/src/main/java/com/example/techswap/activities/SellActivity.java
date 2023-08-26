@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.R;
 import com.example.techswap.adapters.SellImageAdapter;
-import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.database.Database;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.ItemFactory;
@@ -103,8 +103,7 @@ public class SellActivity extends AppCompatActivity {
                 UUID uuid = UUID.randomUUID();
                 item.setId(uuid.toString());
 
-                DatabaseSetter db = new DatabaseSetter();
-                db.addItem(item);
+                Database.addItem(item);
 
                 // switch to another activity
                 Intent intent = new Intent(SellActivity.this, MainActivity.class);

@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.example.techswap.R;
 import com.example.techswap.activities.MainActivity;
-import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentLoginBinding;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,7 +28,6 @@ import static android.view.View.VISIBLE;
 
 public class LoginFragment extends Fragment {
 
-    private final DatabaseSetter dbSetter = new DatabaseSetter();
     private EditText usernameInput;
     private EditText passwordInput;
     private TextView displayMessageTextView;
@@ -115,7 +114,7 @@ public class LoginFragment extends Fragment {
                             // Inside your activity or fragment
                             Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_LONG).show();
                         } else if (!isLoggingIn && !task.getResult().exists()) { // register success
-                            dbSetter.addUser(user, true);
+                            Database.addUser(user, true);
                             User.setCurrentUser(user);
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_LONG).show();

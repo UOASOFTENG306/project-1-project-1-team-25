@@ -12,8 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.adapters.CarouselAdapter;
-import com.example.techswap.database.DatabaseSetter;
-import com.example.techswap.database.DatabaseUtils;
+import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentCartBinding;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
@@ -32,7 +31,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
 
     private static final List<Item> itemList = new ArrayList<>();
     private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
-    private final DatabaseUtils databaseUtils = new DatabaseUtils();
+    private final Database database = new Database();
     private FragmentCartBinding binding;
 
     @Override
@@ -62,8 +61,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
 
 
     private void onCheckout() {
-        DatabaseSetter db = new DatabaseSetter();
-        db.clearCart(User.getCurrentUser().getUsername());
+        Database.clearCart(User.getCurrentUser().getUsername());
         itemList.clear();
         setItems(itemList);
         Toast.makeText(requireContext(), "Checkout complete", Toast.LENGTH_LONG).show();
@@ -104,7 +102,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
                         if (task.isSuccessful()) {
                             itemList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                itemList.add(databaseUtils.mapToItem(document.getData()));
+                                itemList.add(database.mapToItem(document.getData()));
                             }
                             setItems(itemList);
                         } else {

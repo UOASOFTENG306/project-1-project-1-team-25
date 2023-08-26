@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
-import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.database.Database;
 import com.example.techswap.fragments.DetailsFragment;
 import com.example.techswap.fragments.ListFragment;
 import com.example.techswap.item.Item;
@@ -164,8 +164,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             viewHolder.removeFromCartButton.setOnClickListener(v -> {
                 int clickedPosition = viewHolder.getAdapterPosition();
-                DatabaseSetter db = new DatabaseSetter();
-                db.addRemoveItemToCart(User.getCurrentUser().getUsername(), itemList.get(clickedPosition).getId(), false);
+                Database.addRemoveItemToCart(User.getCurrentUser().getUsername(), itemList.get(clickedPosition).getId(), false);
                 itemList.remove(clickedPosition);
                 if (callback != null) {
                     callback.onAdapterItemClick(itemList);

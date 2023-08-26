@@ -16,7 +16,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.techswap.R;
 import com.example.techswap.adapters.ImageAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
-import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentDetailsBinding;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
@@ -139,8 +139,7 @@ public class DetailsFragment extends Fragment {
     }
 
     private void onAddToCart() {
-        DatabaseSetter db = new DatabaseSetter();
-        db.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId(), true);
+        Database.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId(), true);
 
         CartFragment fragment = new CartFragment();
         FragmentTransaction transaction = (getParentFragmentManager().beginTransaction());

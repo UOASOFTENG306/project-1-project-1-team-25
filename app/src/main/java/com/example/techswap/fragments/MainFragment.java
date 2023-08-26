@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.adapters.CarouselAdapter;
-import com.example.techswap.database.DatabaseUtils;
+import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.CPU;
@@ -31,7 +31,7 @@ public class MainFragment extends Fragment {
     final CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
     private final List<Item> bestSellersList = new ArrayList<>();
     private final List<Item> dealsList = new ArrayList<>();
-    private final DatabaseUtils databaseUtils = new DatabaseUtils();
+    private final Database database = new Database();
     private FragmentMainBinding binding;
 
     @Override
@@ -121,7 +121,7 @@ public class MainFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            bestSellersList.add(databaseUtils.mapToItem(document.getData()));
+                            bestSellersList.add(database.mapToItem(document.getData()));
                         }
                         setBestSellers(bestSellersList);
                     } else {
@@ -138,7 +138,7 @@ public class MainFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            dealsList.add(databaseUtils.mapToItem(document.getData()));
+                            dealsList.add(database.mapToItem(document.getData()));
                         }
                         setDeals(dealsList);
                     } else {

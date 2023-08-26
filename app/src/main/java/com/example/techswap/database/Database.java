@@ -2,27 +2,21 @@ package com.example.techswap.database;
 
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
+import com.example.techswap.item.ItemFactory;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class DatabaseSetter {
+public class Database {
 
-    private final FirebaseFirestore database;
-
-    public DatabaseSetter() {
-        database = FirebaseFirestore.getInstance();
-    }
+    private static final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
     /**
      * Adds a new user / updates a user in the Firestore DB.
      */
-    public void addUser(User user, Boolean isNew) {
+    public static void addUser(User user, Boolean isNew) {
 
         if (isNew) {
             addNewCart(user.getUsername());
@@ -39,7 +33,7 @@ public class DatabaseSetter {
     /**
      * Creates a new cart in the Firestore DB. Different from adding items to the cart.
      */
-    public void addNewCart(String username) {
+    public static void addNewCart(String username) {
 
         Map<String, Object> data = new HashMap<>();
 
@@ -52,7 +46,7 @@ public class DatabaseSetter {
      * Updates the cart in the Firestore DB, by adding or removing item from cart.
      * boolean true if add, false if remove.
      */
-    public void addRemoveItemToCart(String username, String ItemDocName, boolean addOrRemove) {
+    public static void addRemoveItemToCart(String username, String ItemDocName, boolean addOrRemove) {
 
         if (addOrRemove) {
             database.collection("cart").document(username).update("item_id", FieldValue.arrayUnion(ItemDocName));
@@ -64,14 +58,14 @@ public class DatabaseSetter {
     /**
      * Clears the user's cart in the Firestore DB.
      */
-    public void clearCart(String username) {
+    public static void clearCart(String username) {
         database.collection("cart").document(username).update("item_id", FieldValue.delete());
     }
 
     /**
      * Creates an item instance in the Firestore DB
      */
-    public void addItem(Item item) {
+    public static void addItem(Item item) {
         Map<String, Object> data = new HashMap<>();
         Details details = item.getDetails();
 
@@ -94,4 +88,36 @@ public class DatabaseSetter {
         database.collection("items").document(String.valueOf(item.getId())).set(data);
     }
 
+    @SuppressWarnings("unchecked")
+    public static Item mapToItem(Map<String, Object> data) {
+        ItemFactory itemFactory = new ItemFactory();
+        Details details = new Details();
+
+        String category, description, title, subtitle, searchTitle, id;
+        double price;
+
+        category = Objects.requireNonNull(data.get("category_id")).toString();
+        price = Double.parseDouble(Objects.requireNonNull(data.get("price")).toString());
+        description = Objects.requireNonNull(data.get("description")).toString();
+        title = Objects.requireNonNull(data.get("title")).toString();
+        subtitle = Objects.requireNonNull(data.get("subtitle")).toString();
+        searchTitle = Objects.requireNonNull(data.get("search_title")).toString();
+        id = Objects.requireNonNull(data.get("item_id")).toString();
+
+        details.setCategory(category);
+        details.setPrice(price);
+        details.setDescription(description);
+        details.setTitle(title);
+        details.setSubtitle(subtitle);
+        details.setSearchTitle(searchTitle);
+
+        Item item = itemFactory.getItem(category);
+        item.setDetails(details);
+        item.setId(id);
+        item.setImageUrls((List<String>) data.get("images"));
+        item.setSpecifications((List<String>) data.get("specifications"));
+        item.setSpecificationsTitleList((List<String>) data.get("specifications_id"));
+
+        return item;
+    }
 }

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.adapters.CarouselAdapter;
-import com.example.techswap.database.DatabaseUtils;
+import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentListBinding;
 import com.example.techswap.item.Item;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,7 +24,7 @@ import static android.content.ContentValues.TAG;
 public class ListFragment extends Fragment {
 
     private final List<Item> itemList = new ArrayList<>();
-    private final DatabaseUtils databaseUtils = new DatabaseUtils();
+    private final Database database = new Database();
     CarouselAdapter carouselAdapter;
     private FragmentListBinding binding;
 
@@ -101,7 +101,7 @@ public class ListFragment extends Fragment {
                     if (task.isSuccessful()) {
                         itemList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            itemList.add(databaseUtils.mapToItem(document.getData()));
+                            itemList.add(database.mapToItem(document.getData()));
                         }
                         setContent(itemList);
                     } else {
@@ -119,7 +119,7 @@ public class ListFragment extends Fragment {
                     if (task.isSuccessful()) {
                         itemList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            itemList.add(databaseUtils.mapToItem(document.getData()));
+                            itemList.add(database.mapToItem(document.getData()));
                         }
                         setContent(itemList);
                         switch (itemList.size()) {
