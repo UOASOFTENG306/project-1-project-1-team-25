@@ -28,6 +28,12 @@ public class ListFragment extends Fragment {
     ICarouselAdapter carouselAdapter;
     private FragmentListBinding binding;
 
+    /**
+     * Creates a new instance of ListFragment configured with a specific category.
+     *
+     * @param category The category to be associated with the ListFragment.
+     * @return A new instance of ListFragment with the specified category.
+     */
     public static ListFragment listCategory(String category) {
         ListFragment fragment = new ListFragment();
         Bundle args = new Bundle();
@@ -36,6 +42,12 @@ public class ListFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Creates a new instance of ListFragment configured for displaying search results based on a search term.
+     *
+     * @param searchTerm The search term to be used for fetching and displaying search results.
+     * @return A new instance of ListFragment configured for displaying search results.
+     */
     public static ListFragment listSearch(String searchTerm) {
         ListFragment fragment = new ListFragment();
         Bundle args = new Bundle();
@@ -44,6 +56,14 @@ public class ListFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Inflates the layout for the fragment's UI and initializes the UI components.
+     *
+     * @param inflater           The LayoutInflater used to inflate the layout.
+     * @param container          The parent ViewGroup for the fragment UI.
+     * @param savedInstanceState A Bundle containing saved state information.
+     * @return The root View of the fragment's UI.
+     */
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
@@ -83,16 +103,32 @@ public class ListFragment extends Fragment {
         return rootView;
     }
 
+    /**
+     * Called when the fragment's view has been created and is ready to be populated with UI elements.
+     *
+     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    /**
+     * Called when the view previously created by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}
+     * has been detached from the fragment.
+     * This method releases references to the ViewBinding and performs necessary cleanup.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
 
+    /**
+     * Fetches items from a database collection based on the specified category name and updates the UI accordingly.
+     *
+     * @param categoryName The category name to filter items by.
+     */
     public void fetchItems(String categoryName) {
         FirebaseFirestore.getInstance().collection("items")
                 .whereEqualTo("category_id", categoryName).orderBy("title").limit(10)
@@ -110,6 +146,11 @@ public class ListFragment extends Fragment {
                 });
     }
 
+    /**
+     * Searches for items in a database collection based on a keyword and updates the UI accordingly.
+     *
+     * @param keyword The keyword used for searching items.
+     */
     public void searchItems(String keyword) {
         FirebaseFirestore.getInstance().collection("items")
                 .whereGreaterThanOrEqualTo("search_title", keyword)
@@ -122,6 +163,7 @@ public class ListFragment extends Fragment {
                             itemList.add(Database.mapToItem(document.getData()));
                         }
                         setContent(itemList);
+                        // Message varies on search result size
                         switch (itemList.size()) {
                             case 0:
                                 setHeader("No results found for \"" + keyword + "\". Try searching again!");
@@ -139,10 +181,20 @@ public class ListFragment extends Fragment {
                 });
     }
 
+    /**
+     * Updates the content of the UI with the provided list of items.
+     *
+     * @param items The list of items to be displayed in the UI.
+     */
     public void setContent(List<Item> items) {
         carouselAdapter.updateData(items);
     }
 
+    /**
+     * Sets the header text of the UI with the provided text.
+     *
+     * @param text The text to be displayed as the header.
+     */
     public void setHeader(String text) {
         binding.listTitle.setText(text);
     }
