@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
@@ -19,9 +18,7 @@ public class RAM extends Item {
     private String latencyCL;
 
     public RAM() {
-        Details details = new Details();
-        details.setCategory("Memory");
-        this.setDetails(details);
+        this.details.setCategory("Memory");
     }
 
     @Override

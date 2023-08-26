@@ -3,12 +3,10 @@ package com.example.techswap.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.techswap.R;
 import com.example.techswap.fragments.LoginFragment;
 import com.example.techswap.fragments.UserLoggedInFragment;
@@ -22,8 +20,8 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         findViewById(R.id.userInBack).setOnClickListener(v -> {
-            // Code to switch to another activity
-            Intent intent = new Intent(UserActivity.this, MainActivity.class);
+            // switch to main
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
 

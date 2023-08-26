@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
@@ -17,9 +16,7 @@ public class Motherboard extends Item {
     private String formFactor;
 
     public Motherboard() {
-        Details details = new Details();
-        details.setCategory("Motherboard");
-        this.setDetails(details);
+        this.details.setCategory("Motherboard");
     }
 
     @Override

@@ -7,18 +7,25 @@ import java.util.Objects;
 public class User {
 
     private static User currentUser;
-    public static User getCurrentUser() {
-        return currentUser;
-    }
-    public static void setCurrentUser(User currentUser) {
-        User.currentUser = currentUser;
-    }
     private final String username;
     private final String password;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        User.currentUser = currentUser;
+    }
+
+    public static void userLogin(String username, String password) {
+        User user = new User(username, password);
+        User.setCurrentUser(user);
     }
 
     public String getUsername() {

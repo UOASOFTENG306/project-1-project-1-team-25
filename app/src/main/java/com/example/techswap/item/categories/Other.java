@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
@@ -11,9 +10,7 @@ public class Other extends Item {
     private String brand;
 
     public Other() {
-        Details details = new Details();
-        details.setCategory("Other");
-        this.setDetails(details);
+        this.details.setCategory("Other");
     }
 
     @Override

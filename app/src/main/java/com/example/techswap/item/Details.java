@@ -1,8 +1,10 @@
 package com.example.techswap.item;
 
+import com.example.techswap.interfaces.IDetails;
+
 import java.io.Serializable;
 
-public class Details implements Serializable {
+public class Details implements Serializable, IDetails {
 
     private double price;
 
@@ -51,7 +53,9 @@ public class Details implements Serializable {
         this.description = description;
     }
 
-    public String getCategory() { return category; }
+    public String getCategory() {
+        return category;
+    }
 
     public void setCategory(String category) {
         this.category = category;
@@ -61,6 +65,8 @@ public class Details implements Serializable {
         return searchTitle;
     }
 
-    public void setSearchTitle(String searchTitle) { this.searchTitle = searchTitle; }
+    public void setSearchTitle(String searchTitle) {
+        this.searchTitle = searchTitle;
+    }
 
 }

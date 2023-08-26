@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
@@ -13,9 +12,7 @@ public class PSU extends Item {
     private String wattage;
 
     public PSU() {
-        Details details = new Details();
-        details.setCategory("Power");
-        this.setDetails(details);
+        this.details.setCategory("Power");
     }
 
     @Override

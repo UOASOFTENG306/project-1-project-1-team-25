@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
@@ -13,9 +12,7 @@ public class Case extends Item {
     private String formFactor;
 
     public Case() {
-        Details details = new Details();
-        details.setCategory("Case");
-        this.setDetails(details);
+        this.details.setCategory("Case");
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.techswap.item;
 
 import androidx.annotation.NonNull;
+import com.example.techswap.interfaces.IDetails;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,10 +10,8 @@ import java.util.Objects;
 
 public abstract class Item implements Serializable {
 
+    protected IDetails details = new Details();
     private String id;
-
-    private Details details;
-
     private List<String> imageUrls = new ArrayList<>();
 
     private List<String> specificationsTitleList = new ArrayList<>();
@@ -23,6 +22,7 @@ public abstract class Item implements Serializable {
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -35,6 +35,11 @@ public abstract class Item implements Serializable {
         }
         return this.imageUrls;
     }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
     public String getFirstImageUrl() {
         if (this.imageUrls == null || this.imageUrls.size() == 0) {
             return "https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png"; // TODO: add resource for URL
@@ -42,28 +47,24 @@ public abstract class Item implements Serializable {
         return this.imageUrls.get(0);
     }
 
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-
     public Details getDetails() {
-        return details;
+        return (Details) details;
     }
 
     public void setDetails(Details details) {
         this.details = details;
     }
 
-    public abstract void setSpecifications(List<String> valuesList);
-
     public abstract List<String> getSpecifications();
 
-    public void setSpecificationsTitleList(List<String> specificationsTitleList) {
-        this.specificationsTitleList = specificationsTitleList;
-    }
+    public abstract void setSpecifications(List<String> valuesList);
 
     public List<String> getSpecificationsTitleList() {
         return specificationsTitleList;
+    }
+
+    public void setSpecificationsTitleList(List<String> specificationsTitleList) {
+        this.specificationsTitleList = specificationsTitleList;
     }
 
     @Override
