@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class CPU extends Item {
@@ -21,22 +20,6 @@ public class CPU extends Item {
         Details details = new Details();
         details.setCategory("CPU");
         this.setDetails(details);
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getSocket() {
-        return socket;
-    }
-
-    public String getClockSpeedMHz() {
-        return clockSpeedMHz;
-    }
-
-    public String getNumCores() {
-        return numCores;
     }
 
     @Override

@@ -1,8 +1,9 @@
 package com.example.techswap.item;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public abstract class Item implements Serializable {
 
     public List<String> getImageUrls() {
         if (this.imageUrls == null || this.imageUrls.size() == 0) {
-            List<String> urls = new ArrayList<String>();
+            List<String> urls = new ArrayList<>();
             urls.add("https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png");
             return urls;
         }
@@ -36,7 +37,7 @@ public abstract class Item implements Serializable {
     }
     public String getFirstImageUrl() {
         if (this.imageUrls == null || this.imageUrls.size() == 0) {
-            return "https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png";
+            return "https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png"; // TODO: add resource for URL
         }
         return this.imageUrls.get(0);
     }
@@ -78,6 +79,7 @@ public abstract class Item implements Serializable {
         return Objects.hash(id, details.getTitle());
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Item " + id + ": " + details.getTitle() + " hash: " + hashCode();

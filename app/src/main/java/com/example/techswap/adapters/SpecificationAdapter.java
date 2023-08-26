@@ -13,8 +13,8 @@ import com.example.techswap.R;
 import java.util.List;
 
 public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdapter.SpecificationViewHolder> {
-    private List<String> specificationList;
-    private List<String> valueList;
+    private final List<String> specificationList;
+    private final List<String> valueList;
 
     public SpecificationAdapter(List<String> specificationList, List<String> valueList) {
         this.specificationList = specificationList;
@@ -25,7 +25,7 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
     @Override
     public SpecificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.specification_row, parent, false);
+                .inflate(R.layout.adapter_specification_row, parent, false);
         return new SpecificationViewHolder(itemView);
     }
 
@@ -47,9 +47,9 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
         return Integer.min(specificationList.size(), valueList.size());
     }
 
-    public class SpecificationViewHolder extends RecyclerView.ViewHolder {
-        TextView specificationText;
-        TextView valueText;
+    public static class SpecificationViewHolder extends RecyclerView.ViewHolder {
+        final TextView specificationText;
+        final TextView valueText;
 
         public SpecificationViewHolder(@NonNull View itemView) {
             super(itemView);

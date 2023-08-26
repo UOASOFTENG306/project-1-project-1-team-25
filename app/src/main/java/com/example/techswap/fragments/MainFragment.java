@@ -10,22 +10,18 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
-import com.example.techswap.databinding.FragmentMainBinding;
 import com.example.techswap.database.DatabaseUtils;
-import com.example.techswap.item.Details;
+import com.example.techswap.databinding.FragmentMainBinding;
+import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.CPU;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,12 +33,12 @@ public class MainFragment extends Fragment {
     private final List<Item> bestSellersList = new ArrayList<>();
     private final List<Item> dealsList = new ArrayList<>();
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
-    CarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
-    CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
+    final CarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
+    final CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
         binding = FragmentMainBinding.inflate(inflater, container, false);

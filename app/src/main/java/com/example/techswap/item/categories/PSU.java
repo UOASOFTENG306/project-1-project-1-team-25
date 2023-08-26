@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class PSU extends Item {
@@ -17,14 +16,6 @@ public class PSU extends Item {
         Details details = new Details();
         details.setCategory("Power");
         this.setDetails(details);
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getWattage() {
-        return wattage;
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Storage extends Item {
@@ -19,18 +18,6 @@ public class Storage extends Item {
         Details details = new Details();
         details.setCategory("Storage");
         this.setDetails(details);
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String isSolidState() {
-        return isSolidState;
-    }
-
-    public String getCapacityGB() {
-        return capacityGB;
     }
 
     @Override

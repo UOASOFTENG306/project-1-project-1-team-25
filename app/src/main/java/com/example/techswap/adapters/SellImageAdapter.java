@@ -1,5 +1,6 @@
 package com.example.techswap.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +30,7 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.sell_image, parent, false);
+                .inflate(R.layout.adapter_image_selling, parent, false);
         return new ImageViewHolder(itemView);
     }
 
@@ -49,8 +50,8 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
         return imageUrlList.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
+        final ImageView image;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +63,7 @@ public class SellImageAdapter extends RecyclerView.Adapter<SellImageAdapter.Imag
         this.context = context;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void updateImages(List<String> imageUrlList) {
         this.imageUrlList = imageUrlList;
         Log.println(Log.INFO,"tag",imageUrlList.toString());

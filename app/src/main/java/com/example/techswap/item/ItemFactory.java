@@ -1,7 +1,5 @@
 package com.example.techswap.item;
 
-import com.example.techswap.fragments.ListFragment;
-import com.example.techswap.item.Item;
 import com.example.techswap.item.categories.CPU;
 import com.example.techswap.item.categories.Case;
 import com.example.techswap.item.categories.GPU;

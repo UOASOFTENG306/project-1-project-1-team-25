@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Case extends Item {
@@ -33,14 +32,5 @@ public class Case extends Item {
         brand = valuesList.get(0);
         formFactor = valuesList.get(1);
     }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getFormFactor() {
-        return formFactor;
-    }
-
 
 }

@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Other extends Item {
@@ -15,10 +14,6 @@ public class Other extends Item {
         Details details = new Details();
         details.setCategory("Other");
         this.setDetails(details);
-    }
-
-    public String getBrand() {
-        return brand;
     }
 
     @Override

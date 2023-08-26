@@ -1,11 +1,6 @@
 package com.example.techswap.fragments;
 
-import static android.content.ContentValues.TAG;
-import static android.view.View.VISIBLE;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,25 +13,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.techswap.MainActivity;
 import com.example.techswap.R;
 import com.example.techswap.adapters.ImageAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
 import com.example.techswap.database.DatabaseSetter;
-import com.example.techswap.database.DatabaseUtils;
 import com.example.techswap.databinding.FragmentDetailsBinding;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
-import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class DetailsFragment extends Fragment {
 
@@ -58,7 +46,7 @@ public class DetailsFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
@@ -136,21 +124,16 @@ public class DetailsFragment extends Fragment {
         if (User.getCurrentUser() != null) {
             binding.addToCartButton.setEnabled(true);
             binding.addToCartButton.setBackgroundResource(R.drawable.rounded_button);
-            binding.addToCartButton.setText("Add to Cart");
+            binding.addToCartButton.setText(R.string.add_to_cart);
             binding.addToCartButton.setTextSize(16);
         } else {
             binding.addToCartButton.setEnabled(false);
             binding.addToCartButton.setBackgroundResource(R.drawable.rounded_button_grey);
-            binding.addToCartButton.setText("Sign in to Purchase");
+            binding.addToCartButton.setText(R.string.sign_in_to_purchase);
             binding.addToCartButton.setTextSize(14);
         }
 
-        binding.addToCartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onAddToCart();
-            }
-        });
+        binding.addToCartButton.setOnClickListener(v -> onAddToCart());
 
         return binding.getRoot();
 
@@ -158,7 +141,7 @@ public class DetailsFragment extends Fragment {
 
     private void onAddToCart() {
         DatabaseSetter db = new DatabaseSetter();
-        db.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId().toString(), true);
+        db.addRemoveItemToCart(User.getCurrentUser().getUsername(), item.getId(), true);
 
         CartFragment fragment = new CartFragment();
         FragmentTransaction transaction = (getParentFragmentManager().beginTransaction());

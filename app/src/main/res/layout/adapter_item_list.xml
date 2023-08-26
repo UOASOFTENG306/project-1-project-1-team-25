@@ -22,7 +22,7 @@
             android:id="@+id/carouselImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="Category Icons"
+            android:contentDescription="@string/item_image"
             android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 
@@ -37,25 +37,25 @@
             style="@style/TitleText"
             android:layout_width="match_parent"
             android:layout_height="24dp"
-            android:gravity="start"
-            android:text="Item Caption"
-            android:textAlignment="viewStart"
-            android:scrollHorizontally="true"
             android:ellipsize="end"
-            android:maxLines="1" />
+            android:gravity="start"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="@string/item_title"
+            android:textAlignment="viewStart" />
 
         <TextView
             android:id="@+id/descriptionText"
             style="@style/SubtitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:paddingTop="5dp"
-            android:text="Item Caption"
-            android:textAlignment="viewStart"
-            android:scrollHorizontally="true"
             android:ellipsize="end"
-            android:maxLines="1" />
+            android:gravity="start"
+            android:maxLines="1"
+            android:paddingTop="5dp"
+            android:scrollHorizontally="true"
+            android:text="@string/item_subtitle"
+            android:textAlignment="viewStart" />
 
         <TextView
             android:id="@+id/priceText"
@@ -63,12 +63,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top"
-            android:gravity="bottom|end"
-            android:text="Item Caption"
-            android:textAlignment="textEnd"
-            android:scrollHorizontally="true"
             android:ellipsize="end"
-            android:maxLines="1" />
+            android:gravity="bottom|end"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:text="@string/item_price"
+            android:textAlignment="textEnd" />
 
         <!--        <ImageButton-->
         <!--            android:id="@+id/imageButton"-->

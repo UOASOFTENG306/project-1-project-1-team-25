@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Motherboard extends Item {
@@ -21,22 +20,6 @@ public class Motherboard extends Item {
         Details details = new Details();
         details.setCategory("Motherboard");
         this.setDetails(details);
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getSocket() {
-        return socket;
-    }
-
-    public String getRamSlots() {
-        return ramSlots;
-    }
-
-    public String getFormFactor() {
-        return formFactor;
     }
 
     @Override

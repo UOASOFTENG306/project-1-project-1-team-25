@@ -42,12 +42,13 @@
         android:id="@+id/detailsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
         android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
         android:paddingBottom="4dp"
-        android:text="Title"
-        android:textSize="26sp"
+        android:text="@string/title"
         android:textColor="@color/black"
+        android:textSize="26sp"
         android:textStyle="bold" />
 
     <TextView
@@ -55,8 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
-        android:paddingEnd="10dp"
-        android:text="Subtitle"
+        android:paddingEnd="16dp"
+        android:text="@string/subtitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:theme="@style/Theme.Material3.Light" />
 
@@ -64,10 +65,11 @@
         android:id="@+id/detailsPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="$299.99"
         android:paddingStart="16dp"
         android:paddingTop="12dp"
+        android:paddingEnd="16dp"
         android:paddingBottom="6dp"
+        android:text="@string/price_placeholder"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="28sp" />
 
@@ -81,34 +83,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:theme="@style/Theme.Material3.Light">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="50"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="50"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/detailsDescription"
@@ -124,14 +98,14 @@
 
             <TextView
                 android:id="@+id/detailsSpecificationsHeader"
-                android:paddingBottom="0dp"
                 style="@style/HeaderText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
                 android:paddingStart="16dp"
-                android:paddingEnd="10dp"
-                android:text="Specifications"
+                android:paddingEnd="16dp"
+                android:paddingBottom="0dp"
+                android:text="@string/specifications"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -149,11 +123,11 @@
         android:id="@+id/addToCartButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/rounded_button"
-        android:text="Add to Cart"
+        android:text="@string/add_to_cart"
         android:textColor="#ffffff"
         android:textSize="16sp"
         app:backgroundTint="@null" />

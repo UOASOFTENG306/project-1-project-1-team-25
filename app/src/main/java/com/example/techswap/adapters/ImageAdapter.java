@@ -1,7 +1,6 @@
 package com.example.techswap.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
-import com.example.techswap.item.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
-    private List<String> imageUrlList;
+    private final List<String> imageUrlList;
 
     private Context context;
 
@@ -31,7 +28,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.image, parent, false);
+                .inflate(R.layout.adapter_image, parent, false);
         return new ImageViewHolder(itemView);
     }
 
@@ -51,8 +48,8 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return imageUrlList.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
+    public static class ImageViewHolder extends RecyclerView.ViewHolder {
+        final ImageView image;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,9 +61,4 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         this.context = context;
     }
 
-    public void updateImages(List<String> imageUrlList) {
-        this.imageUrlList = imageUrlList;
-        Log.println(Log.INFO,"tag",imageUrlList.toString());
-        notifyDataSetChanged();
-    }
 }

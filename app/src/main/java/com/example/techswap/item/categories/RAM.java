@@ -4,7 +4,6 @@ import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class RAM extends Item {
@@ -23,26 +22,6 @@ public class RAM extends Item {
         Details details = new Details();
         details.setCategory("Memory");
         this.setDetails(details);
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getNumSticks() {
-        return numSticks;
-    }
-
-    public String getSingleCapacityGB() {
-        return singleCapacityGB;
-    }
-
-    public String getSpeedMHz() {
-        return speedMHz;
-    }
-
-    public String getLatencyCL() {
-        return latencyCL;
     }
 
     @Override

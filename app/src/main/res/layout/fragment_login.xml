@@ -23,7 +23,6 @@
             android:padding="16dp">
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -36,7 +35,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:onClick="onViewLogin"
                     android:text="@string/login"
                     android:textColor="#ffffff"
                     app:backgroundTint="@null" />
@@ -47,7 +45,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:onClick="onViewRegister"
                     android:text="@string/register"
                     android:textColor="#999999"
                     app:backgroundTint="@null" />
@@ -57,10 +54,11 @@
                 android:id="@+id/usernameHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="35dp"
+                android:layout_marginEnd="5dp"
                 android:padding="2dp"
-                android:text="Username"
+                android:text="@string/username"
                 android:textColor="@color/black" />
 
             <EditText
@@ -74,16 +72,18 @@
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:textColor="#000000"
-                android:textColorHint="#999999" />
+                android:textColorHint="#999999"
+                android:autofillHints="username"/>
 
             <TextView
                 android:id="@+id/passwordHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="5dp"
                 android:padding="2dp"
-                android:text="Password"
+                android:text="@string/password"
                 android:textColor="@color/black" />
 
             <EditText
@@ -98,7 +98,8 @@
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:textColor="#000000"
-                android:textColorHint="#999999" /> <!-- Optional: Set IME options for keyboard actions -->
+                android:textColorHint="#999999"
+                android:autofillHints="password"/> <!-- Optional: Set IME options for keyboard actions -->
 
 
             <TextView
@@ -107,7 +108,6 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Account created successfully!"
                 android:textColor="@android:color/holo_red_light"
                 android:textSize="17sp"
                 android:visibility="invisible" />

@@ -9,6 +9,7 @@
     <string name="details_fragment_label">Details Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="close">Close</string>
 
     <!-- Strings for login/register page  -->
     <string name="username">Username</string>
@@ -16,6 +17,9 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="sign_in">Sign In</string>
+    <string name="log_out">Log out</string>
+    <string name="create_account">Create Account</string>
+    <string name="user_avatar">User Avatar</string>
 
     <!-- Strings used for headers and fragment content -->
     <!-- Main -->
@@ -28,19 +32,40 @@
     <string name="cart">Cart</string>
 
     <!-- Details -->
-    <string name="specifications_header">Specifications</string>
+    <string name="specifications">Specifications</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="sign_in_to_purchase">Sign in to Purchase</string>
+    <string name="image">Image</string>
+
     <!-- Cart -->
     <string name="cart_header">Your Cart</string>
     <string name="cart_checkout">Checkout</string>
-    <string-array name="quantity_array">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <!-- Add more quantity options as needed -->
-    </string-array>
+    <string name="cart_total">Total:</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="gst">GST</string>
+    <string name="price_placeholder">$0.00</string>
+
+    <!-- Sell an Item -->
+    <string name="sell_an_item">Sell an Item</string>
+    <string name="title">Title</string>
+    <string name="subtitle">Subtitle</string>
+    <string name="description">Description</string>
+    <string name="price">Price ($)</string>
+    <string name="category">Category</string>
+    <string name="images">Images</string>
+    <string name="add_image">Add Image</string>
+    <string name="list_item">List Item</string>
+
+    <!-- Item card -->
+    <string name="item_image">Item image</string>
+    <string name="item_title">Item title</string>
+    <string name="item_subtitle">Item subtitle</string>
+    <string name="item_price">Item price</string>
+    <string name="remove">Remove</string>
+
+    <!-- Image URLs -->
+    <string name="image_placeholder">https://www.pulsecarshalton.co.uk/wp-content/uploads/2016/08/jk-placeholder-image.jpg</string>
+    <string name="image_transparent">https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png</string>
 
 
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting
