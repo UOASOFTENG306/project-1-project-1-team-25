@@ -26,6 +26,8 @@ import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity {
 
+    IDatabase db = new Database();
+
     final SellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private final List<String> imageUrlList = new ArrayList<>();
@@ -103,7 +105,6 @@ public class SellActivity extends AppCompatActivity {
                 UUID uuid = UUID.randomUUID();
                 item.setId(uuid.toString());
 
-                IDatabase db = new Database();
                 db.addItem(item);
 
                 // switch to another activity

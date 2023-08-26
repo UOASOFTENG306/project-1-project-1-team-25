@@ -30,6 +30,8 @@ import static android.content.ContentValues.TAG;
 
 public class CartFragment extends Fragment implements CarouselAdapter.AdapterCallback {
 
+
+    IDatabase db = new Database();
     private static final List<Item> itemList = new ArrayList<>();
     private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private FragmentCartBinding binding;
@@ -64,7 +66,6 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     }
 
     private void onCheckout() {
-        IDatabase db = new Database();
         db.clearCart(User.getCurrentUser().getUsername());
         itemList.clear();
         setItems(itemList);

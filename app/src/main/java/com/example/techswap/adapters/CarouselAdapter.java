@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    IDatabase db = new Database();
     private final CarouselType carouselType;
     private List<String> imageUrlList;
     private List<String> titleList;
@@ -164,7 +166,6 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             viewHolder.removeFromCartButton.setOnClickListener(v -> {
                 int clickedPosition = viewHolder.getAdapterPosition();
-                IDatabase db = new Database();
                 db.addRemoveItemToCart(itemList.get(clickedPosition).getId(), false);
                 itemList.remove(clickedPosition);
                 if (callback != null) {

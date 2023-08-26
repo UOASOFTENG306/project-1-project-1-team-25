@@ -29,6 +29,7 @@ import static android.view.View.VISIBLE;
 
 public class LoginFragment extends Fragment {
 
+    IDatabase db = new Database();
     private EditText usernameInput;
     private EditText passwordInput;
     private TextView displayMessageTextView;
@@ -113,7 +114,6 @@ public class LoginFragment extends Fragment {
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_LONG).show();
                         } else if (!isLoggingIn && !task.getResult().exists()) { // register success
-                            IDatabase db = new Database();
                             db.addUser(username, password);
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_LONG).show();

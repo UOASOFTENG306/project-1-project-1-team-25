@@ -27,6 +27,7 @@ import java.util.List;
 
 public class DetailsFragment extends Fragment {
 
+    IDatabase db = new Database();
     ViewPager2 viewPager;
     LinearLayout sliderDotspanel;
     private FragmentDetailsBinding binding;
@@ -144,7 +145,6 @@ public class DetailsFragment extends Fragment {
     }
 
     private void onAddToCart() {
-        IDatabase db = new Database();
         db.addRemoveItemToCart(item.getId(), true);
 
         CartFragment fragment = new CartFragment();
