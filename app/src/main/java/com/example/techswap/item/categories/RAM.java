@@ -19,9 +19,7 @@ public class RAM extends Item {
     private String latencyCL;
 
     public RAM() {
-        Details details = new Details();
-        details.setCategory("Memory");
-        this.setDetails(details);
+        this.details.setCategory("Memory");
     }
 
     @Override

@@ -13,9 +13,7 @@ public class PSU extends Item {
     private String wattage;
 
     public PSU() {
-        Details details = new Details();
-        details.setCategory("Power");
-        this.setDetails(details);
+        this.details.setCategory("Power");
     }
 
     @Override

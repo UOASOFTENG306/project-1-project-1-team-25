@@ -17,9 +17,7 @@ public class GPU extends Item {
     private String clockSpeedMHz;
 
     public GPU() {
-        Details details = new Details();
-        details.setCategory("GPU");
-        this.setDetails(details);
+        this.details.setCategory("GPU");
     }
 
     @Override

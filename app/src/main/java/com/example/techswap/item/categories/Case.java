@@ -13,9 +13,7 @@ public class Case extends Item {
     private String formFactor;
 
     public Case() {
-        Details details = new Details();
-        details.setCategory("Case");
-        this.setDetails(details);
+        this.details.setCategory("Case");
     }
 
     @Override

@@ -17,9 +17,7 @@ public class CPU extends Item {
     private String numCores;
 
     public CPU() {
-        Details details = new Details();
-        details.setCategory("CPU");
-        this.setDetails(details);
+        this.details.setCategory("CPU");
     }
 
     @Override

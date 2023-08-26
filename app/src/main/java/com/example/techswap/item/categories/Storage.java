@@ -15,9 +15,7 @@ public class Storage extends Item {
     private String capacityGB;
 
     public Storage() {
-        Details details = new Details();
-        details.setCategory("Storage");
-        this.setDetails(details);
+        this.details.setCategory("Storage");
     }
 
     @Override

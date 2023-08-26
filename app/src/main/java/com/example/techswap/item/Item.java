@@ -11,7 +11,7 @@ public abstract class Item implements Serializable {
 
     private String id;
 
-    private Details details;
+    protected Details details = new Details();
 
     private List<String> imageUrls = new ArrayList<>();
 

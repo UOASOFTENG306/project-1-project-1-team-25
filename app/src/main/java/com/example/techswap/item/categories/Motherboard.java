@@ -17,9 +17,7 @@ public class Motherboard extends Item {
     private String formFactor;
 
     public Motherboard() {
-        Details details = new Details();
-        details.setCategory("Motherboard");
-        this.setDetails(details);
+        this.details.setCategory("Motherboard");
     }
 
     @Override

@@ -11,9 +11,7 @@ public class Other extends Item {
     private String brand;
 
     public Other() {
-        Details details = new Details();
-        details.setCategory("Other");
-        this.setDetails(details);
+        this.details.setCategory("Other");
     }
 
     @Override
