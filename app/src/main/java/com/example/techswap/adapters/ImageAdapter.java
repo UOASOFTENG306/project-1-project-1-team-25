@@ -1,5 +1,6 @@
 package com.example.techswap.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,13 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
+import com.example.techswap.interfaces.ISellImageAdapter;
 
 import java.util.List;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
-    private final List<String> imageUrlList;
+public abstract class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
+    private List<String> imageUrlList;
 
     private Context context;
+
+    protected ImageAdapter() {}
 
     public ImageAdapter(Context context, List<String> imageUrlList) {
         this.context = context;
@@ -26,7 +30,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_image, parent, false);
+                .inflate(R.layout.adapter_image_selling, parent, false);
         return new ImageViewHolder(itemView);
     }
 
@@ -36,7 +40,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
         Glide.with(context).load(url).into(holder.image);
     }
-
 
     @Override
     public int getItemCount() {
@@ -50,6 +53,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         this.context = context;
     }
 
+    public void setImageUrlList(List<String> imageUrlList) {
+        this.imageUrlList = imageUrlList;
+    }
+
     public static class ImageViewHolder extends RecyclerView.ViewHolder {
         final ImageView image;
 
@@ -58,5 +65,4 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             image = itemView.findViewById(R.id.image);
         }
     }
-
 }

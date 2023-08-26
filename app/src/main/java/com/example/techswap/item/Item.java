@@ -1,6 +1,7 @@
 package com.example.techswap.item;
 
 import androidx.annotation.NonNull;
+import com.example.techswap.interfaces.IDetails;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.Objects;
 
 public abstract class Item implements Serializable {
 
-    protected Details details = new Details();
+    protected IDetails details = new Details();
     private String id;
     private List<String> imageUrls = new ArrayList<>();
 
@@ -47,7 +48,7 @@ public abstract class Item implements Serializable {
     }
 
     public Details getDetails() {
-        return details;
+        return (Details) details;
     }
 
     public void setDetails(Details details) {

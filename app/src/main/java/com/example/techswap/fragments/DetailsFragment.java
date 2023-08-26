@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 import com.example.techswap.R;
-import com.example.techswap.adapters.ImageAdapter;
+import com.example.techswap.adapters.DetailsImageAdapter;
 import com.example.techswap.adapters.SpecificationAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentDetailsBinding;
@@ -88,7 +88,7 @@ public class DetailsFragment extends Fragment {
 
         // view pager
         viewPager = binding.detailsPager;
-        ImageAdapter adapterView = new ImageAdapter(requireContext(), item.getImageUrls());
+        DetailsImageAdapter adapterView = new DetailsImageAdapter(requireContext(), item.getImageUrls());
         viewPager.setAdapter(adapterView);
 
         // view pager dots
