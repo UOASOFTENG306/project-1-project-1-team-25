@@ -14,6 +14,15 @@ public class Database implements IDatabase {
 
     private final FirebaseFirestore database = FirebaseFirestore.getInstance();
 
+    /**
+     * Maps a Map of data to an Item object.
+     * This method takes a Map containing data fields such as category, price, description, title,
+     * subtitle, searchTitle, and more, and uses the values to create an Item object with its Details,
+     * ID, image URLs, specifications, and other attributes.
+     *
+     * @param data A Map containing the data fields to be mapped to an Item.
+     * @return An Item object populated with the data from the provided Map.
+     */
     @SuppressWarnings("unchecked")
     public static Item mapToItem(Map<String, Object> data) {
         Details details = new Details();
@@ -21,6 +30,7 @@ public class Database implements IDatabase {
         String category, description, title, subtitle, searchTitle, id;
         double price;
 
+        // Fill item fields based on map data
         category = Objects.requireNonNull(data.get("category_id")).toString();
         price = Double.parseDouble(Objects.requireNonNull(data.get("price")).toString());
         description = Objects.requireNonNull(data.get("description")).toString();
@@ -29,6 +39,7 @@ public class Database implements IDatabase {
         searchTitle = Objects.requireNonNull(data.get("search_title")).toString();
         id = Objects.requireNonNull(data.get("item_id")).toString();
 
+        // set data to item details object
         details.setCategory(category);
         details.setPrice(price);
         details.setDescription(description);
@@ -36,6 +47,7 @@ public class Database implements IDatabase {
         details.setSubtitle(subtitle);
         details.setSearchTitle(searchTitle);
 
+        // Create item using factory, set parameters and return
         Item item = ItemFactory.getItem(category);
         item.setDetails(details);
         item.setId(id);
@@ -102,6 +114,7 @@ public class Database implements IDatabase {
         Map<String, Object> data = new HashMap<>();
         Details details = item.getDetails();
 
+        // Populate map with data
         data.put("item_id", item.getId());
         data.put("category_id", details.getCategory());
         data.put("search_title", details.getTitle().toLowerCase());
