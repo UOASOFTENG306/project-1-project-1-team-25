@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private static final List<Item> itemList = new ArrayList<>();
     private final DatabaseUtils databaseUtils = new DatabaseUtils();
+    private TextView emptyCartMessage;
 
     @Override
     public View onCreateView(
@@ -44,6 +46,8 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     ) {
         binding = FragmentCartBinding.inflate(inflater, container, false);
         View view = binding.getRoot();  // Use the inflated view from the binding
+
+        emptyCartMessage = binding.emptyCartTextView;
 
         // specifications recycler view
         RecyclerView recyclerView = binding.cartRecyclerView;
@@ -118,25 +122,39 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
 
     public void setItems(List<Item> items) {
         adapter.updateData(items);
-        double total = 0, gst, subTotal;
 
-        for (Item item : items){
-            total += item.getDetails().getPrice();
+        if (items.isEmpty()) {
+            binding.cartTotal.setText("$0.00");
+            binding.subtotalPriceText.setText("$0.00");
+            binding.feesPriceText.setText("$0.00");
+                // Hide the cart total information if the cart is empty
+            emptyCartMessage.setVisibility(View.VISIBLE);
+        } else {
+            double total = 0, gst, subTotal;
+
+            for (Item item : items){
+                total += item.getDetails().getPrice();
+            }
+
+            subTotal = total * 0.85;
+            gst = total - subTotal;
+
+            DecimalFormat df = new DecimalFormat("0.00");
+            df.setMaximumFractionDigits(2);
+
+            String totalString = "$" + df.format(total);
+            String subtotalString = "$" + df.format(subTotal);
+            String gstString = "$" + df.format(gst);
+
+            binding.cartTotal.setText(totalString);
+            binding.subtotalPriceText.setText(subtotalString);
+            binding.feesPriceText.setText(gstString);
+
+            emptyCartMessage.setVisibility(View.GONE);
+
         }
 
-        subTotal = total * 0.85;
-        gst = total - subTotal;
 
-        DecimalFormat df = new DecimalFormat("0.00");
-        df.setMaximumFractionDigits(2);
-
-        String totalString = "$" + df.format(total);
-        String subtotalString = "$" + df.format(subTotal);
-        String gstString = "$" + df.format(gst);
-
-        binding.cartTotal.setText(totalString);
-        binding.subtotalPriceText.setText(subtotalString);
-        binding.feesPriceText.setText(gstString);
     }
 
     @Override
