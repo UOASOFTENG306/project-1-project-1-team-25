@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentMainBinding;
+import com.example.techswap.interfaces.ICarouselAdapter;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.ItemFactory;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,8 +28,8 @@ import static android.content.ContentValues.TAG;
 
 public class MainFragment extends Fragment {
 
-    final CarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
-    final CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
+    ICarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
+    ICarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
     private final List<Item> bestSellersList = new ArrayList<>();
     private final List<Item> dealsList = new ArrayList<>();
     private FragmentMainBinding binding;
@@ -86,14 +87,14 @@ public class MainFragment extends Fragment {
         LinearLayoutManager dealsLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
         dealsRecyclerView.setLayoutManager(dealsLayoutManager);
         dealsAdapter.setContext(requireContext());
-        dealsRecyclerView.setAdapter(dealsAdapter);
+        dealsRecyclerView.setAdapter((RecyclerView.Adapter<?>) dealsAdapter);
 
         // Vertical RecyclerView
         RecyclerView bestSellersRecyclerView = binding.bestSellersRecyclerView;
         LinearLayoutManager bestSellersLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         bestSellersRecyclerView.setLayoutManager(bestSellersLayoutManager);
         bestSellersAdapter.setContext(requireContext());
-        bestSellersRecyclerView.setAdapter(bestSellersAdapter);
+        bestSellersRecyclerView.setAdapter((RecyclerView.Adapter<?>) bestSellersAdapter);
 
         // Populate recyclerview with placeholder items
         List<Item> items = new ArrayList<>();

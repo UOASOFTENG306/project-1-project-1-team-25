@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentListBinding;
+import com.example.techswap.interfaces.ICarouselAdapter;
 import com.example.techswap.item.Item;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -24,7 +25,7 @@ import static android.content.ContentValues.TAG;
 public class ListFragment extends Fragment {
 
     private final List<Item> itemList = new ArrayList<>();
-    CarouselAdapter carouselAdapter;
+    ICarouselAdapter carouselAdapter;
     private FragmentListBinding binding;
 
     public static ListFragment listCategory(String category) {
@@ -77,7 +78,7 @@ public class ListFragment extends Fragment {
         LinearLayoutManager listLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         listRecyclerView.setLayoutManager(listLayoutManager);
         carouselAdapter.setContext(requireContext());
-        listRecyclerView.setAdapter(carouselAdapter);
+        listRecyclerView.setAdapter((RecyclerView.Adapter<?>) carouselAdapter);
 
         return rootView;
     }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentCartBinding;
+import com.example.techswap.interfaces.ICarouselAdapter;
 import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
@@ -33,7 +34,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
 
     IDatabase db = new Database();
     private static final List<Item> itemList = new ArrayList<>();
-    private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
+    ICarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private FragmentCartBinding binding;
 
     public static void clearCart() {
@@ -53,7 +54,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         adapter.setContext(requireContext());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter((RecyclerView.Adapter<?>) adapter);
 
         if (User.getCurrentUser() != null) {
             fetchCart();

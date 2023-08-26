@@ -18,6 +18,7 @@ import com.example.techswap.R;
 import com.example.techswap.database.Database;
 import com.example.techswap.fragments.DetailsFragment;
 import com.example.techswap.fragments.ListFragment;
+import com.example.techswap.interfaces.ICarouselAdapter;
 import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.item.Item;
 
@@ -25,7 +26,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ICarouselAdapter {
 
     IDatabase db = new Database();
     private final CarouselType carouselType;
