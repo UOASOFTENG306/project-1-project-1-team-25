@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
@@ -24,9 +23,7 @@ public class GPU extends Item {
      * Constructs a new `GPU` object with default values and sets the category in the details.
      */
     public GPU() {
-        Details details = new Details();
-        details.setCategory("GPU");
-        this.setDetails(details);
+        this.details.setCategory("GPU");
     }
 
     /**

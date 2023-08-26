@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
@@ -24,9 +23,7 @@ public class CPU extends Item {
      * Constructs a new `CPU` object with default values and sets the category in the details.
      */
     public CPU() {
-        Details details = new Details();
-        details.setCategory("CPU");
-        this.setDetails(details);
+        this.details.setCategory("CPU");
     }
 
     /**

@@ -1,12 +1,14 @@
 package com.example.techswap.item;
 
+import com.example.techswap.interfaces.IDetails;
+
 import java.io.Serializable;
 
 /**
  * The `Details` class represents additional information about an item, which includes its price, title, subtitle,
  * description, category, and search title. This information provides context and metadata for the item.
  */
-public class Details implements Serializable {
+public class Details implements Serializable, IDetails {
 
     private double price;
 

@@ -1,6 +1,7 @@
 package com.example.techswap.item;
 
 import androidx.annotation.NonNull;
+import com.example.techswap.interfaces.IDetails;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,10 +14,8 @@ import java.util.Objects;
  */
 public abstract class Item implements Serializable {
 
+    protected IDetails details = new Details();
     private String id;
-
-    private Details details;
-
     private List<String> imageUrls = new ArrayList<>();
 
     private List<String> specificationsTitleList = new ArrayList<>();
@@ -86,7 +85,7 @@ public abstract class Item implements Serializable {
      * @return The details of the item.
      */
     public Details getDetails() {
-        return details;
+        return (Details) details;
     }
 
     /**
@@ -99,14 +98,6 @@ public abstract class Item implements Serializable {
     }
 
     /**
-     * Sets the specifications of the item using the provided values.
-     * Subclasses are expected to implement this method.
-     *
-     * @param valuesList A list containing the specifications values.
-     */
-    public abstract void setSpecifications(List<String> valuesList);
-
-    /**
      * Retrieves the specifications of the item.
      * Subclasses are expected to implement this method.
      *
@@ -115,13 +106,12 @@ public abstract class Item implements Serializable {
     public abstract List<String> getSpecifications();
 
     /**
-     * Sets the list of titles for the specifications.
+     * Sets the specifications of the item using the provided values.
+     * Subclasses are expected to implement this method.
      *
-     * @param specificationsTitleList The list of specification titles to set.
+     * @param valuesList A list containing the specifications values.
      */
-    public void setSpecificationsTitleList(List<String> specificationsTitleList) {
-        this.specificationsTitleList = specificationsTitleList;
-    }
+    public abstract void setSpecifications(List<String> valuesList);
 
     /**
      * Retrieves the list of titles for the specifications.
@@ -130,6 +120,15 @@ public abstract class Item implements Serializable {
      */
     public List<String> getSpecificationsTitleList() {
         return specificationsTitleList;
+    }
+
+    /**
+     * Sets the list of titles for the specifications.
+     *
+     * @param specificationsTitleList The list of specification titles to set.
+     */
+    public void setSpecificationsTitleList(List<String> specificationsTitleList) {
+        this.specificationsTitleList = specificationsTitleList;
     }
 
     /**

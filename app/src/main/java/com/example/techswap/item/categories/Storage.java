@@ -1,6 +1,5 @@
 package com.example.techswap.item.categories;
 
-import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 
 import java.util.ArrayList;
@@ -22,9 +21,7 @@ public class Storage extends Item {
      * Constructs a new `Storage` object with default values and sets the category in the details.
      */
     public Storage() {
-        Details details = new Details();
-        details.setCategory("Storage");
-        this.setDetails(details);
+        this.details.setCategory("Storage");
     }
 
     /**

@@ -1,8 +1,6 @@
 package com.example.techswap.fragments;
 
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,16 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.techswap.R;
 import com.example.techswap.adapters.CarouselAdapter;
-import com.example.techswap.database.DatabaseSetter;
-import com.example.techswap.database.DatabaseUtils;
+import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentCartBinding;
+import com.example.techswap.interfaces.ICarouselAdapter;
+import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.item.Item;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -31,12 +30,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static android.content.ContentValues.TAG;
+
 public class CartFragment extends Fragment implements CarouselAdapter.AdapterCallback {
 
-    private FragmentCartBinding binding;
-    private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
+
+    IDatabase db = new Database();
     private static final List<Item> itemList = new ArrayList<>();
-    private final DatabaseUtils databaseUtils = new DatabaseUtils();
+    ICarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
+    private FragmentCartBinding binding;
+
+    public static void clearCart() {
+        itemList.clear();
+    }
     private TextView emptyCartMessage;
 
     @Override
@@ -54,9 +60,9 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
         adapter.setContext(requireContext());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter((RecyclerView.Adapter<?>) adapter);
 
-        if (User.getCurrentUser() != null){
+        if (User.getCurrentUser() != null) {
             fetchCart();
             setItems(itemList);
         }
@@ -66,9 +72,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         return view;  // Return the inflated view
     }
 
-
     private void onCheckout() {
-        DatabaseSetter db = new DatabaseSetter();
         db.clearCart(User.getCurrentUser().getUsername());
         itemList.clear();
         setItems(itemList);
@@ -110,7 +114,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
                         if (task.isSuccessful()) {
                             itemList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                itemList.add(databaseUtils.mapToItem(document.getData()));
+                                itemList.add(Database.mapToItem(document.getData()));
                             }
                             setItems(itemList);
                         } else {
@@ -124,9 +128,9 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
         adapter.updateData(items);
 
         if (items.isEmpty()) {
-            binding.cartTotal.setText("$0.00");
-            binding.subtotalPriceText.setText("$0.00");
-            binding.feesPriceText.setText("$0.00");
+            binding.cartTotal.setText(R.string.price_placeholder);
+            binding.subtotalPriceText.setText(R.string.price_placeholder);
+            binding.feesPriceText.setText(R.string.price_placeholder);
                 // Hide the cart total information if the cart is empty
             emptyCartMessage.setVisibility(View.VISIBLE);
         } else {
@@ -151,7 +155,6 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
             binding.feesPriceText.setText(gstString);
 
             emptyCartMessage.setVisibility(View.GONE);
-
         }
 
 

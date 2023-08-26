@@ -44,6 +44,18 @@ public class User {
     }
 
     /**
+     * Logs in a user by creating a new User instance with the provided username and password
+     * and sets the current user as the logged-in user.
+     *
+     * @param username The username of the user to log in.
+     * @param password The password associated with the user's account.
+     */
+    public static void userLogin(String username, String password) {
+        User user = new User(username, password);
+        User.setCurrentUser(user);
+    }
+
+    /**
      * Retrieves the username of the user.
      *
      * @return The username of the user.

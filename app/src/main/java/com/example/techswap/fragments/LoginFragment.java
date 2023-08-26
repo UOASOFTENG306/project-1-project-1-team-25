@@ -1,8 +1,5 @@
 package com.example.techswap.fragments;
 
-import static android.content.ContentValues.TAG;
-import static android.view.View.VISIBLE;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,30 +10,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import com.example.techswap.activities.MainActivity;
 import com.example.techswap.R;
-import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.activities.MainActivity;
+import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentLoginBinding;
+import com.example.techswap.interfaces.IDatabase;
 import com.example.techswap.user.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
 import java.util.Objects;
 
+import static android.content.ContentValues.TAG;
+import static android.view.View.VISIBLE;
+
 public class LoginFragment extends Fragment {
 
+    IDatabase db = new Database();
     private EditText usernameInput;
     private EditText passwordInput;
     private TextView displayMessageTextView;
     private Button registerButton;
     private Button loginButton;
     private Button confirmButton;
-    private final DatabaseSetter dbSetter = new DatabaseSetter();
     private boolean isLogin = true;
 
     @Override
@@ -89,34 +88,31 @@ public class LoginFragment extends Fragment {
 
     private void onViewConfirm() {
         if (usernameInput.getText().toString().equals("") || passwordInput.getText().toString().equals("")) {
-                displayMessageTextView.setText("Please enter a username and password.");
-                displayMessageTextView.setVisibility(VISIBLE);
+            displayMessageTextView.setText("Please enter a username and password.");
+            displayMessageTextView.setVisibility(VISIBLE);
         } else {
-            User currentUser = new User(usernameInput.getText().toString(),passwordInput.getText().toString());
-            fetchUser(currentUser, isLogin);
+            fetchUser(usernameInput.getText().toString(), passwordInput.getText().toString(), isLogin);
         }
     }
 
-    private void fetchUser(User user, boolean isLoggingIn) {
+    private void fetchUser(String username, String password, boolean isLoggingIn) {
         FirebaseFirestore.getInstance().collection("users")
-                .document(user.getUsername()).get()
+                .document(username).get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Map<String, Object> docData = task.getResult().getData();
                         Intent intent = new Intent(requireContext(), MainActivity.class);
 
                         // login success
-                        if (isLoggingIn && task.getResult().exists() && Objects.requireNonNull(Objects.requireNonNull(docData).get("password")).toString().equals(user.getPassword())) {
-                            User.setCurrentUser(user);
+                        if (isLoggingIn && task.getResult().exists() && Objects.requireNonNull(Objects.requireNonNull(docData).get("password")).toString().equals(password)) {
+                            User.userLogin(username, password);
                             startActivity(intent);
-                            // Inside your activity or fragment
                             Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_LONG).show();
-                        } else if (!isLoggingIn && !task.getResult().exists())   { // register success
-                            dbSetter.addUser(user, true);
-                            User.setCurrentUser(user);
+                        } else if (!isLoggingIn && !task.getResult().exists()) { // register success
+                            db.addUser(username, password);
                             startActivity(intent);
                             Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_LONG).show();
-                        } else if (isLoggingIn){ //login fail
+                        } else if (isLoggingIn) { //login fail
                             displayMessageTextView.setText("Invalid password or username,\n please try again.");
                             displayMessageTextView.setVisibility(VISIBLE);
                         } else { // register fail

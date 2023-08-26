@@ -3,22 +3,18 @@ package com.example.techswap.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-
+import android.widget.*;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.techswap.R;
 import com.example.techswap.adapters.SellImageAdapter;
-import com.example.techswap.database.DatabaseSetter;
+import com.example.techswap.database.Database;
+import com.example.techswap.interfaces.IDatabase;
+import com.example.techswap.interfaces.ISellImageAdapter;
 import com.example.techswap.item.Details;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.ItemFactory;
@@ -31,15 +27,26 @@ import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity {
 
+    IDatabase db = new Database();
+    final ISellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
+    private final List<String> imageUrlList = new ArrayList<>();
     private EditText titleInput;
     private EditText subtitleInput;
     private EditText descriptionInput;
     private EditText priceInput;
     private Spinner categorySpinner;
-    private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private Uri imageUri;
-    private final List<String> imageUrlList = new ArrayList<>();
-    final SellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
+    final ActivityResultLauncher<String> mGetContent = registerForActivityResult((new ActivityResultContracts.GetContent()),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri result) {
+                    if (result != null) {
+                        imageUri = result;
+                        uploadImage();
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +81,7 @@ public class SellActivity extends AppCompatActivity {
         // Images recycler view
         LinearLayoutManager imageLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         imagesRecyclerView.setLayoutManager(imageLayoutManager);
-        imagesRecyclerView.setAdapter(sellImageAdapter);
+        imagesRecyclerView.setAdapter((RecyclerView.Adapter<?>) sellImageAdapter);
 
         logoText.setOnClickListener(v -> {
             // switch to another activity
@@ -84,8 +91,7 @@ public class SellActivity extends AppCompatActivity {
 
         listItemButton.setOnClickListener(v -> {
             if (!(titleInput.getText().toString().equals("") || subtitleInput.getText().toString().equals("") || descriptionInput.getText().toString().equals("") || priceInput.getText().toString().equals(""))) {
-                ItemFactory factory = new ItemFactory();
-                Item item = factory.getItem(categorySpinner.getSelectedItem().toString());
+                Item item = ItemFactory.getItem(categorySpinner.getSelectedItem().toString());
 
                 Details details = item.getDetails();
                 details.setTitle(titleInput.getText().toString());
@@ -99,7 +105,6 @@ public class SellActivity extends AppCompatActivity {
                 UUID uuid = UUID.randomUUID();
                 item.setId(uuid.toString());
 
-                DatabaseSetter db = new DatabaseSetter();
                 db.addItem(item);
 
                 // switch to another activity
@@ -130,15 +135,4 @@ public class SellActivity extends AppCompatActivity {
             });
         }
     }
-
-    final ActivityResultLauncher<String> mGetContent = registerForActivityResult((new ActivityResultContracts.GetContent()),
-        new ActivityResultCallback<Uri>()   {
-            @Override
-            public void onActivityResult(Uri result) {
-                if (result != null) {
-                    imageUri = result;
-                    uploadImage();
-                }
-            }
-    });
 }

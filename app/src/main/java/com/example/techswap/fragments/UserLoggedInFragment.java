@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.example.techswap.activities.MainActivity;
 import com.example.techswap.activities.SellActivity;
 import com.example.techswap.databinding.FragmentUserLoggedInBinding;
@@ -38,6 +36,7 @@ public class UserLoggedInFragment extends Fragment {
         binding.logOutButton.setOnClickListener(view2 -> {
             // Code to switch to another activity
             User.setCurrentUser(null);
+            CartFragment.clearCart();
             Intent intent = new Intent(requireActivity(), MainActivity.class);
             startActivity(intent);
             Toast.makeText(requireContext(), "Logged Out", Toast.LENGTH_LONG).show();
