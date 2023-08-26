@@ -129,13 +129,13 @@ public class ListFragment extends Fragment {
                         setContent(itemList);
                         switch (itemList.size()){
                             case 0:
-                                setHeader("No results found. Try searching again!");
+                                setHeader("No results found for \"" + keyword + "\". Try searching again!");
                                 break;
                             case 1:
-                                setHeader(itemList.size() + " result found for " + keyword);
+                                setHeader(itemList.size() + " result found for \"" + keyword + "\"");
                                 break;
                             default:
-                                setHeader(itemList.size() + " results found for " + keyword);
+                                setHeader(itemList.size() + " results found for \"" + keyword + "\"");
                         }
 
                     } else {

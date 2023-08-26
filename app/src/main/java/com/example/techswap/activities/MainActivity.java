@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void performSearch(String searchQuery) {
         ListFragment fragment = ListFragment.listSearch(searchQuery);
+        hideSearchBar();
 
         // Start a fragment transaction
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -145,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
         searchBar.setVisibility(View.GONE);
         searchBar.clearFocus();
         logoText.setVisibility(View.VISIBLE);
-        logoText.requestFocus();
         isSearchBarVisible = false;
 
         hideKeyboard(searchBar);
