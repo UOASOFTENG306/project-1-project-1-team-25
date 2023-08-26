@@ -31,7 +31,6 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
 
     private static final List<Item> itemList = new ArrayList<>();
     private final CarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
-    private final Database database = new Database();
     private FragmentCartBinding binding;
 
     @Override
@@ -102,7 +101,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
                         if (task.isSuccessful()) {
                             itemList.clear();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                itemList.add(database.mapToItem(document.getData()));
+                                itemList.add(Database.mapToItem(document.getData()));
                             }
                             setItems(itemList);
                         } else {

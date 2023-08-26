@@ -31,7 +31,6 @@ public class MainFragment extends Fragment {
     final CarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
     private final List<Item> bestSellersList = new ArrayList<>();
     private final List<Item> dealsList = new ArrayList<>();
-    private final Database database = new Database();
     private FragmentMainBinding binding;
 
     @Override
@@ -121,7 +120,7 @@ public class MainFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            bestSellersList.add(database.mapToItem(document.getData()));
+                            bestSellersList.add(Database.mapToItem(document.getData()));
                         }
                         setBestSellers(bestSellersList);
                     } else {
@@ -138,7 +137,7 @@ public class MainFragment extends Fragment {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            dealsList.add(database.mapToItem(document.getData()));
+                            dealsList.add(Database.mapToItem(document.getData()));
                         }
                         setDeals(dealsList);
                     } else {

@@ -24,7 +24,6 @@ import static android.content.ContentValues.TAG;
 public class ListFragment extends Fragment {
 
     private final List<Item> itemList = new ArrayList<>();
-    private final Database database = new Database();
     CarouselAdapter carouselAdapter;
     private FragmentListBinding binding;
 
@@ -101,7 +100,7 @@ public class ListFragment extends Fragment {
                     if (task.isSuccessful()) {
                         itemList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            itemList.add(database.mapToItem(document.getData()));
+                            itemList.add(Database.mapToItem(document.getData()));
                         }
                         setContent(itemList);
                     } else {
@@ -119,7 +118,7 @@ public class ListFragment extends Fragment {
                     if (task.isSuccessful()) {
                         itemList.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            itemList.add(database.mapToItem(document.getData()));
+                            itemList.add(Database.mapToItem(document.getData()));
                         }
                         setContent(itemList);
                         switch (itemList.size()) {
