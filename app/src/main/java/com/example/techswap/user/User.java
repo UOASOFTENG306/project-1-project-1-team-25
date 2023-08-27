@@ -2,21 +2,24 @@ package com.example.techswap.user;
 
 import androidx.annotation.NonNull;
 
+import com.example.techswap.interfaces.IUser;
+
 import java.util.Objects;
 
 /**
  * The `User` class represents a user account in a system, with a unique username and associated password.
+ * It implements the {@link IUser} interface to provide access to user credentials.
  */
-public class User {
+public class User implements IUser {
 
-    private static User currentUser;
+    private static IUser currentUser;
 
     /**
      * Retrieves the currently logged-in user.
      *
      * @return The currently logged-in user.
      */
-    public static User getCurrentUser() {
+    public static IUser getCurrentUser() {
         return currentUser;
     }
 
