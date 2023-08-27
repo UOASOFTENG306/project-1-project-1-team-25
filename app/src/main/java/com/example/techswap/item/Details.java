@@ -105,7 +105,9 @@ public class Details implements Serializable, IDetails {
      *
      * @return The category of the item.
      */
-    public String getCategory() { return category; }
+    public String getCategory() {
+        return category;
+    }
 
     /**
      * Sets the category of the item.
@@ -130,6 +132,8 @@ public class Details implements Serializable, IDetails {
      *
      * @param searchTitle The search title to set for the item.
      */
-    public void setSearchTitle(String searchTitle) { this.searchTitle = searchTitle; }
+    public void setSearchTitle(String searchTitle) {
+        this.searchTitle = searchTitle;
+    }
 
 }

@@ -13,6 +13,19 @@ import java.util.Objects;
 public class User implements IUser {
 
     private static IUser currentUser;
+    private final String username;
+    private final String password;
+
+    /**
+     * Constructs a new `User` object with the provided username and password.
+     *
+     * @param username The username of the user.
+     * @param password The password associated with the user.
+     */
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     /**
      * Retrieves the currently logged-in user.
@@ -30,20 +43,6 @@ public class User implements IUser {
      */
     public static void setCurrentUser(User currentUser) {
         User.currentUser = currentUser;
-    }
-
-    private final String username;
-    private final String password;
-
-    /**
-     * Constructs a new `User` object with the provided username and password.
-     *
-     * @param username The username of the user.
-     * @param password The password associated with the user.
-     */
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
     }
 
     /**

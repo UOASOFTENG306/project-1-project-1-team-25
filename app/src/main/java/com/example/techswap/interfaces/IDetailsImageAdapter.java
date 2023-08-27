@@ -2,8 +2,6 @@ package com.example.techswap.interfaces;
 
 import android.content.Context;
 
-import java.util.List;
-
 /**
  * The `IDetailsImageAdapter` interface defines methods for managing image data and context in an image adapter
  * specifically tailored for displaying details of an item.

@@ -1,15 +1,19 @@
 package com.example.techswap.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentMainBinding;
@@ -23,14 +27,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 public class MainFragment extends Fragment {
 
-    ICarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
-    ICarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
     private final List<Item> bestSellersList = new ArrayList<>();
     private final List<Item> dealsList = new ArrayList<>();
+    ICarouselAdapter dealsAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.HORIZONTAL_ITEM);
+    ICarouselAdapter bestSellersAdapter = new CarouselAdapter(CarouselAdapter.CarouselType.LIST_ITEM);
     private FragmentMainBinding binding;
 
     /**
@@ -119,7 +121,7 @@ public class MainFragment extends Fragment {
     /**
      * Called when the fragment's view has been created and is ready to be populated with UI elements.
      *
-     * @param view The root view of the fragment.
+     * @param view               The root view of the fragment.
      * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state.
      *                           Any data that was previously saved in the state can be obtained from here.
      */

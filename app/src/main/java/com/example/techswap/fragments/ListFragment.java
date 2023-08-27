@@ -1,14 +1,18 @@
 package com.example.techswap.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.techswap.adapters.CarouselAdapter;
 import com.example.techswap.database.Database;
 import com.example.techswap.databinding.FragmentListBinding;
@@ -19,8 +23,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class ListFragment extends Fragment {
 
@@ -106,7 +108,7 @@ public class ListFragment extends Fragment {
     /**
      * Called when the fragment's view has been created and is ready to be populated with UI elements.
      *
-     * @param view The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param view               The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
      * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
      */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

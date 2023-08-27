@@ -3,13 +3,19 @@ package com.example.techswap.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.techswap.R;
 import com.example.techswap.adapters.SellImageAdapter;
 import com.example.techswap.database.Database;
@@ -27,10 +33,10 @@ import java.util.UUID;
 
 public class SellActivity extends AppCompatActivity {
 
-    IDatabase db = new Database();
     final ISellImageAdapter sellImageAdapter = new SellImageAdapter(this, null);
     private final FirebaseStorage storage = FirebaseStorage.getInstance();
     private final List<String> imageUrlList = new ArrayList<>();
+    IDatabase db = new Database();
     private EditText titleInput;
     private EditText subtitleInput;
     private EditText descriptionInput;

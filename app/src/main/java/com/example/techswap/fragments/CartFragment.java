@@ -1,6 +1,8 @@
 package com.example.techswap.fragments;
 
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,15 +33,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static android.content.ContentValues.TAG;
-
 public class CartFragment extends Fragment implements CarouselAdapter.AdapterCallback {
 
 
-    IDatabase db = new Database();
     private static final List<Item> itemList = new ArrayList<>();
+    IDatabase db = new Database();
     ICarouselAdapter adapter = new CarouselAdapter(CarouselAdapter.CarouselType.CART_ITEM, this);
     private FragmentCartBinding binding;
+    private TextView emptyCartMessage;
 
     /**
      * Clears the items in the cart.
@@ -47,7 +49,6 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
     public static void clearCart() {
         itemList.clear();
     }
-    private TextView emptyCartMessage;
 
     /**
      * Called to create the view hierarchy associated with the fragment.
@@ -56,8 +57,8 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
      * If a user is logged in, it fetches the cart data and sets it to the adapter.
      * Additionally, it sets up the OnClickListener for the checkout button.
      *
-     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment.
-     * @param container The parent view that the fragment's UI should be attached to.
+     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container          The parent view that the fragment's UI should be attached to.
      * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
      * @return The root view of the fragment's layout.
      */
@@ -106,7 +107,7 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
      * It provides the inflated view as a parameter and allows you to perform additional setup and
      * initialization of UI components or data.
      *
-     * @param view The view hierarchy associated with the fragment.
+     * @param view               The view hierarchy associated with the fragment.
      * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
      */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -186,13 +187,13 @@ public class CartFragment extends Fragment implements CarouselAdapter.AdapterCal
             binding.cartTotal.setText(R.string.price_placeholder);
             binding.subtotalPriceText.setText(R.string.price_placeholder);
             binding.feesPriceText.setText(R.string.price_placeholder);
-                // Hide the cart total information if the cart is empty
+            // Hide the cart total information if the cart is empty
             emptyCartMessage.setVisibility(View.VISIBLE);
         } else {
             // Factor in gst
             double total = 0, gst, subTotal;
 
-            for (Item item : items){
+            for (Item item : items) {
                 total += item.getDetails().getPrice();
             }
 

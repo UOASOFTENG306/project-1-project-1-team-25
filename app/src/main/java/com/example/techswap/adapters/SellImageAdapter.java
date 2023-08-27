@@ -5,7 +5,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
+
 import com.example.techswap.R;
 import com.example.techswap.interfaces.ISellImageAdapter;
 
@@ -17,7 +19,7 @@ public class SellImageAdapter extends ImageAdapter implements ISellImageAdapter 
      * Constructor for the SellImageAdapter class.
      * Initializes the adapter with the provided context and a list of image URLs.
      *
-     * @param context The context associated with the adapter.
+     * @param context      The context associated with the adapter.
      * @param imageUrlList The list of image URLs to be displayed in the adapter.
      */
     public SellImageAdapter(Context context, List<String> imageUrlList) {
@@ -30,7 +32,7 @@ public class SellImageAdapter extends ImageAdapter implements ISellImageAdapter 
      * to hold the views within the item. It returns the created {@link ImageViewHolder} to be used for
      * displaying and managing the data of the item.
      *
-     * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+     * @param parent   The ViewGroup into which the new View will be added after it is bound to an adapter position.
      * @param viewType The view type of the new View.
      * @return A new {@link ImageViewHolder} that holds an item view of the given view type.
      */

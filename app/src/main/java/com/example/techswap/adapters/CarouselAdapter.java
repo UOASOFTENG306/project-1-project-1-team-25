@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
 import com.example.techswap.database.Database;
@@ -28,8 +30,8 @@ import java.util.List;
 
 public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ICarouselAdapter {
 
-    IDatabase db = new Database();
     private final CarouselType carouselType;
+    IDatabase db = new Database();
     private List<String> imageUrlList;
     private List<String> titleList;
     private List<Double> priceList;
@@ -73,7 +75,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
      * appropriate layout for the item view based on the carousel type, calculates item width, and adjusts
      * the layout parameters accordingly to achieve the desired appearance for the carousel item.
      *
-     * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+     * @param parent   The ViewGroup into which the new View will be added after it is bound to an adapter position.
      * @param viewType The view type of the new View.
      * @return A new ViewHolder that holds an item view of the given view type.
      * @throws IllegalArgumentException if the provided view type is not recognized or supported.
@@ -143,7 +145,7 @@ public class CarouselAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
      * and images. Depending on the carousel type, it also sets click listeners for various
      * actions, including navigation to detailed views and handling cart item removal.
      *
-     * @param holder The ViewHolder that should be updated to represent the contents of the item at the given position.
+     * @param holder   The ViewHolder that should be updated to represent the contents of the item at the given position.
      * @param position The position of the item within the adapter's data set.
      */
     @Override
