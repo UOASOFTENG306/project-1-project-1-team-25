@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="50"
-        android:background="@color/material_dynamic_neutral10">
+        android:background="@color/neutral10">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/detailsPager"
