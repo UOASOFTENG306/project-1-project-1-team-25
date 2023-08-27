@@ -17,7 +17,6 @@ import com.example.techswap.interfaces.ICarouselAdapter;
 import com.example.techswap.item.Item;
 import com.example.techswap.item.ItemFactory;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
@@ -130,12 +129,12 @@ public class MainFragment extends Fragment {
 
     /**
      * Fetches a list of best-selling items from the Firestore database.
-     * The fetched items are ordered by title and limited to a maximum of 6.
+     * The fetched items are ordered by units sold and limited to a maximum of 6.
      * The retrieved items are added to the bestSellersList and then set as the best sellers.
      */
     private void fetchBestSellers() {
         FirebaseFirestore.getInstance().collection("items")
-                .orderBy("title").limit(6)
+                .orderBy("units_sold").limit(6)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -151,12 +150,12 @@ public class MainFragment extends Fragment {
 
     /**
      * Fetches a list of deals from the Firestore database.
-     * The fetched deals are ordered by title in descending order and limited to a maximum of 6.
+     * The fetched deals are sorted by hotness and limited to a maximum of 6.
      * The retrieved deals are added to the dealsList and then set as the deals.
      */
     private void fetchDeals() {
         FirebaseFirestore.getInstance().collection("items")
-                .orderBy("title", Query.Direction.DESCENDING).limit(6)
+                .orderBy("hotness").limit(6)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
