@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.techswap.R;
 
@@ -20,7 +22,7 @@ public abstract class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Ima
      * Constructor for the ImageAdapter class.
      * Initializes the adapter with the provided context and a list of image URLs.
      *
-     * @param context The context associated with the adapter.
+     * @param context      The context associated with the adapter.
      * @param imageUrlList The list of image URLs to be displayed in the adapter.
      */
     public ImageAdapter(Context context, List<String> imageUrlList) {
@@ -34,7 +36,7 @@ public abstract class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Ima
      * to hold the views within the item. It returns the created {@link ImageViewHolder} to be used for
      * displaying and managing the data of the item.
      *
-     * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+     * @param parent   The ViewGroup into which the new View will be added after it is bound to an adapter position.
      * @param viewType The view type of the new View.
      * @return A new {@link ImageViewHolder} that holds an item view of the given view type.
      */
@@ -51,7 +53,7 @@ public abstract class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.Ima
      * Binds the image URL at the given position to the provided {@link ImageViewHolder},
      * using the Glide library to load and display the image.
      *
-     * @param holder The {@link ImageViewHolder} to bind the data to.
+     * @param holder   The {@link ImageViewHolder} to bind the data to.
      * @param position The position of the item within the data set.
      */
     @Override

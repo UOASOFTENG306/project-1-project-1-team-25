@@ -1,6 +1,7 @@
 package com.example.techswap.item;
 
 import androidx.annotation.NonNull;
+
 import com.example.techswap.interfaces.IDetails;
 
 import java.io.Serializable;
@@ -59,6 +60,15 @@ public abstract class Item implements Serializable {
     }
 
     /**
+     * Sets the list of image URLs associated with the item.
+     *
+     * @param imageUrls The list of image URLs to set.
+     */
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
+    /**
      * Retrieves the URL of the first image associated with the item.
      *
      * @return The URL of the first image.
@@ -68,15 +78,6 @@ public abstract class Item implements Serializable {
             return "https://upload.wikimedia.org/wikipedia/commons/8/89/HD_transparent_picture.png"; // TODO: add resource for URL
         }
         return this.imageUrls.get(0);
-    }
-
-    /**
-     * Sets the list of image URLs associated with the item.
-     *
-     * @param imageUrls The list of image URLs to set.
-     */
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
     }
 
     /**

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
+
 import com.example.techswap.R;
 import com.example.techswap.interfaces.IDetailsImageAdapter;
 
@@ -22,7 +24,7 @@ public class DetailsImageAdapter extends ImageAdapter implements IDetailsImageAd
      * to hold the views within the item. It returns the created {@link ImageViewHolder} to be used for
      * displaying and managing the data of the item.
      *
-     * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+     * @param parent   The ViewGroup into which the new View will be added after it is bound to an adapter position.
      * @param viewType The view type of the new View.
      * @return A new {@link ImageViewHolder} that holds an item view of the given view type.
      */

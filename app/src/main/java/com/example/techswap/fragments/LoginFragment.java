@@ -1,5 +1,8 @@
 package com.example.techswap.fragments;
 
+import static android.content.ContentValues.TAG;
+import static android.view.View.VISIBLE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,9 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
 import com.example.techswap.R;
 import com.example.techswap.activities.MainActivity;
 import com.example.techswap.database.Database;
@@ -23,9 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
 import java.util.Objects;
-
-import static android.content.ContentValues.TAG;
-import static android.view.View.VISIBLE;
 
 public class LoginFragment extends Fragment {
 
@@ -119,8 +121,8 @@ public class LoginFragment extends Fragment {
     /**
      * Fetches user information from the Firestore database based on the provided username.
      *
-     * @param username The username of the user to fetch.
-     * @param password The password associated with the user.
+     * @param username    The username of the user to fetch.
+     * @param password    The password associated with the user.
      * @param isLoggingIn Indicates whether the operation is a login attempt.
      */
     private void fetchUser(String username, String password, boolean isLoggingIn) {

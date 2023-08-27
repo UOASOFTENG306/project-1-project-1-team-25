@@ -4,8 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.techswap.R;
 import com.example.techswap.interfaces.ISpecificationAdapter;
 
@@ -20,7 +22,7 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
      * Initializes the adapter with the provided lists of specification and value data.
      *
      * @param specificationList The list of specification data to be displayed in the adapter.
-     * @param valueList The list of corresponding value data to be displayed in the adapter.
+     * @param valueList         The list of corresponding value data to be displayed in the adapter.
      */
     public SpecificationAdapter(List<String> specificationList, List<String> valueList) {
         this.specificationList = specificationList;
@@ -33,7 +35,7 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
      * to hold the views within the item. It returns the created {@link SpecificationViewHolder} to be used for
      * displaying and managing the specification and value data of the item.
      *
-     * @param parent The ViewGroup into which the new View will be added after it is bound to an adapter position.
+     * @param parent   The ViewGroup into which the new View will be added after it is bound to an adapter position.
      * @param viewType The view type of the new View.
      * @return A new {@link SpecificationViewHolder} that holds an item view of the given view type.
      */
@@ -50,7 +52,7 @@ public class SpecificationAdapter extends RecyclerView.Adapter<SpecificationAdap
      * Binds the specification data at the given position to the {@link SpecificationViewHolder},
      * and binds the corresponding value data using the provided data source.
      *
-     * @param holder The {@link SpecificationViewHolder} to bind the data to.
+     * @param holder   The {@link SpecificationViewHolder} to bind the data to.
      * @param position The position of the item within the data set.
      */
     @Override
