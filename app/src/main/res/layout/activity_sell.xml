@@ -54,7 +54,7 @@
                     android:text="@string/sell_an_item"
                     android:textAllCaps="false"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-                    android:textColor="@color/material_dynamic_neutral80"
+                    android:textColor="@color/neutral80"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
 

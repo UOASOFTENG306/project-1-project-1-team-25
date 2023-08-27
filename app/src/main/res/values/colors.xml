@@ -8,4 +8,8 @@
     <color name="transparent_gray">#77CCCCCC</color>
     <color name="red">#A02C2F</color>
 
+    <color name="neutral10">#191C1E</color>
+    <color name="neutral70">#AAABAE</color>
+    <color name="neutral80">#C5C7C9</color>
+    <color name="neutral95">#F0F0F3</color>
 </resources>

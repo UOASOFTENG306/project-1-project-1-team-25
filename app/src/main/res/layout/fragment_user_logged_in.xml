@@ -35,7 +35,7 @@
                 app:icon="?attr/actionModeSelectAllDrawable"
                 app:iconPadding="10dp"
                 app:iconTint="@color/white"
-                app:rippleColor="@color/material_dynamic_neutral95" />
+                app:rippleColor="@color/neutral95" />
 
         </LinearLayout>
 
@@ -61,7 +61,7 @@
                 app:cornerRadius="0dp"
                 app:iconPadding="10dp"
                 app:iconTint="@color/black"
-                app:rippleColor="@color/material_dynamic_neutral95" />
+                app:rippleColor="@color/neutral95" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
